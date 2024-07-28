@@ -45,10 +45,10 @@ $ yarn start
 <div align=center>
 	<h1>🐹 Developers</h1>
 
-| <img src="https://github.com/hy5sun.png" width="80"> | <img src="https://github.com/zelkovaria.png" width="80"> | <img src="https://github.com/wwweric12.png" width="80"> | <img src="https://github.com/constantly-dev.png" width="80"> | <img src="https://github.com/mju-likelion/hackathon-team2-server/assets/84787653/cd4de8e6-b684-489a-be02-ec2eccd5a613" width="80"> |
-| :--------------------------------------------------: | :------------------------------------------------------: | :-----------------------------------------------------: | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-|        [강민혁](https://github.com/kminh1209)        |          [유민기](https://github.com/youminki)           |        [황민서](https://github.com/MinseoHwang)         |
-|                       BackEnd                        |                         BackEnd                          |                        FrontEnd                         |
+| <img src="https://github.com/kminh1209.png" width="80"> | <img src="https://github.com/youminki.png" width="80"> | <img src="https://github.com/MinseoHwang.png" width="80"> |
+| :-----------------------------------------------------: | :----------------------------------------------------: | :-------------------------------------------------------: |
+|         [강민혁](https://github.com/kminh1209)          |         [유민기](https://github.com/youminki)          |         [황민서](https://github.com/MinseoHwang)          |
+|                         BackEnd                         |                        BackEnd                         |                         FrontEnd                          |
 
 </div>
 
