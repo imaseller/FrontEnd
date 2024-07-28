@@ -8,7 +8,7 @@ FrontEnd repo
 
 ```bash
 # git clone
-$ git clone https://github.com/mju-likelion/hackathon-team2-web.git
+$ git clone [https://github.com/orgs/imaseller/repositories]
 
 # installation
 $ yarn install
