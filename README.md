@@ -48,7 +48,7 @@ $ yarn start
 | <img src="https://github.com/kminh1209.png" width="80"> | <img src="https://github.com/youminki.png" width="80"> | <img src="https://github.com/MinseoHwang.png" width="80"> |
 | :-----------------------------------------------------: | :----------------------------------------------------: | :-------------------------------------------------------: |
 |         [강민혁](https://github.com/kminh1209)          |         [유민기](https://github.com/youminki)          |         [황민서](https://github.com/MinseoHwang)          |
-|                         BackEnd                         |                        BackEnd                         |                         FrontEnd                          |
+|                         BackEnd                         |                        FrontEnd                         |                         BackEnd                          |
 
 </div>
 
