@@ -60,3 +60,4 @@ export const Theme = {
     desktop: '1024px',
   },
 };
+export default Theme;
