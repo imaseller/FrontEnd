@@ -58,7 +58,7 @@ const Signup = () => {
 export default Signup;
 
 const Container = styled.div`
-  max-width: 60vw;
+  max-width: 50vw;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid ${({ theme }) => theme.colors.gray};

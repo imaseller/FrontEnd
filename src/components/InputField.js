@@ -14,14 +14,14 @@ const InputContainer = styled.div`
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  width: 40vw;
+  width: 100%;
 `;
 
 const Label = styled.label`
   margin-bottom: 10px;
   font-weight: bold;
   font-size: 16px;
-  color: ${({ theme }) => theme.colors.gray};
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 const Input = styled.input`

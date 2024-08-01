@@ -247,7 +247,7 @@ const Label = styled.label`
 const BrandContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 40vw;
+  width: 100%;
   margin-bottom: 20px;
   padding: 30px;
   border: 1px solid ${({ theme }) => theme.colors.gray};
