@@ -9,7 +9,7 @@ import Theme from '../styles/Theme';
 const Login = () => {
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleSignupClick = () => {
     navigate('/signup');
   };
 
@@ -21,10 +21,10 @@ const Login = () => {
             <Title>IM SELLER</Title>
             <InputField label='계정(이메일)' id='email' type='email' />
             <InputField label='비밀번호' id='password' type='password' />
-            <Button onClick={handleLogin}>로그인</Button>
+            <Button>로그인</Button>
           </LoginForm>
           <ExtraLinks>
-            <Link href='#'>회원가입</Link>
+            <Link onClick={handleSignupClick}>회원가입</Link>
             <Separator>|</Separator>
             <Link href='#'>아이디 찾기</Link>
             <Separator>|</Separator>
@@ -85,10 +85,11 @@ const ExtraLinks = styled.div`
 
 const Link = styled.a`
   ${({ theme }) => theme.fonts.helperText};
-  color: ${({ theme }) => theme.colors.gray};
+  color: ${({ theme }) => theme.colors.black};
   text-decoration: none;
   flex: 1;
   text-align: center;
+  cursor: pointer;
   &:hover {
     text-decoration: underline;
   }
