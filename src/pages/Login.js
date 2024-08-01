@@ -16,8 +16,13 @@ const Login = () => {
   const handleFindIdClick = () => {
     navigate('/findid');
   };
+
   const handleFindPasswordClick = () => {
     navigate('/findPassword');
+  };
+
+  const handleLoginClick = () => {
+    navigate('/admin');
   };
 
   return (
@@ -28,7 +33,7 @@ const Login = () => {
             <Title>IM SELLER</Title>
             <InputField label='계정(이메일)' id='email' type='email' />
             <InputField label='비밀번호' id='password' type='password' />
-            <Button>로그인</Button>
+            <Button onClick={handleLoginClick}>로그인</Button>
           </LoginForm>
           <ExtraLinks>
             <Link onClick={handleSignupClick}>회원가입</Link>
