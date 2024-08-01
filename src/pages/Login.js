@@ -16,6 +16,9 @@ const Login = () => {
   const handleFindIdClick = () => {
     navigate('/findid');
   };
+  const handleFindPasswordClick = () => {
+    navigate('/findPassword');
+  };
 
   return (
     <ThemeProvider theme={Theme}>
@@ -32,7 +35,7 @@ const Login = () => {
             <Separator>|</Separator>
             <Link onClick={handleFindIdClick}>아이디 찾기</Link>
             <Separator>|</Separator>
-            <Link href='#'>비밀번호 찾기</Link>
+            <Link onClick={handleFindPasswordClick}>비밀번호 찾기</Link>
           </ExtraLinks>
           <BrowseLink href='#'>회원가입 없이 둘러보기</BrowseLink>
         </LoginContainer>
