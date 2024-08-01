@@ -1,36 +1,43 @@
+// Theme.js
 import { css } from 'styled-components';
 
-export const Theme = {
+const Theme = {
   fonts: {
     mainTitle: css`
       font-family: 'Noto Sans KR', sans-serif;
-      font-weight: 400;
+      font-weight: 600;
       font-size: 54px;
+      line-height: 1.2;
     `,
     heading: css`
       font-family: 'Noto Sans KR', sans-serif;
-      font-weight: 400;
+      font-weight: 500;
       font-size: 28px;
+      line-height: 1.3;
     `,
     default: css`
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: 400;
       font-size: 20px;
+      line-height: 1.5;
     `,
     helperText: css`
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: 400;
       font-size: 16px;
+      line-height: 1.4;
     `,
     BigButton: css`
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: 600;
       font-size: 30px;
+      line-height: 1.2;
     `,
     SmallButton: css`
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: 800;
       font-size: 20px;
+      line-height: 1.2;
     `,
     subTitle: css`
       font-family: 'Noto Sans KR', sans-serif;
@@ -60,3 +67,5 @@ export const Theme = {
     desktop: '1024px',
   },
 };
+
+export default Theme;
