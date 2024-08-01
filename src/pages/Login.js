@@ -1,4 +1,3 @@
-// Login.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
@@ -14,6 +13,10 @@ const Login = () => {
     navigate('/signup');
   };
 
+  const handleFindIdClick = () => {
+    navigate('/findid');
+  };
+
   return (
     <ThemeProvider theme={Theme}>
       <Container>
@@ -27,7 +30,7 @@ const Login = () => {
           <ExtraLinks>
             <Link onClick={handleSignupClick}>회원가입</Link>
             <Separator>|</Separator>
-            <Link href='#'>아이디 찾기</Link>
+            <Link onClick={handleFindIdClick}>아이디 찾기</Link>
             <Separator>|</Separator>
             <Link href='#'>비밀번호 찾기</Link>
           </ExtraLinks>

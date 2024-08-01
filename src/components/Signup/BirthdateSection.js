@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const BirthdateSection = () => (
-  <>
+  <BirthdateWrapper>
     <Label>생년월일</Label>
     <BirthdateContainer>
       <Select name='birthYear' id='birthYear' required>
@@ -45,20 +45,29 @@ const BirthdateSection = () => (
         })}
       </Select>
     </BirthdateContainer>
-  </>
+  </BirthdateWrapper>
 );
 
 export default BirthdateSection;
 
+const BirthdateWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
+`;
+
 const Label = styled.label`
   font-size: 14px;
   color: ${({ theme }) => theme.colors.gray};
+  margin-bottom: 10px;
+  text-align: left;
 `;
 
 const BirthdateContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  width: 100%;
 
   select {
     margin-right: 10px;
