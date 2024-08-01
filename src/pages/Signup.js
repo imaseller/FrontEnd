@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import BackButton from '../components/BackButton';
 import Button from '../components/Button01';
 import InputField from '../components/InputField.js';
 import AgreementSection from '../components/Signup/AgreementSection.js';
@@ -8,10 +9,10 @@ import FavoriteBrandsSection from '../components/Signup/FavoriteBrandsSection';
 import FavoriteColorSection from '../components/Signup/FavoriteColorSection';
 import SizeSelectionSection from '../components/Signup/SizeSelectionSection';
 import Theme from '../styles/Theme';
-
 const Signup = () => {
   return (
     <ThemeProvider theme={Theme}>
+      <BackButton />
       <Container>
         <Title>회원가입</Title>
         <Form>
@@ -59,7 +60,7 @@ export default Signup;
 
 const Container = styled.div`
   max-width: 50vw;
-  margin: 0 auto;
+  margin: 100px auto;
   padding: 20px;
   border: 1px solid ${({ theme }) => theme.colors.gray};
 `;

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import BackButton from '../components/BackButton';
 import Button from '../components/Button01';
 import InputField from '../components/InputField';
 import BirthdateSection from '../components/Signup/BirthdateSection';
@@ -11,6 +12,7 @@ const FindId = () => {
   return (
     <ThemeProvider theme={Theme}>
       <Container>
+        <BackButton />
         <FindIdContainer>
           <Title>계정 찾기</Title>
           <InputField label='닉네임' id='nickname' type='text' />
@@ -31,6 +33,7 @@ const Container = styled.div`
   justify-content: center;
   height: 100vh;
   background-color: ${({ theme }) => theme.colors.background};
+  position: relative; /* 추가된 스타일 */
 `;
 
 const FindIdContainer = styled.div`
@@ -43,6 +46,7 @@ const FindIdContainer = styled.div`
   align-items: center;
   max-width: 450px;
   width: 100%;
+  position: relative; /* 추가된 스타일 */
 `;
 
 const Title = styled.h2`
