@@ -15,7 +15,7 @@ const InputContainer = styled.div`
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 20vw;
 `;
 
 const Label = styled.label`
