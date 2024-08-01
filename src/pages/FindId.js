@@ -33,7 +33,7 @@ const Container = styled.div`
   justify-content: center;
   height: 100vh;
   background-color: ${({ theme }) => theme.colors.background};
-  position: relative; /* 추가된 스타일 */
+  position: relative;
 `;
 
 const FindIdContainer = styled.div`
@@ -46,7 +46,7 @@ const FindIdContainer = styled.div`
   align-items: center;
   max-width: 450px;
   width: 100%;
-  position: relative; /* 추가된 스타일 */
+  position: relative;
 `;
 
 const Title = styled.h2`

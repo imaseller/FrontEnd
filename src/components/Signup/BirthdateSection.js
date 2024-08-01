@@ -83,7 +83,7 @@ const Select = styled.select`
   margin-bottom: 20px;
   padding: 10px;
   font-size: 14px;
-  width: 10vw;
+  width: 100%;
   border: 1px solid ${({ theme }) => theme.colors.gray};
   border-radius: 4px;
 `;
