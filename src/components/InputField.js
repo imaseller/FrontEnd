@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// InputField 컴포넌트
 const InputField = ({ label, id, type }) => (
   <InputContainer>
     <Label htmlFor={id}>{label}</Label>
@@ -15,7 +14,7 @@ const InputContainer = styled.div`
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  width: 20vw;
+  width: 40vw;
 `;
 
 const Label = styled.label`
