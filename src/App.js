@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import ManagerList from './components/Admin/ManagerList.js';
+import ManagerList from './components/Admin/ManagerList';
 import Admin from './pages/Admin';
 import FindId from './pages/FindId';
 import FindPassword from './pages/FindPassword';
@@ -21,7 +21,7 @@ function App() {
           <Route path='/findId' element={<FindId />} />
           <Route path='/findPassword' element={<FindPassword />} />
           <Route path='/admin/*' element={<Admin />}>
-            <Route path='manager-list' element={<ManagerList />} />
+            <Route path='managerlist' element={<ManagerList />} />
           </Route>
         </Routes>
       </Router>

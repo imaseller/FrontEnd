@@ -1,8 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import Theme from '../../styles/Theme';
 
 const ManagerList = () => {
+  const navigate = useNavigate();
+
+  const handleEdit = (id) => {
+    navigate(`/admin/managerlist/detail/${id}`);
+  };
+
+  const handleRegister = () => {
+    navigate('/admin/managerlist/detail/new');
+  };
+
   return (
     <ThemeProvider theme={Theme}>
       <Content>
@@ -31,7 +42,8 @@ const ManagerList = () => {
               <td>dbalsrl7648@gmail.com</td>
               <td>서비스 관리자</td>
               <td>
-                <ActionButton>수정</ActionButton>
+                <ActionButton onClick={() => handleEdit(3)}>수정</ActionButton>
+                <ActionButton onClick={handleRegister}>등록</ActionButton>
                 <ActionButton>삭제</ActionButton>
               </td>
             </tr>

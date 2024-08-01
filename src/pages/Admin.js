@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
+import ManagerDetail from '../components/Admin/ManagerDetail'; // 추가된 부분
 import ManagerList from '../components/Admin/ManagerList';
 import Theme from '../styles/Theme';
 
@@ -22,7 +23,7 @@ const Admin = () => {
             <NavItem onClick={() => navigate('/admin/dashboard')}>
               Dash Board
             </NavItem>
-            <NavItem onClick={() => navigate('/admin/manager-list')}>
+            <NavItem onClick={() => navigate('/admin/managerlist')}>
               관리자 관리
             </NavItem>
             <NavItem>회원 관리</NavItem>
@@ -35,7 +36,12 @@ const Admin = () => {
         <MainContent>
           <Routes>
             <Route path='dashboard' element={<Dashboard />} />
-            <Route path='manager-list' element={<ManagerList />} />
+            <Route path='managerlist' element={<ManagerList />} />
+            <Route
+              path='managerlist/detail/:id'
+              element={<ManagerDetail />}
+            />{' '}
+            {/* 추가된 부분 */}
           </Routes>
         </MainContent>
       </Container>
