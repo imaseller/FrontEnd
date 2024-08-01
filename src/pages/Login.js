@@ -1,28 +1,36 @@
 // Login.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
+import Button from '../components/Button01';
+import InputField from '../components/InputField';
 import Theme from '../styles/Theme';
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const handleSignupClick = () => {
+    navigate('/signup');
+  };
+
   return (
     <ThemeProvider theme={Theme}>
       <Container>
-        <LogoContainer>
-          <Logo>SELLER</Logo>
-        </LogoContainer>
         <LoginContainer>
           <LoginForm>
-            <Title>Login</Title>
-            <InputContainer>
-              <Label htmlFor='email'>Email</Label>
-              <Input type='email' id='email' />
-            </InputContainer>
-            <InputContainer>
-              <Label htmlFor='password'>Password</Label>
-              <Input type='password' id='password' />
-            </InputContainer>
-            <LoginButton>Login</LoginButton>
+            <Title>IM SELLER</Title>
+            <InputField label='계정(이메일)' id='email' type='email' />
+            <InputField label='비밀번호' id='password' type='password' />
+            <Button>로그인</Button>
           </LoginForm>
+          <ExtraLinks>
+            <Link onClick={handleSignupClick}>회원가입</Link>
+            <Separator>|</Separator>
+            <Link href='#'>아이디 찾기</Link>
+            <Separator>|</Separator>
+            <Link href='#'>비밀번호 찾기</Link>
+          </ExtraLinks>
+          <BrowseLink href='#'>회원가입 없이 둘러보기</BrowseLink>
         </LoginContainer>
       </Container>
     </ThemeProvider>
@@ -37,29 +45,20 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f9f9f9;
+  background-color: #555555;
   background-size: cover;
-`;
-
-const LogoContainer = styled.div`
-  margin-bottom: 40px;
-`;
-
-const Logo = styled.h1`
-  ${({ theme }) => theme.fonts.mainTitle};
-  color: ${({ theme }) => theme.colors.pink4};
 `;
 
 const LoginContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   padding: 40px;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 400px;
+  max-width: 450px;
   width: 100%;
 `;
 
@@ -71,55 +70,42 @@ const LoginForm = styled.form`
 `;
 
 const Title = styled.h2`
-  ${({ theme }) => theme.fonts.heading};
+  ${({ theme }) => theme.fonts.mainTitle};
   margin-bottom: 20px;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.pink4};
 `;
 
-const InputContainer = styled.div`
-  margin-bottom: 15px;
+const ExtraLinks = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: space-evenly;
   width: 100%;
+  margin-top: 40px;
+  align-items: center;
 `;
 
-const Label = styled.label`
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.gray};
-`;
-
-const Input = styled.input`
-  padding: 10px;
-  font-size: 16px;
-  width: 100%;
-  border: 1px solid ${({ theme }) => theme.colors.gray};
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  &:focus {
-    border-color: ${({ theme }) => theme.colors.pink4};
-    box-shadow: 0 0 5px ${({ theme }) => theme.colors.pink4};
-  }
-`;
-
-const LoginButton = styled.button`
-  padding: 10px 20px;
-  font-size: 16px;
-  color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.pink4};
-  border: none;
-  border-radius: 4px;
+const Link = styled.a`
+  ${({ theme }) => theme.fonts.helperText};
+  color: ${({ theme }) => theme.colors.black};
+  text-decoration: none;
+  flex: 1;
+  text-align: center;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-
   &:hover {
-    background-color: ${({ theme }) => theme.colors.pink5};
-    transform: translateY(-2px);
+    text-decoration: underline;
   }
+`;
 
-  &:active {
-    background-color: ${({ theme }) => theme.colors.pink3};
-    transform: translateY(0);
+const Separator = styled.span`
+  color: ${({ theme }) => theme.colors.gray};
+  margin: 0 10px;
+`;
+
+const BrowseLink = styled.a`
+  ${({ theme }) => theme.fonts.helperText};
+  color: ${({ theme }) => theme.colors.gray};
+  text-decoration: none;
+  margin-top: 20px;
+  &:hover {
+    text-decoration: underline;
   }
 `;

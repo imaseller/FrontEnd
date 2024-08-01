@@ -1,7 +1,9 @@
+// App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 import GlobalStyle from './styles/GlobalStyle';
 import Theme from './styles/Theme';
 
@@ -12,6 +14,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Login />} />
+          <Route path='/signup' element={<Signup />} />
         </Routes>
       </Router>
     </ThemeProvider>
