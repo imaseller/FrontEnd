@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import Button from '../components/Button01';
 import InputField from '../components/InputField';
+import backgroundImage from '../img/background01.svg';
 import Theme from '../styles/Theme';
 
 const Login = () => {
@@ -45,8 +46,10 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #555555;
+  background-image: url(${backgroundImage});
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 const LoginContainer = styled.div`
@@ -60,6 +63,7 @@ const LoginContainer = styled.div`
   align-items: center;
   max-width: 450px;
   width: 100%;
+  background-color: ${({ theme }) => theme.colors.brown1};
 `;
 
 const LoginForm = styled.form`
@@ -72,7 +76,7 @@ const LoginForm = styled.form`
 const Title = styled.h2`
   ${({ theme }) => theme.fonts.mainTitle};
   margin-bottom: 20px;
-  color: ${({ theme }) => theme.colors.pink4};
+  color: ${({ theme }) => theme.colors.brown6};
 `;
 
 const ExtraLinks = styled.div`
@@ -96,7 +100,7 @@ const Link = styled.a`
 `;
 
 const Separator = styled.span`
-  color: ${({ theme }) => theme.colors.gray};
+  color: ${({ theme }) => theme.colors.bal};
   margin: 0 10px;
 `;
 

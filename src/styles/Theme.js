@@ -60,6 +60,12 @@ const Theme = {
     white: '#FFFFFF',
     blue: '#004DFF',
     yellow: '#FFF375',
+    brown1: '#f2dfd3',
+    brown2: '#e4c0a8',
+    brown3: '#d3a27f',
+    brown4: '#c08457',
+    brown5: '#ac6730',
+    brown6: '#964b00',
   },
   breakpoints: {
     mobile: '480px',
