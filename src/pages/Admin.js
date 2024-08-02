@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
-import ManagerDetail from '../components/Admin/ManagerDetail'; // 추가된 부분
+import BlockManagerList from '../components/Admin/BlockManagerList';
+import ManagerDetail from '../components/Admin/ManagerDetail';
+import ManagerGroupList from '../components/Admin/ManagerGroupList';
 import ManagerList from '../components/Admin/ManagerList';
+import MenuList from '../components/Admin/MenuList';
 import Theme from '../styles/Theme';
 
 const Admin = () => {
   const navigate = useNavigate();
+  const [isManagerMenuOpen, setIsManagerMenuOpen] = useState(false);
+
+  const handleManagerMenuToggle = () => {
+    setIsManagerMenuOpen(!isManagerMenuOpen);
+  };
 
   return (
     <ThemeProvider theme={Theme}>
@@ -23,9 +31,27 @@ const Admin = () => {
             <NavItem onClick={() => navigate('/admin/dashboard')}>
               Dash Board
             </NavItem>
-            <NavItem onClick={() => navigate('/admin/managerlist')}>
-              관리자 관리
-            </NavItem>
+            <NavItem onClick={handleManagerMenuToggle}>관리자 관리</NavItem>
+            {isManagerMenuOpen && (
+              <SubMenu>
+                <SubMenuItem onClick={() => navigate('/admin/managerlist')}>
+                  관리자 목록
+                </SubMenuItem>
+                <SubMenuItem
+                  onClick={() => navigate('/admin/blockmanagerlist')}
+                >
+                  블럭 관리자 목록
+                </SubMenuItem>
+                <SubMenuItem
+                  onClick={() => navigate('/admin/managergrouplist')}
+                >
+                  관리자 그룹 목록
+                </SubMenuItem>
+                <SubMenuItem onClick={() => navigate('/admin/menulist')}>
+                  메뉴 목록
+                </SubMenuItem>
+              </SubMenu>
+            )}
             <NavItem>회원 관리</NavItem>
             <NavItem>서비스 관리</NavItem>
             <NavItem>결제 관리</NavItem>
@@ -37,11 +63,10 @@ const Admin = () => {
           <Routes>
             <Route path='dashboard' element={<Dashboard />} />
             <Route path='managerlist' element={<ManagerList />} />
-            <Route
-              path='managerlist/detail/:id'
-              element={<ManagerDetail />}
-            />{' '}
-            {/* 추가된 부분 */}
+            <Route path='managerlist/detail/:id' element={<ManagerDetail />} />
+            <Route path='blockmanagerlist' element={<BlockManagerList />} />
+            <Route path='managergrouplist' element={<ManagerGroupList />} />
+            <Route path='menulist' element={<MenuList />} />
           </Routes>
         </MainContent>
       </Container>
@@ -106,6 +131,21 @@ const Navigation = styled.div`
 
 const NavItem = styled.div`
   padding: 10px 0;
+  color: ${({ theme }) => theme.colors.brown1};
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.brown4};
+  }
+`;
+
+const SubMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+`;
+
+const SubMenuItem = styled.div`
+  padding: 5px 0;
   color: ${({ theme }) => theme.colors.brown1};
   cursor: pointer;
   &:hover {
