@@ -6,26 +6,29 @@ import Theme from '../../styles/Theme';
 const ManagerDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [manager, setManager] = useState({});
+  const [manager, setManager] = useState({
+    아이디: '',
+    비밀번호: '',
+    이메일: '',
+    이름: '',
+    권한등급: '서비스 관리자',
+    상태: '정상',
+  });
 
   useEffect(() => {
     if (id !== 'new') {
-      // 기존 관리자 정보를 불러오는 로직을 추가
-      // 예시: fetch(`/api/managers/${id}`).then(response => response.json()).then(data => setManager(data));
       setManager({
-        id,
-        상태: '정상',
         아이디: 'dbalsrl7648',
-        이름: '유민기',
         이메일: 'dbalsrl7648@gmail.com',
+        이름: '유민기',
         권한등급: '서비스 관리자',
+        상태: '정상',
+        등록일: '2023-01-01',
       });
     }
   }, [id]);
 
   const handleSave = () => {
-    // 수정 또는 등록 처리 로직 추가
-    // 예시: fetch(`/api/managers/${id}`, { method: 'PUT', body: JSON.stringify(manager) });
     navigate('/admin/managerlist');
   };
 
@@ -43,45 +46,114 @@ const ManagerDetail = () => {
           </HeaderTitle>
         </Header>
         <Form>
-          <Label>
-            아이디:
-            <Input
-              type='text'
-              name='아이디'
-              value={manager.아이디 || ''}
-              onChange={handleChange}
-            />
-          </Label>
-          <Label>
-            이름:
-            <Input
-              type='text'
-              name='이름'
-              value={manager.이름 || ''}
-              onChange={handleChange}
-            />
-          </Label>
-          <Label>
-            이메일:
-            <Input
-              type='email'
-              name='이메일'
-              value={manager.이메일 || ''}
-              onChange={handleChange}
-            />
-          </Label>
-          <Label>
-            권한등급:
-            <Input
-              type='text'
-              name='권한등급'
-              value={manager.권한등급 || ''}
-              onChange={handleChange}
-            />
-          </Label>
-          <ActionButton onClick={handleSave}>
-            {id === 'new' ? '등록' : '수정'}
-          </ActionButton>
+          <FormRow>
+            <Label>
+              아이디:
+              <Input
+                type='text'
+                name='아이디'
+                value={manager.아이디}
+                onChange={handleChange}
+                disabled={id !== 'new'}
+              />
+            </Label>
+            <Label>
+              이름:
+              <Input
+                type='text'
+                name='이름'
+                value={manager.이름}
+                onChange={handleChange}
+              />
+            </Label>
+          </FormRow>
+          {id === 'new' && (
+            <FormRow>
+              <Label>
+                비밀번호:
+                <Input
+                  type='password'
+                  name='비밀번호'
+                  value={manager.비밀번호}
+                  onChange={handleChange}
+                />
+              </Label>
+              <Label>
+                재확인:
+                <Input
+                  type='password'
+                  name='비밀번호확인'
+                  value={manager.비밀번호확인}
+                  onChange={handleChange}
+                />
+              </Label>
+            </FormRow>
+          )}
+          <FormRow>
+            <Label>
+              이메일:
+              <Input
+                type='email'
+                name='이메일'
+                value={manager.이메일}
+                onChange={handleChange}
+              />
+            </Label>
+            <Label>
+              권한등급:
+              <Select
+                name='권한등급'
+                value={manager.권한등급}
+                onChange={handleChange}
+              >
+                <option value='시스템 관리자'>시스템 관리자</option>
+                <option value='서비스 관리자'>서비스 관리자</option>
+              </Select>
+            </Label>
+          </FormRow>
+          <FormRow>
+            <Label>
+              상태:
+              <RadioGroup>
+                <RadioLabel>
+                  <Radio
+                    type='radio'
+                    name='상태'
+                    value='정상'
+                    checked={manager.상태 === '정상'}
+                    onChange={handleChange}
+                  />
+                  정상
+                </RadioLabel>
+                <RadioLabel>
+                  <Radio
+                    type='radio'
+                    name='상태'
+                    value='블럭'
+                    checked={manager.상태 === '블럭'}
+                    onChange={handleChange}
+                  />
+                  블럭
+                </RadioLabel>
+              </RadioGroup>
+            </Label>
+          </FormRow>
+          {id !== 'new' && (
+            <FormRow>
+              <Label>
+                등록일:
+                <Input type='text' value={manager.등록일} disabled />
+              </Label>
+            </FormRow>
+          )}
+          <ActionRow>
+            <ActionButton onClick={handleSave}>
+              {id === 'new' ? '등록' : '수정'}
+            </ActionButton>
+            <ActionButton onClick={() => navigate('/admin/managerlist')}>
+              취소
+            </ActionButton>
+          </ActionRow>
         </Form>
       </Content>
     </ThemeProvider>
@@ -114,11 +186,17 @@ const Form = styled.div`
   gap: 10px;
 `;
 
+const FormRow = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
 const Label = styled.label`
   display: flex;
   flex-direction: column;
   font-size: 14px;
   color: ${({ theme }) => theme.colors.black};
+  flex: 1;
 `;
 
 const Input = styled.input`
@@ -128,9 +206,39 @@ const Input = styled.input`
   border-radius: 4px;
 `;
 
-const ActionButton = styled.button`
-  margin-top: 20px;
+const Select = styled.select`
   padding: 10px;
+  font-size: 14px;
+  border: 1px solid ${({ theme }) => theme.colors.gray};
+  border-radius: 4px;
+`;
+
+const RadioGroup = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+`;
+
+const RadioLabel = styled.label`
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.black};
+`;
+
+const Radio = styled.input`
+  margin-right: 5px;
+`;
+
+const ActionRow = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+`;
+
+const ActionButton = styled.button`
+  padding: 10px 20px;
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors.brown4};
   color: ${({ theme }) => theme.colors.white};
