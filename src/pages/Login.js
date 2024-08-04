@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import Button from '../components/Button01';
 import InputField from '../components/InputField';
-import backgroundImage from '../img/background01.svg';
+import backgroundImage from '../img/background02.jpg';
 import Theme from '../styles/Theme';
 
 const Login = () => {
