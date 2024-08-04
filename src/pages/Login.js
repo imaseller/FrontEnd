@@ -64,7 +64,7 @@ const Container = styled.div`
 `;
 
 const LoginContainer = styled.div`
-  background-color: ${({ theme }) => theme.colors.DarkBrown1};
+  background-color: ${({ theme }) => theme.colors.PinkBrown3};
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -87,7 +87,7 @@ const LoginForm = styled.form`
 const Title = styled.h2`
   ${({ theme }) => theme.fonts.mainTitle};
   margin-bottom: 20px;
-  color: ${({ theme }) => theme.colors.PinkBrown5};
+  color: ${({ theme }) => theme.colors.DarkBrown3};
 `;
 
 const ExtraLinks = styled.div`

@@ -41,7 +41,7 @@ const Container = styled.div`
 `;
 
 const FindIdContainer = styled.div`
-  background-color: ${({ theme }) => theme.colors.DarkBrown1};
+  background-color: ${({ theme }) => theme.colors.PinkBrown3};
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -57,5 +57,5 @@ const FindIdContainer = styled.div`
 const Title = styled.h2`
   ${({ theme }) => theme.fonts.heading};
   margin-bottom: 20px;
-  color: ${({ theme }) => theme.colors.PinkBrown5};
+  color: ${({ theme }) => theme.colors.DarkBrown3};
 `;
