@@ -75,9 +75,9 @@ const MemberDetail = () => {
   return (
     <ThemeProvider theme={Theme}>
       <Container>
-        <Content>
-          <Title>회원 상세정보</Title>
-          <Form>
+        <Title>회원 상세정보</Title>
+        <FormContainer>
+          <LeftForm>
             <FormRow>
               <Label>계정(이메일):</Label>
               <Input
@@ -85,8 +85,9 @@ const MemberDetail = () => {
                 name='email'
                 value={member.email}
                 onChange={handleChange}
-                width='calc(100% - 220px)'
               />
+            </FormRow>
+            <FormRow>
               <Label>닉네임:</Label>
               <InputWrapper>
                 <Input
@@ -94,7 +95,6 @@ const MemberDetail = () => {
                   name='nickname'
                   value={member.nickname}
                   onChange={handleChange}
-                  width='calc(100% - 220px)'
                 />
                 <CheckButton onClick={checkDuplicateNickname}>
                   중복체크
@@ -109,6 +109,8 @@ const MemberDetail = () => {
                 value={member.password}
                 onChange={handleChange}
               />
+            </FormRow>
+            <FormRow>
               <Label>재확인:</Label>
               <Input
                 type='password'
@@ -118,6 +120,33 @@ const MemberDetail = () => {
               />
             </FormRow>
             <FormRow>
+              <Label>이벤트수신여부:</Label>
+              <RadioGroup>
+                <RadioLabel>
+                  <Radio
+                    type='radio'
+                    name='event'
+                    value='agree'
+                    checked={member.event === 'agree'}
+                    onChange={handleChange}
+                  />
+                  동의
+                </RadioLabel>
+                <RadioLabel>
+                  <Radio
+                    type='radio'
+                    name='event'
+                    value='disagree'
+                    checked={member.event === 'disagree'}
+                    onChange={handleChange}
+                  />
+                  미동의
+                </RadioLabel>
+              </RadioGroup>
+            </FormRow>
+          </LeftForm>
+          <RightForm>
+            <FormRow>
               <Label>생일:</Label>
               <Input
                 type='date'
@@ -126,6 +155,8 @@ const MemberDetail = () => {
                 onChange={handleChange}
                 onClick={(e) => e.target.showPicker()}
               />
+            </FormRow>
+            <FormRow>
               <Label>선호색상:</Label>
               <Select name='color' value={member.color} onChange={handleChange}>
                 <option value='Black'>Black</option>
@@ -206,6 +237,8 @@ const MemberDetail = () => {
                 <option value='SJSJ'>SJSJ</option>
                 <option value='SYSTEM'>SYSTEM</option>
               </Select>
+            </FormRow>
+            <FormRow>
               <Label>사이즈:</Label>
               <SizeContainer>
                 <SizeSelect
@@ -244,29 +277,6 @@ const MemberDetail = () => {
               </SizeContainer>
             </FormRow>
             <FormRow>
-              <Label>이벤트수신여부:</Label>
-              <RadioGroup>
-                <RadioLabel>
-                  <Radio
-                    type='radio'
-                    name='event'
-                    value='agree'
-                    checked={member.event === 'agree'}
-                    onChange={handleChange}
-                  />
-                  동의
-                </RadioLabel>
-                <RadioLabel>
-                  <Radio
-                    type='radio'
-                    name='event'
-                    value='disagree'
-                    checked={member.event === 'disagree'}
-                    onChange={handleChange}
-                  />
-                  미동의
-                </RadioLabel>
-              </RadioGroup>
               <Label>계정상태:</Label>
               <Select
                 name='status'
@@ -292,31 +302,31 @@ const MemberDetail = () => {
                 <option value='KFBA'>KFBA</option>
               </Select>
             </FormRow>
-          </Form>
-          <ActionRow>
-            <LeftActionButton onClick={() => navigate('/admin/memberlist')}>
-              목록보기
-            </LeftActionButton>
-            <RightActionButtons>
-              <ActionButton onClick={handleSave}>저장하기</ActionButton>
-              <ActionButton onClick={handleCancel}>저장취소</ActionButton>
-            </RightActionButtons>
-          </ActionRow>
-          <Table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>배송자명</th>
-                <th>수령인</th>
-                <th>주소</th>
-                <th>연락처</th>
-                <th>연락처2</th>
-                <th>기본설정</th>
-              </tr>
-            </thead>
-            <tbody>{/* 배송지 정보 데이터 맵핑 */}</tbody>
-          </Table>
-        </Content>
+          </RightForm>
+        </FormContainer>
+        <ActionRow>
+          <LeftActionButton onClick={() => navigate('/admin/memberlist')}>
+            목록보기
+          </LeftActionButton>
+          <RightActionButtons>
+            <ActionButton onClick={handleSave}>저장하기</ActionButton>
+            <ActionButton onClick={handleCancel}>저장취소</ActionButton>
+          </RightActionButtons>
+        </ActionRow>
+        <Table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>배송자명</th>
+              <th>수령인</th>
+              <th>주소</th>
+              <th>연락처</th>
+              <th>연락처2</th>
+              <th>기본설정</th>
+            </tr>
+          </thead>
+          <tbody>{/* 배송지 정보 데이터 맵핑 */}</tbody>
+        </Table>
       </Container>
     </ThemeProvider>
   );
@@ -326,12 +336,8 @@ export default MemberDetail;
 
 const Container = styled.div`
   display: flex;
-`;
-
-const Content = styled.div`
+  flex-direction: column;
   padding: 20px;
-  background-color: ${({ theme }) => theme.colors.white};
-  flex: 1;
 `;
 
 const Title = styled.h2`
@@ -339,30 +345,38 @@ const Title = styled.h2`
   color: ${({ theme }) => theme.colors.black};
 `;
 
-const Form = styled.div`
+const FormContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+`;
+
+const LeftForm = styled.div`
+  flex: 1;
+  max-width: 48%;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 20px;
-  border: 1px solid ${({ theme }) => theme.colors.gray};
-  background-color: ${({ theme }) => theme.colors.WhiteBrown1};
+`;
+
+const RightForm = styled.div`
+  flex: 1;
+  max-width: 48%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 
 const FormRow = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
   align-items: center;
-  justify-content: space-between;
+  gap: 10px;
 `;
 
 const Label = styled.label`
-  display: flex;
   font-size: 14px;
   color: ${({ theme }) => theme.colors.black};
-  min-width: 100px;
-  max-width: 100px;
-  align-items: center;
+  min-width: 120px;
 `;
 
 const InputWrapper = styled.div`
@@ -375,19 +389,17 @@ const InputWrapper = styled.div`
 const Input = styled.input`
   padding: 10px;
   font-size: 14px;
-  flex: 1;
   border: 1px solid ${({ theme }) => theme.colors.gray};
   border-radius: 4px;
-  width: ${({ width }) => width || '100%'};
+  width: 100%;
 `;
 
 const Select = styled.select`
   padding: 10px;
   font-size: 14px;
-  flex: 1;
   border: 1px solid ${({ theme }) => theme.colors.gray};
   border-radius: 4px;
-  width: ${({ width }) => width || '100%'};
+  width: 100%;
 `;
 
 const SizeContainer = styled.div`
@@ -407,7 +419,6 @@ const SizeSelect = styled.select`
 const RadioGroup = styled.div`
   display: flex;
   gap: 20px;
-  flex: 1;
 `;
 
 const RadioLabel = styled.label`
