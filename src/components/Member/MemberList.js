@@ -119,6 +119,7 @@ const Table = styled.table`
     text-align: left;
     border-bottom: 1px solid #ddd;
     border: 1px solid ${({ theme }) => theme.colors.gray};
+    text-align: center;
   }
 
   th {

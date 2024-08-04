@@ -39,7 +39,9 @@ const ManagerList = () => {
               <td>정상</td>
               <td>dbalsrl7648</td>
               <td>유민기</td>
-              <td>dbalsrl7648@gmail.com</td>
+              <EmailCell onClick={() => handleEdit(3)}>
+                dbalsrl7648@gmail.com
+              </EmailCell>
               <td>서비스 관리자</td>
               <td>
                 <ActionButton onClick={() => handleEdit(3)}>수정</ActionButton>
@@ -100,6 +102,15 @@ const Table = styled.table`
 
   th {
     background-color: ${({ theme }) => theme.colors.WhiteBrown1};
+  }
+`;
+
+const EmailCell = styled.td`
+  cursor: pointer;
+  color: ${({ theme }) => theme.colors.blue};
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.darkBlue};
   }
 `;
 
