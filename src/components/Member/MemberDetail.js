@@ -19,6 +19,12 @@ const mockData = [
 
 const MemberDetail = () => {
   const { seq } = useParams();
+  const [activeTab, setActiveTab] = useState('tab_delivery');
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
+
   const navigate = useNavigate();
   const [member, setMember] = useState({
     email: '',
@@ -313,20 +319,80 @@ const MemberDetail = () => {
             <ActionButton onClick={handleCancel}>저장취소</ActionButton>
           </RightActionButtons>
         </ActionRow>
-        <Table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>배송자명</th>
-              <th>수령인</th>
-              <th>주소</th>
-              <th>연락처</th>
-              <th>연락처2</th>
-              <th>기본설정</th>
-            </tr>
-          </thead>
-          <tbody>{/* 배송지 정보 데이터 맵핑 */}</tbody>
-        </Table>
+        <TabMenu>
+          <TabItem
+            className={activeTab === 'tab_delivery' ? 'active' : ''}
+            onClick={() => handleTabClick('tab_delivery')}
+          >
+            배송지 정보
+          </TabItem>
+          <TabItem
+            className={activeTab === 'tab_review' ? 'active' : ''}
+            onClick={() => handleTabClick('tab_review')}
+          >
+            사용후기
+          </TabItem>
+          <TabItem
+            className={activeTab === 'tab_hook' ? 'active' : ''}
+            onClick={() => handleTabClick('tab_hook')}
+          >
+            걸어두기
+          </TabItem>
+          <TabItem
+            className={activeTab === 'tab_point' ? 'active' : ''}
+            onClick={() => handleTabClick('tab_point')}
+          >
+            포인트 내역
+          </TabItem>
+          <TabItem
+            className={activeTab === 'tab_history' ? 'active' : ''}
+            onClick={() => handleTabClick('tab_history')}
+          >
+            이용 내역
+          </TabItem>
+        </TabMenu>
+        <TabContent>
+          {activeTab === 'tab_delivery' && (
+            <TabPane>
+              <Table>
+                <thead>
+                  <tr>
+                    <th className='text-center'>#</th>
+                    <th className='text-center'>배송자명</th>
+                    <th className='text-center'>수령인</th>
+                    <th className='text-center'>주소</th>
+                    <th className='text-center'>연락처</th>
+                    <th className='text-center'>연락처2</th>
+                    <th className='text-center'>기본설정</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className='text-center'>1</td>
+                    <td className='text-center'>아크로리버</td>
+                    <td className='text-center'>이다지</td>
+                    <td className='text-center'>
+                      서울 서초구 강남대로 159 102동 1103호 (06508)
+                    </td>
+                    <td className='text-center'>01027374912</td>
+                    <td className='text-center'>01037583875</td>
+                    <td className='text-center'>Y</td>
+                  </tr>
+                </tbody>
+              </Table>
+            </TabPane>
+          )}
+          {activeTab === 'tab_review' && (
+            <TabPane>{/* 사용후기 내용 */}</TabPane>
+          )}
+          {activeTab === 'tab_hook' && <TabPane>{/* 걸어두기 내용 */}</TabPane>}
+          {activeTab === 'tab_point' && (
+            <TabPane>{/* 포인트 내역 내용 */}</TabPane>
+          )}
+          {activeTab === 'tab_history' && (
+            <TabPane>{/* 이용 내역 내용 */}</TabPane>
+          )}
+        </TabContent>
       </Container>
     </ThemeProvider>
   );
@@ -522,5 +588,46 @@ const Table = styled.table`
 
   tr:hover {
     background-color: ${({ theme }) => theme.colors.WhiteBrown2};
+  }
+`;
+
+const TabMenu = styled.ul`
+  display: flex;
+  justify-content: flex-start;
+  list-style: none;
+  margin: 20px 0;
+  padding: 0;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
+`;
+
+const TabItem = styled.li`
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.black};
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-bottom: 2px solid transparent;
+
+  &.active {
+    font-weight: bold;
+    border-bottom: 2px solid ${({ theme }) => theme.colors.primary};
+  }
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.gray};
+  }
+`;
+
+const TabContent = styled.div`
+  padding: 20px;
+  border: 1px solid ${({ theme }) => theme.colors.gray};
+  background-color: ${({ theme }) => theme.colors.white};
+`;
+
+const TabPane = styled.div`
+  display: none;
+
+  &.active {
+    display: block;
   }
 `;
