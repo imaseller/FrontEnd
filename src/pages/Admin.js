@@ -9,6 +9,7 @@ import MenuList from '../components/Admin/MenuList';
 import MemberList from '../components/Member/MemberList';
 import BlockMemberList from '../components/Member/BlockMemberList';
 import ReviewList from '../components/Member/ReviewList';
+import ReviewDetail from '../components/Member/ReviewDetail .js'; // ReviewDetail 컴포넌트 추가
 import MemberDetail from '../components/Member/MemberDetail';
 import Theme from '../styles/Theme';
 
@@ -93,6 +94,11 @@ const Admin = () => {
             <Route path='memberlist/detail/:seq' element={<MemberDetail />} />
             <Route path='blockmemberlist' element={<BlockMemberList />} />
             <Route path='reviewlist' element={<ReviewList />} />
+            <Route
+              path='reviewlist/detail/:no'
+              element={<ReviewDetail />}
+            />{' '}
+            {/* 리뷰 디테일 페이지 추가 */}
           </Routes>
         </MainContent>
       </Container>

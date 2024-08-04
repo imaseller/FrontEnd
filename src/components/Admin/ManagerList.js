@@ -1,61 +1,123 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import Theme from '../../styles/Theme';
 
+const mockData = [
+  {
+    no: 1,
+    status: '정상',
+    id: 'manager01',
+    name: '김철수',
+    email: 'manager01@example.com',
+    role: '서비스 관리자',
+  },
+  {
+    no: 2,
+    status: '휴면',
+    id: 'manager02',
+    name: '이영희',
+    email: 'manager02@example.com',
+    role: '서비스 관리자',
+  },
+  {
+    no: 3,
+    status: '정상',
+    id: 'dbalsrl7648',
+    name: '유민기',
+    email: 'dbalsrl7648@gmail.com',
+    role: '서비스 관리자',
+  },
+];
+
 const ManagerList = () => {
   const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchType, setSearchType] = useState('id');
 
-  const handleEdit = (id) => {
-    navigate(`/admin/managerlist/detail/${id}`);
+  const handleEdit = (no) => {
+    navigate(`/admin/managerlist/detail/${no}`);
   };
 
   const handleRegister = () => {
     navigate('/admin/managerlist/detail/new');
   };
 
+  const filteredData = mockData.filter((item) => {
+    if (searchType === 'id') {
+      return item.id.toLowerCase().includes(searchTerm.toLowerCase());
+    } else if (searchType === 'name') {
+      return item.name.toLowerCase().includes(searchTerm.toLowerCase());
+    } else if (searchType === 'email') {
+      return item.email.toLowerCase().includes(searchTerm.toLowerCase());
+    } else if (searchType === 'role') {
+      return item.role.toLowerCase().includes(searchTerm.toLowerCase());
+    }
+    return item;
+  });
+
   return (
     <ThemeProvider theme={Theme}>
       <Content>
         <Header>
           <HeaderTitle>관리자 목록</HeaderTitle>
-          <SearchInput placeholder='아이디' />
+          <SearchContainer>
+            <SearchSelect onChange={(e) => setSearchType(e.target.value)}>
+              <option value='id'>아이디</option>
+              <option value='name'>이름</option>
+              <option value='email'>이메일</option>
+              <option value='role'>권한등급</option>
+            </SearchSelect>
+            <SearchInput
+              type='text'
+              placeholder='Search'
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </SearchContainer>
         </Header>
-        <Table>
-          <thead>
-            <tr>
-              <th>No.</th>
-              <th>상태</th>
-              <th>아이디</th>
-              <th>이름</th>
-              <th>이메일</th>
-              <th>권한등급</th>
-              <th>액션</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>3</td>
-              <td>정상</td>
-              <td>dbalsrl7648</td>
-              <td>유민기</td>
-              <EmailCell onClick={() => handleEdit(3)}>
-                dbalsrl7648@gmail.com
-              </EmailCell>
-              <td>서비스 관리자</td>
-              <td>
-                <ActionButton onClick={() => handleEdit(3)}>수정</ActionButton>
-                <ActionButton>삭제</ActionButton>
-              </td>
-            </tr>
-          </tbody>
-        </Table>
-        <ActionButton onClick={handleRegister}>신규 등록</ActionButton>
-        <Pagination>
-          <PageButton>«</PageButton>
-          <PageButton>1</PageButton>
-          <PageButton>»</PageButton>
-        </Pagination>
+        <Container>
+          <TotalCount>총 {filteredData.length}개</TotalCount>
+          <Table>
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>상태</th>
+                <th>아이디</th>
+                <th>이름</th>
+                <th>이메일</th>
+                <th>권한등급</th>
+                <th>액션</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredData.map((manager, index) => (
+                <tr key={index}>
+                  <td>{manager.no}</td>
+                  <td>{manager.status}</td>
+                  <td>{manager.id}</td>
+                  <td>{manager.name}</td>
+                  <EmailCell onClick={() => handleEdit(manager.no)}>
+                    {manager.email}
+                  </EmailCell>
+                  <td>{manager.role}</td>
+                  <td>
+                    <ActionButton onClick={() => handleEdit(manager.no)}>
+                      수정
+                    </ActionButton>
+                    <ActionButton>삭제</ActionButton>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          <ActionButton onClick={handleRegister}>신규 등록</ActionButton>
+          <Pagination>
+            <PageButton>«</PageButton>
+            <PageButton>1</PageButton>
+            <PageButton>»</PageButton>
+          </Pagination>
+        </Container>
       </Content>
     </ThemeProvider>
   );
@@ -64,7 +126,7 @@ const ManagerList = () => {
 export default ManagerList;
 
 const Content = styled.div`
-  padding: 20px;
+  padding: 10px;
   background-color: ${({ theme }) => theme.colors.white};
   flex: 1;
   font-size: ${({ theme }) => theme.fonts.default.fontSize};
@@ -82,11 +144,18 @@ const Content = styled.div`
   }
 `;
 
+const Container = styled.div`
+  border: 2px solid ${({ theme }) => theme.colors.gray};
+  padding: 20px;
+`;
+
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: ${({ theme }) => theme.colors.WhiteBrown5};
 `;
 
 const HeaderTitle = styled.h1`
@@ -112,6 +181,8 @@ const SearchInput = styled.input`
   font-size: ${({ theme }) => theme.fonts.default.fontSize};
   border: 1px solid ${({ theme }) => theme.colors.gray};
   border-radius: 4px;
+  margin-right: 10px;
+  width: 315px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     font-size: 12px;
@@ -126,16 +197,40 @@ const SearchInput = styled.input`
   }
 `;
 
+const TotalCount = styled.div`
+  font-size: ${({ theme }) => theme.fonts.default.fontSize};
+  margin-bottom: 10px;
+  text-align: left;
+  color: ${({ theme }) => theme.colors.black};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 14px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: 16px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    font-size: 18px;
+  }
+`;
+
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid ${({ theme }) => theme.colors.gray};
 
   th,
   td {
-    padding: 10px;
-    border: 1px solid ${({ theme }) => theme.colors.gray};
+    padding: 12px 15px;
+    text-align: left;
     min-width: 60px;
+    border-bottom: 1px solid #ddd;
+    border: 1px solid ${({ theme }) => theme.colors.gray};
     text-align: center;
     font-size: ${({ theme }) => theme.fonts.default.fontSize};
 
@@ -219,6 +314,31 @@ const PageButton = styled.button`
   &:active {
     background-color: ${({ theme }) => theme.colors.WhiteBrown6};
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 12px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: 14px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    font-size: 16px;
+  }
+`;
+
+const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const SearchSelect = styled.select`
+  padding: 10px;
+  font-size: ${({ theme }) => theme.fonts.default.fontSize};
+  border: 1px solid ${({ theme }) => theme.colors.gray};
+  border-radius: 4px;
+  margin-right: 10px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     font-size: 12px;
