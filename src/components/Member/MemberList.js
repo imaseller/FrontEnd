@@ -84,6 +84,19 @@ const Content = styled.div`
   padding: 20px;
   background-color: ${({ theme }) => theme.colors.white};
   flex: 1;
+  font-size: ${({ theme }) => theme.fonts.default.fontSize};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 14px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: 16px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    font-size: 18px;
+  }
 `;
 
 const Header = styled.div`
@@ -96,13 +109,38 @@ const Header = styled.div`
 const HeaderTitle = styled.h1`
   ${({ theme }) => theme.fonts.heading};
   color: ${({ theme }) => theme.colors.black};
+  font-size: ${({ theme }) => theme.fonts.heading.fontSize};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 22px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: 26px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    font-size: 28px;
+  }
 `;
 
 const SearchInput = styled.input`
   padding: 10px;
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.fonts.default.fontSize};
   border: 1px solid ${({ theme }) => theme.colors.gray};
   border-radius: 4px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 12px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: 14px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    font-size: 16px;
+  }
 `;
 
 const Table = styled.table`
@@ -117,9 +155,23 @@ const Table = styled.table`
   td {
     padding: 12px 15px;
     text-align: left;
+    min-width: 60px;
     border-bottom: 1px solid #ddd;
     border: 1px solid ${({ theme }) => theme.colors.gray};
     text-align: center;
+    font-size: ${({ theme }) => theme.fonts.default.fontSize};
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+      font-size: 12px;
+    }
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+      font-size: 14px;
+    }
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+      font-size: 16px;
+    }
   }
 
   th {
@@ -144,6 +196,7 @@ const ActionButton = styled.button`
   color: ${({ theme }) => theme.colors.white};
   border: none;
   border-radius: 4px;
+  font-size: ${({ theme }) => theme.fonts.SmallButton.fontSize};
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.WhiteBrown5};
@@ -151,6 +204,18 @@ const ActionButton = styled.button`
 
   &:active {
     background-color: ${({ theme }) => theme.colors.WhiteBrown6};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 12px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: 14px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    font-size: 16px;
   }
 `;
 
@@ -167,6 +232,7 @@ const PageButton = styled.button`
   color: ${({ theme }) => theme.colors.white};
   border: none;
   border-radius: 4px;
+  font-size: ${({ theme }) => theme.fonts.SmallButton.fontSize};
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.WhiteBrown5};
@@ -174,5 +240,17 @@ const PageButton = styled.button`
 
   &:active {
     background-color: ${({ theme }) => theme.colors.WhiteBrown6};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 12px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: 14px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    font-size: 16px;
   }
 `;
