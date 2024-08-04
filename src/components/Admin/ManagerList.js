@@ -43,12 +43,12 @@ const ManagerList = () => {
               <td>서비스 관리자</td>
               <td>
                 <ActionButton onClick={() => handleEdit(3)}>수정</ActionButton>
-                <ActionButton onClick={handleRegister}>등록</ActionButton>
                 <ActionButton>삭제</ActionButton>
               </td>
             </tr>
           </tbody>
         </Table>
+        <ActionButton onClick={handleRegister}>신규 등록</ActionButton>
         <Pagination>
           <PageButton>«</PageButton>
           <PageButton>1</PageButton>
@@ -99,7 +99,7 @@ const Table = styled.table`
   }
 
   th {
-    background-color: ${({ theme }) => theme.colors.brown1};
+    background-color: ${({ theme }) => theme.colors.WhiteBrown1};
   }
 `;
 
@@ -107,17 +107,17 @@ const ActionButton = styled.button`
   margin-right: 5px;
   padding: 5px 10px;
   cursor: pointer;
-  background-color: ${({ theme }) => theme.colors.brown4};
+  background-color: ${({ theme }) => theme.colors.WhiteBrown4};
   color: ${({ theme }) => theme.colors.white};
   border: none;
   border-radius: 4px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.brown5};
+    background-color: ${({ theme }) => theme.colors.WhiteBrown5};
   }
 
   &:active {
-    background-color: ${({ theme }) => theme.colors.brown6};
+    background-color: ${({ theme }) => theme.colors.WhiteBrown6};
   }
 `;
 
@@ -130,16 +130,16 @@ const Pagination = styled.div`
 const PageButton = styled.button`
   padding: 5px 10px;
   cursor: pointer;
-  background-color: ${({ theme }) => theme.colors.brown4};
+  background-color: ${({ theme }) => theme.colors.WhiteBrown4};
   color: ${({ theme }) => theme.colors.white};
   border: none;
   border-radius: 4px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.brown5};
+    background-color: ${({ theme }) => theme.colors.WhiteBrown5};
   }
 
   &:active {
-    background-color: ${({ theme }) => theme.colors.brown6};
+    background-color: ${({ theme }) => theme.colors.WhiteBrown6};
   }
 `;
