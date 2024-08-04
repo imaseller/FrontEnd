@@ -6,14 +6,22 @@ import ManagerDetail from '../components/Admin/ManagerDetail';
 import ManagerGroupList from '../components/Admin/ManagerGroupList';
 import ManagerList from '../components/Admin/ManagerList';
 import MenuList from '../components/Admin/MenuList';
+import MemberList from '../components/Member/MemberList';
+import BlockMemberList from '../components/Member/BlockMemberList';
+import ReviewList from '../components/Member/ReviewList';
 import Theme from '../styles/Theme';
 
 const Admin = () => {
   const navigate = useNavigate();
   const [isManagerMenuOpen, setIsManagerMenuOpen] = useState(false);
+  const [isMemberMenuOpen, setIsMemberMenuOpen] = useState(false);
 
   const handleManagerMenuToggle = () => {
     setIsManagerMenuOpen(!isManagerMenuOpen);
+  };
+
+  const handleMemberMenuToggle = () => {
+    setIsMemberMenuOpen(!isMemberMenuOpen);
   };
 
   return (
@@ -52,7 +60,20 @@ const Admin = () => {
                 </SubMenuItem>
               </SubMenu>
             )}
-            <NavItem>회원 관리</NavItem>
+            <NavItem onClick={handleMemberMenuToggle}>회원 관리</NavItem>
+            {isMemberMenuOpen && (
+              <SubMenu>
+                <SubMenuItem onClick={() => navigate('/admin/memberlist')}>
+                  회원 목록
+                </SubMenuItem>
+                <SubMenuItem onClick={() => navigate('/admin/blockmemberlist')}>
+                  블록 회원 목록
+                </SubMenuItem>
+                <SubMenuItem onClick={() => navigate('/admin/reviewlist')}>
+                  사용후기 목록
+                </SubMenuItem>
+              </SubMenu>
+            )}
             <NavItem>서비스 관리</NavItem>
             <NavItem>결제 관리</NavItem>
             <NavItem>앱 설정 관리</NavItem>
@@ -67,6 +88,9 @@ const Admin = () => {
             <Route path='blockmanagerlist' element={<BlockManagerList />} />
             <Route path='managergrouplist' element={<ManagerGroupList />} />
             <Route path='menulist' element={<MenuList />} />
+            <Route path='memberlist' element={<MemberList />} />
+            <Route path='blockmemberlist' element={<BlockMemberList />} />
+            <Route path='reviewlist' element={<ReviewList />} />
           </Routes>
         </MainContent>
       </Container>
