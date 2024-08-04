@@ -9,6 +9,7 @@ import MenuList from '../components/Admin/MenuList';
 import MemberList from '../components/Member/MemberList';
 import BlockMemberList from '../components/Member/BlockMemberList';
 import ReviewList from '../components/Member/ReviewList';
+import MemberDetail from '../components/Member/MemberDetail';
 import Theme from '../styles/Theme';
 
 const Admin = () => {
@@ -89,6 +90,7 @@ const Admin = () => {
             <Route path='managergrouplist' element={<ManagerGroupList />} />
             <Route path='menulist' element={<MenuList />} />
             <Route path='memberlist' element={<MemberList />} />
+            <Route path='memberlist/detail/:seq' element={<MemberDetail />} />
             <Route path='blockmemberlist' element={<BlockMemberList />} />
             <Route path='reviewlist' element={<ReviewList />} />
           </Routes>
