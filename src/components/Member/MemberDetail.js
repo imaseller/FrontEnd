@@ -28,7 +28,9 @@ const MemberDetail = () => {
     birthday: '',
     color: '',
     brand: '',
-    size: '',
+    sizeOnePieceSeq: '',
+    sizeJacketSeq: '',
+    sizeCoatSeq: '',
     status: '',
     event: 'agree',
     memberType: '',
@@ -43,7 +45,9 @@ const MemberDetail = () => {
         birthday: memberData.birthday,
         color: memberData.color,
         brand: memberData.brand,
-        size: '55(M)',
+        sizeOnePieceSeq: '',
+        sizeJacketSeq: '',
+        sizeCoatSeq: '',
         status: memberData.status,
         memberType: memberData.memberType,
         event: 'agree',
@@ -64,89 +68,183 @@ const MemberDetail = () => {
     setMember((prevMember) => ({ ...prevMember, [name]: value }));
   };
 
+  const checkDuplicateNickname = () => {
+    alert('중복체크 기능을 구현하세요.');
+  };
+
   return (
     <ThemeProvider theme={Theme}>
-      <Content>
-        <Title>회원 상세정보</Title>
-        <Form>
-          <FormRow>
-            <Label>
-              계정(이메일):
-              <Input type='email' name='email' value={member.email} readOnly />
-            </Label>
-            <Label>
-              닉네임:
+      <Container>
+        <Content>
+          <Title>회원 상세정보</Title>
+          <Form>
+            <FormRow>
+              <Label>계정(이메일):</Label>
               <Input
-                type='text'
-                name='nickname'
-                value={member.nickname}
-                readOnly
+                type='email'
+                name='email'
+                value={member.email}
+                onChange={handleChange}
+                width='calc(100% - 220px)'
               />
-            </Label>
-          </FormRow>
-          <FormRow>
-            <Label>
-              비밀번호:
+              <Label>닉네임:</Label>
+              <InputWrapper>
+                <Input
+                  type='text'
+                  name='nickname'
+                  value={member.nickname}
+                  onChange={handleChange}
+                  width='calc(100% - 220px)'
+                />
+                <CheckButton onClick={checkDuplicateNickname}>
+                  중복체크
+                </CheckButton>
+              </InputWrapper>
+            </FormRow>
+            <FormRow>
+              <Label>비밀번호:</Label>
               <Input
                 type='password'
                 name='password'
                 value={member.password}
                 onChange={handleChange}
               />
-            </Label>
-            <Label>
-              재확인:
+              <Label>재확인:</Label>
               <Input
                 type='password'
                 name='confirmPassword'
                 value={member.confirmPassword}
                 onChange={handleChange}
               />
-            </Label>
-          </FormRow>
-          <FormRow>
-            <Label>
-              생일:
+            </FormRow>
+            <FormRow>
+              <Label>생일:</Label>
               <Input
                 type='date'
                 name='birthday'
                 value={member.birthday}
-                readOnly
+                onChange={handleChange}
+                onClick={(e) => e.target.showPicker()}
               />
-            </Label>
-            <Label>
-              선호색상:
-              <Input type='text' name='color' value={member.color} readOnly />
-            </Label>
-          </FormRow>
-          <FormRow>
-            <Label>
-              선호브랜드:
-              <Input type='text' name='brand' value={member.brand} readOnly />
-            </Label>
-            <Label>
-              사이즈:
-              <Input type='text' name='size' value={member.size} readOnly />
-            </Label>
-          </FormRow>
-          <FormRow>
-            <Label>
-              계정상태:
-              <Input type='text' name='status' value={member.status} readOnly />
-            </Label>
-            <Label>
-              회원타입:
-              <Input
-                type='text'
-                name='memberType'
-                value={member.memberType}
-                readOnly
-              />
-            </Label>
-          </FormRow>
-          <FormRow>
-            <Label>
-              이벤트수신여부:
+              <Label>선호색상:</Label>
+              <Select name='color' value={member.color} onChange={handleChange}>
+                <option value='Black'>Black</option>
+                <option value='White'>White</option>
+                <option value='Pink'>Pink</option>
+                <option value='Navy'>Navy</option>
+                <option value='Green'>Green</option>
+                <option value='Blue'>Blue</option>
+                <option value='Cream'>Cream</option>
+                <option value='Yellow'>Yellow</option>
+                <option value='Lilac'>Lilac</option>
+                <option value='Ivory'>Ivory</option>
+                <option value='Olive'>Olive</option>
+                <option value='Orange'>Orange</option>
+                <option value='Mint'>Mint</option>
+                <option value='Grey'>Grey</option>
+                <option value='Camel'>Camel</option>
+                <option value='Beige'>Beige</option>
+                <option value='Red'>Red</option>
+                <option value='Sky Blue'>Sky Blue</option>
+                <option value='Purple'>Purple</option>
+                <option value='Nude'>Nude</option>
+                <option value='Khaki'>Khaki</option>
+                <option value='Wine'>Wine</option>
+                <option value='Brown'>Brown</option>
+                <option value='Charcoal'>Charcoal</option>
+              </Select>
+            </FormRow>
+            <FormRow>
+              <Label>선호브랜드:</Label>
+              <Select name='brand' value={member.brand} onChange={handleChange}>
+                <option value='MOJO.S.PHINE'>MOJO.S.PHINE</option>
+                <option value='S_Blanc'>S_Blanc</option>
+                <option value='CC Collect'>CC Collect</option>
+                <option value='Tuo'>Tuo</option>
+                <option value='Elunani'>Elunani</option>
+                <option value='Billz'>Billz</option>
+                <option value='Clair De Lune'>Clair De Lune</option>
+                <option value='LUCHA'>LUCHA</option>
+                <option value='DOUCAN'>DOUCAN</option>
+                <option value='Lazyna'>Lazyna</option>
+                <option value='DAYW'>DAYW</option>
+                <option value='CADELL'>CADELL</option>
+                <option value='Mujatzz'>Mujatzz</option>
+                <option value='Mark de niel'>Mark de niel</option>
+                <option value='LINE'>LINE</option>
+                <option value='MINIMUM'>MINIMUM</option>
+                <option value='JILL BY JILLSTUART'>JILL BY JILLSTUART</option>
+                <option value='MINE'>MINE</option>
+                <option value='ZOOC'>ZOOC</option>
+                <option value='O˙2nd'>O˙2nd</option>
+                <option value='MAJE'>MAJE</option>
+                <option value='SJYP'>SJYP</option>
+                <option value='LÄTT BY T'>LÄTT BY T</option>
+                <option value='TIME'>TIME</option>
+                <option value='DECO'>DECO</option>
+                <option value='OLIVE DES OLIVE'>OLIVE DES OLIVE</option>
+                <option value='STUDIO TOMBOY'>STUDIO TOMBOY</option>
+                <option value='SANDRO'>SANDRO</option>
+                <option value='RENEEVON'>RENEEVON</option>
+                <option value='SISLEY'>SISLEY</option>
+                <option value='S˙SOLEZIA'>S˙SOLEZIA</option>
+                <option value='it MICHAA'>it MICHAA</option>
+                <option value='MICHAA'>MICHAA</option>
+                <option value='SATIN'>SATIN</option>
+                <option value='G-CUT'>G-CUT</option>
+                <option value='KENNETHLADY'>KENNETHLADY</option>
+                <option value='LYNN'>LYNN</option>
+                <option value='EGOIST'>EGOIST</option>
+                <option value='DEW L'>DEW L</option>
+                <option value='THE IZZAT'>THE IZZAT</option>
+                <option value='JJ JIGOTT'>JJ JIGOTT</option>
+                <option value='THE IZZAT Collection'>
+                  THE IZZAT Collection
+                </option>
+                <option value='JIGOTT'>JIGOTT</option>
+                <option value='CLUBMONACO'>CLUBMONACO</option>
+                <option value='SJSJ'>SJSJ</option>
+                <option value='SYSTEM'>SYSTEM</option>
+              </Select>
+              <Label>사이즈:</Label>
+              <SizeContainer>
+                <SizeSelect
+                  name='sizeOnePieceSeq'
+                  value={member.sizeOnePieceSeq}
+                  onChange={handleChange}
+                >
+                  <option value=''>원피스(선택)</option>
+                  <option value='201'>44(S)</option>
+                  <option value='202'>55(M)</option>
+                  <option value='203'>66(L)</option>
+                  <option value='210'>Free</option>
+                </SizeSelect>
+                <SizeSelect
+                  name='sizeJacketSeq'
+                  value={member.sizeJacketSeq}
+                  onChange={handleChange}
+                >
+                  <option value=''>정(선택)</option>
+                  <option value='201'>44(S)</option>
+                  <option value='202'>55(M)</option>
+                  <option value='203'>66(L)</option>
+                  <option value='210'>Free</option>
+                </SizeSelect>
+                <SizeSelect
+                  name='sizeCoatSeq'
+                  value={member.sizeCoatSeq}
+                  onChange={handleChange}
+                >
+                  <option value=''>아우터(선택)</option>
+                  <option value='201'>44(S)</option>
+                  <option value='202'>55(M)</option>
+                  <option value='203'>66(L)</option>
+                  <option value='210'>Free</option>
+                </SizeSelect>
+              </SizeContainer>
+            </FormRow>
+            <FormRow>
+              <Label>이벤트수신여부:</Label>
               <RadioGroup>
                 <RadioLabel>
                   <Radio
@@ -169,45 +267,66 @@ const MemberDetail = () => {
                   미동의
                 </RadioLabel>
               </RadioGroup>
-            </Label>
-          </FormRow>
-        </Form>
-        <ActionRow>
-          <LeftActionButton onClick={() => navigate('/admin/memberlist')}>
-            목록보기
-          </LeftActionButton>
-          <RightActionButtons>
-            <ActionButton onClick={handleSave}>저장하기</ActionButton>
-            <ActionButton onClick={handleCancel}>저장취소</ActionButton>
-          </RightActionButtons>
-        </ActionRow>
-        <TabMenu>
-          <Tab>배송지 정보</Tab>
-          <Tab>이용 내역</Tab>
-          <Tab>포인트 내역</Tab>
-          <Tab>걸어두기</Tab>
-          <Tab>사용후기</Tab>
-        </TabMenu>
-        <Table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>배송자명</th>
-              <th>수령인</th>
-              <th>주소</th>
-              <th>연락처</th>
-              <th>연락처2</th>
-              <th>기본설정</th>
-            </tr>
-          </thead>
-          <tbody>{/* 배송지 정보 데이터 맵핑 */}</tbody>
-        </Table>
-      </Content>
+              <Label>계정상태:</Label>
+              <Select
+                name='status'
+                value={member.status}
+                onChange={handleChange}
+              >
+                <option value='인증대기'>인증대기</option>
+                <option value='인증완료'>인증완료</option>
+                <option value='계정잠김'>계정잠김</option>
+                <option value='탈퇴완료'>탈퇴완료</option>
+              </Select>
+            </FormRow>
+            <FormRow>
+              <Label>회원타입:</Label>
+              <Select
+                name='memberType'
+                value={member.memberType}
+                onChange={handleChange}
+              >
+                <option value='일반회원'>일반회원</option>
+                <option value='멤버'>멤버</option>
+                <option value='단골'>단골</option>
+                <option value='KFBA'>KFBA</option>
+              </Select>
+            </FormRow>
+          </Form>
+          <ActionRow>
+            <LeftActionButton onClick={() => navigate('/admin/memberlist')}>
+              목록보기
+            </LeftActionButton>
+            <RightActionButtons>
+              <ActionButton onClick={handleSave}>저장하기</ActionButton>
+              <ActionButton onClick={handleCancel}>저장취소</ActionButton>
+            </RightActionButtons>
+          </ActionRow>
+          <Table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>배송자명</th>
+                <th>수령인</th>
+                <th>주소</th>
+                <th>연락처</th>
+                <th>연락처2</th>
+                <th>기본설정</th>
+              </tr>
+            </thead>
+            <tbody>{/* 배송지 정보 데이터 맵핑 */}</tbody>
+          </Table>
+        </Content>
+      </Container>
     </ThemeProvider>
   );
 };
 
 export default MemberDetail;
+
+const Container = styled.div`
+  display: flex;
+`;
 
 const Content = styled.div`
   padding: 20px;
@@ -231,28 +350,64 @@ const Form = styled.div`
 
 const FormRow = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const Label = styled.label`
   display: flex;
-  flex-direction: column;
   font-size: 14px;
   color: ${({ theme }) => theme.colors.black};
+  min-width: 100px;
+  max-width: 100px;
+  align-items: center;
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
   flex: 1;
 `;
 
 const Input = styled.input`
   padding: 10px;
   font-size: 14px;
+  flex: 1;
   border: 1px solid ${({ theme }) => theme.colors.gray};
   border-radius: 4px;
+  width: ${({ width }) => width || '100%'};
+`;
+
+const Select = styled.select`
+  padding: 10px;
+  font-size: 14px;
+  flex: 1;
+  border: 1px solid ${({ theme }) => theme.colors.gray};
+  border-radius: 4px;
+  width: ${({ width }) => width || '100%'};
+`;
+
+const SizeContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  flex: 1;
+`;
+
+const SizeSelect = styled.select`
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid ${({ theme }) => theme.colors.gray};
+  border-radius: 4px;
+  flex: 1;
 `;
 
 const RadioGroup = styled.div`
   display: flex;
   gap: 20px;
-  margin-top: 10px;
+  flex: 1;
 `;
 
 const RadioLabel = styled.label`
@@ -312,17 +467,21 @@ const ActionButton = styled.button`
   }
 `;
 
-const TabMenu = styled.div`
-  display: flex;
-  margin-top: 20px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
-`;
-
-const Tab = styled.div`
-  padding: 10px 20px;
+const CheckButton = styled.button`
+  padding: 5px 10px;
+  min-width: 80px;
   cursor: pointer;
+  background-color: ${({ theme }) => theme.colors.WhiteBrown4};
+  color: ${({ theme }) => theme.colors.white};
+  border: none;
+  border-radius: 4px;
+
   &:hover {
-    background-color: ${({ theme }) => theme.colors.WhiteBrown2};
+    background-color: ${({ theme }) => theme.colors.WhiteBrown5};
+  }
+
+  &:active {
+    background-color: ${({ theme }) => theme.colors.WhiteBrown6};
   }
 `;
 
