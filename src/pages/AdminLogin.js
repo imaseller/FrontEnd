@@ -2,25 +2,13 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import LoginButton from '../components/Button01';
-import AdminLogin from '../components/Button00';
+import BackButton from '../components/BackButton';
 import InputField from '../components/InputField';
 import backgroundImage from '../img/background02.jpg';
 import Theme from '../styles/Theme';
 
 const Login = () => {
   const navigate = useNavigate();
-
-  const handleSignupClick = () => {
-    navigate('/signup');
-  };
-
-  const handleFindIdClick = () => {
-    navigate('/findid');
-  };
-
-  const handleFindPasswordClick = () => {
-    navigate('/findPassword');
-  };
 
   const handleLoginClick = () => {
     navigate('/admin');
@@ -30,23 +18,15 @@ const Login = () => {
     <ThemeProvider theme={Theme}>
       <Container>
         <Button00Wrapper>
-          <AdminLogin />
+          <BackButton />
         </Button00Wrapper>
         <LoginContainer>
           <LoginForm>
-            <Title>IM SELLER</Title>
+            <Title>Admin</Title>
             <InputField label='계정(이메일)' id='email' type='email' />
             <InputField label='비밀번호' id='password' type='password' />
-            <LoginButton>로그인</LoginButton>
+            <LoginButton onClick={handleLoginClick}>로그인</LoginButton>
           </LoginForm>
-          <ExtraLinks>
-            <Link onClick={handleSignupClick}>회원가입</Link>
-            <Separator>|</Separator>
-            <Link onClick={handleFindIdClick}>아이디 찾기</Link>
-            <Separator>|</Separator>
-            <Link onClick={handleFindPasswordClick}>비밀번호 찾기</Link>
-          </ExtraLinks>
-          <BrowseLink href='#'>회원가입 없이 둘러보기</BrowseLink>
         </LoginContainer>
       </Container>
     </ThemeProvider>

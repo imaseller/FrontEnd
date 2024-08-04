@@ -89,7 +89,7 @@ const Container = styled.div`
 
 const Sidebar = styled.div`
   width: 250px;
-  background-color: ${({ theme }) => theme.colors.brown6};
+  background-color: ${({ theme }) => theme.colors.WhiteBrown6};
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -114,7 +114,7 @@ const ProfileInfo = styled.div`
 `;
 
 const Username = styled.span`
-  color: ${({ theme }) => theme.colors.brown1};
+  color: ${({ theme }) => theme.colors.WhiteBrown1};
   font-size: 14px;
   font-weight: bold;
 `;
@@ -131,10 +131,10 @@ const Navigation = styled.div`
 
 const NavItem = styled.div`
   padding: 10px 0;
-  color: ${({ theme }) => theme.colors.brown1};
+  color: ${({ theme }) => theme.colors.WhiteBrown1};
   cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) => theme.colors.brown4};
+    background-color: ${({ theme }) => theme.colors.WhiteBrown4};
   }
 `;
 
@@ -146,10 +146,10 @@ const SubMenu = styled.div`
 
 const SubMenuItem = styled.div`
   padding: 5px 0;
-  color: ${({ theme }) => theme.colors.brown1};
+  color: ${({ theme }) => theme.colors.WhiteBrown1};
   cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) => theme.colors.brown4};
+    background-color: ${({ theme }) => theme.colors.WhiteBrown4};
   }
 `;
 
@@ -162,7 +162,7 @@ const MainContent = styled.div`
 const Content = styled.div`
   flex: 1;
   padding: 20px;
-  background-color: ${({ theme }) => theme.colors.brown1};
+  background-color: ${({ theme }) => theme.colors.WhiteBrown1};
 `;
 
 const DashboardTitle = styled.h1`

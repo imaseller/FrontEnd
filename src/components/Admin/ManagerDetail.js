@@ -37,6 +37,10 @@ const ManagerDetail = () => {
     setManager((prevManager) => ({ ...prevManager, [name]: value }));
   };
 
+  const handleList = () => {
+    navigate('/admin/managerlist');
+  };
+
   return (
     <ThemeProvider theme={Theme}>
       <Content>
@@ -67,28 +71,27 @@ const ManagerDetail = () => {
               />
             </Label>
           </FormRow>
-          {id === 'new' && (
-            <FormRow>
-              <Label>
-                비밀번호:
-                <Input
-                  type='password'
-                  name='비밀번호'
-                  value={manager.비밀번호}
-                  onChange={handleChange}
-                />
-              </Label>
-              <Label>
-                재확인:
-                <Input
-                  type='password'
-                  name='비밀번호확인'
-                  value={manager.비밀번호확인}
-                  onChange={handleChange}
-                />
-              </Label>
-            </FormRow>
-          )}
+          <FormRow>
+            <Label>
+              비밀번호:
+              <Input
+                type='password'
+                name='비밀번호'
+                value={manager.비밀번호}
+                onChange={handleChange}
+              />
+            </Label>
+            <Label>
+              재확인:
+              <Input
+                type='password'
+                name='비밀번호확인'
+                value={manager.비밀번호확인}
+                onChange={handleChange}
+              />
+            </Label>
+          </FormRow>
+
           <FormRow>
             <Label>
               이메일:
@@ -147,12 +150,15 @@ const ManagerDetail = () => {
             </FormRow>
           )}
           <ActionRow>
-            <ActionButton onClick={handleSave}>
-              {id === 'new' ? '등록' : '수정'}
-            </ActionButton>
-            <ActionButton onClick={() => navigate('/admin/managerlist')}>
-              취소
-            </ActionButton>
+            <LeftActionButton onClick={handleList}>목록보기</LeftActionButton>
+            <RightActionButtons>
+              <ActionButton onClick={handleSave}>
+                {id === 'new' ? '저장하기' : '수정하기'}
+              </ActionButton>
+              <ActionButton onClick={() => navigate('/admin/managerlist')}>
+                저장취소
+              </ActionButton>
+            </RightActionButtons>
           </ActionRow>
         </Form>
       </Content>
@@ -173,6 +179,7 @@ const Header = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  padding: 10px;
 `;
 
 const HeaderTitle = styled.h1`
@@ -183,7 +190,10 @@ const HeaderTitle = styled.h1`
 const Form = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid ${({ theme }) => theme.colors.gray};
+  background-color: ${({ theme }) => theme.colors.WhiteBrown1};
 `;
 
 const FormRow = styled.div`
@@ -215,7 +225,7 @@ const Select = styled.select`
 
 const RadioGroup = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 20px;
   margin-top: 10px;
 `;
 
@@ -232,24 +242,46 @@ const Radio = styled.input`
 
 const ActionRow = styled.div`
   display: flex;
-  justify-content: flex-end;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 20px;
   margin-top: 20px;
 `;
 
-const ActionButton = styled.button`
+const LeftActionButton = styled.button`
   padding: 10px 20px;
   cursor: pointer;
-  background-color: ${({ theme }) => theme.colors.brown4};
+  background-color: ${({ theme }) => theme.colors.WhiteBrown4};
   color: ${({ theme }) => theme.colors.white};
   border: none;
   border-radius: 4px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.brown5};
+    background-color: ${({ theme }) => theme.colors.WhiteBrown5};
   }
 
   &:active {
-    background-color: ${({ theme }) => theme.colors.brown6};
+    background-color: ${({ theme }) => theme.colors.WhiteBrown6};
+  }
+`;
+
+const RightActionButtons = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
+const ActionButton = styled.button`
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: ${({ theme }) => theme.colors.WhiteBrown4};
+  color: ${({ theme }) => theme.colors.white};
+  border: none;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.WhiteBrown5};
+  }
+
+  &:active {
+    background-color: ${({ theme }) => theme.colors.WhiteBrown6};
   }
 `;
