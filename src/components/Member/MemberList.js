@@ -15,13 +15,12 @@ const mockData = [
     brand: 'MOJO.S.PHINE',
     lastLogin: '2024.08.02',
   },
-  // 나머지 mockData 내용 생략
 ];
 
 const MemberList = () => {
   const navigate = useNavigate();
 
-  const handleEmailClick = (no) => {
+  const handleEdit = (no) => {
     navigate(`/admin/memberlist/detail/${no}`);
   };
 
@@ -57,16 +56,14 @@ const MemberList = () => {
                 <td>{member.no}</td>
                 <td>{member.status}</td>
                 <td>{member.memberType}</td>
-                <EmailCell onClick={() => handleEmailClick(member.no)}>
-                  {member.email}
-                </EmailCell>
+                <td>{member.email}</td>
                 <td>{member.nickname}</td>
                 <td>{member.birthday}</td>
                 <td>{member.color}</td>
                 <td>{member.brand}</td>
                 <td>{member.lastLogin}</td>
                 <td>
-                  <ActionButton onClick={() => handleEmailClick(member.no)}>
+                  <ActionButton onClick={() => handleEdit(member.no)}>
                     수정
                   </ActionButton>
                   <ActionButton>삭제</ActionButton>
@@ -132,16 +129,11 @@ const Table = styled.table`
   th {
     background-color: ${({ theme }) => theme.colors.WhiteBrown1};
   }
-
-  tr:hover {
-    background-color: #f1f1f1;
-  }
 `;
 
 const EmailCell = styled.td`
   color: #007bff;
   cursor: pointer;
-  text-decoration: underline;
 
   &:hover {
     color: #0056b3;
