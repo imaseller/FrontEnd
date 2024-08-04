@@ -5,7 +5,7 @@ import Button from '../components/Button01';
 import InputField from '../components/InputField';
 import BirthdateSection from '../components/Signup/BirthdateSection';
 import Theme from '../styles/Theme';
-
+import backgroundImage from '../img/background02.jpg';
 const FindId = () => {
   const handleFindAccount = () => {};
 
@@ -34,23 +34,28 @@ const Container = styled.div`
   height: 100vh;
   background-color: ${({ theme }) => theme.colors.background};
   position: relative;
+  background-image: url(${backgroundImage});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 const FindIdContainer = styled.div`
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.DarkBrown1};
   padding: 40px;
   border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   max-width: 450px;
   width: 100%;
-  position: relative;
+  opacity: 0.95;
 `;
 
 const Title = styled.h2`
   ${({ theme }) => theme.fonts.heading};
   margin-bottom: 20px;
-  color: ${({ theme }) => theme.colors.brown6};
+  color: ${({ theme }) => theme.colors.PinkBrown5};
 `;

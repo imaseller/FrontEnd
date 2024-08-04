@@ -59,17 +59,17 @@ const Container = styled.div`
 `;
 
 const LoginContainer = styled.div`
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.DarkBrown1};
   padding: 40px;
   border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   max-width: 450px;
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.brown1};
+  opacity: 0.95;
 `;
 
 const LoginForm = styled.form`
@@ -82,7 +82,7 @@ const LoginForm = styled.form`
 const Title = styled.h2`
   ${({ theme }) => theme.fonts.mainTitle};
   margin-bottom: 20px;
-  color: ${({ theme }) => theme.colors.brown6};
+  color: ${({ theme }) => theme.colors.PinkBrown5};
 `;
 
 const ExtraLinks = styled.div`
