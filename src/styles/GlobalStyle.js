@@ -35,6 +35,23 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    body {
+      font-size: 10px;
+    }
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    body {
+      font-size: 14px;
+    }
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    body {
+      font-size: 18px;
+    }
+  }
 `;
 
 export default GlobalStyle;
