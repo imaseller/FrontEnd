@@ -86,11 +86,11 @@ const MemberDetail = () => {
           <LeftForm>
             <FormRow>
               <Label>계정(이메일):</Label>
-              <Input
+              <ReadOnlyInput
                 type='email'
                 name='email'
                 value={member.email}
-                onChange={handleChange}
+                readOnly
               />
             </FormRow>
             <FormRow>
@@ -159,7 +159,6 @@ const MemberDetail = () => {
                 name='birthday'
                 value={member.birthday}
                 onChange={handleChange}
-                onClick={(e) => e.target.showPicker()}
               />
             </FormRow>
             <FormRow>
@@ -462,6 +461,10 @@ const Input = styled.input`
   border-radius: 4px;
   width: 100%;
   max-width: 300px;
+`;
+
+const ReadOnlyInput = styled(Input)`
+  background-color: ${({ theme }) => theme.colors.WhiteBrown1};
 `;
 
 const Select = styled.select`

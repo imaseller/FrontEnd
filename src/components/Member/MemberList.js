@@ -55,7 +55,9 @@ const MemberList = () => {
                 <td>{member.no}</td>
                 <td>{member.status}</td>
                 <td>{member.memberType}</td>
-                <td>{member.email}</td>
+                <EmailCell onClick={() => handleEdit(member.no)}>
+                  {member.email}
+                </EmailCell>
                 <td>{member.nickname}</td>
                 <td>{member.birthday}</td>
                 <td>{member.color}</td>
