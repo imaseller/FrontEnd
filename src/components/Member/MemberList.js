@@ -47,7 +47,6 @@ const MemberList = () => {
               <th>선호색상</th>
               <th>선호브랜드</th>
               <th>최근접속일</th>
-              <th>액션</th>
             </tr>
           </thead>
           <tbody>
@@ -62,12 +61,6 @@ const MemberList = () => {
                 <td>{member.color}</td>
                 <td>{member.brand}</td>
                 <td>{member.lastLogin}</td>
-                <td>
-                  <ActionButton onClick={() => handleEdit(member.no)}>
-                    수정
-                  </ActionButton>
-                  <ActionButton>삭제</ActionButton>
-                </td>
               </tr>
             ))}
           </tbody>
