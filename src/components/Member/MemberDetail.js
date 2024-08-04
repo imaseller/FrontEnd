@@ -349,6 +349,9 @@ const FormContainer = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 20px;
+  padding: 20px;
+  border: 1px solid ${({ theme }) => theme.colors.gray};
+  background-color: ${({ theme }) => theme.colors.WhiteBrown1};
 `;
 
 const LeftForm = styled.div`
@@ -392,6 +395,7 @@ const Input = styled.input`
   border: 1px solid ${({ theme }) => theme.colors.gray};
   border-radius: 4px;
   width: 100%;
+  max-width: 300px;
 `;
 
 const Select = styled.select`
@@ -399,7 +403,7 @@ const Select = styled.select`
   font-size: 14px;
   border: 1px solid ${({ theme }) => theme.colors.gray};
   border-radius: 4px;
-  width: 100%;
+  max-width: 300px;
 `;
 
 const SizeContainer = styled.div`
@@ -414,6 +418,7 @@ const SizeSelect = styled.select`
   border: 1px solid ${({ theme }) => theme.colors.gray};
   border-radius: 4px;
   flex: 1;
+  max-width: 300px;
 `;
 
 const RadioGroup = styled.div`
