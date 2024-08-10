@@ -9,14 +9,17 @@ import MenuList from '../components/Admin/MenuList';
 import MemberList from '../components/Member/MemberList';
 import BlockMemberList from '../components/Member/BlockMemberList';
 import ReviewList from '../components/Member/ReviewList';
-import ReviewDetail from '../components/Member/ReviewDetail .js'; // ReviewDetail 컴포넌트 추가
+import ReviewDetail from '../components/Member/ReviewDetail .js';
 import MemberDetail from '../components/Member/MemberDetail';
+import ProductList from '../components/Service/ProductList.js';
+import ProductDetail from '../components/Service/ProductDetail.js';
 import Theme from '../styles/Theme';
 
 const Admin = () => {
   const navigate = useNavigate();
   const [isManagerMenuOpen, setIsManagerMenuOpen] = useState(false);
   const [isMemberMenuOpen, setIsMemberMenuOpen] = useState(false);
+  const [isServiceMenuOpen, setIsServiceMenuOpen] = useState(false);
 
   const handleManagerMenuToggle = () => {
     setIsManagerMenuOpen(!isManagerMenuOpen);
@@ -24,6 +27,9 @@ const Admin = () => {
 
   const handleMemberMenuToggle = () => {
     setIsMemberMenuOpen(!isMemberMenuOpen);
+  };
+  const handleServiceMenuToggle = () => {
+    setIsServiceMenuOpen(!isServiceMenuOpen);
   };
 
   return (
@@ -76,7 +82,20 @@ const Admin = () => {
                 </SubMenuItem>
               </SubMenu>
             )}
-            <NavItem>서비스 관리</NavItem>
+            <NavItem onClick={handleServiceMenuToggle}>서비스 관리</NavItem>
+            {isServiceMenuOpen && (
+              <SubMenu>
+                <SubMenuItem onClick={() => navigate('/admin/productlist')}>
+                  제품 관리
+                </SubMenuItem>
+                <SubMenuItem onClick={() => navigate('/admin/brandlist')}>
+                  브랜드 관리
+                </SubMenuItem>
+                <SubMenuItem onClick={() => navigate('/admin/schedulelist')}>
+                  예정제품 관리
+                </SubMenuItem>
+              </SubMenu>
+            )}
             <NavItem>결제 관리</NavItem>
             <NavItem>앱 설정 관리</NavItem>
             <NavItem>고객센터</NavItem>
@@ -94,11 +113,9 @@ const Admin = () => {
             <Route path='memberlist/detail/:seq' element={<MemberDetail />} />
             <Route path='blockmemberlist' element={<BlockMemberList />} />
             <Route path='reviewlist' element={<ReviewList />} />
-            <Route
-              path='reviewlist/detail/:no'
-              element={<ReviewDetail />}
-            />{' '}
-            {/* 리뷰 디테일 페이지 추가 */}
+            <Route path='reviewlist/detail/:no' element={<ReviewDetail />} />
+            <Route path='productlist' element={<ProductList />} />
+            <Route path='productlist/detail/:id' element={<ProductDetail />} />
           </Routes>
         </MainContent>
       </Container>
