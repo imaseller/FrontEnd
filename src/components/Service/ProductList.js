@@ -16,7 +16,6 @@ const mockProductData = [
     use: 'N',
     registerDate: '2023.04.11',
   },
-  // 더미 데이터 추가 가능
 ];
 
 const ProductList = () => {
@@ -28,7 +27,7 @@ const ProductList = () => {
   );
 
   const handleProductClick = (no) => {
-    navigate(`product/detail/${no}`);
+    navigate(`/admin/productlist/detail/${no}`);
   };
 
   return (

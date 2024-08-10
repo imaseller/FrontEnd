@@ -1,403 +1,564 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import Theme from '../../styles/Theme';
 
-const mockData = [
+const mockProductData = [
   {
-    no: 5017,
-    status: '인증완료',
-    memberType: '일반회원',
-    email: 'jyoonlee411@naver.com',
-    nickname: '윤아아야',
-    birthday: '2003-04-11',
-    color: 'Black',
-    brand: 'MOJO.S.PHINE',
-    lastLogin: '2024.08.02',
+    id: 806,
+    productName: '니트 배색 벨티드 집업 원피스',
+    brand: 'ZOOC',
+    category: '원피스',
+    color: 'Cream',
+    size: '44(S)-0 / 55(M)-1 / 66(L)-1 / Free-0',
+    priceRetail: '384,300',
+    rentPrice3: '40,000',
+    rentPrice5: '55,000',
+    material: '겉감: 면 53% 나일론 41% 폴리우레탄 6% 안감:폴리에스터100%',
+    thickness: '적당',
+    elasticity: '약간있음',
+    lining: '안감없음',
+    texture: '적당',
+    transparency: '비침없음',
+    realSize: {
+      '44(S)': { A: 0, B: 0, C: 0, D: 0, E: 0 },
+      '55(M)': { A: 37, B: 90, C: 66, D: 60, E: 113 },
+      '66(L)': { A: 39, B: 94, C: 70, D: 62, E: 115 },
+    },
+    quantity: {
+      '44(S)': 0,
+      '55(M)': 1,
+      '66(L)': 1,
+      Free: 0,
+    },
+    review: {
+      video: '',
+      image: '',
+    },
+    thumbnail: '/image.do?dir=item&img=20230411175710_2669.jpg',
+    productNumber: 'Z231MSE013',
+    description: '가슴부터 허리까지 밴딩소재로 되어있는 캐주얼한 제품입니다.',
+    useSeason: ['봄', '가을', '겨울'],
+    status: '시즌상품',
+    useYn: 'N',
+    registerDate: '2023.04.11',
   },
 ];
 
-const MemberDetail = () => {
-  const { seq } = useParams();
-  const [activeTab, setActiveTab] = useState('tab_delivery');
+const brands = [
+  { value: '58', label: 'S_Blanc' },
+  { value: '57', label: 'CC Collect' },
+  { value: '56', label: 'Tuo' },
+];
 
-  const handleTabClick = (tab) => {
-    setActiveTab(tab);
-  };
+const categories = [
+  { value: 'C01', label: '의류' },
+  { value: 'C02', label: '웨딩' },
+  { value: 'C03', label: '주얼리' },
+  { value: 'C04', label: '가방' },
+];
 
-  const navigate = useNavigate();
-  const [member, setMember] = useState({
-    email: '',
-    password: '',
-    confirmPassword: '',
-    nickname: '',
-    birthday: '',
-    color: '',
-    brand: '',
-    sizeOnePieceSeq: '',
-    sizeJacketSeq: '',
-    sizeCoatSeq: '',
-    status: '',
-    event: 'agree',
-    memberType: '',
-  });
+const subCategories = [
+  { value: '300', label: '원피스' },
+  { value: '303', label: '투피스' },
+  { value: '304', label: '상의' },
+  { value: '305', label: '하의' },
+  { value: '301', label: '정장' },
+  { value: '302', label: '아우터' },
+];
+
+const seasons = ['봄', '여름', '가을', '겨울'];
+
+const ProductDetail = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    const memberData = mockData.find((m) => m.no.toString() === seq);
-    if (memberData) {
-      setMember({
-        email: memberData.email,
-        nickname: memberData.nickname,
-        birthday: memberData.birthday,
-        color: memberData.color,
-        brand: memberData.brand,
-        sizeOnePieceSeq: '',
-        sizeJacketSeq: '',
-        sizeCoatSeq: '',
-        status: memberData.status,
-        memberType: memberData.memberType,
-        event: 'agree',
-      });
-    }
-  }, [seq]);
-
-  const handleSave = () => {
-    navigate('/admin/memberlist');
-  };
-
-  const handleCancel = () => {
-    navigate('/admin/memberlist');
-  };
+    const foundProduct = mockProductData.find(
+      (item) => item.id.toString() === id
+    );
+    setProduct(foundProduct);
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setMember((prevMember) => ({ ...prevMember, [name]: value }));
+    setProduct((prevProduct) => ({ ...prevProduct, [name]: value }));
   };
 
-  const checkDuplicateNickname = () => {
-    alert('중복체크 기능을 구현하세요.');
+  const handleCheckboxChange = (name, value) => {
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      [name]: prevProduct[name] === value ? '' : value,
+    }));
   };
+
+  const handleSeasonChange = (season) => {
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      useSeason: prevProduct.useSeason.includes(season)
+        ? prevProduct.useSeason.filter((s) => s !== season)
+        : [...prevProduct.useSeason, season],
+    }));
+  };
+
+  if (!product) {
+    return <div>제품을 찾을 수 없습니다.</div>;
+  }
 
   return (
     <ThemeProvider theme={Theme}>
       <Container>
-        <Title>회원 상세정보</Title>
-        <FormContainer>
-          <LeftForm>
-            <FormRow>
-              <Label>계정(이메일):</Label>
-              <ReadOnlyInput
-                type='email'
-                name='email'
-                value={member.email}
+        <Title>제품 상세정보</Title>
+        <ScrollContainer>
+          <Form>
+            <FormGroup>
+              <Label>제품명:</Label>
+              <Input
+                type='text'
+                name='productName'
+                value={product.productName}
+                onChange={handleChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label>브랜드:</Label>
+              <Select
+                name='brand'
+                value={product.brand}
+                onChange={handleChange}
+              >
+                {brands.map((brand) => (
+                  <option key={brand.value} value={brand.value}>
+                    {brand.label}
+                  </option>
+                ))}
+              </Select>
+            </FormGroup>
+            <FormGroup>
+              <Label>분류:</Label>
+              <Select
+                name='category'
+                value={product.category}
+                onChange={handleChange}
+              >
+                {categories.map((category) => (
+                  <option key={category.value} value={category.value}>
+                    {category.label}
+                  </option>
+                ))}
+              </Select>
+              <CheckboxGroup>
+                {subCategories.map((subCategory) => (
+                  <CheckLabel key={subCategory.value}>
+                    <input
+                      type='checkbox'
+                      value={subCategory.value}
+                      checked={product.category === subCategory.value}
+                      onChange={() => handleChange(subCategory.value)}
+                    />
+                    {subCategory.label}
+                  </CheckLabel>
+                ))}
+              </CheckboxGroup>
+            </FormGroup>
+            <FormGroup>
+              <Label>용도:</Label>
+              <CheckboxGroup>
+                {seasons.map((season) => (
+                  <CheckLabel key={season}>
+                    <input
+                      type='checkbox'
+                      value={season}
+                      checked={
+                        product.useSeason && product.useSeason.includes(season)
+                      }
+                      onChange={() => handleSeasonChange(season)}
+                    />
+                    {season}
+                  </CheckLabel>
+                ))}
+              </CheckboxGroup>
+            </FormGroup>
+            <FormGroup>
+              <Label>색상:</Label>
+              <Input
+                type='text'
+                name='color'
+                value={product.color}
+                onChange={handleChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label>가격:</Label>
+              <Input
+                type='text'
+                name='priceRetail'
+                value={product.priceRetail}
+                onChange={handleChange}
+                placeholder='리테일 가격'
+              />
+              <Input
+                type='text'
+                name='rentPrice3'
+                value={product.rentPrice3}
+                onChange={handleChange}
+                placeholder='3회 대여 가격'
+              />
+              <Input
+                type='text'
+                name='rentPrice5'
+                value={product.rentPrice5}
+                onChange={handleChange}
+                placeholder='5회 대여 가격'
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label>제품소재:</Label>
+              <TextArea
+                name='material'
+                value={product.material}
+                onChange={handleChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label>제품 상세정보:</Label>
+              <DetailContainer>
+                <DetailGroup>
+                  <Label>두께감:</Label>
+                  <CheckboxGroup>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.thickness === '매우두꺼움'}
+                        onChange={() =>
+                          handleCheckboxChange('thickness', '매우두꺼움')
+                        }
+                      />
+                      매우두꺼움
+                    </CheckLabel>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.thickness === '두꺼움'}
+                        onChange={() =>
+                          handleCheckboxChange('thickness', '두꺼움')
+                        }
+                      />
+                      두꺼움
+                    </CheckLabel>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.thickness === '적당'}
+                        onChange={() =>
+                          handleCheckboxChange('thickness', '적당')
+                        }
+                      />
+                      적당
+                    </CheckLabel>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.thickness === '얇음'}
+                        onChange={() =>
+                          handleCheckboxChange('thickness', '얇음')
+                        }
+                      />
+                      얇음
+                    </CheckLabel>
+                  </CheckboxGroup>
+                </DetailGroup>
+                <DetailGroup>
+                  <Label>신축성:</Label>
+                  <CheckboxGroup>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.elasticity === '좋음'}
+                        onChange={() =>
+                          handleCheckboxChange('elasticity', '좋음')
+                        }
+                      />
+                      좋음
+                    </CheckLabel>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.elasticity === '약간있음'}
+                        onChange={() =>
+                          handleCheckboxChange('elasticity', '약간있음')
+                        }
+                      />
+                      약간있음
+                    </CheckLabel>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.elasticity === '없음'}
+                        onChange={() =>
+                          handleCheckboxChange('elasticity', '없음')
+                        }
+                      />
+                      없음
+                    </CheckLabel>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.elasticity === '허리밴딩'}
+                        onChange={() =>
+                          handleCheckboxChange('elasticity', '허리밴딩')
+                        }
+                      />
+                      허리밴딩
+                    </CheckLabel>
+                  </CheckboxGroup>
+                </DetailGroup>
+                <DetailGroup>
+                  <Label>안감:</Label>
+                  <CheckboxGroup>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.lining === '전체안감'}
+                        onChange={() =>
+                          handleCheckboxChange('lining', '전체안감')
+                        }
+                      />
+                      전체안감
+                    </CheckLabel>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.lining === '부분안감'}
+                        onChange={() =>
+                          handleCheckboxChange('lining', '부분안감')
+                        }
+                      />
+                      부분안감
+                    </CheckLabel>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.lining === '기모안감'}
+                        onChange={() =>
+                          handleCheckboxChange('lining', '기모안감')
+                        }
+                      />
+                      기모안감
+                    </CheckLabel>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.lining === '안감없음'}
+                        onChange={() =>
+                          handleCheckboxChange('lining', '안감없음')
+                        }
+                      />
+                      안감없음
+                    </CheckLabel>
+                  </CheckboxGroup>
+                </DetailGroup>
+                <DetailGroup>
+                  <Label>촉감:</Label>
+                  <CheckboxGroup>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.texture === '뻣뻣함'}
+                        onChange={() =>
+                          handleCheckboxChange('texture', '뻣뻣함')
+                        }
+                      />
+                      뻣뻣함
+                    </CheckLabel>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.texture === '까슬함'}
+                        onChange={() =>
+                          handleCheckboxChange('texture', '까슬함')
+                        }
+                      />
+                      까슬함
+                    </CheckLabel>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.texture === '적당'}
+                        onChange={() => handleCheckboxChange('texture', '적당')}
+                      />
+                      적당
+                    </CheckLabel>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.texture === '부드러움'}
+                        onChange={() =>
+                          handleCheckboxChange('texture', '부드러움')
+                        }
+                      />
+                      부드러움
+                    </CheckLabel>
+                  </CheckboxGroup>
+                </DetailGroup>
+                <DetailGroup>
+                  <Label>비침:</Label>
+                  <CheckboxGroup>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.transparency === '비침있음'}
+                        onChange={() =>
+                          handleCheckboxChange('transparency', '비침있음')
+                        }
+                      />
+                      비침있음
+                    </CheckLabel>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.transparency === '약간있음'}
+                        onChange={() =>
+                          handleCheckboxChange('transparency', '약간있음')
+                        }
+                      />
+                      약간있음
+                    </CheckLabel>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.transparency === '적당'}
+                        onChange={() =>
+                          handleCheckboxChange('transparency', '적당')
+                        }
+                      />
+                      적당
+                    </CheckLabel>
+                    <CheckLabel>
+                      <input
+                        type='checkbox'
+                        checked={product.transparency === '비침없음'}
+                        onChange={() =>
+                          handleCheckboxChange('transparency', '비침없음')
+                        }
+                      />
+                      비침없음
+                    </CheckLabel>
+                  </CheckboxGroup>
+                </DetailGroup>
+              </DetailContainer>
+            </FormGroup>
+            <FormGroup>
+              <Label>실측사이즈:</Label>
+              <SizeGroup>
+                {Object.entries(product.realSize).map(
+                  ([size, measurements]) => (
+                    <div key={size}>
+                      <span>{size}</span>
+                      {Object.entries(measurements).map(([key, value]) => (
+                        <React.Fragment key={key}>
+                          <LabelSmall>{key}</LabelSmall>
+                          <InputSmall
+                            type='number'
+                            name={`${size}.${key}`}
+                            value={value}
+                            onChange={handleChange}
+                          />
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  )
+                )}
+              </SizeGroup>
+              <SizeDescription>
+                A. 어깨넓이 B. 가슴둘레 C. 허리둘레 D. 팔길이 E. 총길이
+              </SizeDescription>
+            </FormGroup>
+            <FormGroup>
+              <Label>사이즈 수량:</Label>
+              <SizeQuantityGroup>
+                {Object.entries(product.quantity).map(([size, qty]) => (
+                  <SizeQuantityRow key={size}>
+                    <span>{size}</span>
+                    <InputSmall
+                      type='number'
+                      name={`quantity.${size}`}
+                      value={qty}
+                      onChange={handleChange}
+                    />
+                  </SizeQuantityRow>
+                ))}
+              </SizeQuantityGroup>
+            </FormGroup>
+            <FormGroup>
+              <Label>제품리뷰:</Label>
+              <FileInput type='file' />
+              <ImagePreview>
+                <img src={product.review.image} alt='제품 리뷰 이미지' />
+              </ImagePreview>
+            </FormGroup>
+            <FormGroup>
+              <Label>제품이미지:</Label>
+              <FileInput type='file' />
+              <ImagePreview>
+                <img src={product.thumbnail} alt='제품 이미지' />
+              </ImagePreview>
+            </FormGroup>
+            <FormGroup>
+              <Label>노출여부:</Label>
+              <CheckboxGroup>
+                <CheckLabel>
+                  <input
+                    type='checkbox'
+                    checked={product.useYn === 'Y'}
+                    onChange={() => handleCheckboxChange('useYn', 'Y')}
+                  />
+                  노출
+                </CheckLabel>
+                <CheckLabel>
+                  <input
+                    type='checkbox'
+                    checked={product.useYn === 'N'}
+                    onChange={() => handleCheckboxChange('useYn', 'N')}
+                  />
+                  비노출
+                </CheckLabel>
+              </CheckboxGroup>
+            </FormGroup>
+            <FormGroup>
+              <Label>설명:</Label>
+              <TextArea
+                name='description'
+                value={product.description}
+                onChange={handleChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label>상태:</Label>
+              <Input
+                type='text'
+                name='status'
+                value={product.status}
+                onChange={handleChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label>등록일:</Label>
+              <Input
+                type='text'
+                name='registerDate'
+                value={product.registerDate}
                 readOnly
               />
-            </FormRow>
-            <FormRow>
-              <Label>닉네임:</Label>
-              <InputWrapper>
-                <Input
-                  type='text'
-                  name='nickname'
-                  value={member.nickname}
-                  onChange={handleChange}
-                />
-                <CheckButton onClick={checkDuplicateNickname}>
-                  중복체크
-                </CheckButton>
-              </InputWrapper>
-            </FormRow>
-            <FormRow>
-              <Label>비밀번호:</Label>
-              <Input
-                type='password'
-                name='password'
-                value={member.password}
-                onChange={handleChange}
-              />
-            </FormRow>
-            <FormRow>
-              <Label>재확인:</Label>
-              <Input
-                type='password'
-                name='confirmPassword'
-                value={member.confirmPassword}
-                onChange={handleChange}
-              />
-            </FormRow>
-            <FormRow>
-              <Label>이벤트수신여부:</Label>
-              <RadioGroup>
-                <RadioLabel>
-                  <Radio
-                    type='radio'
-                    name='event'
-                    value='agree'
-                    checked={member.event === 'agree'}
-                    onChange={handleChange}
-                  />
-                  동의
-                </RadioLabel>
-                <RadioLabel>
-                  <Radio
-                    type='radio'
-                    name='event'
-                    value='disagree'
-                    checked={member.event === 'disagree'}
-                    onChange={handleChange}
-                  />
-                  미동의
-                </RadioLabel>
-              </RadioGroup>
-            </FormRow>
-          </LeftForm>
-          <RightForm>
-            <FormRow>
-              <Label>생일:</Label>
-              <Input
-                type='date'
-                name='birthday'
-                value={member.birthday}
-                onChange={handleChange}
-              />
-            </FormRow>
-            <FormRow>
-              <Label>선호색상:</Label>
-              <Select name='color' value={member.color} onChange={handleChange}>
-                <option value='Black'>Black</option>
-                <option value='White'>White</option>
-                <option value='Pink'>Pink</option>
-                <option value='Navy'>Navy</option>
-                <option value='Green'>Green</option>
-                <option value='Blue'>Blue</option>
-                <option value='Cream'>Cream</option>
-                <option value='Yellow'>Yellow</option>
-                <option value='Lilac'>Lilac</option>
-                <option value='Ivory'>Ivory</option>
-                <option value='Olive'>Olive</option>
-                <option value='Orange'>Orange</option>
-                <option value='Mint'>Mint</option>
-                <option value='Grey'>Grey</option>
-                <option value='Camel'>Camel</option>
-                <option value='Beige'>Beige</option>
-                <option value='Red'>Red</option>
-                <option value='Sky Blue'>Sky Blue</option>
-                <option value='Purple'>Purple</option>
-                <option value='Nude'>Nude</option>
-                <option value='Khaki'>Khaki</option>
-                <option value='Wine'>Wine</option>
-                <option value='Brown'>Brown</option>
-                <option value='Charcoal'>Charcoal</option>
-              </Select>
-            </FormRow>
-            <FormRow>
-              <Label>선호브랜드:</Label>
-              <Select name='brand' value={member.brand} onChange={handleChange}>
-                <option value='MOJO.S.PHINE'>MOJO.S.PHINE</option>
-                <option value='S_Blanc'>S_Blanc</option>
-                <option value='CC Collect'>CC Collect</option>
-                <option value='Tuo'>Tuo</option>
-                <option value='Elunani'>Elunani</option>
-                <option value='Billz'>Billz</option>
-                <option value='Clair De Lune'>Clair De Lune</option>
-                <option value='LUCHA'>LUCHA</option>
-                <option value='DOUCAN'>DOUCAN</option>
-                <option value='Lazyna'>Lazyna</option>
-                <option value='DAYW'>DAYW</option>
-                <option value='CADELL'>CADELL</option>
-                <option value='Mujatzz'>Mujatzz</option>
-                <option value='Mark de niel'>Mark de niel</option>
-                <option value='LINE'>LINE</option>
-                <option value='MINIMUM'>MINIMUM</option>
-                <option value='JILL BY JILLSTUART'>JILL BY JILLSTUART</option>
-                <option value='MINE'>MINE</option>
-                <option value='ZOOC'>ZOOC</option>
-                <option value='O˙2nd'>O˙2nd</option>
-                <option value='MAJE'>MAJE</option>
-                <option value='SJYP'>SJYP</option>
-                <option value='LÄTT BY T'>LÄTT BY T</option>
-                <option value='TIME'>TIME</option>
-                <option value='DECO'>DECO</option>
-                <option value='OLIVE DES OLIVE'>OLIVE DES OLIVE</option>
-                <option value='STUDIO TOMBOY'>STUDIO TOMBOY</option>
-                <option value='SANDRO'>SANDRO</option>
-                <option value='RENEEVON'>RENEEVON</option>
-                <option value='SISLEY'>SISLEY</option>
-                <option value='S˙SOLEZIA'>S˙SOLEZIA</option>
-                <option value='it MICHAA'>it MICHAA</option>
-                <option value='MICHAA'>MICHAA</option>
-                <option value='SATIN'>SATIN</option>
-                <option value='G-CUT'>G-CUT</option>
-                <option value='KENNETHLADY'>KENNETHLADY</option>
-                <option value='LYNN'>LYNN</option>
-                <option value='EGOIST'>EGOIST</option>
-                <option value='DEW L'>DEW L</option>
-                <option value='THE IZZAT'>THE IZZAT</option>
-                <option value='JJ JIGOTT'>JJ JIGOTT</option>
-                <option value='THE IZZAT Collection'>
-                  THE IZZAT Collection
-                </option>
-                <option value='JIGOTT'>JIGOTT</option>
-                <option value='CLUBMONACO'>CLUBMONACO</option>
-                <option value='SJSJ'>SJSJ</option>
-                <option value='SYSTEM'>SYSTEM</option>
-              </Select>
-            </FormRow>
-            <FormRow>
-              <Label>사이즈:</Label>
-              <SizeContainer>
-                <SizeSelect
-                  name='sizeOnePieceSeq'
-                  value={member.sizeOnePieceSeq}
-                  onChange={handleChange}
-                >
-                  <option value=''>원피스(선택)</option>
-                  <option value='201'>44(S)</option>
-                  <option value='202'>55(M)</option>
-                  <option value='203'>66(L)</option>
-                  <option value='210'>Free</option>
-                </SizeSelect>
-                <SizeSelect
-                  name='sizeJacketSeq'
-                  value={member.sizeJacketSeq}
-                  onChange={handleChange}
-                >
-                  <option value=''>정(선택)</option>
-                  <option value='201'>44(S)</option>
-                  <option value='202'>55(M)</option>
-                  <option value='203'>66(L)</option>
-                  <option value='210'>Free</option>
-                </SizeSelect>
-                <SizeSelect
-                  name='sizeCoatSeq'
-                  value={member.sizeCoatSeq}
-                  onChange={handleChange}
-                >
-                  <option value=''>아우터(선택)</option>
-                  <option value='201'>44(S)</option>
-                  <option value='202'>55(M)</option>
-                  <option value='203'>66(L)</option>
-                  <option value='210'>Free</option>
-                </SizeSelect>
-              </SizeContainer>
-            </FormRow>
-            <FormRow>
-              <Label>계정상태:</Label>
-              <Select
-                name='status'
-                value={member.status}
-                onChange={handleChange}
-              >
-                <option value='인증대기'>인증대기</option>
-                <option value='인증완료'>인증완료</option>
-                <option value='계정잠김'>계정잠김</option>
-                <option value='탈퇴완료'>탈퇴완료</option>
-              </Select>
-            </FormRow>
-            <FormRow>
-              <Label>회원타입:</Label>
-              <Select
-                name='memberType'
-                value={member.memberType}
-                onChange={handleChange}
-              >
-                <option value='일반회원'>일반회원</option>
-                <option value='멤버'>멤버</option>
-                <option value='단골'>단골</option>
-                <option value='KFBA'>KFBA</option>
-              </Select>
-            </FormRow>
-          </RightForm>
-        </FormContainer>
-        <ActionRow>
-          <LeftActionButton onClick={() => navigate('/admin/memberlist')}>
-            목록보기
-          </LeftActionButton>
-          <RightActionButtons>
-            <ActionButton onClick={handleSave}>저장하기</ActionButton>
-            <ActionButton onClick={handleCancel}>저장취소</ActionButton>
-          </RightActionButtons>
-        </ActionRow>
-        <TabMenu>
-          <TabItem
-            className={activeTab === 'tab_delivery' ? 'active' : ''}
-            onClick={() => handleTabClick('tab_delivery')}
-          >
-            배송지 정보
-          </TabItem>
-          <TabItem
-            className={activeTab === 'tab_review' ? 'active' : ''}
-            onClick={() => handleTabClick('tab_review')}
-          >
-            사용후기
-          </TabItem>
-          <TabItem
-            className={activeTab === 'tab_hook' ? 'active' : ''}
-            onClick={() => handleTabClick('tab_hook')}
-          >
-            걸어두기
-          </TabItem>
-          <TabItem
-            className={activeTab === 'tab_point' ? 'active' : ''}
-            onClick={() => handleTabClick('tab_point')}
-          >
-            포인트 내역
-          </TabItem>
-          <TabItem
-            className={activeTab === 'tab_history' ? 'active' : ''}
-            onClick={() => handleTabClick('tab_history')}
-          >
-            이용 내역
-          </TabItem>
-        </TabMenu>
-        <TabContent>
-          {activeTab === 'tab_delivery' && (
-            <TabPane>
-              <Table>
-                <thead>
-                  <tr>
-                    <th className='text-center'>#</th>
-                    <th className='text-center'>배송자명</th>
-                    <th className='text-center'>수령인</th>
-                    <th className='text-center'>주소</th>
-                    <th className='text-center'>연락처</th>
-                    <th className='text-center'>연락처2</th>
-                    <th className='text-center'>기본설정</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className='text-center'>1</td>
-                    <td className='text-center'>아크로리버</td>
-                    <td className='text-center'>이다지</td>
-                    <td className='text-center'>
-                      서울 서초구 강남대로 159 102동 1103호 (06508)
-                    </td>
-                    <td className='text-center'>01027374912</td>
-                    <td className='text-center'>01037583875</td>
-                    <td className='text-center'>Y</td>
-                  </tr>
-                </tbody>
-              </Table>
-            </TabPane>
-          )}
-          {activeTab === 'tab_review' && (
-            <TabPane>{/* 사용후기 내용 */}</TabPane>
-          )}
-          {activeTab === 'tab_hook' && <TabPane>{/* 걸어두기 내용 */}</TabPane>}
-          {activeTab === 'tab_point' && (
-            <TabPane>{/* 포인트 내역 내용 */}</TabPane>
-          )}
-          {activeTab === 'tab_history' && (
-            <TabPane>{/* 이용 내역 내용 */}</TabPane>
-          )}
-        </TabContent>
+            </FormGroup>
+          </Form>
+        </ScrollContainer>
       </Container>
     </ThemeProvider>
   );
 };
 
-export default MemberDetail;
+export default ProductDetail;
 
 const Container = styled.div`
   display: flex;
@@ -410,227 +571,133 @@ const Title = styled.h2`
   color: ${({ theme }) => theme.colors.black};
 `;
 
-const FormContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 20px;
+const ScrollContainer = styled.div`
+  max-height: 90vh;
+  overflow-y: auto;
   border: 1px solid ${({ theme }) => theme.colors.gray};
-  background-color: ${({ theme }) => theme.colors.WhiteBrown1};
+  padding: 20px;
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
-const LeftForm = styled.div`
-  flex: 1;
-  max-width: 48%;
+const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 20px;
 `;
 
-const RightForm = styled.div`
-  flex: 1;
-  max-width: 48%;
+const FormGroup = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;
-
-const FormRow = styled.div`
-  display: flex;
+  margin-bottom: 10px;
   align-items: center;
-  gap: 10px;
+  flex-wrap: wrap;
 `;
 
 const Label = styled.label`
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.black};
-  min-width: 120px;
+  font-weight: bold;
+  margin-right: 10px;
+  width: 150px; // 레이블 너비 확장
 `;
 
-const InputWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex: 1;
-`;
-
-const Input = styled.input`
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid ${({ theme }) => theme.colors.gray};
-  border-radius: 4px;
-  width: 100%;
-  max-width: 300px;
-`;
-
-const ReadOnlyInput = styled(Input)`
-  background-color: ${({ theme }) => theme.colors.WhiteBrown1};
-`;
-
-const Select = styled.select`
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid ${({ theme }) => theme.colors.gray};
-  border-radius: 4px;
-  max-width: 300px;
-`;
-
-const SizeContainer = styled.div`
-  display: flex;
-  gap: 10px;
-  flex: 1;
-`;
-
-const SizeSelect = styled.select`
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid ${({ theme }) => theme.colors.gray};
-  border-radius: 4px;
-  flex: 1;
-  max-width: 300px;
-`;
-
-const RadioGroup = styled.div`
-  display: flex;
-  gap: 20px;
-`;
-
-const RadioLabel = styled.label`
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.black};
-`;
-
-const Radio = styled.input`
+const LabelSmall = styled.label`
+  width: 30px;
   margin-right: 5px;
 `;
 
-const ActionRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  margin-top: 20px;
-`;
-
-const LeftActionButton = styled.button`
-  padding: 10px 20px;
-  cursor: pointer;
-  background-color: ${({ theme }) => theme.colors.WhiteBrown4};
-  color: ${({ theme }) => theme.colors.white};
-  border: none;
-  border-radius: 4px;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.WhiteBrown5};
-  }
-
-  &:active {
-    background-color: ${({ theme }) => theme.colors.WhiteBrown6};
-  }
-`;
-
-const RightActionButtons = styled.div`
-  display: flex;
-  gap: 20px;
-`;
-
-const ActionButton = styled.button`
-  padding: 10px 20px;
-  cursor: pointer;
-  background-color: ${({ theme }) => theme.colors.WhiteBrown4};
-  color: ${({ theme }) => theme.colors.white};
-  border: none;
-  border-radius: 4px;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.WhiteBrown5};
-  }
-
-  &:active {
-    background-color: ${({ theme }) => theme.colors.WhiteBrown6};
-  }
-`;
-
-const CheckButton = styled.button`
-  padding: 5px 10px;
-  min-width: 80px;
-  cursor: pointer;
-  background-color: ${({ theme }) => theme.colors.WhiteBrown4};
-  color: ${({ theme }) => theme.colors.white};
-  border: none;
-  border-radius: 4px;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.WhiteBrown5};
-  }
-
-  &:active {
-    background-color: ${({ theme }) => theme.colors.WhiteBrown6};
-  }
-`;
-
-const Table = styled.table`
-  width: 100%;
-  margin-top: 20px;
-  border-collapse: collapse;
-  background-color: ${({ theme }) => theme.colors.white};
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  th,
-  td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
-  }
-
-  th {
-    background-color: ${({ theme }) => theme.colors.WhiteBrown4};
-    color: ${({ theme }) => theme.colors.white};
-  }
-
-  tr:hover {
-    background-color: ${({ theme }) => theme.colors.WhiteBrown2};
-  }
-`;
-
-const TabMenu = styled.ul`
-  display: flex;
-  justify-content: flex-start;
-  list-style: none;
-  margin: 20px 0;
-  padding: 0;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
-`;
-
-const TabItem = styled.li`
-  text-decoration: none;
-  color: ${({ theme }) => theme.colors.black};
-  font-size: 14px;
-  cursor: pointer;
-  padding: 10px 20px;
-  border-bottom: 2px solid transparent;
-
-  &.active {
-    font-weight: bold;
-    border-bottom: 2px solid ${({ theme }) => theme.colors.primary};
-  }
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.gray};
-  }
-`;
-
-const TabContent = styled.div`
-  padding: 20px;
+const Input = styled.input`
+  flex: 1;
+  padding: 8px;
   border: 1px solid ${({ theme }) => theme.colors.gray};
-  background-color: ${({ theme }) => theme.colors.white};
 `;
 
-const TabPane = styled.div`
-  display: none;
+const InputSmall = styled.input`
+  width: 80px;
+  margin-right: 5px;
+  padding: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.gray};
+`;
 
-  &.active {
-    display: block;
+const Select = styled.select`
+  flex: 1;
+  padding: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.gray};
+`;
+
+const TextArea = styled.textarea`
+  flex: 1;
+  padding: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.gray};
+  height: 100px; // 텍스트 에어리어 높이 고정
+`;
+
+const CheckboxGroup = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  label {
+    margin-right: 10px;
+    margin-bottom: 5px;
+  }
+  input {
+    margin-right: 5px;
+  }
+`;
+
+const CheckLabel = styled.label`
+  display: flex;
+  align-items: center;
+`;
+
+const DetailContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+`;
+
+const DetailGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`;
+
+const SizeGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3px;
+  }
+  span {
+    width: 60px;
+    margin-right: 10px;
+  }
+`;
+
+const SizeQuantityGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+const SizeQuantityRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+const SizeDescription = styled.div`
+  font-size: 12px;
+  color: gray;
+  margin-top: 10px;
+`;
+
+const FileInput = styled.input`
+  margin-top: 10px;
+`;
+
+const ImagePreview = styled.div`
+  margin-top: 10px;
+  img {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
   }
 `;
