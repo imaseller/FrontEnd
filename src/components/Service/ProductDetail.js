@@ -376,6 +376,7 @@ const ScrollContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.gray};
   padding: 20px;
   background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.WhiteBrown1};
 `;
 
 const FlexContainer = styled.div`
