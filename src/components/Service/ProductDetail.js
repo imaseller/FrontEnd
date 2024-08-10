@@ -101,6 +101,29 @@ const ProductDetail = () => {
     }));
   };
 
+  const handleSizeChange = (size, key, value) => {
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      realSize: {
+        ...prevProduct.realSize,
+        [size]: {
+          ...prevProduct.realSize[size],
+          [key]: value,
+        },
+      },
+    }));
+  };
+
+  const handleQuantityChange = (size, value) => {
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      quantity: {
+        ...prevProduct.quantity,
+        [size]: value,
+      },
+    }));
+  };
+
   if (!product) {
     return <div>제품을 찾을 수 없습니다.</div>;
   }
@@ -222,6 +245,9 @@ const ProductDetail = () => {
             </FormGroup>
             <FormGroup>
               <Label>제품 상세정보:</Label>
+              <SizeDescription>
+                A. 어깨넓이 B. 가슴둘레 C. 허리둘레 D. 팔길이 E. 총길이
+              </SizeDescription>
               <DetailContainer>
                 <DetailGroup>
                   <Row>
@@ -472,9 +498,10 @@ const ProductDetail = () => {
                           <LabelSmall>{key}</LabelSmall>
                           <InputSmall
                             type='number'
-                            name={`${size}.${key}`}
                             value={value}
-                            onChange={handleChange}
+                            onChange={(e) =>
+                              handleSizeChange(size, key, e.target.value)
+                            }
                           />
                         </React.Fragment>
                       ))}
@@ -482,9 +509,6 @@ const ProductDetail = () => {
                   )
                 )}
               </SizeGroup>
-              <SizeDescription>
-                A. 어깨넓이 B. 가슴둘레 C. 허리둘레 D. 팔길이 E. 총길이
-              </SizeDescription>
             </FormGroup>
             <FormGroup>
               <Label>사이즈 수량:</Label>
@@ -494,9 +518,10 @@ const ProductDetail = () => {
                     <span>{size}</span>
                     <InputSmall
                       type='number'
-                      name={`quantity.${size}`}
                       value={qty}
-                      onChange={handleChange}
+                      onChange={(e) =>
+                        handleQuantityChange(size, e.target.value)
+                      }
                     />
                   </SizeQuantityRow>
                 ))}
@@ -601,22 +626,25 @@ const FormGroup = styled.div`
   margin-bottom: 10px;
   align-items: center;
   flex-wrap: wrap;
+  width: 820px;
+  margin: 10px;
 `;
 
 const Label = styled.label`
   font-weight: bold;
   margin-right: 10px;
   width: 150px;
+  margin-bottom: 10px;
 `;
 
 const LabelSmall = styled.label`
-  width: 30px;
-  margin-right: 5px;
+  margin-right: 15px;
 `;
 
 const Input = styled.input`
   flex: 1;
   padding: 10px;
+  max-width: 160px;
   border: 1px solid ${({ theme }) => theme.colors.gray};
 `;
 
@@ -629,12 +657,14 @@ const InputSmall = styled.input`
 
 const Select = styled.select`
   flex: 1;
+  max-width: 160px;
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.colors.gray};
 `;
 
 const TextArea = styled.textarea`
   flex: 1;
+  max-width: 525px;
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.colors.gray};
   height: 120px;
@@ -673,12 +703,14 @@ const DetailContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  border: 1px solid ${({ theme }) => theme.colors.gray};
 `;
 
 const DetailGroup = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  margin-left: 20px;
 `;
 
 const SizeGroup = styled.div`
@@ -697,7 +729,7 @@ const SizeGroup = styled.div`
 
 const SizeQuantityGroup = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
 `;
 
@@ -720,8 +752,8 @@ const FileInput = styled.input`
 const ImagePreview = styled.div`
   margin-top: 10px;
   img {
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 200px;
+    max-height: 200px;
     object-fit: cover;
   }
 `;
