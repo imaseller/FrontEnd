@@ -133,462 +133,224 @@ const ProductDetail = () => {
       <Container>
         <Title>제품 상세정보</Title>
         <ScrollContainer>
-          <Form>
-            <FormGroup>
-              <Label>제품명:</Label>
-              <Input
-                type='text'
-                name='productName'
-                value={product.productName}
-                onChange={handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>브랜드:</Label>
-              <Select
-                name='brand'
-                value={product.brand}
-                onChange={handleChange}
-              >
-                {brands.map((brand) => (
-                  <option key={brand.value} value={brand.value}>
-                    {brand.label}
-                  </option>
-                ))}
-              </Select>
-            </FormGroup>
-            <FormGroup>
-              <Label>분류:</Label>
-              <Select
-                name='category'
-                value={product.category}
-                onChange={handleChange}
-              >
-                {categories.map((category) => (
-                  <option key={category.value} value={category.value}>
-                    {category.label}
-                  </option>
-                ))}
-              </Select>
-              <CheckboxGroup>
-                {subCategories.map((subCategory) => (
-                  <CheckLabel key={subCategory.value}>
-                    <input
-                      type='checkbox'
-                      value={subCategory.value}
-                      checked={product.category === subCategory.value}
-                      onChange={() => handleChange(subCategory.value)}
-                    />
-                    {subCategory.label}
-                  </CheckLabel>
-                ))}
-              </CheckboxGroup>
-            </FormGroup>
-            <FormGroup>
-              <Label>용도:</Label>
-              <CheckboxGroup>
-                {seasons.map((season) => (
-                  <CheckLabel key={season}>
-                    <input
-                      type='checkbox'
-                      value={season}
-                      checked={
-                        product.useSeason && product.useSeason.includes(season)
-                      }
-                      onChange={() => handleSeasonChange(season)}
-                    />
-                    {season}
-                  </CheckLabel>
-                ))}
-              </CheckboxGroup>
-            </FormGroup>
-            <FormGroup>
-              <Label>색상:</Label>
-              <Input
-                type='text'
-                name='color'
-                value={product.color}
-                onChange={handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>가격:</Label>
-              <Input
-                type='text'
-                name='priceRetail'
-                value={product.priceRetail}
-                onChange={handleChange}
-                placeholder='리테일 가격'
-              />
-              <Input
-                type='text'
-                name='rentPrice3'
-                value={product.rentPrice3}
-                onChange={handleChange}
-                placeholder='3회 대여 가격'
-              />
-              <Input
-                type='text'
-                name='rentPrice5'
-                value={product.rentPrice5}
-                onChange={handleChange}
-                placeholder='5회 대여 가격'
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>제품소재:</Label>
-              <TextArea
-                name='material'
-                value={product.material}
-                onChange={handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>제품 상세정보:</Label>
-              <SizeDescription>
-                A. 어깨넓이 B. 가슴둘레 C. 허리둘레 D. 팔길이 E. 총길이
-              </SizeDescription>
-              <DetailContainer>
-                <DetailGroup>
-                  <Row>
-                    <Label>두께감:</Label>
-                    <CheckboxGrouprow>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.thickness === '매우두꺼움'}
-                          onChange={() =>
-                            handleCheckboxChange('thickness', '매우두꺼움')
-                          }
-                        />
-                        매우두꺼움
-                      </CheckLabel>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.thickness === '두꺼움'}
-                          onChange={() =>
-                            handleCheckboxChange('thickness', '두꺼움')
-                          }
-                        />
-                        두꺼움
-                      </CheckLabel>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.thickness === '적당'}
-                          onChange={() =>
-                            handleCheckboxChange('thickness', '적당')
-                          }
-                        />
-                        적당
-                      </CheckLabel>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.thickness === '얇음'}
-                          onChange={() =>
-                            handleCheckboxChange('thickness', '얇음')
-                          }
-                        />
-                        얇음
-                      </CheckLabel>
-                    </CheckboxGrouprow>
-                  </Row>
-                </DetailGroup>
-                <DetailGroup>
-                  <Row>
-                    <Label>신축성:</Label>
-                    <CheckboxGrouprow>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.elasticity === '좋음'}
-                          onChange={() =>
-                            handleCheckboxChange('elasticity', '좋음')
-                          }
-                        />
-                        좋음
-                      </CheckLabel>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.elasticity === '약간있음'}
-                          onChange={() =>
-                            handleCheckboxChange('elasticity', '약간있음')
-                          }
-                        />
-                        약간있음
-                      </CheckLabel>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.elasticity === '없음'}
-                          onChange={() =>
-                            handleCheckboxChange('elasticity', '없음')
-                          }
-                        />
-                        없음
-                      </CheckLabel>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.elasticity === '허리밴딩'}
-                          onChange={() =>
-                            handleCheckboxChange('elasticity', '허리밴딩')
-                          }
-                        />
-                        허리밴딩
-                      </CheckLabel>
-                    </CheckboxGrouprow>
-                  </Row>
-                </DetailGroup>
-                <DetailGroup>
-                  <Row>
-                    <Label>안감:</Label>
-                    <CheckboxGrouprow>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.lining === '전체안감'}
-                          onChange={() =>
-                            handleCheckboxChange('lining', '전체안감')
-                          }
-                        />
-                        전체안감
-                      </CheckLabel>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.lining === '부분안감'}
-                          onChange={() =>
-                            handleCheckboxChange('lining', '부분안감')
-                          }
-                        />
-                        부분안감
-                      </CheckLabel>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.lining === '기모안감'}
-                          onChange={() =>
-                            handleCheckboxChange('lining', '기모안감')
-                          }
-                        />
-                        기모안감
-                      </CheckLabel>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.lining === '안감없음'}
-                          onChange={() =>
-                            handleCheckboxChange('lining', '안감없음')
-                          }
-                        />
-                        안감없음
-                      </CheckLabel>
-                    </CheckboxGrouprow>
-                  </Row>
-                </DetailGroup>
-                <DetailGroup>
-                  <Row>
-                    <Label>촉감:</Label>
-                    <CheckboxGrouprow>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.texture === '뻣뻣함'}
-                          onChange={() =>
-                            handleCheckboxChange('texture', '뻣뻣함')
-                          }
-                        />
-                        뻣뻣함
-                      </CheckLabel>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.texture === '까슬함'}
-                          onChange={() =>
-                            handleCheckboxChange('texture', '까슬함')
-                          }
-                        />
-                        까슬함
-                      </CheckLabel>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.texture === '적당'}
-                          onChange={() =>
-                            handleCheckboxChange('texture', '적당')
-                          }
-                        />
-                        적당
-                      </CheckLabel>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.texture === '부드러움'}
-                          onChange={() =>
-                            handleCheckboxChange('texture', '부드러움')
-                          }
-                        />
-                        부드러움
-                      </CheckLabel>
-                    </CheckboxGrouprow>
-                  </Row>
-                </DetailGroup>
-                <DetailGroup>
-                  <Row>
-                    <Label>비침:</Label>
-                    <CheckboxGrouprow>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.transparency === '비침있음'}
-                          onChange={() =>
-                            handleCheckboxChange('transparency', '비침있음')
-                          }
-                        />
-                        비침있음
-                      </CheckLabel>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.transparency === '약간있음'}
-                          onChange={() =>
-                            handleCheckboxChange('transparency', '약간있음')
-                          }
-                        />
-                        약간있음
-                      </CheckLabel>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.transparency === '적당'}
-                          onChange={() =>
-                            handleCheckboxChange('transparency', '적당')
-                          }
-                        />
-                        적당
-                      </CheckLabel>
-                      <CheckLabel>
-                        <input
-                          type='checkbox'
-                          checked={product.transparency === '비침없음'}
-                          onChange={() =>
-                            handleCheckboxChange('transparency', '비침없음')
-                          }
-                        />
-                        비침없음
-                      </CheckLabel>
-                    </CheckboxGrouprow>
-                  </Row>
-                </DetailGroup>
-              </DetailContainer>
-            </FormGroup>
-            <FormGroup>
-              <Label>실측사이즈:</Label>
-              <SizeGroup>
-                {Object.entries(product.realSize).map(
-                  ([size, measurements]) => (
-                    <div key={size}>
+          <FlexContainer>
+            <LeftSection>
+              <FormGroup>
+                <Label>제품명:</Label>
+                <Input
+                  type='text'
+                  name='productName'
+                  value={product.productName}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label>브랜드:</Label>
+                <Select
+                  name='brand'
+                  value={product.brand}
+                  onChange={handleChange}
+                >
+                  {brands.map((brand) => (
+                    <option key={brand.value} value={brand.value}>
+                      {brand.label}
+                    </option>
+                  ))}
+                </Select>
+              </FormGroup>
+              <FormGroup>
+                <Label>분류:</Label>
+                <Select
+                  name='category'
+                  value={product.category}
+                  onChange={handleChange}
+                >
+                  {categories.map((category) => (
+                    <option key={category.value} value={category.value}>
+                      {category.label}
+                    </option>
+                  ))}
+                </Select>
+                <CheckboxGroup>
+                  {subCategories.map((subCategory) => (
+                    <CheckLabel key={subCategory.value}>
+                      <input
+                        type='checkbox'
+                        value={subCategory.value}
+                        checked={product.category === subCategory.value}
+                        onChange={() => handleChange(subCategory.value)}
+                      />
+                      {subCategory.label}
+                    </CheckLabel>
+                  ))}
+                </CheckboxGroup>
+              </FormGroup>
+              <FormGroup>
+                <Label>용도:</Label>
+                <CheckboxGroup>
+                  {seasons.map((season) => (
+                    <CheckLabel key={season}>
+                      <input
+                        type='checkbox'
+                        value={season}
+                        checked={
+                          product.useSeason &&
+                          product.useSeason.includes(season)
+                        }
+                        onChange={() => handleSeasonChange(season)}
+                      />
+                      {season}
+                    </CheckLabel>
+                  ))}
+                </CheckboxGroup>
+              </FormGroup>
+              <FormGroup>
+                <Label>색상:</Label>
+                <Input
+                  type='text'
+                  name='color'
+                  value={product.color}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label>가격:</Label>
+                <Input
+                  type='text'
+                  name='priceRetail'
+                  value={product.priceRetail}
+                  onChange={handleChange}
+                  placeholder='리테일 가격'
+                />
+                <Input
+                  type='text'
+                  name='rentPrice3'
+                  value={product.rentPrice3}
+                  onChange={handleChange}
+                  placeholder='3회 대여 가격'
+                />
+                <Input
+                  type='text'
+                  name='rentPrice5'
+                  value={product.rentPrice5}
+                  onChange={handleChange}
+                  placeholder='5회 대여 가격'
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label>제품소재:</Label>
+                <TextArea
+                  name='material'
+                  value={product.material}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+            </LeftSection>
+            <RightSection>
+              <FormGroup>
+                <Label>실측사이즈:</Label>
+                <SizeGroup>
+                  {Object.entries(product.realSize).map(
+                    ([size, measurements]) => (
+                      <div key={size}>
+                        <span>{size}</span>
+                        {Object.entries(measurements).map(([key, value]) => (
+                          <React.Fragment key={key}>
+                            <LabelSmall>{key}</LabelSmall>
+                            <InputSmall
+                              type='number'
+                              value={value}
+                              onChange={(e) =>
+                                handleSizeChange(size, key, e.target.value)
+                              }
+                            />
+                          </React.Fragment>
+                        ))}
+                      </div>
+                    )
+                  )}
+                </SizeGroup>
+              </FormGroup>
+              <FormGroup>
+                <Label>사이즈 수량:</Label>
+                <SizeQuantityGroup>
+                  {Object.entries(product.quantity).map(([size, qty]) => (
+                    <SizeQuantityRow key={size}>
                       <span>{size}</span>
-                      {Object.entries(measurements).map(([key, value]) => (
-                        <React.Fragment key={key}>
-                          <LabelSmall>{key}</LabelSmall>
-                          <InputSmall
-                            type='number'
-                            value={value}
-                            onChange={(e) =>
-                              handleSizeChange(size, key, e.target.value)
-                            }
-                          />
-                        </React.Fragment>
-                      ))}
-                    </div>
-                  )
-                )}
-              </SizeGroup>
-            </FormGroup>
-            <FormGroup>
-              <Label>사이즈 수량:</Label>
-              <SizeQuantityGroup>
-                {Object.entries(product.quantity).map(([size, qty]) => (
-                  <SizeQuantityRow key={size}>
-                    <span>{size}</span>
-                    <InputSmall
-                      type='number'
-                      value={qty}
-                      onChange={(e) =>
-                        handleQuantityChange(size, e.target.value)
-                      }
+                      <InputSmall
+                        type='number'
+                        value={qty}
+                        onChange={(e) =>
+                          handleQuantityChange(size, e.target.value)
+                        }
+                      />
+                    </SizeQuantityRow>
+                  ))}
+                </SizeQuantityGroup>
+              </FormGroup>
+              <FormGroup>
+                <Label>제품리뷰:</Label>
+                <FileInput type='file' />
+                <ImagePreview>
+                  <img src={product.review.image} alt='제품 리뷰 이미지' />
+                </ImagePreview>
+              </FormGroup>
+              <FormGroup>
+                <Label>제품이미지:</Label>
+                <FileInput type='file' />
+                <ImagePreview>
+                  <img src={product.thumbnail} alt='제품 이미지' />
+                </ImagePreview>
+              </FormGroup>
+              <FormGroup>
+                <Label>노출여부:</Label>
+                <CheckboxGroup>
+                  <CheckLabel>
+                    <input
+                      type='checkbox'
+                      checked={product.useYn === 'Y'}
+                      onChange={() => handleCheckboxChange('useYn', 'Y')}
                     />
-                  </SizeQuantityRow>
-                ))}
-              </SizeQuantityGroup>
-            </FormGroup>
-            <FormGroup>
-              <Label>제품리뷰:</Label>
-              <FileInput type='file' />
-              <ImagePreview>
-                <img src={product.review.image} alt='제품 리뷰 이미지' />
-              </ImagePreview>
-            </FormGroup>
-            <FormGroup>
-              <Label>제품이미지:</Label>
-              <FileInput type='file' />
-              <ImagePreview>
-                <img src={product.thumbnail} alt='제품 이미지' />
-              </ImagePreview>
-            </FormGroup>
-            <FormGroup>
-              <Label>노출여부:</Label>
-              <CheckboxGroup>
-                <CheckLabel>
-                  <input
-                    type='checkbox'
-                    checked={product.useYn === 'Y'}
-                    onChange={() => handleCheckboxChange('useYn', 'Y')}
-                  />
-                  노출
-                </CheckLabel>
-                <CheckLabel>
-                  <input
-                    type='checkbox'
-                    checked={product.useYn === 'N'}
-                    onChange={() => handleCheckboxChange('useYn', 'N')}
-                  />
-                  비노출
-                </CheckLabel>
-              </CheckboxGroup>
-            </FormGroup>
-            <FormGroup>
-              <Label>설명:</Label>
-              <TextArea
-                name='description'
-                value={product.description}
-                onChange={handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>상태:</Label>
-              <Input
-                type='text'
-                name='status'
-                value={product.status}
-                onChange={handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>등록일:</Label>
-              <Input
-                type='text'
-                name='registerDate'
-                value={product.registerDate}
-                readOnly
-              />
-            </FormGroup>
-          </Form>
+                    노출
+                  </CheckLabel>
+                  <CheckLabel>
+                    <input
+                      type='checkbox'
+                      checked={product.useYn === 'N'}
+                      onChange={() => handleCheckboxChange('useYn', 'N')}
+                    />
+                    비노출
+                  </CheckLabel>
+                </CheckboxGroup>
+              </FormGroup>
+              <FormGroup>
+                <Label>설명:</Label>
+                <TextArea
+                  name='description'
+                  value={product.description}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label>상태:</Label>
+                <Input
+                  type='text'
+                  name='status'
+                  value={product.status}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label>등록일:</Label>
+                <Input
+                  type='text'
+                  name='registerDate'
+                  value={product.registerDate}
+                  readOnly
+                />
+              </FormGroup>
+            </RightSection>
+          </FlexContainer>
         </ScrollContainer>
       </Container>
     </ThemeProvider>
@@ -616,9 +378,20 @@ const ScrollContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
 `;
 
-const Form = styled.form`
+const FlexContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const LeftSection = styled.div`
+  flex: 1;
+  padding-right: 20px;
+`;
+
+const RightSection = styled.div`
+  flex: 1;
+  padding-left: 20px;
+  border-left: 1px solid ${({ theme }) => theme.colors.gray};
 `;
 
 const FormGroup = styled.div`
