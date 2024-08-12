@@ -86,4 +86,8 @@ const Select = styled.select`
   width: 100%;
   border: 1px solid ${({ theme }) => theme.colors.gray};
   border-radius: 4px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 12px;
+  }
 `;

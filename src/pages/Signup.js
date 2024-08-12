@@ -63,14 +63,27 @@ const Container = styled.div`
   margin: 100px auto;
   padding: 20px;
   border: 1px solid ${({ theme }) => theme.colors.gray};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    max-width: 90vw;
+    padding: 10px;
+  }
 `;
 
 const Title = styled.h1`
   text-align: center;
   margin-bottom: 20px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 24px;
+  }
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    gap: 15px;
+  }
 `;

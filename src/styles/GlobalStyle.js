@@ -37,7 +37,19 @@ const GlobalStyle = createGlobalStyle`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     body {
-      font-size: 10px;
+      font-size: 12px;
+    }
+    h1 {
+      font-size: 24px;
+    }
+    h2 {
+      font-size: 20px;
+    }
+    h3 {
+      font-size: 18px;
+    }
+    p, label {
+      font-size: 14px;
     }
   }
 

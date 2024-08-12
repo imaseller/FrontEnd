@@ -251,12 +251,18 @@ const BrandContainer = styled.div`
   margin-bottom: 20px;
   padding: 30px;
   border: 1px solid ${({ theme }) => theme.colors.gray};
-`;
 
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+`;
 const BrandCheckbox = styled.div`
   display: flex;
   align-items: center;
-  width: calc(33.3333% - 10px);
+  width: calc(
+    50% - 10px
+  ); // 모바일에서 두 개의 체크박스를 나란히 표시하기 위해 50%로 조정
   margin-bottom: 10px;
 
   input {
@@ -265,5 +271,9 @@ const BrandCheckbox = styled.div`
 
   label {
     font-size: 14px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    width: calc(100% - 10px); // 모바일에서는 한 줄에 한 개씩 표시
   }
 `;

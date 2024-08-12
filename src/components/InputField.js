@@ -36,4 +36,9 @@ const Input = styled.input`
     border-color: ${({ theme }) => theme.colors.pink4};
     box-shadow: 0 0 5px ${({ theme }) => theme.colors.pink4};
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 14px;
+    padding: 10px;
+  }
 `;

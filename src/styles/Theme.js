@@ -79,7 +79,7 @@ const Theme = {
     PinkBrown5: '#f9e8ea',
   },
   breakpoints: {
-    mobile: '480px',
+    mobile: '600px',
     tablet: '768px',
     desktop: '1024px',
   },
