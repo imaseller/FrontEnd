@@ -23,7 +23,7 @@ const Login = () => {
   };
 
   const handleLoginClick = () => {
-    navigate('/admin');
+    navigate('/main');
   };
 
   return (
@@ -37,7 +37,7 @@ const Login = () => {
             <Title>IM SELLER</Title>
             <InputField label='계정(이메일)' id='email' type='email' />
             <InputField label='비밀번호' id='password' type='password' />
-            <LoginButton>로그인</LoginButton>
+            <LoginButton onClick={handleLoginClick}>로그인</LoginButton>
           </LoginForm>
           <ExtraLinks>
             <Link onClick={handleSignupClick}>회원가입</Link>

@@ -7,6 +7,7 @@ import ManagerList from './components/Admin/ManagerList';
 import MenuList from './components/Admin/MenuList';
 import Admin from './pages/Admin';
 import AdminLogin from './pages/AdminLogin';
+import Main from './pages/Main';
 import FindId from './pages/FindId';
 import FindPassword from './pages/FindPassword';
 import Login from './pages/Login';
@@ -21,6 +22,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Login />} />
+          <Route path='/main' element={<Main />} />
           <Route path='/adminlogin' element={<AdminLogin />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/findId' element={<FindId />} />
