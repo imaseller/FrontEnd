@@ -21,7 +21,7 @@ const Label = styled.label`
   margin-bottom: 10px;
   font-weight: bold;
   font-size: 16px;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.DarkBrown3};
 `;
 
 const Input = styled.input`

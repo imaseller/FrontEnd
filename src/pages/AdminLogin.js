@@ -46,25 +46,28 @@ const Container = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
+  max-width: 600px;
+  margin: 0 auto;
 `;
 
 const Button00Wrapper = styled.div`
   position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 200px;
+  top: 10px;
+  left: 10px;
+  width: 150px;
 `;
 
 const LoginContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.PinkBrown3};
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 450px;
+  max-width: 350px;
+  max-height: 450px;
   width: 100%;
   opacity: 0.95;
 `;
@@ -78,41 +81,6 @@ const LoginForm = styled.form`
 
 const Title = styled.h2`
   ${({ theme }) => theme.fonts.mainTitle};
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   color: ${({ theme }) => theme.colors.DarkBrown3};
-`;
-
-const ExtraLinks = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  margin-top: 40px;
-  align-items: center;
-`;
-
-const Link = styled.a`
-  ${({ theme }) => theme.fonts.helperText};
-  color: ${({ theme }) => theme.colors.black};
-  text-decoration: none;
-  flex: 1;
-  text-align: center;
-  cursor: pointer;
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-const Separator = styled.span`
-  color: ${({ theme }) => theme.colors.bal};
-  margin: 0 10px;
-`;
-
-const BrowseLink = styled.a`
-  ${({ theme }) => theme.fonts.helperText};
-  color: ${({ theme }) => theme.colors.gray};
-  text-decoration: none;
-  margin-top: 20px;
-  &:hover {
-    text-decoration: underline;
-  }
 `;

@@ -1,4 +1,3 @@
-// Theme.js
 import { css } from 'styled-components';
 
 const Theme = {
@@ -6,44 +5,44 @@ const Theme = {
     mainTitle: css`
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: 600;
-      font-size: 54px;
+      font-size: 28px;
       line-height: 1.2;
     `,
     heading: css`
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: 500;
-      font-size: 28px;
+      font-size: 18px;
       line-height: 1.3;
     `,
     default: css`
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: 400;
-      font-size: 20px;
+      font-size: 14px;
       line-height: 1.5;
     `,
     helperText: css`
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: 400;
-      font-size: 16px;
+      font-size: 12px;
       line-height: 1.4;
     `,
     BigButton: css`
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: 600;
-      font-size: 30px;
+      font-size: 16px;
       line-height: 1.2;
     `,
     SmallButton: css`
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: 800;
-      font-size: 20px;
+      font-size: 14px;
       line-height: 1.2;
     `,
     subTitle: css`
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: 600;
-      font-size: 36px;
-      line-height: 44px;
+      font-size: 18px;
+      line-height: 24px;
     `,
   },
   colors: {

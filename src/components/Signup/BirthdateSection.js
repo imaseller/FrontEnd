@@ -54,12 +54,12 @@ const BirthdateWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 20px;
 `;
 
 const Label = styled.label`
   font-size: 14px;
-  color: ${({ theme }) => theme.colors.gray};
+  font-weight: bold;
+  color: ${({ theme }) => theme.colors.DarkBrown3};
   margin-bottom: 10px;
   text-align: left;
 `;

@@ -11,15 +11,13 @@ const BackButton = () => {
 export default BackButton;
 
 const Button = styled.button`
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  padding: 10px 20px;
-  font-size: 14px;
+  padding: 15px;
+  font-size: 15px;
+  margin-top: 10px;
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.DarkBrown4};
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 

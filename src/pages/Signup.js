@@ -12,8 +12,8 @@ import Theme from '../styles/Theme';
 const Signup = () => {
   return (
     <ThemeProvider theme={Theme}>
-      <BackButton />
       <Container>
+        <BackButton />
         <Title>회원가입</Title>
         <Form>
           <AgreementSection />
@@ -59,13 +59,13 @@ const Signup = () => {
 export default Signup;
 
 const Container = styled.div`
-  max-width: 50vw;
-  margin: 100px auto;
+  width: 100vw;
+  max-width: 600px;
+  margin: 0 auto;
   padding: 20px;
   border: 1px solid ${({ theme }) => theme.colors.gray};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    max-width: 90vw;
     padding: 10px;
   }
 `;

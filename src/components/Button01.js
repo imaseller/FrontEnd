@@ -11,7 +11,7 @@ const StyledButton = styled.button`
   width: 100%;
   padding: 15px;
   font-size: 18px;
-  margin-top: 20px;
+
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.DarkBrown4};
   border: none;
