@@ -4,30 +4,32 @@ import styled from 'styled-components';
 const Main = () => {
   return (
     <MainContainer>
-      <Header>
-        <Profile>
-          <ProfileImage
-            src='https://via.placeholder.com/50'
-            alt='User profile'
-          />
-          <Greeting>
-            <span>Mr J 님</span>
-            <GreetingText>안녕하세요!</GreetingText>
-          </Greeting>
-        </Profile>
-        <Icons>
-          <Icon className='icon-calendar' />
-          <Icon className='icon-menu' />
-        </Icons>
-      </Header>
+      <ContentWrapper>
+        <Header>
+          <Profile>
+            <ProfileImage
+              src='https://via.placeholder.com/50'
+              alt='User profile'
+            />
+            <Greeting>
+              <span>Mr J 님</span>
+              <GreetingText>안녕하세요!</GreetingText>
+            </Greeting>
+          </Profile>
+          <Icons>
+            <Icon className='icon-calendar' />
+            <Icon className='icon-menu' />
+          </Icons>
+        </Header>
 
-      <Notice>
-        <NoticeTag>공지</NoticeTag>
-        <NoticeText>2024년 7월 1차 업데이트 예정 공개</NoticeText>
-        <NoticeArrow>→</NoticeArrow>
-      </Notice>
+        <Notice>
+          <NoticeTag>공지</NoticeTag>
+          <NoticeText>2024년 7월 1차 업데이트 예정 공개</NoticeText>
+          <NoticeArrow>→</NoticeArrow>
+        </Notice>
 
-      <Content>{/* 메인 콘텐츠를 여기에 추가하세요 */}</Content>
+        {/* <Content></Content> */}
+      </ContentWrapper>
 
       <BottomNav>
         <NavItem>
@@ -56,9 +58,19 @@ export default Main;
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
   background-color: #f5f5f5;
+  max-width: 600px;
+  margin: 0 auto;
+`;
+
+const ContentWrapper = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 `;
 
 const Header = styled.header`
@@ -145,10 +157,10 @@ const BottomNav = styled.nav`
   align-items: center;
   background-color: #1d1d1b;
   padding: 10px 0;
-  position: fixed;
   width: 100%;
+  max-width: 600px;
+  position: absolute;
   bottom: 0;
-  left: 0;
 `;
 
 const NavItem = styled.div`
