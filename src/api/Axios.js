@@ -14,21 +14,7 @@ Axios.interceptors.response.use(
     if (window.location.pathname === '/auth/login') {
       return Promise.reject(error);
     }
-    console.log(error);
-    // if (error.response?.status === 401) {
-    //   console.log('실행');
-    //   try {
-    //     console.log('실행2');
-    //     const { data } = await Axios.get('/auth/refresh', {
-    //       withCredentials: true,
-    //     });
 
-    //     return Axios;
-    //   } catch (refreshError) {
-    //     window.location.replace('/auth/login');
-    //     return Promise.reject(refreshError);
-    //   }
-    // }
     return Promise.reject(error);
   }
 );

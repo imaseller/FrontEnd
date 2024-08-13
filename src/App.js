@@ -23,11 +23,11 @@ function App() {
         <Routes>
           <Route path='/' element={<Login />} />
           <Route path='/main' element={<Main />} />
-          <Route path='/adminlogin' element={<AdminLogin />} />
+          <Route path='/admin/auth/login' element={<AdminLogin />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/findId' element={<FindId />} />
           <Route path='/findPassword' element={<FindPassword />} />
-          <Route path='/admin/*' element={<Admin />}>
+          <Route path='/admin' element={<Admin />}>
             <Route path='managerlist' element={<ManagerList />} />
             <Route path='blockmanagerlist' element={<BlockManagerList />} />
             <Route path='managergrouplist' element={<ManagerGroupList />} />
