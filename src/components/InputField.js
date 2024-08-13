@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const InputField = ({ label, id, type }) => (
+const InputField = ({ label, id, type, error, ...rest }) => (
   <InputContainer>
     <Label htmlFor={id}>{label}</Label>
-    <Input type={type} id={id} />
+    <Input type={type} id={id} {...rest} />
+    {error && <ErrorMessage>{error.message}</ErrorMessage>}
   </InputContainer>
 );
 
@@ -41,4 +42,11 @@ const Input = styled.input`
     font-size: 14px;
     padding: 10px;
   }
+`;
+
+const ErrorMessage = styled.span`
+  padding-left: 5px;
+  color: ${({ theme }) => theme.colors.blue};
+  font-size: 14px;
+  margin-top: 5px;
 `;
