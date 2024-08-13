@@ -1,14 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import LoginButton from '../components/Button01';
-import AdminLogin from '../components/Button00';
+import Button00 from '../components/Button00';
 import InputField from '../components/InputField';
 import backgroundImage from '../img/background02.jpg';
 import Theme from '../styles/Theme';
 
+const schemaLogin = yup.object().shape({
+  email: yup
+    .string()
+    .email('유효한 이메일 주소를 입력하세요')
+    .required('이메일은 필수 입력 사항입니다'),
+  password: yup
+    .string()
+    .min(6, '비밀번호는 최소 6자 이상이어야 합니다')
+    .required('비밀번호는 필수 입력 사항입니다'),
+});
+
 const Login = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schemaLogin),
+    mode: 'onChange',
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
 
   const handleSignupClick = () => {
     navigate('/signup');
@@ -26,18 +55,55 @@ const Login = () => {
     navigate('/main');
   };
 
+  const handleAdminLoginClick = () => {
+    navigate('/adminlogin');
+  };
+
+  const onSubmit = async (data) => {
+    // 로그인 로직 추가 가능
+    handleLoginClick();
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <ThemeProvider theme={Theme}>
       <Container>
         <Button00Wrapper>
-          <AdminLogin />
+          <Button00 onClick={handleAdminLoginClick}>관리자 페이지</Button00>
         </Button00Wrapper>
         <LoginContainer>
-          <LoginForm>
-            <Title>IM SELLER</Title>
-            <InputField label='계정(이메일)' id='email' type='email' />
-            <InputField label='비밀번호' id='password' type='password' />
-            <LoginButton onClick={handleLoginClick}>로그인</LoginButton>
+          <LoginForm onSubmit={handleSubmit(onSubmit)}>
+            <Title>IM A SELLER</Title>
+            <Controller
+              control={control}
+              name='email'
+              render={({ field }) => (
+                <InputField
+                  label='계정(이메일)'
+                  id='email'
+                  type='email'
+                  error={errors.email}
+                  {...field}
+                />
+              )}
+            />
+            <Controller
+              control={control}
+              name='password'
+              render={({ field }) => (
+                <InputField
+                  label='비밀번호'
+                  id='password'
+                  type='password'
+                  error={errors.password}
+                  {...field}
+                />
+              )}
+            />
+            <LoginButton type='submit'>로그인</LoginButton>
           </LoginForm>
           <ExtraLinks>
             <Link onClick={handleSignupClick}>회원가입</Link>
@@ -48,6 +114,12 @@ const Login = () => {
           </ExtraLinks>
           <BrowseLink href='#'>회원가입 없이 둘러보기</BrowseLink>
         </LoginContainer>
+        {isModalOpen && (
+          <Modal>
+            <p>{modalMessage}</p>
+            <button onClick={handleModalClose}>확인</button>
+          </Modal>
+        )}
       </Container>
     </ThemeProvider>
   );
@@ -101,7 +173,7 @@ const LoginForm = styled.form`
 
 const Title = styled.h2`
   ${({ theme }) => theme.fonts.mainTitle};
-  margin-bottom: 15px; /* 마진 조정 */
+  margin-bottom: 15px;
   color: ${({ theme }) => theme.colors.DarkBrown3};
 `;
 
@@ -109,7 +181,7 @@ const ExtraLinks = styled.div`
   display: flex;
   justify-content: space-evenly;
   width: 100%;
-  margin-top: 20px; /* 마진 조정 */
+  margin-top: 20px;
   align-items: center;
 `;
 
@@ -138,4 +210,15 @@ const BrowseLink = styled.a`
   &:hover {
     text-decoration: underline;
   }
+`;
+
+const Modal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 `;

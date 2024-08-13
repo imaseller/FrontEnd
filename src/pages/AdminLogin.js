@@ -5,11 +5,12 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaLogin } from '../hooks/ValidationYup';
 import LoginButton from '../components/Button01';
-import BackButton from '../components/Button00';
+import Button00 from '../components/Button00';
 import InputField from '../components/InputField';
 import backgroundImage from '../img/background02.jpg';
 import Theme from '../styles/Theme';
 import { AdminLoginPost } from '../api/auth/AdminLoginPost.js';
+
 const AdminLogin = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,20 +29,12 @@ const AdminLogin = () => {
     },
   });
 
+  const handleBackClick = () => {
+    navigate(-1);
+  };
+
   const handleLoginClick = () => {
     navigate('/main');
-  };
-
-  const handleSignupClick = () => {
-    navigate('/adminsignup');
-  };
-
-  const handleFindIdClick = () => {
-    navigate('/findid');
-  };
-
-  const handleFindPasswordClick = () => {
-    navigate('/findPassword');
   };
 
   const onSubmit = async (data) => {
@@ -70,7 +63,7 @@ const AdminLogin = () => {
     <ThemeProvider theme={Theme}>
       <Container>
         <Button00Wrapper>
-          <BackButton />
+          <Button00 onClick={handleBackClick}>뒤로가기</Button00>
         </Button00Wrapper>
         <LoginContainer>
           <LoginForm onSubmit={handleSubmit(onSubmit)}>
@@ -103,13 +96,6 @@ const AdminLogin = () => {
             />
             <LoginButton type='submit'>로그인</LoginButton>
           </LoginForm>
-          <ExtraLinks>
-            <Link onClick={handleSignupClick}>회원가입</Link>
-            <Separator>|</Separator>
-            <Link onClick={handleFindIdClick}>아이디 찾기</Link>
-            <Separator>|</Separator>
-            <Link onClick={handleFindPasswordClick}>비밀번호 찾기</Link>
-          </ExtraLinks>
         </LoginContainer>
         {isModalOpen && (
           <Modal>
@@ -172,31 +158,6 @@ const Title = styled.h2`
   ${({ theme }) => theme.fonts.mainTitle};
   margin-bottom: 15px;
   color: ${({ theme }) => theme.colors.DarkBrown3};
-`;
-
-const ExtraLinks = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  margin-top: 20px;
-  align-items: center;
-`;
-
-const Link = styled.a`
-  ${({ theme }) => theme.fonts.helperText};
-  color: ${({ theme }) => theme.colors.black};
-  text-decoration: none;
-  flex: 1;
-  text-align: center;
-  cursor: pointer;
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-const Separator = styled.span`
-  color: ${({ theme }) => theme.colors.bal};
-  margin: 0 5px;
 `;
 
 const Modal = styled.div`

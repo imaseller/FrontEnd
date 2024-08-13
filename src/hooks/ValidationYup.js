@@ -1,10 +1,11 @@
+// ../hooks/ValidationYup.js
 import * as yup from 'yup';
 
 export const schemaSignup = yup.object().shape({
   email: yup
     .string()
     .required('사용하실 이메일을 입력해주세요.')
-    .email('이메일형식에 맞지 않습니다.')
+    .email('이메일 형식에 맞지 않습니다.')
     .max(30, '이메일은 최대 20자리로 입력해주세요.'),
   pw: yup
     .string()
@@ -32,7 +33,7 @@ export const schemaLogin = yup.object().shape({
   email: yup
     .string()
     .required('사용하실 이메일을 입력해주세요.')
-    .email('이메일형식에 맞지 않습니다.'),
+    .email('이메일 형식에 맞지 않습니다.'),
   password: yup
     .string()
     .required('문자와 숫자를 조합하여 8~20자 사이로 입력해주세요.')
@@ -41,4 +42,29 @@ export const schemaLogin = yup.object().shape({
       /^(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/,
       '영문과 숫자, 특수기호를 조합하여 8~20글자 사이로 입력해주세요.'
     ),
+});
+
+export const schemaFindPassword = yup.object().shape({
+  email: yup
+    .string()
+    .required('이메일을 입력해주세요.')
+    .email('유효한 이메일 주소를 입력해주세요.'),
+  nickname: yup
+    .string()
+    .required('닉네임을 입력해주세요.')
+    .matches(
+      /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/,
+      '닉네임은 2~16 글자 이하로 입력해주세요.'
+    ),
+});
+
+export const schemaFindId = yup.object().shape({
+  nickname: yup
+    .string()
+    .required('닉네임을 입력해주세요.')
+    .matches(
+      /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/,
+      '닉네임은 2~16 글자 이하로 입력해주세요.'
+    ),
+  birthdate: yup.string().required('생년월일을 입력해주세요.'),
 });

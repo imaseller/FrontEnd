@@ -1,5 +1,7 @@
-// FindPassword.js
 import React from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { schemaFindPassword } from '../hooks/ValidationYup'; // 유효성 검사 스키마 임포트
 import styled, { ThemeProvider } from 'styled-components';
 import BackButton from '../components/BackButton';
 import Button from '../components/Button01';
@@ -8,7 +10,23 @@ import Theme from '../styles/Theme';
 import backgroundImage from '../img/background02.jpg';
 
 const FindPassword = () => {
-  const handleFindAccount = () => {};
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schemaFindPassword),
+    mode: 'onChange',
+    defaultValues: {
+      email: '',
+      nickname: '',
+    },
+  });
+
+  const handleFindAccount = (data) => {
+    // 계정 찾기 로직 추가 가능
+    console.log(data);
+  };
 
   return (
     <ThemeProvider theme={Theme}>
@@ -17,10 +35,36 @@ const FindPassword = () => {
           <BackButton />
         </BackButtonWrapper>
         <FindIdContainer>
-          <Title>계정 찾기</Title>
-          <InputField label='계정(이메일)' id='email' type='text' />
-          <InputField label='닉네임' id='nickname' type='text' />
-          <Button onClick={handleFindAccount}>계정 찾기</Button>
+          <Title>비밀번호 찾기</Title>
+          <form onSubmit={handleSubmit(handleFindAccount)}>
+            <Controller
+              control={control}
+              name='email'
+              render={({ field }) => (
+                <InputField
+                  label='계정(이메일)'
+                  id='email'
+                  type='text'
+                  error={errors.email}
+                  {...field}
+                />
+              )}
+            />
+            <Controller
+              control={control}
+              name='nickname'
+              render={({ field }) => (
+                <InputField
+                  label='닉네임'
+                  id='nickname'
+                  type='text'
+                  error={errors.nickname}
+                  {...field}
+                />
+              )}
+            />
+            <Button type='submit'>계정 찾기</Button>
+          </form>
         </FindIdContainer>
       </Container>
     </ThemeProvider>
@@ -69,6 +113,6 @@ const FindIdContainer = styled.div`
 
 const Title = styled.h2`
   ${({ theme }) => theme.fonts.heading};
-  margin-bottom: 15px;
+  margin-bottom: 15px; /* 마진 조정 */
   color: ${({ theme }) => theme.colors.DarkBrown3};
 `;

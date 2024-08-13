@@ -1,5 +1,7 @@
-// FindId.js
 import React from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { schemaFindId } from '../hooks/ValidationYup'; // 유효성 검사 스키마 임포트
 import styled, { ThemeProvider } from 'styled-components';
 import BackButton from '../components/BackButton';
 import Button from '../components/Button01';
@@ -9,7 +11,23 @@ import Theme from '../styles/Theme';
 import backgroundImage from '../img/background02.jpg';
 
 const FindId = () => {
-  const handleFindAccount = () => {};
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schemaFindId),
+    mode: 'onChange',
+    defaultValues: {
+      nickname: '',
+      birthdate: '',
+    },
+  });
+
+  const handleFindAccount = (data) => {
+    // 계정 찾기 로직 추가 가능
+    console.log(data);
+  };
 
   return (
     <ThemeProvider theme={Theme}>
@@ -19,9 +37,33 @@ const FindId = () => {
         </BackButtonWrapper>
         <FindIdContainer>
           <Title>계정 찾기</Title>
-          <InputField label='닉네임' id='nickname' type='text' />
-          <BirthdateSection />
-          <Button onClick={handleFindAccount}>계정 찾기</Button>
+          <form onSubmit={handleSubmit(handleFindAccount)}>
+            <Controller
+              control={control}
+              name='nickname'
+              render={({ field }) => (
+                <InputField
+                  label='닉네임'
+                  id='nickname'
+                  type='text'
+                  error={errors.nickname}
+                  {...field}
+                />
+              )}
+            />
+            <Controller
+              control={control}
+              name='birthdate'
+              render={({ field }) => (
+                <BirthdateSection
+                  label='생년월일'
+                  error={errors.birthdate}
+                  {...field}
+                />
+              )}
+            />
+            <Button type='submit'>계정 찾기</Button>
+          </form>
         </FindIdContainer>
       </Container>
     </ThemeProvider>
@@ -29,6 +71,8 @@ const FindId = () => {
 };
 
 export default FindId;
+
+// 스타일 컴포넌트는 동일
 
 const Container = styled.div`
   display: flex;

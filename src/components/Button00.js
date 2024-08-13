@@ -1,15 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 
-const Button00 = () => {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate('/adminlogin');
-  };
-
-  return <StyledButton onClick={handleClick}>관리자 페이지</StyledButton>;
+const Button00 = ({ onClick, children }) => {
+  return <StyledButton onClick={onClick}>{children}</StyledButton>;
 };
 
 export default Button00;

@@ -16,6 +16,7 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-width: 300px;
 `;
 
 const Label = styled.label`
