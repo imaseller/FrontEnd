@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { schemaLogin } from '../hooks/ValidationYup';
 import LoginButton from '../components/Button01';
 import Button00 from '../components/Button00';
 import InputField from '../components/InputField';
@@ -21,7 +19,6 @@ const AdminLogin = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schemaLogin),
     mode: 'onChange',
     defaultValues: {
       Id: '',
