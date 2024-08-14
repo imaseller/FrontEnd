@@ -1,13 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const InputField = ({ label, id, type, error, ...rest }) => (
-  <InputContainer>
-    <Label htmlFor={id}>{label}</Label>
-    <Input type={type} id={id} {...rest} />
-    {error && <ErrorMessage>{error.message}</ErrorMessage>}
-  </InputContainer>
+const InputField = React.forwardRef(
+  ({ label, id, type, error, ...rest }, ref) => (
+    <InputContainer>
+      <Label htmlFor={id}>{label}</Label>
+      <Input type={type} id={id} ref={ref} {...rest} />
+      {error && <ErrorMessage>{error.message}</ErrorMessage>}
+    </InputContainer>
+  )
 );
+
+InputField.displayName = 'InputField';
 
 export default InputField;
 

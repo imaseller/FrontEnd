@@ -29,9 +29,6 @@ function App() {
           <Route path='/findPassword' element={<FindPassword />} />
           <Route path='/admin' element={<Admin />}>
             <Route path='managerlist' element={<ManagerList />} />
-            <Route path='blockmanagerlist' element={<BlockManagerList />} />
-            <Route path='managergrouplist' element={<ManagerGroupList />} />
-            <Route path='menulist' element={<MenuList />} />
           </Route>
         </Routes>
       </Router>
