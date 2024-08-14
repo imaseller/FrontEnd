@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 export const Axios = axios.create({
-  baseURL: 'https://18.189.59.233:8080',
+  baseURL: 'https://stylewh.com',
   withCredentials: true,
 });
 
