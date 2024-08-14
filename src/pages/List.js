@@ -1,19 +1,9 @@
 import React, { useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useNavigate, Outlet } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
-import BlockManagerList from '../components/Admin/BlockManagerList';
-import ManagerDetail from '../components/Admin/ManagerDetail';
-import ManagerList from '../components/Admin/ManagerList';
-import MemberList from '../components/Member/MemberList';
-import BlockMemberList from '../components/Member/BlockMemberList';
-import ReviewList from '../components/Member/ReviewList';
-import ReviewDetail from '../components/Member/ReviewDetail .js';
-import MemberDetail from '../components/Member/MemberDetail';
-import ProductList from '../components/Service/ProductList.js';
-import ProductDetail from '../components/Service/ProductDetail.js';
 import Theme from '../styles/Theme';
 
-const Admin = () => {
+const List = ({ children }) => {
   const navigate = useNavigate();
   const [isManagerMenuOpen, setIsManagerMenuOpen] = useState(false);
   const [isMemberMenuOpen, setIsMemberMenuOpen] = useState(false);
@@ -26,6 +16,7 @@ const Admin = () => {
   const handleMemberMenuToggle = () => {
     setIsMemberMenuOpen(!isMemberMenuOpen);
   };
+
   const handleServiceMenuToggle = () => {
     setIsServiceMenuOpen(!isServiceMenuOpen);
   };
@@ -42,18 +33,14 @@ const Admin = () => {
             </ProfileInfo>
           </Profile>
           <Navigation>
-            <NavItem onClick={() => navigate('/admin/dashboard')}>
-              Dash Board
-            </NavItem>
+            <NavItem onClick={() => navigate('/dashboard')}>Dash Board</NavItem>
             <NavItem onClick={handleManagerMenuToggle}>관리자 관리</NavItem>
             {isManagerMenuOpen && (
               <SubMenu>
-                <SubMenuItem onClick={() => navigate('/admin/managerlist')}>
+                <SubMenuItem onClick={() => navigate('/managerlist')}>
                   관리자 목록
                 </SubMenuItem>
-                <SubMenuItem
-                  onClick={() => navigate('/admin/blockmanagerlist')}
-                >
+                <SubMenuItem onClick={() => navigate('/blockmanagerlist')}>
                   블럭 관리자 목록
                 </SubMenuItem>
               </SubMenu>
@@ -61,13 +48,13 @@ const Admin = () => {
             <NavItem onClick={handleMemberMenuToggle}>회원 관리</NavItem>
             {isMemberMenuOpen && (
               <SubMenu>
-                <SubMenuItem onClick={() => navigate('/admin/memberlist')}>
+                <SubMenuItem onClick={() => navigate('/memberlist')}>
                   회원 목록
                 </SubMenuItem>
-                <SubMenuItem onClick={() => navigate('/admin/blockmemberlist')}>
+                <SubMenuItem onClick={() => navigate('/blockmemberlist')}>
                   블록 회원 목록
                 </SubMenuItem>
-                <SubMenuItem onClick={() => navigate('/admin/reviewlist')}>
+                <SubMenuItem onClick={() => navigate('/reviewlist')}>
                   사용후기 목록
                 </SubMenuItem>
               </SubMenu>
@@ -75,13 +62,13 @@ const Admin = () => {
             <NavItem onClick={handleServiceMenuToggle}>서비스 관리</NavItem>
             {isServiceMenuOpen && (
               <SubMenu>
-                <SubMenuItem onClick={() => navigate('/admin/productlist')}>
+                <SubMenuItem onClick={() => navigate('/productlist')}>
                   제품 관리
                 </SubMenuItem>
-                <SubMenuItem onClick={() => navigate('/admin/brandlist')}>
+                <SubMenuItem onClick={() => navigate('/brandlist')}>
                   브랜드 관리
                 </SubMenuItem>
-                <SubMenuItem onClick={() => navigate('/admin/schedulelist')}>
+                <SubMenuItem onClick={() => navigate('/schedulelist')}>
                   예정제품 관리
                 </SubMenuItem>
               </SubMenu>
@@ -91,33 +78,13 @@ const Admin = () => {
             <NavItem>고객센터</NavItem>
           </Navigation>
         </Sidebar>
-        <MainContent>
-          <Routes>
-            <Route path='dashboard' element={<Dashboard />} />
-            <Route path='managerlist' element={<ManagerList />} />
-            <Route path='managerlist/detail/:id' element={<ManagerDetail />} />
-            <Route path='blockmanagerlist' element={<BlockManagerList />} />
-            <Route path='memberlist' element={<MemberList />} />
-            <Route path='memberlist/detail/:seq' element={<MemberDetail />} />
-            <Route path='blockmemberlist' element={<BlockMemberList />} />
-            <Route path='reviewlist' element={<ReviewList />} />
-            <Route path='reviewlist/detail/:no' element={<ReviewDetail />} />
-            <Route path='productlist' element={<ProductList />} />
-            <Route path='productlist/detail/:id' element={<ProductDetail />} />
-          </Routes>
-        </MainContent>
+        <MainContent>{children || <Outlet />}</MainContent>
       </Container>
     </ThemeProvider>
   );
 };
 
-const Dashboard = () => (
-  <Content>
-    <DashboardTitle>Dash board</DashboardTitle>
-  </Content>
-);
-
-export default Admin;
+export default List;
 
 const Container = styled.div`
   display: flex;
@@ -194,14 +161,6 @@ const MainContent = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-`;
-
-const Content = styled.div`
-  flex: 1;
   padding: 20px;
   background-color: ${({ theme }) => theme.colors.WhiteBrown1};
-`;
-
-const DashboardTitle = styled.h1`
-  font-size: 24px;
 `;
