@@ -1,6 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import GlobalStyle from './styles/GlobalStyle';
+import Theme from './styles/Theme';
+
+// Components
 import ManagerList from './components/Admin/ManagerList';
 import BlockManagerList from './components/Admin/BlockManagerList';
 import ManagerDetail from './components/Admin/ManagerDetail';
@@ -18,10 +22,14 @@ import FindId from './pages/FindId';
 import FindPassword from './pages/FindPassword';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import GlobalStyle from './styles/GlobalStyle';
-import Theme from './styles/Theme';
 
 function App() {
+  const renderWithLayout = (Component) => (
+    <List>
+      <Component />
+    </List>
+  );
+
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
@@ -33,85 +41,39 @@ function App() {
           <Route path='/signup' element={<Signup />} />
           <Route path='/findId' element={<FindId />} />
           <Route path='/findPassword' element={<FindPassword />} />
-          <Route
-            path='/managerlist'
-            element={
-              <List>
-                <ManagerList />
-              </List>
-            }
-          />
+
+          {/* Manager Routes */}
+          <Route path='/managerlist' element={renderWithLayout(ManagerList)} />
           <Route
             path='/managerlist/detail/:id'
-            element={
-              <List>
-                <ManagerDetail />
-              </List>
-            }
+            element={renderWithLayout(ManagerDetail)}
           />
           <Route
             path='/blockmanagerlist'
-            element={
-              <List>
-                <BlockManagerList />
-              </List>
-            }
+            element={renderWithLayout(BlockManagerList)}
           />
-          <Route
-            path='/memberlist'
-            element={
-              <List>
-                <MemberList />
-              </List>
-            }
-          />
+
+          {/* Member Routes */}
+          <Route path='/memberlist' element={renderWithLayout(MemberList)} />
           <Route
             path='/memberlist/detail/:seq'
-            element={
-              <List>
-                <MemberDetail />
-              </List>
-            }
+            element={renderWithLayout(MemberDetail)}
           />
           <Route
             path='/blockmemberlist'
-            element={
-              <List>
-                <BlockMemberList />
-              </List>
-            }
+            element={renderWithLayout(BlockMemberList)}
           />
-          <Route
-            path='/reviewlist'
-            element={
-              <List>
-                <ReviewList />
-              </List>
-            }
-          />
+          <Route path='/reviewlist' element={renderWithLayout(ReviewList)} />
           <Route
             path='/reviewlist/detail/:no'
-            element={
-              <List>
-                <ReviewDetail />
-              </List>
-            }
+            element={renderWithLayout(ReviewDetail)}
           />
-          <Route
-            path='/productlist'
-            element={
-              <List>
-                <ProductList />
-              </List>
-            }
-          />
+
+          {/* Product Routes */}
+          <Route path='/productlist' element={renderWithLayout(ProductList)} />
           <Route
             path='/productlist/detail/:id'
-            element={
-              <List>
-                <ProductDetail />
-              </List>
-            }
+            element={renderWithLayout(ProductDetail)}
           />
         </Routes>
       </Router>
