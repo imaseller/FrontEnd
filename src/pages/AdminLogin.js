@@ -34,7 +34,7 @@ const AdminLogin = () => {
   };
 
   const handleLoginClick = () => {
-    navigate('/admin/');
+    navigate('/admin');
   };
 
   const onSubmit = async (data) => {
