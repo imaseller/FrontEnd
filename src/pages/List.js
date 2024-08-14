@@ -37,7 +37,7 @@ const List = ({ children }) => {
             <NavItem onClick={handleManagerMenuToggle}>관리자 관리</NavItem>
             {isManagerMenuOpen && (
               <SubMenu>
-                <SubMenuItem onClick={() => navigate('/managerlist')}>
+                <SubMenuItem onClick={() => navigate('/admin')}>
                   관리자 목록
                 </SubMenuItem>
                 <SubMenuItem onClick={() => navigate('/blockmanagerlist')}>

@@ -43,9 +43,9 @@ function App() {
           <Route path='/findPassword' element={<FindPassword />} />
 
           {/* Manager Routes */}
-          <Route path='/managerlist' element={renderWithLayout(ManagerList)} />
+          <Route path='/admin' element={renderWithLayout(ManagerList)} />
           <Route
-            path='/managerlist/detail/:id'
+            path='/admin/detail/:id'
             element={renderWithLayout(ManagerDetail)}
           />
           <Route

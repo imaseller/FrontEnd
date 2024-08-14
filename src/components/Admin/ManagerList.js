@@ -28,11 +28,11 @@ const ManagerList = () => {
   }, [page, limit]);
 
   const handleEdit = (no) => {
-    navigate(`/admin/managerlist/detail/${no}`);
+    navigate(`/admin/detail/${no}`);
   };
 
   const handleRegister = () => {
-    navigate('/admin/managerlist/detail/new');
+    navigate('/admin/detail/new');
   };
 
   const filteredData = adminData.filter((item) => {
