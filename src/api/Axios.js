@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 export const Axios = axios.create({
-  baseURL: 'https://stylewh.com',
+  baseURL: 'https://api.stylewh.com',
   withCredentials: true,
 });
 
@@ -11,7 +11,7 @@ Axios.interceptors.response.use(
     return response;
   },
   async (error) => {
-    if (window.location.pathname === '/auth/login') {
+    if (window.location.pathname === '/admin/auth/login') {
       return Promise.reject(error);
     }
 
