@@ -3,9 +3,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import BlockManagerList from '../components/Admin/BlockManagerList';
 import ManagerDetail from '../components/Admin/ManagerDetail';
-import ManagerGroupList from '../components/Admin/ManagerGroupList';
 import ManagerList from '../components/Admin/ManagerList';
-import MenuList from '../components/Admin/MenuList';
 import MemberList from '../components/Member/MemberList';
 import BlockMemberList from '../components/Member/BlockMemberList';
 import ReviewList from '../components/Member/ReviewList';
@@ -58,14 +56,6 @@ const Admin = () => {
                 >
                   블럭 관리자 목록
                 </SubMenuItem>
-                <SubMenuItem
-                  onClick={() => navigate('/admin/managergrouplist')}
-                >
-                  관리자 그룹 목록
-                </SubMenuItem>
-                <SubMenuItem onClick={() => navigate('/admin/menulist')}>
-                  메뉴 목록
-                </SubMenuItem>
               </SubMenu>
             )}
             <NavItem onClick={handleMemberMenuToggle}>회원 관리</NavItem>
@@ -107,8 +97,6 @@ const Admin = () => {
             <Route path='managerlist' element={<ManagerList />} />
             <Route path='managerlist/detail/:id' element={<ManagerDetail />} />
             <Route path='blockmanagerlist' element={<BlockManagerList />} />
-            <Route path='managergrouplist' element={<ManagerGroupList />} />
-            <Route path='menulist' element={<MenuList />} />
             <Route path='memberlist' element={<MemberList />} />
             <Route path='memberlist/detail/:seq' element={<MemberDetail />} />
             <Route path='blockmemberlist' element={<BlockMemberList />} />

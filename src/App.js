@@ -1,10 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import BlockManagerList from './components/Admin/BlockManagerList';
-import ManagerGroupList from './components/Admin/ManagerGroupList';
 import ManagerList from './components/Admin/ManagerList';
-import MenuList from './components/Admin/MenuList';
 import Admin from './pages/Admin';
 import AdminLogin from './pages/AdminLogin';
 import Main from './pages/Main';
