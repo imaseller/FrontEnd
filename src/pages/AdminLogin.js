@@ -24,7 +24,7 @@ const AdminLogin = () => {
     resolver: yupResolver(schemaLogin),
     mode: 'onChange',
     defaultValues: {
-      email: '',
+      Id: '',
       password: '',
     },
   });
@@ -70,15 +70,9 @@ const AdminLogin = () => {
             <Title>Admin</Title>
             <Controller
               control={control}
-              name='email'
+              name='Id'
               render={({ field }) => (
-                <InputField
-                  label='계정(이메일)'
-                  id='email'
-                  type='email'
-                  error={errors.email}
-                  {...field}
-                />
+                <InputField label='계정(이메일)' id='Id' type='Id' {...field} />
               )}
             />
             <Controller
