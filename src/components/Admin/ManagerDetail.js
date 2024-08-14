@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import Theme from '../../styles/Theme';
+import { getAdminById } from '../../api/admin/AdminIdGet';
 
 const ManagerDetail = () => {
   const { id } = useParams();
@@ -12,26 +13,42 @@ const ManagerDetail = () => {
     비밀번호확인: '',
     이메일: '',
     이름: '',
-    권한등급: '서비스 관리자',
-    상태: '정상',
+    권한등급: 'admin',
+    상태: 'active',
     등록일: '',
   });
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    if (id !== 'new') {
-      setManager({
-        아이디: 'dbalsrl7648',
-        이메일: 'dbalsrl7648@gmail.com',
-        이름: '유민기',
-        권한등급: '서비스 관리자',
-        상태: '정상',
-        등록일: '2023-01-01',
-      });
-    }
+    const fetchManager = async () => {
+      if (id !== 'new') {
+        try {
+          const data = await getAdminById(id);
+          if (data.statusCode === 404) {
+            setError('관리자를 찾을 수 없습니다.');
+          } else {
+            setManager({
+              아이디: data.id,
+              이메일: data.email,
+              이름: '', // 이름 데이터가 없는 경우 처리
+              권한등급: data.role,
+              상태: data.status === 'active' ? '정상' : '블럭',
+              등록일: new Date(data.createdAt).toLocaleDateString('ko-KR'),
+            });
+          }
+        } catch (error) {
+          setError('관리자 정보를 가져오는 중 오류가 발생했습니다.');
+          console.error('Failed to fetch manager data:', error);
+        }
+      }
+    };
+
+    fetchManager();
   }, [id]);
 
   const handleSave = () => {
-    navigate('/admin/managerlist');
+    // 여기에 저장 로직 추가
+    navigate('/admin');
   };
 
   const handleChange = (e) => {
@@ -40,8 +57,12 @@ const ManagerDetail = () => {
   };
 
   const handleList = () => {
-    navigate('/admin/managerlist');
+    navigate('/admin');
   };
+
+  if (error) {
+    return <ErrorMessage>{error}</ErrorMessage>;
+  }
 
   return (
     <ThemeProvider theme={Theme}>
@@ -104,8 +125,8 @@ const ManagerDetail = () => {
                 value={manager.권한등급}
                 onChange={handleChange}
               >
-                <option value='시스템 관리자'>시스템 관리자</option>
-                <option value='서비스 관리자'>서비스 관리자</option>
+                <option value='admin'>시스템 관리자</option>
+                <option value='service_admin'>서비스 관리자</option>
               </Select>
             </FormRow>
             <FormRow>
@@ -147,9 +168,7 @@ const ManagerDetail = () => {
             <ActionButton onClick={handleSave}>
               {id === 'new' ? '저장하기' : '수정하기'}
             </ActionButton>
-            <ActionButton onClick={() => navigate('/admin/managerlist')}>
-              저장취소
-            </ActionButton>
+            <ActionButton onClick={handleList}>저장취소</ActionButton>
           </RightActionButtons>
         </ActionRow>
       </Container>
@@ -158,6 +177,11 @@ const ManagerDetail = () => {
 };
 
 export default ManagerDetail;
+const ErrorMessage = styled.div`
+  color: red;
+  font-size: 16px;
+  margin: 20px;
+`;
 
 const Container = styled.div`
   display: flex;

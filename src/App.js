@@ -44,10 +44,7 @@ function App() {
 
           {/* Manager Routes */}
           <Route path='/admin' element={renderWithLayout(ManagerList)} />
-          <Route
-            path='/admin/detail/:id'
-            element={renderWithLayout(ManagerDetail)}
-          />
+          <Route path='/admin/:id' element={renderWithLayout(ManagerDetail)} />
           <Route
             path='/blockmanagerlist'
             element={renderWithLayout(BlockManagerList)}

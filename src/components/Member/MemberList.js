@@ -34,11 +34,11 @@ const MemberList = () => {
   const [searchType, setSearchType] = useState('email');
 
   const handleEdit = (no) => {
-    navigate(`/admin/memberlist/detail/${no}`);
+    navigate(`/admin/admin${no}`);
   };
 
   const handleRegister = () => {
-    navigate('/admin/memberlist/detail/new');
+    navigate('/admin/adminnew');
   };
 
   const filteredData = mockData.filter((item) => {
