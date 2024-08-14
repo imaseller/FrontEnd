@@ -1,39 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import Theme from '../../styles/Theme';
-
-const mockData = [
-  {
-    no: 1,
-    status: '정상',
-    id: 'manager01',
-    name: '김철수',
-    email: 'manager01@example.com',
-    role: '서비스 관리자',
-  },
-  {
-    no: 2,
-    status: '휴면',
-    id: 'manager02',
-    name: '이영희',
-    email: 'manager02@example.com',
-    role: '서비스 관리자',
-  },
-  {
-    no: 3,
-    status: '정상',
-    id: 'dbalsrl7648',
-    name: '유민기',
-    email: 'dbalsrl7648@gmail.com',
-    role: '서비스 관리자',
-  },
-];
+import { AdminGet } from '../../api/admin/AdminGet';
 
 const ManagerList = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [searchType, setSearchType] = useState('id');
+  const [adminData, setAdminData] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
+  const [page, setPage] = useState(1);
+  const [limit] = useState(10);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await AdminGet(page, limit);
+        setAdminData(data.admins);
+        setTotalCount(data.total);
+      } catch (error) {
+        console.error('Failed to fetch admin data:', error);
+      }
+    };
+
+    fetchData();
+  }, [page, limit]);
 
   const handleEdit = (no) => {
     navigate(`/admin/managerlist/detail/${no}`);
@@ -43,7 +35,7 @@ const ManagerList = () => {
     navigate('/admin/managerlist/detail/new');
   };
 
-  const filteredData = mockData.filter((item) => {
+  const filteredData = adminData.filter((item) => {
     if (searchType === 'id') {
       return item.id.toLowerCase().includes(searchTerm.toLowerCase());
     } else if (searchType === 'name') {
@@ -77,7 +69,7 @@ const ManagerList = () => {
           </SearchContainer>
         </Header>
         <Container>
-          <TotalCount>총 {filteredData.length}개</TotalCount>
+          <TotalCount>총 {totalCount}개</TotalCount>
           <Table>
             <thead>
               <tr>
@@ -113,9 +105,11 @@ const ManagerList = () => {
           </Table>
           <ActionButton onClick={handleRegister}>신규 등록</ActionButton>
           <Pagination>
-            <PageButton>«</PageButton>
-            <PageButton>1</PageButton>
-            <PageButton>»</PageButton>
+            <PageButton disabled={page === 1} onClick={() => setPage(page - 1)}>
+              «
+            </PageButton>
+            <PageButton>{page}</PageButton>
+            <PageButton onClick={() => setPage(page + 1)}>»</PageButton>
           </Pagination>
         </Container>
       </Content>
