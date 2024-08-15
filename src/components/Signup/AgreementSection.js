@@ -107,6 +107,7 @@ export default AgreementSection;
 // Styled Components
 const AgreementWrapper = styled.div`
   padding: 20px;
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
 const AllAgreeWrapper = styled.div`
@@ -122,8 +123,8 @@ const CheckboxWrapper = styled.div`
 `;
 
 const ContentContainer = styled.div`
-  background-color: #f4f4f4;
-  border: 1px solid #dddddd;
+  background-color: ${({ theme }) => theme.colors.lightgray};
+  border: 1px solid ${({ theme }) => theme.colors.gray};
   padding: 20px;
   width: 100%;
 `;
@@ -134,8 +135,8 @@ const InputWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
+  background-color: ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => theme.colors.gray};
   padding: 10px;
   position: relative;
 `;
@@ -145,18 +146,19 @@ const Checkbox = styled.input`
   width: 20px;
   height: 20px;
   margin-right: 10px;
+  accent-color: ${({ theme }) => theme.colors.pink5};
 `;
 
 const Label = styled.label`
-  font-size: 14px;
-  color: #333;
+  ${({ theme }) => theme.fonts.default};
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 const ViewDetailsButton = styled.button`
   width: 69px;
   height: 34px;
-  background-color: #000000;
-  color: white;
+  background-color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.white};
   border: none;
   cursor: pointer;
   font-size: 12px;
@@ -171,13 +173,8 @@ const DescriptionWrapper = styled.div`
 `;
 
 const Description = styled.p`
-  color: #aaaaaa;
-  font-family: 'NanumSquare Neo OTF';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 13px;
-  text-align: center;
+  color: ${({ theme }) => theme.colors.gray};
+  ${({ theme }) => theme.fonts.helperText}; // 테마의 헬퍼 텍스트 스타일 적용
   margin: 0;
 `;
 
@@ -194,7 +191,7 @@ const Modal = styled.div`
 `;
 
 const ModalContent = styled.div`
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.white};
   padding: 20px;
   border-radius: 10px;
   max-width: 500px;
@@ -205,8 +202,8 @@ const ModalContent = styled.div`
 const CloseButton = styled.button`
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #007aff;
+  background-color: ${({ theme }) => theme.colors.pink5};
   border: none;
-  color: white;
+  color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
 `;
