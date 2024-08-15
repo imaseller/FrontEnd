@@ -1,21 +1,35 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import BlockManagerList from './components/Admin/BlockManagerList';
-import ManagerGroupList from './components/Admin/ManagerGroupList';
+import GlobalStyle from './styles/GlobalStyle';
+import Theme from './styles/Theme';
+
+// Components
 import ManagerList from './components/Admin/ManagerList';
-import MenuList from './components/Admin/MenuList';
-import Admin from './pages/Admin';
+import BlockManagerList from './components/Admin/BlockManagerList';
+import ManagerDetail from './components/Admin/ManagerDetail';
+import MemberList from './components/Member/MemberList';
+import BlockMemberList from './components/Member/BlockMemberList';
+import ReviewList from './components/Member/ReviewList';
+import ReviewDetail from './components/Member/ReviewDetail';
+import MemberDetail from './components/Member/MemberDetail';
+import ProductList from './components/Service/ProductList';
+import ProductDetail from './components/Service/ProductDetail';
+import List from './pages/List';
 import AdminLogin from './pages/AdminLogin';
 import Main from './pages/Main';
 import FindId from './pages/FindId';
 import FindPassword from './pages/FindPassword';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import GlobalStyle from './styles/GlobalStyle';
-import Theme from './styles/Theme';
 
 function App() {
+  const renderWithLayout = (Component) => (
+    <List>
+      <Component />
+    </List>
+  );
+
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
@@ -27,9 +41,37 @@ function App() {
           <Route path='/signup' element={<Signup />} />
           <Route path='/findId' element={<FindId />} />
           <Route path='/findPassword' element={<FindPassword />} />
-          <Route path='/admin' element={<Admin />}>
-            <Route path='managerlist' element={<ManagerList />} />
-          </Route>
+
+          {/* Manager Routes */}
+          <Route path='/admin' element={renderWithLayout(ManagerList)} />
+          <Route path='/admin/:id' element={renderWithLayout(ManagerDetail)} />
+          <Route
+            path='/blockmanagerlist'
+            element={renderWithLayout(BlockManagerList)}
+          />
+
+          {/* Member Routes */}
+          <Route path='/memberlist' element={renderWithLayout(MemberList)} />
+          <Route
+            path='/memberlist/detail/:seq'
+            element={renderWithLayout(MemberDetail)}
+          />
+          <Route
+            path='/blockmemberlist'
+            element={renderWithLayout(BlockMemberList)}
+          />
+          <Route path='/reviewlist' element={renderWithLayout(ReviewList)} />
+          <Route
+            path='/reviewlist/detail/:no'
+            element={renderWithLayout(ReviewDetail)}
+          />
+
+          {/* Product Routes */}
+          <Route path='/productlist' element={renderWithLayout(ProductList)} />
+          <Route
+            path='/productlist/detail/:id'
+            element={renderWithLayout(ProductDetail)}
+          />
         </Routes>
       </Router>
     </ThemeProvider>
