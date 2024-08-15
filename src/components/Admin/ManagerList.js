@@ -103,7 +103,6 @@ const ManagerList = () => {
                   <td>{manager.status}</td>
                   <td>{manager.id}</td>
                   <td>{manager.name}</td>
-                  {/* 이메일 셀을 클릭할 때도 아이디 기반으로 상세 페이지 이동 */}
                   <EmailCell onClick={() => handleEdit(manager.id)}>
                     {manager.email}
                   </EmailCell>
