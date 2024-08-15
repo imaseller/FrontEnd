@@ -11,7 +11,7 @@ Axios.interceptors.response.use(
     return response;
   },
   async (error) => {
-    if (window.location.pathname === '/admin/auth/login') {
+    if (window.location.pathname === 'auth/login') {
       return Promise.reject(error);
     }
 

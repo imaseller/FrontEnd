@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import Theme from '../../styles/Theme';
+import { getAdminById } from '../../api/admin/AdminIdGet';
+import { createAdmin } from '../../api/admin/AdminPost.js';
+import { updateAdmin } from '../../api/admin/AdminIdPut.js'; // 추가: 수정 API
+import { deleteAdmin } from '../../api/admin/AdminIdDelete.js';
 
 const ManagerDetail = () => {
   const { id } = useParams();
@@ -12,26 +16,77 @@ const ManagerDetail = () => {
     비밀번호확인: '',
     이메일: '',
     이름: '',
-    권한등급: '서비스 관리자',
-    상태: '정상',
-    등록일: '',
+    권한등급: 'admin',
+    상태: 'active',
   });
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    if (id !== 'new') {
-      setManager({
-        아이디: 'dbalsrl7648',
-        이메일: 'dbalsrl7648@gmail.com',
-        이름: '유민기',
-        권한등급: '서비스 관리자',
-        상태: '정상',
-        등록일: '2023-01-01',
-      });
+    if (id !== 'create') {
+      const fetchManager = async () => {
+        try {
+          const data = await getAdminById(id);
+          if (data.statusCode === 404) {
+            setError('관리자를 찾을 수 없습니다.');
+          } else {
+            setManager({
+              아이디: data.id,
+              이메일: data.email,
+              이름: data.name || '', // 이름 데이터가 없는 경우 처리
+              권한등급: data.role,
+              상태: data.status === 'active' ? '정상' : '블럭',
+            });
+          }
+        } catch (error) {
+          setError('관리자 정보를 가져오는 중 오류가 발생했습니다.');
+        }
+      };
+
+      fetchManager();
     }
   }, [id]);
 
-  const handleSave = () => {
-    navigate('/admin/managerlist');
+  const handleSave = async () => {
+    if (manager.비밀번호 !== manager.비밀번호확인) {
+      setError('비밀번호가 일치하지 않습니다.');
+      return;
+    }
+
+    try {
+      if (id === 'create') {
+        // 새로운 어드민 생성
+        const createdAdmin = await createAdmin({
+          id: manager.아이디,
+          password: manager.비밀번호,
+          email: manager.이메일,
+          name: manager.이름,
+          role: manager.권한등급,
+          status: manager.상태 === '정상' ? 'active' : 'blocked',
+        });
+        navigate('/admin'); // 생성 후 관리자 목록 페이지로 이동
+      } else {
+        // 기존 어드민 수정
+        await updateAdmin(id, {
+          email: manager.이메일,
+          role: manager.권한등급,
+          status: manager.상태 === '정상' ? 'active' : 'blocked',
+        });
+        alert('관리자가 성공적으로 수정되었습니다.');
+        navigate(`/admin/admin${id}`);
+      }
+    } catch (error) {
+      setError('어드민을 저장하는 중 오류가 발생했습니다.');
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      await deleteAdmin(manager.아이디);
+      alert('관리자가 성공적으로 삭제되었습니다.');
+      navigate('/admin');
+    } catch (error) {
+      setError('어드민을 삭제하는 중 오류가 발생했습니다.');
+    }
   };
 
   const handleChange = (e) => {
@@ -40,13 +95,17 @@ const ManagerDetail = () => {
   };
 
   const handleList = () => {
-    navigate('/admin/managerlist');
+    navigate('/admin');
   };
+
+  if (error) {
+    return <ErrorMessage>{error}</ErrorMessage>;
+  }
 
   return (
     <ThemeProvider theme={Theme}>
       <Container>
-        <Title>{id === 'new' ? '관리자 등록' : '관리자 수정'}</Title>
+        <Title>{id === 'create' ? '관리자 등록' : '관리자 수정'}</Title>
         <FormContainer>
           <LeftForm>
             <FormRow>
@@ -56,7 +115,7 @@ const ManagerDetail = () => {
                 name='아이디'
                 value={manager.아이디}
                 onChange={handleChange}
-                disabled={id !== 'new'}
+                disabled={id !== 'create'}
               />
             </FormRow>
             <FormRow>
@@ -75,6 +134,7 @@ const ManagerDetail = () => {
                 name='비밀번호'
                 value={manager.비밀번호}
                 onChange={handleChange}
+                disabled={id !== 'create'} // 수정 시에는 비밀번호 입력 불가
               />
             </FormRow>
             <FormRow>
@@ -84,6 +144,7 @@ const ManagerDetail = () => {
                 name='비밀번호확인'
                 value={manager.비밀번호확인}
                 onChange={handleChange}
+                disabled={id !== 'create'} // 수정 시에는 비밀번호 확인 입력 불가
               />
             </FormRow>
             <FormRow>
@@ -104,8 +165,8 @@ const ManagerDetail = () => {
                 value={manager.권한등급}
                 onChange={handleChange}
               >
-                <option value='시스템 관리자'>시스템 관리자</option>
-                <option value='서비스 관리자'>서비스 관리자</option>
+                <option value='admin'>시스템 관리자</option>
+                <option value='service_admin'>서비스 관리자</option>
               </Select>
             </FormRow>
             <FormRow>
@@ -133,23 +194,18 @@ const ManagerDetail = () => {
                 </RadioLabel>
               </RadioGroup>
             </FormRow>
-            {id !== 'new' && (
-              <FormRow>
-                <Label>등록일:</Label>
-                <Input type='text' value={manager.등록일} disabled />
-              </FormRow>
-            )}
           </RightForm>
         </FormContainer>
         <ActionRow>
           <LeftActionButton onClick={handleList}>목록보기</LeftActionButton>
           <RightActionButtons>
             <ActionButton onClick={handleSave}>
-              {id === 'new' ? '저장하기' : '수정하기'}
+              {id === 'create' ? '저장하기' : '수정하기'}
             </ActionButton>
-            <ActionButton onClick={() => navigate('/admin/managerlist')}>
-              저장취소
-            </ActionButton>
+            {id !== 'create' && (
+              <ActionButton onClick={handleDelete}>삭제하기</ActionButton>
+            )}
+            <ActionButton onClick={handleList}>저장취소</ActionButton>
           </RightActionButtons>
         </ActionRow>
       </Container>
@@ -158,6 +214,12 @@ const ManagerDetail = () => {
 };
 
 export default ManagerDetail;
+
+const ErrorMessage = styled.div`
+  color: red;
+  font-size: 16px;
+  margin: 20px;
+`;
 
 const Container = styled.div`
   display: flex;
