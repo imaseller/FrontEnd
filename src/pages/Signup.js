@@ -73,6 +73,7 @@ const Container = styled.div`
 const Title = styled.h1`
   text-align: center;
   margin-bottom: 20px;
+  font-size: 24px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     font-size: 24px;
