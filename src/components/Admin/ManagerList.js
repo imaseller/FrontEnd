@@ -28,24 +28,21 @@ const ManagerList = () => {
     fetchData();
   }, [page, limit]);
 
-  const handleEdit = (no) => {
-    navigate(`/admin/admin${no}`);
+  // 수정하기 버튼을 클릭할 때 관리자의 아이디로 상세 페이지 이동
+  const handleEdit = (id) => {
+    navigate(`/admin/${id}`);
   };
 
-  const handleRegister = () => {
-    navigate('/admin/create');
-  };
-
-  // 삭제 버튼 처리 함수
+  // 관리자 삭제 함수
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm(
       '정말로 이 관리자를 삭제하시겠습니까?'
     );
     if (confirmDelete) {
       try {
-        await deleteAdmin(id); // ID 기반으로 관리자 삭제
+        await deleteAdmin(id);
         alert('관리자가 성공적으로 삭제되었습니다.');
-        setAdminData((prevData) => prevData.filter((admin) => admin.id !== id)); // 목록에서 삭제된 관리자 제거
+        setAdminData((prevData) => prevData.filter((admin) => admin.id !== id));
       } catch (error) {
         alert('관리자 삭제 중 오류가 발생했습니다.');
       }
@@ -106,12 +103,13 @@ const ManagerList = () => {
                   <td>{manager.status}</td>
                   <td>{manager.id}</td>
                   <td>{manager.name}</td>
-                  <EmailCell onClick={() => handleEdit(manager.no)}>
+                  {/* 이메일 셀을 클릭할 때도 아이디 기반으로 상세 페이지 이동 */}
+                  <EmailCell onClick={() => handleEdit(manager.id)}>
                     {manager.email}
                   </EmailCell>
                   <td>{manager.role}</td>
                   <td>
-                    <ActionButton onClick={() => handleEdit(manager.no)}>
+                    <ActionButton onClick={() => handleEdit(manager.id)}>
                       수정
                     </ActionButton>
                     <ActionButton onClick={() => handleDelete(manager.id)}>
@@ -122,7 +120,9 @@ const ManagerList = () => {
               ))}
             </tbody>
           </Table>
-          <ActionButton onClick={handleRegister}>신규 등록</ActionButton>
+          <ActionButton onClick={() => navigate('/admin/create')}>
+            신규 등록
+          </ActionButton>
           <Pagination>
             <PageButton disabled={page === 1} onClick={() => setPage(page - 1)}>
               «

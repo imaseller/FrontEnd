@@ -72,7 +72,7 @@ const ManagerDetail = () => {
           status: manager.상태 === '정상' ? 'active' : 'blocked',
         });
         alert('관리자가 성공적으로 수정되었습니다.');
-        navigate(`/admin/admin${id}`);
+        navigate(`/admin/${id}`); // 수정된 경로로 이동
       }
     } catch (error) {
       setError('어드민을 저장하는 중 오류가 발생했습니다.');
