@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import Theme from '../../styles/Theme';
 import { AdminGet } from '../../api/admin/AdminGet';
+import { deleteAdmin } from '../../api/admin/AdminIdDelete';
 
 const ManagerList = () => {
   const navigate = useNavigate();
@@ -32,7 +33,23 @@ const ManagerList = () => {
   };
 
   const handleRegister = () => {
-    navigate('/admin/new');
+    navigate('/admin/create');
+  };
+
+  // 삭제 버튼 처리 함수
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm(
+      '정말로 이 관리자를 삭제하시겠습니까?'
+    );
+    if (confirmDelete) {
+      try {
+        await deleteAdmin(id); // ID 기반으로 관리자 삭제
+        alert('관리자가 성공적으로 삭제되었습니다.');
+        setAdminData((prevData) => prevData.filter((admin) => admin.id !== id)); // 목록에서 삭제된 관리자 제거
+      } catch (error) {
+        alert('관리자 삭제 중 오류가 발생했습니다.');
+      }
+    }
   };
 
   const filteredData = adminData.filter((item) => {
@@ -97,7 +114,9 @@ const ManagerList = () => {
                     <ActionButton onClick={() => handleEdit(manager.no)}>
                       수정
                     </ActionButton>
-                    <ActionButton>삭제</ActionButton>
+                    <ActionButton onClick={() => handleDelete(manager.id)}>
+                      삭제
+                    </ActionButton>
                   </td>
                 </tr>
               ))}
@@ -124,18 +143,6 @@ const Content = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   flex: 1;
   font-size: ${({ theme }) => theme.fonts.default.fontSize};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: 14px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: 16px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    font-size: 18px;
-  }
 `;
 
 const Container = styled.div`
@@ -156,18 +163,6 @@ const HeaderTitle = styled.h1`
   ${({ theme }) => theme.fonts.heading};
   color: ${({ theme }) => theme.colors.black};
   font-size: ${({ theme }) => theme.fonts.heading.fontSize};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: 22px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: 26px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    font-size: 28px;
-  }
 `;
 
 const SearchInput = styled.input`
@@ -177,18 +172,6 @@ const SearchInput = styled.input`
   border-radius: 4px;
   margin-right: 10px;
   width: 315px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: 12px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: 14px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    font-size: 16px;
-  }
 `;
 
 const TotalCount = styled.div`
@@ -196,18 +179,6 @@ const TotalCount = styled.div`
   margin-bottom: 10px;
   text-align: left;
   color: ${({ theme }) => theme.colors.black};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: 14px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: 16px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    font-size: 18px;
-  }
 `;
 
 const Table = styled.table`
@@ -215,32 +186,14 @@ const Table = styled.table`
   border-collapse: collapse;
   margin-bottom: 20px;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: 1px solid ${({ theme }) => theme.colors.gray};
-
   th,
   td {
     padding: 12px 15px;
-    text-align: left;
-    min-width: 60px;
-    border-bottom: 1px solid #ddd;
     border: 1px solid ${({ theme }) => theme.colors.gray};
     text-align: center;
     font-size: ${({ theme }) => theme.fonts.default.fontSize};
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-      font-size: 12px;
-    }
-
-    @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-      font-size: 14px;
-    }
-
-    @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-      font-size: 16px;
-    }
   }
-
   th {
     background-color: ${({ theme }) => theme.colors.WhiteBrown1};
   }
@@ -249,7 +202,6 @@ const Table = styled.table`
 const EmailCell = styled.td`
   cursor: pointer;
   color: ${({ theme }) => theme.colors.blue};
-
   &:hover {
     color: ${({ theme }) => theme.colors.darkBlue};
   }
@@ -263,27 +215,6 @@ const ActionButton = styled.button`
   color: ${({ theme }) => theme.colors.white};
   border: none;
   border-radius: 4px;
-  font-size: ${({ theme }) => theme.fonts.SmallButton.fontSize};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.WhiteBrown5};
-  }
-
-  &:active {
-    background-color: ${({ theme }) => theme.colors.WhiteBrown6};
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: 12px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: 14px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    font-size: 16px;
-  }
 `;
 
 const Pagination = styled.div`
@@ -299,27 +230,6 @@ const PageButton = styled.button`
   color: ${({ theme }) => theme.colors.white};
   border: none;
   border-radius: 4px;
-  font-size: ${({ theme }) => theme.fonts.SmallButton.fontSize};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.WhiteBrown5};
-  }
-
-  &:active {
-    background-color: ${({ theme }) => theme.colors.WhiteBrown6};
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: 12px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: 14px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    font-size: 16px;
-  }
 `;
 
 const SearchContainer = styled.div`
@@ -333,16 +243,4 @@ const SearchSelect = styled.select`
   border: 1px solid ${({ theme }) => theme.colors.gray};
   border-radius: 4px;
   margin-right: 10px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: 12px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: 14px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    font-size: 16px;
-  }
 `;
