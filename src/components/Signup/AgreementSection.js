@@ -104,10 +104,9 @@ const AgreementSection = () => {
 
 export default AgreementSection;
 
-// Styled Components
 const AgreementWrapper = styled.div`
-  padding: 20px;
   background-color: ${({ theme }) => theme.colors.white};
+  margin-bottom: 20px;
 `;
 
 const AllAgreeWrapper = styled.div`
@@ -174,7 +173,7 @@ const DescriptionWrapper = styled.div`
 
 const Description = styled.p`
   color: ${({ theme }) => theme.colors.gray};
-  ${({ theme }) => theme.fonts.helperText}; // 테마의 헬퍼 텍스트 스타일 적용
+  ${({ theme }) => theme.fonts.helperText};
   margin: 0;
 `;
 

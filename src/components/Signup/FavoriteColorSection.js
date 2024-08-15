@@ -93,8 +93,12 @@ const ColorOptions = () => (
 export default FavoriteColorSection;
 
 const Label = styled.label`
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.gray};
+  font-size: 16px;
+  font-weight: bold;
+  color: ${({ theme }) => theme.colors.DarkBrown3};
+  margin-bottom: 12px;
+  text-align: left;
+  letter-spacing: 1px;
 `;
 
 const Select = styled.select`
