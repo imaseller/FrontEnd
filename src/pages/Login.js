@@ -52,7 +52,7 @@ const Login = () => {
   };
 
   const handleLoginClick = () => {
-    navigate('/main');
+    navigate('/home');
   };
 
   const handleAdminLoginClick = () => {

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Main/Header.js';
-import Notice from '../components/Main/Notice';
-import BottomNav from '../components/Main/BottomNav';
+import Notice from '../components/Main/Notice.js';
+import BottomNav from '../components/Main/BottomNav.js';
 
-const Main = () => {
+const Home = () => {
   return (
     <MainContainer>
       <ContentWrapper>
@@ -17,7 +17,7 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Home;
 
 const MainContainer = styled.div`
   display: flex;

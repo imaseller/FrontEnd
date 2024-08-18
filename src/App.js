@@ -22,12 +22,14 @@ const MemberDetail = lazy(() => import('./components/Member/MemberDetail'));
 const ProductList = lazy(() => import('./components/Service/ProductList'));
 const ProductDetail = lazy(() => import('./components/Service/ProductDetail'));
 const AdminLogin = lazy(() => import('./pages/AdminLogin'));
-const Main = lazy(() => import('./pages/Main'));
+const Home = lazy(() => import('./pages/Home'));
 const FindId = lazy(() => import('./pages/FindId'));
 const FindPassword = lazy(() => import('./pages/FindPassword'));
 const Login = lazy(() => import('./pages/Login'));
 const Signup = lazy(() => import('./pages/Signup'));
-
+import Monitoring from './pages/Monitoring';
+import PaymentDetail from './pages/PaymentDetail';
+import Store from './pages/Store';
 function App() {
   const renderWithLayout = (Component) => (
     <List>
@@ -43,7 +45,10 @@ function App() {
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path='/' element={<Login />} />
-            <Route path='/main' element={<Main />} />
+            <Route path='/home' element={<Home />} />
+            <Route path='/monitoring' element={<Monitoring />} />
+            <Route path='/payment' element={<PaymentDetail />} />
+            <Route path='/store' element={<Store />} />
             <Route path='/admin/auth/login' element={<AdminLogin />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/findId' element={<FindId />} />
