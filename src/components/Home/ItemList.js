@@ -74,11 +74,11 @@ const ItemsWrapper = styled.div`
 `;
 
 const MoreButton = styled.button`
-  ${Theme.fonts.SmallButton}
-  padding: 10px 20px;
-  background-color: ${Theme.colors.yellow};
-  color: ${Theme.colors.white};
-  border: none;
+  ${Theme.fonts.default0}
+  padding: 10px 13px;
+  background-color: ${Theme.colors.white};
+  color: ${Theme.colors.Black1};
+  border: 1px solid #ddd;
   border-radius: 4px;
   cursor: pointer;
   align-self: flex-start;
