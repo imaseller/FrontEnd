@@ -48,10 +48,10 @@ const List = ({ children }) => {
             <NavItem onClick={handleMemberMenuToggle}>회원 관리</NavItem>
             {isMemberMenuOpen && (
               <SubMenu>
-                <SubMenuItem onClick={() => navigate('/memberlist')}>
+                <SubMenuItem onClick={() => navigate('/user')}>
                   회원 목록
                 </SubMenuItem>
-                <SubMenuItem onClick={() => navigate('/blockmemberlist')}>
+                <SubMenuItem onClick={() => navigate('/user/blocked')}>
                   블록 회원 목록
                 </SubMenuItem>
                 <SubMenuItem onClick={() => navigate('/reviewlist')}>

@@ -69,13 +69,13 @@ function App() {
             />
 
             {/* Member Routes */}
-            <Route path='/memberlist' element={renderWithLayout(MemberList)} />
+            <Route path='/user' element={renderWithLayout(MemberList)} />
             <Route
-              path='/memberlist/detail/:seq'
+              path='/user/detail/:seq'
               element={renderWithLayout(MemberDetail)}
             />
             <Route
-              path='/blockmemberlist'
+              path='/user/blocked'
               element={renderWithLayout(BlockMemberList)}
             />
             <Route path='/reviewlist' element={renderWithLayout(ReviewList)} />

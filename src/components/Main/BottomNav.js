@@ -32,12 +32,12 @@ const BottomNav = () => {
     }
 
     setShowYellowGlow(false);
-    setTimeout(() => setShowYellowGlow(true), 150); // YellowGlow가 나타나는 시간을 조정
+    setTimeout(() => setShowYellowGlow(true), 150);
   }, [location.pathname]);
 
   const handleClick = (tabName, route) => {
     if (activeTab !== tabName) {
-      setShowYellowGlow(false); // 클릭 시 YellowGlow 숨기기
+      setShowYellowGlow(false);
       navigate(route);
     }
   };
@@ -150,7 +150,7 @@ const YellowGlow = styled.div`
   filter: blur(20px);
   opacity: 0;
   top: -5px;
-  transition: opacity 0.5s ease-in-out; /* 조명 애니메이션 시간을 0.5초로 조정 */
+  transition: opacity 0.5s ease-in-out;
   box-shadow: 0 20px 10px rgba(255, 223, 0, 0.7),
     0 20px 10px rgba(255, 223, 0, 0.5);
   clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);

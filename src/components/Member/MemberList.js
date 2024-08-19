@@ -1,53 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import Theme from '../../styles/Theme';
-
-const mockData = [
-  {
-    no: 5017,
-    status: '인증완료',
-    memberType: '일반회원',
-    email: 'jyoonlee411@naver.com',
-    nickname: '윤아아야',
-    birthday: '2003-04-11',
-    color: 'Black',
-    brand: 'MOJO.S.PHINE',
-    lastLogin: '2024.08.02',
-  },
-  {
-    no: 5018,
-    status: '인증완료',
-    memberType: '일반회원',
-    email: 'testuser@example.com',
-    nickname: '테스트유저',
-    birthday: '1990-01-01',
-    color: 'Blue',
-    brand: 'ZARA',
-    lastLogin: '2024.07.15',
-  },
-];
+import { UserGet } from '../../api/user/UserGet.js'; // API 호출을 위한 함수 가져오기
 
 const MemberList = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [searchType, setSearchType] = useState('email');
+  const [users, setUsers] = useState([]); // 초기값을 빈 배열로 설정
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+  const [limit] = useState(10);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await UserGet(page, limit);
+        setUsers(data.users || []); // data.users가 없을 경우 빈 배열로 설정
+        setTotal(data.total || 0); // data.total이 없을 경우 0으로 설정
+      } catch (error) {
+        console.error('Error fetching user list:', error);
+      }
+    };
+
+    fetchData();
+  }, [page, limit]);
 
   const handleEdit = (no) => {
-    navigate(`/admin/admin${no}`);
+    navigate(`/user/admin${no}`);
   };
 
   const handleRegister = () => {
-    navigate('/admin/adminnew');
+    navigate('/user/adminnew');
   };
 
-  const filteredData = mockData.filter((item) => {
+  const filteredData = users.filter((item) => {
     if (searchType === 'email') {
       return item.email.toLowerCase().includes(searchTerm.toLowerCase());
     } else if (searchType === 'nickname') {
       return item.nickname.toLowerCase().includes(searchTerm.toLowerCase());
-    } else if (searchType === 'memberType') {
-      return item.memberType.toLowerCase().includes(searchTerm.toLowerCase());
     } else if (searchType === 'status') {
       return item.status.toLowerCase().includes(searchTerm.toLowerCase());
     }
@@ -63,7 +55,6 @@ const MemberList = () => {
             <SearchSelect onChange={(e) => setSearchType(e.target.value)}>
               <option value='email'>이메일</option>
               <option value='nickname'>닉네임</option>
-              <option value='memberType'>회원타입</option>
               <option value='status'>상태</option>
             </SearchSelect>
             <SearchInput
@@ -75,13 +66,12 @@ const MemberList = () => {
           </SearchContainer>
         </Header>
         <Container>
-          <TotalCount>총 {filteredData.length}개</TotalCount>
+          <TotalCount>총 {total}명</TotalCount>
           <Table>
             <thead>
               <tr>
                 <th>No.</th>
                 <th>상태</th>
-                <th>회원타입</th>
                 <th>계정(이메일)</th>
                 <th>닉네임</th>
                 <th>생일</th>
@@ -95,24 +85,30 @@ const MemberList = () => {
                 <tr key={index}>
                   <td>{member.no}</td>
                   <td>{member.status}</td>
-                  <td>{member.memberType}</td>
                   <EmailCell onClick={() => handleEdit(member.no)}>
                     {member.email}
                   </EmailCell>
                   <td>{member.nickname}</td>
-                  <td>{member.birthday}</td>
-                  <td>{member.color}</td>
-                  <td>{member.brand}</td>
-                  <td>{member.lastLogin}</td>
+                  <td>{member.birthdate}</td>
+                  <td>{member.preferredColors.join(', ')}</td>
+                  <td>{member.preferredBrands.join(', ')}</td>
+                  <td>{new Date(member.lastLogin).toLocaleDateString()}</td>
                 </tr>
               ))}
             </tbody>
           </Table>
           <ActionButton onClick={handleRegister}>신규 등록</ActionButton>
           <Pagination>
-            <PageButton>«</PageButton>
-            <PageButton>1</PageButton>
-            <PageButton>»</PageButton>
+            <PageButton onClick={() => setPage(page - 1)} disabled={page === 1}>
+              «
+            </PageButton>
+            <PageButton>{page}</PageButton>
+            <PageButton
+              onClick={() => setPage(page + 1)}
+              disabled={page * limit >= total}
+            >
+              »
+            </PageButton>
           </Pagination>
         </Container>
       </Content>
