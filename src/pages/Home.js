@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Main/Header.js';
 import Notice from '../components/Main/Notice.js';
-import BottomNav from '../components/Main/BottomNav.js';
+import Detailheader from '../components/DetailHeader.js'; // 추가
 
 const Home = () => {
   return (
@@ -10,6 +10,7 @@ const Home = () => {
       <ContentWrapper>
         <Header />
         <Notice />
+        <Detailheader /> {/* 추가 */}
         {/* <Content></Content> */}
       </ContentWrapper>
     </MainContainer>

@@ -4,8 +4,12 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './styles/GlobalStyle';
 import Theme from './styles/Theme';
 import List from './pages/List';
-import Loading from './components/Loading.js'; // 로딩 애니메이션 컴포넌트
+import Loading from './components/Loading.js';
 import DetailLayout from './components/DetailLayout';
+import Monitoring from './pages/Monitoring';
+import PaymentDetail from './pages/PaymentDetail';
+import Store from './pages/Store';
+
 // Lazy load components
 const ManagerList = lazy(() => import('./components/Admin/ManagerList'));
 const BlockManagerList = lazy(() =>
@@ -27,9 +31,12 @@ const FindId = lazy(() => import('./pages/FindId'));
 const FindPassword = lazy(() => import('./pages/FindPassword'));
 const Login = lazy(() => import('./pages/Login'));
 const Signup = lazy(() => import('./pages/Signup'));
-import Monitoring from './pages/Monitoring';
-import PaymentDetail from './pages/PaymentDetail';
-import Store from './pages/Store';
+
+// Import the new pages
+import Analysis from './pages/Analysis';
+import Settlement from './pages/Settlement';
+import Delivery from './pages/Delivery';
+
 function App() {
   const renderWithLayout = (Component) => (
     <List>
@@ -41,7 +48,7 @@ function App() {
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
       <Router>
-        {/* Suspense로 로딩 애니메이션 지정 */}
+        {/* Suspense for loading animation */}
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path='/' element={<Login />} />
@@ -50,11 +57,17 @@ function App() {
             <Route path='/findId' element={<FindId />} />
             <Route path='/findPassword' element={<FindPassword />} />
 
+            {/* Pages wrapped with DetailLayout */}
             <Route element={<DetailLayout />}>
               <Route path='/home' element={<Home />} />
               <Route path='/monitoring' element={<Monitoring />} />
               <Route path='/payment' element={<PaymentDetail />} />
               <Route path='/store' element={<Store />} />
+
+              {/* New Routes for Analysis, Settlement, and Delivery */}
+              <Route path='/analysis' element={<Analysis />} />
+              <Route path='/settlement' element={<Settlement />} />
+              <Route path='/delivery' element={<Delivery />} />
             </Route>
 
             {/* Manager Routes */}

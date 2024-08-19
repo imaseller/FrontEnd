@@ -1,22 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Main/Header.js';
-import Content from '../components/Monitoring/Content.js';
+import Content from '../components/Delivery/DeliveryContent.js';
+import BottomNav from '../components/Main/BottomNav';
 
-const Monitoring = () => {
+const Delivery = () => {
   return (
-    <MonitoringContainer>
+    <DeliveryContainer>
       <ContentWrapper>
         <Header />
         <Content />
       </ContentWrapper>
-    </MonitoringContainer>
+      <BottomNav />
+    </DeliveryContainer>
   );
 };
 
-export default Monitoring;
+export default Delivery;
 
-const MonitoringContainer = styled.div`
+const DeliveryContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
