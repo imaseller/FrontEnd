@@ -8,7 +8,7 @@ const Store = () => {
   return (
     <StoreContainer>
       <ContentWrapper>
-        <Header />
+        <Header location='/store' />
         <Items />
       </ContentWrapper>
     </StoreContainer>

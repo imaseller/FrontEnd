@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import Menu from '../../img/Main/Menu.svg';
 import Schedule from '../../img/Main/Schedule.svg';
+import Basket from '../../img/Main/Basket.svg';
 
-const Header = () => {
+const Header = ({ location }) => {
   return (
     <HeaderContainer>
       <Profile>
@@ -14,7 +15,11 @@ const Header = () => {
         </Greeting>
       </Profile>
       <Icons>
-        <Icon src={Schedule} alt='스케줄' />
+        {location === '/store' ? (
+          <Icon src={Basket} alt='장바구니' />
+        ) : (
+          <Icon src={Schedule} alt='스케줄' />
+        )}
         <Icon src={Menu} alt='메뉴' />
       </Icons>
     </HeaderContainer>
