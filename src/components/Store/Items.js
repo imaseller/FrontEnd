@@ -14,6 +14,7 @@ export default StoreItems;
 
 const ItemsContainer = styled.div`
   padding: 20px;
-  background-color: #fff;
+  background-color: #f5f5f5;
+  flex: 1;
   flex: 1;
 `;
