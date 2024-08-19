@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Theme from '../../styles/Theme.js';
 
 const ItemCard = ({ image, brand, description }) => {
   return (
@@ -36,5 +37,6 @@ const Brand = styled.h3`
 const Description = styled.p`
   margin-top: 5px;
   font-size: 12px;
-  color: #666;
+  ${Theme.fonts.default3}
+  color: ${Theme.colors.gray2};
 `;

@@ -54,7 +54,7 @@ const HeaderContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  ${Theme.fonts.heading}
+  ${Theme.fonts.default1}
   margin-bottom: 5px;
 `;
 
@@ -64,8 +64,8 @@ const Highlight = styled.span`
 `;
 
 const Subtitle = styled.p`
-  ${Theme.fonts.helperText}
-  color: ${Theme.colors.gray};
+  ${Theme.fonts.default2}
+  color: ${Theme.colors.gray1};
 `;
 
 const ItemsWrapper = styled.div`

@@ -27,6 +27,28 @@ const Theme = {
       font-size: 10px;
       line-height: 11px;
     `,
+    default1: css`
+      font-family: 'NanumSquare Neo OTF';
+      font-style: normal;
+      font-weight: 800;
+      font-size: 16px;
+      line-height: 18px;
+    `,
+    default2: css`
+      font-family: 'NanumSquare Neo OTF';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 13px;
+    `,
+    default3: css`
+      font-family: 'NanumSquare Neo OTF';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 13px;
+    `,
+
     helperText: css`
       font-family: 'NanumSquare Neo OTF', sans-serif;
       font-weight: 400;
@@ -62,6 +84,8 @@ const Theme = {
     pink4: '#F85959',
     pink5: '#E93C3C',
     gray: '#B1B1B1',
+    gray1: '#cccccc',
+    gray2: '#999999',
     lightgray: '#F4F4F4',
     black: '#000000',
     white: '#FFFFFF',
