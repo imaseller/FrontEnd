@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled, { css, ThemeProvider } from 'styled-components';
 import HomeIcon from '../../img/Main/Home.svg';
@@ -11,7 +11,7 @@ const BottomNav = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(null);
-  const [showYellowGlow, setShowYellowGlow] = useState(false); // 추가
+  const [showYellowGlow, setShowYellowGlow] = useState(false);
 
   useEffect(() => {
     switch (location.pathname) {
@@ -30,13 +30,14 @@ const BottomNav = () => {
       default:
         setActiveTab(null);
     }
+
+    setShowYellowGlow(false);
+    setTimeout(() => setShowYellowGlow(true), 150); // YellowGlow가 나타나는 시간을 조정
   }, [location.pathname]);
 
   const handleClick = (tabName, route) => {
     if (activeTab !== tabName) {
-      setActiveTab(tabName);
       setShowYellowGlow(false); // 클릭 시 YellowGlow 숨기기
-      setTimeout(() => setShowYellowGlow(true), 300); // 애니메이션 후 YellowGlow 나타나기
       navigate(route);
     }
   };
@@ -116,20 +117,18 @@ const BottomNavContainer = styled.nav`
   left: 50%;
   transform: translateX(-50%);
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
-  z-index: 1000; /* 다른 요소 위에 고정되도록 z-index 추가 */
+  z-index: 1000;
 `;
 
 const IndicatorContainer = styled.div`
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
   width: 60px;
   height: 15px;
   z-index: 0;
   display: flex;
   justify-content: center;
-  transition: transform 0.3s ease-in-out;
+  transition: left 0.3s ease-in-out;
 `;
 
 const Bar = styled.div`
@@ -151,7 +150,7 @@ const YellowGlow = styled.div`
   filter: blur(20px);
   opacity: 0;
   top: -5px;
-  transition: all 0.3s ease-in-out;
+  transition: opacity 0.5s ease-in-out; /* 조명 애니메이션 시간을 0.5초로 조정 */
   box-shadow: 0 20px 10px rgba(255, 223, 0, 0.7),
     0 20px 10px rgba(255, 223, 0, 0.5);
   clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
@@ -176,22 +175,6 @@ const NavItem = styled.div`
   &:hover {
     transform: scale(1.1);
   }
-
-  ${({ isActive }) =>
-    isActive &&
-    css`
-      ${IndicatorContainer} {
-        transform: translateX(-50%);
-      }
-
-      ${Bar} {
-        transform: translateX(0%);
-      }
-
-      ${YellowGlow} {
-        opacity: 0.8;
-      }
-    `}
 `;
 
 const Icon = styled.img`
