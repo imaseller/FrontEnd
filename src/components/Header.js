@@ -4,14 +4,15 @@ import Menu from '../img/Home/Menu.svg';
 import Schedule from '../img/Home/Schedule.svg';
 import Basket from '../img/Home/Basket.svg';
 
-const Header = ({ location }) => {
+const Header = ({ location, nickname = 'Mr J' }) => {
   return (
     <HeaderContainer>
       <Profile>
         <ProfileImage src='https://via.placeholder.com/50' alt='User profile' />
         <Greeting>
-          <span>Mr J 님</span>
-          <GreetingText>안녕하세요!</GreetingText>
+          <GreetingText>
+            <span>{nickname}</span> 님 안녕하세요!
+          </GreetingText>
         </Greeting>
       </Profile>
       <Icons>
@@ -55,8 +56,15 @@ const Greeting = styled.div`
 `;
 
 const GreetingText = styled.span`
-  color: #000;
-  font-size: 16px;
+  font-family: 'NanumSquare Neo OTF', sans-serif;
+  font-style: normal;
+  color: #000000;
+
+  & > span {
+    font-weight: 500;
+    font-size: 24px;
+    margin-right: 5px;
+  }
 `;
 
 const Icons = styled.div`
