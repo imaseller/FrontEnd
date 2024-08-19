@@ -11,6 +11,7 @@ const BottomNav = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(null);
+  const [showYellowGlow, setShowYellowGlow] = useState(false); // 추가
 
   useEffect(() => {
     switch (location.pathname) {
@@ -34,6 +35,8 @@ const BottomNav = () => {
   const handleClick = (tabName, route) => {
     if (activeTab !== tabName) {
       setActiveTab(tabName);
+      setShowYellowGlow(false); // 클릭 시 YellowGlow 숨기기
+      setTimeout(() => setShowYellowGlow(true), 300); // 애니메이션 후 YellowGlow 나타나기
       navigate(route);
     }
   };
@@ -50,7 +53,7 @@ const BottomNav = () => {
           {activeTab === 'home' && (
             <IndicatorContainer>
               <Bar />
-              <YellowGlow />
+              <YellowGlow isActive={showYellowGlow} />
             </IndicatorContainer>
           )}
         </NavItem>
@@ -63,7 +66,7 @@ const BottomNav = () => {
           {activeTab === 'monitoring' && (
             <IndicatorContainer>
               <Bar />
-              <YellowGlow />
+              <YellowGlow isActive={showYellowGlow} />
             </IndicatorContainer>
           )}
         </NavItem>
@@ -76,7 +79,7 @@ const BottomNav = () => {
           {activeTab === 'payment' && (
             <IndicatorContainer>
               <Bar />
-              <YellowGlow />
+              <YellowGlow isActive={showYellowGlow} />
             </IndicatorContainer>
           )}
         </NavItem>
@@ -89,7 +92,7 @@ const BottomNav = () => {
           {activeTab === 'store' && (
             <IndicatorContainer>
               <Bar />
-              <YellowGlow />
+              <YellowGlow isActive={showYellowGlow} />
             </IndicatorContainer>
           )}
         </NavItem>
@@ -100,7 +103,6 @@ const BottomNav = () => {
 
 export default BottomNav;
 
-// styled-components 추가 정의
 const BottomNavContainer = styled.nav`
   display: flex;
   justify-content: space-around;
@@ -111,7 +113,10 @@ const BottomNavContainer = styled.nav`
   max-width: 600px;
   position: fixed;
   bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000; /* 다른 요소 위에 고정되도록 z-index 추가 */
 `;
 
 const IndicatorContainer = styled.div`

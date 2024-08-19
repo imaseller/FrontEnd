@@ -12,7 +12,6 @@ const Home = () => {
         <Notice />
         {/* <Content></Content> */}
       </ContentWrapper>
-      <BottomNav />
     </MainContainer>
   );
 };
@@ -22,9 +21,7 @@ export default Home;
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  height: 100%;
   background-color: #f5f5f5;
   max-width: 600px;
   margin: 0 auto;

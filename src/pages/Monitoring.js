@@ -11,7 +11,6 @@ const Monitoring = () => {
         <Header />
         <Content />
       </ContentWrapper>
-      <BottomNav />
     </MonitoringContainer>
   );
 };

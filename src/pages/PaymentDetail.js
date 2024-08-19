@@ -11,7 +11,6 @@ const PaymentDetail = () => {
         <Header />
         <PaymentHistory />
       </ContentWrapper>
-      <BottomNav />
     </PaymentDetailContainer>
   );
 };

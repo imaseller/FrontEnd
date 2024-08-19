@@ -5,7 +5,7 @@ import GlobalStyle from './styles/GlobalStyle';
 import Theme from './styles/Theme';
 import List from './pages/List';
 import Loading from './components/Loading.js'; // 로딩 애니메이션 컴포넌트
-
+import DetailLayout from './components/DetailLayout';
 // Lazy load components
 const ManagerList = lazy(() => import('./components/Admin/ManagerList'));
 const BlockManagerList = lazy(() =>
@@ -45,14 +45,17 @@ function App() {
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path='/' element={<Login />} />
-            <Route path='/home' element={<Home />} />
-            <Route path='/monitoring' element={<Monitoring />} />
-            <Route path='/payment' element={<PaymentDetail />} />
-            <Route path='/store' element={<Store />} />
             <Route path='/admin/auth/login' element={<AdminLogin />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/findId' element={<FindId />} />
             <Route path='/findPassword' element={<FindPassword />} />
+
+            <Route element={<DetailLayout />}>
+              <Route path='/home' element={<Home />} />
+              <Route path='/monitoring' element={<Monitoring />} />
+              <Route path='/payment' element={<PaymentDetail />} />
+              <Route path='/store' element={<Store />} />
+            </Route>
 
             {/* Manager Routes */}
             <Route path='/admin' element={renderWithLayout(ManagerList)} />

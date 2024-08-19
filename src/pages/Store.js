@@ -11,7 +11,6 @@ const Store = () => {
         <Header />
         <Items />
       </ContentWrapper>
-      <BottomNav />
     </StoreContainer>
   );
 };
