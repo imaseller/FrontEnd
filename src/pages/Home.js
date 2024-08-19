@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Main/Header.js';
 import Notice from '../components/Main/Notice.js';
-import Detailheader from '../components/DetailHeader.js'; // 추가
+import DetailHeader from '../components/DetailHeader.js';
+import ItemList from '../components/Main/ItemList.js'; // Import the ItemList component
 
 const Home = () => {
   return (
@@ -10,8 +11,10 @@ const Home = () => {
       <ContentWrapper>
         <Header />
         <Notice />
-        <Detailheader /> {/* 추가 */}
-        {/* <Content></Content> */}
+        <DetailHeader />
+        <Content>
+          <ItemList /> {/* Add the ItemList component here */}
+        </Content>
       </ContentWrapper>
     </MainContainer>
   );

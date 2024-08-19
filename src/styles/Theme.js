@@ -59,7 +59,7 @@ const Theme = {
     black: '#000000',
     white: '#FFFFFF',
     blue: '#004DFF',
-    yellow: '#FFF375',
+    yellow: '#F6AE24',
     WhiteBrown1: '#f7e9e3',
     WhiteBrown2: '#eed4c8',
     WhiteBrown3: '#e5bfae',

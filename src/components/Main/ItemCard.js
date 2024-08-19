@@ -1,0 +1,40 @@
+import React from 'react';
+import styled from 'styled-components';
+
+const ItemCard = ({ image, brand, description }) => {
+  return (
+    <CardContainer>
+      <Image src={image} alt={brand} />
+      <Brand>{brand}</Brand>
+      <Description>{description}</Description>
+    </CardContainer>
+  );
+};
+
+export default ItemCard;
+
+const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 150px;
+  margin: 10px;
+`;
+
+const Image = styled.img`
+  width: 100%;
+  height: 210px;
+  border-radius: 4px;
+`;
+
+const Brand = styled.h3`
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+`;
+
+const Description = styled.p`
+  margin-top: 5px;
+  font-size: 12px;
+  color: #666;
+`;
