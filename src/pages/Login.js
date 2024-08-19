@@ -9,6 +9,7 @@ import Button00 from '../components/Button00';
 import InputField from '../components/InputField';
 import backgroundImage from '../img/background02.jpg';
 import Theme from '../styles/Theme';
+import { LoginPost } from '../api/auth/LoginPost';
 
 const schemaLogin = yup.object().shape({
   email: yup
@@ -39,29 +40,17 @@ const Login = () => {
     },
   });
 
-  const handleSignupClick = () => {
-    navigate('/signup');
-  };
-
-  const handleFindIdClick = () => {
-    navigate('/findid');
-  };
-
-  const handleFindPasswordClick = () => {
-    navigate('/findPassword');
-  };
-
-  const handleLoginClick = () => {
-    navigate('/home');
-  };
-
-  const handleAdminLoginClick = () => {
-    navigate('/admin/auth/login');
-  };
-
-  const onSubmit = async (data) => {
-    // 로그인 로직 추가 가능
-    handleLoginClick();
+  const handleLoginClick = async (data) => {
+    try {
+      const response = await LoginPost(data.email, data.password);
+      console.log('로그인 성공:', response);
+      // 로그인 성공 시 홈으로 이동
+      navigate('/home');
+    } catch (error) {
+      console.error('로그인 실패:', error);
+      setModalMessage('로그인 실패. 이메일 또는 비밀번호를 확인하세요.');
+      setIsModalOpen(true);
+    }
   };
 
   const handleModalClose = () => {
@@ -72,10 +61,12 @@ const Login = () => {
     <ThemeProvider theme={Theme}>
       <Container>
         <Button00Wrapper>
-          <Button00 onClick={handleAdminLoginClick}>관리자 페이지</Button00>
+          <Button00 onClick={() => navigate('/admin/auth/login')}>
+            관리자 페이지
+          </Button00>
         </Button00Wrapper>
         <LoginContainer>
-          <LoginForm onSubmit={handleSubmit(onSubmit)}>
+          <LoginForm onSubmit={handleSubmit(handleLoginClick)}>
             <Title>IM A SELLER</Title>
             <Controller
               control={control}
@@ -106,11 +97,11 @@ const Login = () => {
             <LoginButton type='submit'>로그인</LoginButton>
           </LoginForm>
           <ExtraLinks>
-            <Link onClick={handleSignupClick}>회원가입</Link>
+            <Link onClick={() => navigate('/signup')}>회원가입</Link>
             <Separator>|</Separator>
-            <Link onClick={handleFindIdClick}>아이디 찾기</Link>
+            <Link onClick={() => navigate('/findid')}>아이디 찾기</Link>
             <Separator>|</Separator>
-            <Link onClick={handleFindPasswordClick}>비밀번호 찾기</Link>
+            <Link onClick={() => navigate('/findPassword')}>비밀번호 찾기</Link>
           </ExtraLinks>
           <BrowseLink href='#'>회원가입 없이 둘러보기</BrowseLink>
         </LoginContainer>
