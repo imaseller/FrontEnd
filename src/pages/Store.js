@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../components/Main/Header.js';
+import Header from '../components/Home/Header.js';
 import Items from '../components/Store/Items.js';
-import BottomNav from '../components/Main/BottomNav';
 
 const Store = () => {
   return (

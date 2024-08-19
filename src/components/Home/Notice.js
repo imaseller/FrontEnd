@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Arrow from '../../img/Main/Arrow.svg';
+import Arrow from '../../img/Home/Arrow.svg';
 
 const Notice = () => {
   return (

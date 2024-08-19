@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../components/Main/Header.js';
+import Header from '../components/Home/Header.js';
 import Content from '../components/Delivery/DeliveryContent.js';
-import BottomNav from '../components/Main/BottomNav';
+import BottomNav from '../components/Home/BottomNav';
 
 const Delivery = () => {
   return (

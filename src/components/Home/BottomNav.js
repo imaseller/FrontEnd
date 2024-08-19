@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled, { css, ThemeProvider } from 'styled-components';
-import HomeIcon from '../../img/Main/Home.svg';
-import MonitoringIcon from '../../img/Main/Monitoring.svg';
-import PaymentDetailIcon from '../../img/Main/PaymentDetail.svg';
-import StoreIcon from '../../img/Main/Store.svg';
+import HomeIcon from '../../img/Home/Home.svg';
+import MonitoringIcon from '../../img/Home/Monitoring.svg';
+import PaymentDetailIcon from '../../img/Home/PaymentDetail.svg';
+import StoreIcon from '../../img/Home/Store.svg';
 import Theme from '../../styles/Theme.js';
 
 const BottomNav = () => {

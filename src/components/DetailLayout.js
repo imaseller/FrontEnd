@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import BottomNav from '../components/Main/BottomNav.js';
+import BottomNav from '../components/Home/BottomNav.js';
 
 const DetailLayout = () => {
   return (

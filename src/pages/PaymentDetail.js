@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../components/Main/Header.js';
+import Header from '../components/Home/Header.js';
 import PaymentHistory from '../components/PamentDetail/PamentHistory.js';
-import BottomNav from '../components/Main/BottomNav';
 
 const PaymentDetail = () => {
   return (

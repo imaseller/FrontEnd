@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import ItemCard from './ItemCard';
-import ExIMG1 from '../../img/Main/ExIMG1.svg';
-import ExIMG2 from '../../img/Main/ExIMG2.svg';
-import ExIMG3 from '../../img/Main/ExIMG3.svg';
+import ExIMG1 from '../../img/Home/ExIMG1.svg';
+import ExIMG2 from '../../img/Home/ExIMG2.svg';
+import ExIMG3 from '../../img/Home/ExIMG3.svg';
 import Theme from '../../styles/Theme.js';
 
 const items = [

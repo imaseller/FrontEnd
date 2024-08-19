@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../components/Main/Header.js';
-import Notice from '../components/Main/Notice.js';
+import Header from '../components/Home/Header.js';
+import Notice from '../components/Home/Notice.js';
 import DetailHeader from '../components/DetailHeader.js';
-import ItemList from '../components/Main/ItemList.js'; // Import the ItemList component
+import ItemList from '../components/Home/ItemList.js';
 
 const Home = () => {
   return (
@@ -13,7 +13,9 @@ const Home = () => {
         <Notice />
         <DetailHeader />
         <Content>
-          <ItemList /> {/* Add the ItemList component here */}
+          <ItemList />
+          <ItemList />
+          <ItemList />
         </Content>
       </ContentWrapper>
     </MainContainer>
