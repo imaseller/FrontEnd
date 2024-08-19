@@ -57,6 +57,10 @@ const Login = () => {
     setIsModalOpen(false);
   };
 
+  const handleBrowseWithoutSignupClick = () => {
+    navigate('/home');
+  };
+
   return (
     <ThemeProvider theme={Theme}>
       <Container>
@@ -103,7 +107,9 @@ const Login = () => {
             <Separator>|</Separator>
             <Link onClick={() => navigate('/findPassword')}>비밀번호 찾기</Link>
           </ExtraLinks>
-          <BrowseLink href='#'>회원가입 없이 둘러보기</BrowseLink>
+          <BrowseLink onClick={handleBrowseWithoutSignupClick}>
+            회원가입 없이 둘러보기
+          </BrowseLink>
         </LoginContainer>
         {isModalOpen && (
           <Modal>
@@ -195,9 +201,10 @@ const Separator = styled.span`
 
 const BrowseLink = styled.a`
   ${({ theme }) => theme.fonts.helperText};
-  color: ${({ theme }) => theme.colors.gray};
+  color: ${({ theme }) => theme.colors.DarkBrown3};
   text-decoration: none;
   margin-top: 15px;
+  cursor: pointer;
   &:hover {
     text-decoration: underline;
   }
