@@ -23,7 +23,7 @@ const CardContainer = styled.div`
 `;
 
 const Image = styled.img`
-  width: 100%;
+  width: 140px;
   height: 210px;
   border-radius: 4px;
 `;

@@ -44,6 +44,7 @@ const ListContainer = styled.div`
   background-color: ${Theme.colors.white};
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 `;
 
 const HeaderContainer = styled.div`
@@ -70,7 +71,14 @@ const Subtitle = styled.p`
 
 const ItemsWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const MoreButton = styled.button`
