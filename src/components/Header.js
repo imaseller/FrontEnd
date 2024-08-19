@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Menu from '../../img/Home/Menu.svg';
-import Schedule from '../../img/Home/Schedule.svg';
-import Basket from '../../img/Home/Basket.svg';
+import Menu from '../img/Home/Menu.svg';
+import Schedule from '../img/Home/Schedule.svg';
+import Basket from '../img/Home/Basket.svg';
 
 const Header = ({ location }) => {
   return (

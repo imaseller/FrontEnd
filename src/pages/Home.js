@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../components/Home/Header.js';
+import Header from '../components/Header.js';
 import Notice from '../components/Home/Notice.js';
 import DetailHeader from '../components/DetailHeader.js';
 import ItemList from '../components/Home/ItemList.js';
