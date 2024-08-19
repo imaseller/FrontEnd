@@ -7,9 +7,20 @@ import ExIMG3 from '../../img/Home/ExIMG3.svg';
 import Theme from '../../styles/Theme.js';
 
 const items = [
-  { image: ExIMG1, brand: 'SANDRO', description: '언발 플레어 미니원피스' },
-  { image: ExIMG2, brand: 'ZOOC', description: '볼륨소매 랩 카라 블라우스' },
   {
+    id: 1,
+    image: ExIMG1,
+    brand: 'SANDRO',
+    description: '언발 플레어 미니원피스',
+  },
+  {
+    id: 2,
+    image: ExIMG2,
+    brand: 'ZOOC',
+    description: '볼륨소매 랩 카라 블라우스',
+  },
+  {
+    id: 3,
     image: ExIMG3,
     brand: 'MICHA',
     description: '테일러드 카라 머메이드 원피스',
@@ -29,8 +40,8 @@ const ItemList = () => {
         <MoreButton>더보기</MoreButton>
       </HeaderContainer>
       <ItemsWrapper>
-        {items.map((item, index) => (
-          <ItemCard key={index} {...item} />
+        {items.map((item) => (
+          <ItemCard key={item.id} {...item} />
         ))}
       </ItemsWrapper>
     </ListContainer>

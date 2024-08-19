@@ -1,10 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import Theme from '../../styles/Theme.js';
 
-const ItemCard = ({ image, brand, description }) => {
+const ItemCard = ({ id, image, brand, description }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/item/${id}`);
+  };
+
   return (
-    <CardContainer>
+    <CardContainer onClick={handleClick}>
       <Image src={image} alt={brand} />
       <Brand>{brand}</Brand>
       <Description>{description}</Description>
@@ -20,6 +27,7 @@ const CardContainer = styled.div`
   align-items: left;
   width: 150px;
   margin: 10px;
+  cursor: pointer;
 `;
 
 const Image = styled.img`

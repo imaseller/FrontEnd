@@ -84,8 +84,10 @@ const Theme = {
     pink4: '#F85959',
     pink5: '#E93C3C',
     gray: '#B1B1B1',
+    gray0: '#f5f5f5',
     gray1: '#cccccc',
     gray2: '#999999',
+
     lightgray: '#F4F4F4',
     black: '#000000',
     white: '#FFFFFF',

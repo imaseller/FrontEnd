@@ -10,7 +10,6 @@ import Monitoring from './pages/Monitoring';
 import PaymentDetail from './pages/PaymentDetail';
 import Store from './pages/Store';
 
-// Lazy load components
 const ManagerList = lazy(() => import('./components/Admin/ManagerList'));
 const BlockManagerList = lazy(() =>
   import('./components/Admin/BlockManagerList')
@@ -32,10 +31,10 @@ const FindPassword = lazy(() => import('./pages/FindPassword'));
 const Login = lazy(() => import('./pages/Login'));
 const Signup = lazy(() => import('./pages/Signup'));
 
-// Import the new pages
 import Analysis from './pages/Analysis';
 import Settlement from './pages/Settlement';
 import Delivery from './pages/Delivery';
+import ItemDetail from './pages/ItemDetail';
 
 function App() {
   const renderWithLayout = (Component) => (
@@ -48,7 +47,6 @@ function App() {
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
       <Router>
-        {/* Suspense for loading animation */}
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path='/' element={<Login />} />
@@ -106,6 +104,9 @@ function App() {
               path='/productlist/detail/:id'
               element={renderWithLayout(ProductDetail)}
             />
+
+            {/* New Route for ItemDetail */}
+            <Route path='/item/:id' element={<ItemDetail />} />
           </Routes>
         </Suspense>
       </Router>
