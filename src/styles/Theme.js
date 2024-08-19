@@ -77,6 +77,7 @@ const Theme = {
     PinkBrown3: '#e8bdba',
     PinkBrown4: '#f1d2d3',
     PinkBrown5: '#f9e8ea',
+    Black1: '#1D1D1B',
   },
   breakpoints: {
     mobile: '600px',

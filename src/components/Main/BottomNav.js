@@ -54,7 +54,7 @@ const BottomNav = () => {
           {activeTab === 'home' && (
             <IndicatorContainer>
               <Bar />
-              <YellowGlow isActive={showYellowGlow} />
+              <Light isActive={showYellowGlow} />
             </IndicatorContainer>
           )}
         </NavItem>
@@ -67,7 +67,7 @@ const BottomNav = () => {
           {activeTab === 'monitoring' && (
             <IndicatorContainer>
               <Bar />
-              <YellowGlow isActive={showYellowGlow} />
+              <Light isActive={showYellowGlow} />
             </IndicatorContainer>
           )}
         </NavItem>
@@ -80,7 +80,7 @@ const BottomNav = () => {
           {activeTab === 'payment' && (
             <IndicatorContainer>
               <Bar />
-              <YellowGlow isActive={showYellowGlow} />
+              <Light isActive={showYellowGlow} />
             </IndicatorContainer>
           )}
         </NavItem>
@@ -93,7 +93,7 @@ const BottomNav = () => {
           {activeTab === 'store' && (
             <IndicatorContainer>
               <Bar />
-              <YellowGlow isActive={showYellowGlow} />
+              <Light isActive={showYellowGlow} />
             </IndicatorContainer>
           )}
         </NavItem>
@@ -108,7 +108,7 @@ const BottomNavContainer = styled.nav`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.DarkBrown5};
+  background-color: ${({ theme }) => theme.colors.Black1};
   padding: 12px 0;
   width: 100%;
   max-width: 600px;
@@ -141,7 +141,7 @@ const Bar = styled.div`
   transition: transform 0.3s ease-in-out;
 `;
 
-const YellowGlow = styled.div`
+const Light = styled.div`
   position: absolute;
   width: 60px;
   height: 35px;
@@ -151,8 +151,8 @@ const YellowGlow = styled.div`
   opacity: 0;
   top: -5px;
   transition: opacity 0.5s ease-in-out;
-  box-shadow: 0 20px 10px rgba(255, 223, 0, 0.7),
-    0 20px 10px rgba(255, 223, 0, 0.5);
+  box-shadow: 0 20px 10px rgba(255, 255, 255, 0.7),
+    0 20px 10px rgba(255, 255, 255, 0.5);
   clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
 
   ${({ isActive }) =>
