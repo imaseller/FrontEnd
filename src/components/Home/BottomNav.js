@@ -5,6 +5,7 @@ import HomeIcon from '../../img/Home/Home.svg';
 import MonitoringIcon from '../../img/Home/Monitoring.svg';
 import PaymentDetailIcon from '../../img/Home/PaymentDetail.svg';
 import StoreIcon from '../../img/Home/Store.svg';
+import MenuIcon from '../../img/Home/Menu.svg';
 import Theme from '../../styles/Theme.js';
 
 const BottomNav = () => {
@@ -12,27 +13,43 @@ const BottomNav = () => {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(null);
   const [showYellowGlow, setShowYellowGlow] = useState(false);
+  const [barPosition, setBarPosition] = useState(0);
+
+  const navRef = useRef(null);
 
   useEffect(() => {
+    const updateTab = (tabName) => {
+      const activeElement = navRef.current.querySelector(
+        `[data-tab="${tabName}"]`
+      );
+      const activeElementPosition =
+        activeElement.offsetLeft + activeElement.offsetWidth / 2 - 30;
+      setBarPosition(activeElementPosition);
+      setActiveTab(tabName);
+    };
+
     switch (location.pathname) {
       case '/home':
-        setActiveTab('home');
+        updateTab('home');
         break;
       case '/monitoring':
-        setActiveTab('monitoring');
+        updateTab('monitoring');
         break;
       case '/payment':
-        setActiveTab('payment');
+        updateTab('payment');
         break;
       case '/store':
-        setActiveTab('store');
+        updateTab('store');
+        break;
+      case '/menu':
+        updateTab('menu');
         break;
       default:
         setActiveTab(null);
     }
 
     setShowYellowGlow(false);
-    setTimeout(() => setShowYellowGlow(true), 150);
+    setTimeout(() => setShowYellowGlow(true), 300);
   }, [location.pathname]);
 
   const handleClick = (tabName, route) => {
@@ -44,59 +61,85 @@ const BottomNav = () => {
 
   return (
     <ThemeProvider theme={Theme}>
-      <BottomNavContainer>
+      <BottomNavContainer ref={navRef}>
         <NavItem
+          data-tab='home'
           isActive={activeTab === 'home'}
           onClick={() => handleClick('home', '/home')}
         >
-          <Icon src={HomeIcon} alt='홈' />
+          <Icon src={HomeIcon} alt='홈' isActive={activeTab === 'home'} />
           <NavLabel isActive={activeTab === 'home'}>홈</NavLabel>
           {activeTab === 'home' && (
             <IndicatorContainer>
-              <Bar />
               <Light isActive={showYellowGlow} />
             </IndicatorContainer>
           )}
         </NavItem>
         <NavItem
+          data-tab='monitoring'
           isActive={activeTab === 'monitoring'}
           onClick={() => handleClick('monitoring', '/monitoring')}
         >
-          <Icon src={MonitoringIcon} alt='모니터링' />
+          <Icon
+            src={MonitoringIcon}
+            alt='모니터링'
+            isActive={activeTab === 'monitoring'}
+          />
           <NavLabel isActive={activeTab === 'monitoring'}>모니터링</NavLabel>
           {activeTab === 'monitoring' && (
             <IndicatorContainer>
-              <Bar />
               <Light isActive={showYellowGlow} />
             </IndicatorContainer>
           )}
         </NavItem>
         <NavItem
+          data-tab='payment'
           isActive={activeTab === 'payment'}
           onClick={() => handleClick('payment', '/payment')}
         >
-          <Icon src={PaymentDetailIcon} alt='결제내역' />
+          <Icon
+            src={PaymentDetailIcon}
+            alt='결제내역'
+            isActive={activeTab === 'payment'}
+          />
           <NavLabel isActive={activeTab === 'payment'}>결제내역</NavLabel>
           {activeTab === 'payment' && (
             <IndicatorContainer>
-              <Bar />
               <Light isActive={showYellowGlow} />
             </IndicatorContainer>
           )}
         </NavItem>
         <NavItem
+          data-tab='store'
           isActive={activeTab === 'store'}
           onClick={() => handleClick('store', '/store')}
         >
-          <Icon src={StoreIcon} alt='구매마켓' />
+          <Icon
+            src={StoreIcon}
+            alt='구매마켓'
+            isActive={activeTab === 'store'}
+          />
           <NavLabel isActive={activeTab === 'store'}>구매마켓</NavLabel>
           {activeTab === 'store' && (
             <IndicatorContainer>
-              <Bar />
               <Light isActive={showYellowGlow} />
             </IndicatorContainer>
           )}
         </NavItem>
+        <NavItem
+          data-tab='menu'
+          isActive={activeTab === 'menu'}
+          onClick={() => handleClick('menu', '/menu')}
+        >
+          <Icon src={MenuIcon} alt='전체' isActive={activeTab === 'menu'} />
+          <NavLabel isActive={activeTab === 'menu'}>전체</NavLabel>
+          {activeTab === 'menu' && (
+            <IndicatorContainer>
+              <Light isActive={showYellowGlow} />
+            </IndicatorContainer>
+          )}
+        </NavItem>
+        <Bar style={{ left: `${barPosition}px` }} />
       </BottomNavContainer>
     </ThemeProvider>
   );
@@ -128,38 +171,29 @@ const IndicatorContainer = styled.div`
   z-index: 0;
   display: flex;
   justify-content: center;
-  transition: left 0.3s ease-in-out;
 `;
 
 const Bar = styled.div`
-  width: 45px;
-  height: 5px;
+  width: 30px;
+  height: 3px;
   background-color: ${({ theme }) => theme.colors.white};
-  border-radius: 5px;
-  position: relative;
-  top: -9px;
-  transition: transform 0.3s ease-in-out;
+  position: absolute;
+  top: 0px;
+  margin-left: 15px;
+  transition: left 0.3s ease-in-out;
 `;
 
 const Light = styled.div`
   position: absolute;
-  width: 60px;
-  height: 35px;
-  background-color: ${({ theme }) => theme.colors.yellow};
+  width: 46px;
+  height: 36px;
+  background: linear-gradient(to top, black, white);
   border-radius: 50%;
   filter: blur(20px);
-  opacity: 0;
-  top: -5px;
+  opacity: ${({ isActive }) => (isActive ? '0.8' : '0')};
+  top: -8px;
   transition: opacity 0.5s ease-in-out;
-  box-shadow: 0 20px 10px rgba(255, 255, 255, 0.7),
-    0 20px 10px rgba(255, 255, 255, 0.5);
   clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
-
-  ${({ isActive }) =>
-    isActive &&
-    css`
-      opacity: 0.8;
-    `}
 `;
 
 const NavItem = styled.div`
@@ -170,16 +204,12 @@ const NavItem = styled.div`
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
   z-index: 1;
-  transform: ${({ isActive }) => (isActive ? 'scale(1.1)' : 'scale(1)')};
-
-  &:hover {
-    transform: scale(1.1);
-  }
 `;
 
 const Icon = styled.img`
   width: 28px;
   height: 28px;
+  filter: ${({ isActive }) => (isActive ? 'brightness(0) invert(1)' : 'none')};
 `;
 
 const NavLabel = styled.span`

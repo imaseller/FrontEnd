@@ -12,7 +12,6 @@ import SettlementIcon from '../img/Header/HeaderCalculateDetail.svg';
 import DeliveryIcon from '../img/Header/HeaderShippingDetail.svg';
 
 const Home = () => {
-  // Array of icons to pass as props
   const homeIcons = [
     { src: TypeAnalysisIcon, alt: '유형 분석', route: '/analysis' },
     { src: MonitoringIcon, alt: '모니터링', route: '/monitoring' },
@@ -56,6 +55,6 @@ const ContentWrapper = styled.div`
 
 const Content = styled.div`
   flex: 1;
-  padding: 20px;
+
   background-color: #f5f5f5;
 `;

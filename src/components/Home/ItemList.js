@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import ItemCard from './ItemCard';
 import ExIMG1 from '../../img/Home/ExIMG1.svg';
-import ExIMG2 from '../../img/Home/ExIMG2.svg';
-import ExIMG3 from '../../img/Home/ExIMG3.svg';
 import Theme from '../../styles/Theme.js';
 
 const items = [
@@ -15,17 +13,27 @@ const items = [
   },
   {
     id: 2,
-    image: ExIMG2,
+    image: ExIMG1,
     brand: 'ZOOC',
     description: '볼륨소매 랩 카라 블라우스',
   },
   {
     id: 3,
-    image: ExIMG3,
+    image: ExIMG1,
+    brand: 'MICHA',
+    description: '테일러드 카라 머메이드 원피스',
+  },
+  {
+    id: 4,
+    image: ExIMG1,
     brand: 'MICHA',
     description: '테일러드 카라 머메이드 원피스',
   },
 ];
+
+const truncateText = (text, limit) => {
+  return text.length > limit ? text.slice(0, limit) + '...' : text;
+};
 
 const ItemList = () => {
   return (
@@ -41,7 +49,11 @@ const ItemList = () => {
       </HeaderContainer>
       <ItemsWrapper>
         {items.map((item) => (
-          <ItemCard key={item.id} {...item} />
+          <ItemCard
+            key={item.id}
+            {...item}
+            description={truncateText(item.description, 12)}
+          />
         ))}
       </ItemsWrapper>
     </ListContainer>
@@ -51,18 +63,18 @@ const ItemList = () => {
 export default ItemList;
 
 const ListContainer = styled.div`
-  padding: 20px;
   background-color: ${Theme.colors.white};
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  padding: 20px;
 `;
 
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 const Title = styled.h2`

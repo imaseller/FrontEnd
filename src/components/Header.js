@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import Menu from '../img/Home/Menu.svg';
+import Alarm from '../img/Home/Alarm.svg';
 import Schedule from '../img/Home/Schedule.svg';
 import Basket from '../img/Home/Basket.svg';
+import Mycloset from '../img/Home/Mycloset.svg';
+import Mypage from '../img/Home/Mypage.svg';
 
-const Header = ({ location, nickname = 'Mr J' }) => {
+const Header = ({ location, nickname = 'Mr J', isLoggedIn }) => {
   return (
     <HeaderContainer>
       <Profile>
@@ -17,11 +19,21 @@ const Header = ({ location, nickname = 'Mr J' }) => {
       </Profile>
       <Icons>
         {location === '/store' ? (
-          <Icon src={Basket} alt='장바구니' />
+          <>
+            <Icon src={Basket} alt='장바구니' />
+            <Icon src={Mycloset} alt='내 옷장' />
+          </>
+        ) : isLoggedIn ? (
+          <>
+            <Icon src={Schedule} alt='스케줄' />
+            <Icon src={Alarm} alt='알림' />
+          </>
         ) : (
-          <Icon src={Schedule} alt='스케줄' />
+          <>
+            <Icon src={Mypage} alt='마이페이지' />
+            <Icon src={Alarm} alt='알림' />
+          </>
         )}
-        <Icon src={Menu} alt='메뉴' />
       </Icons>
     </HeaderContainer>
   );

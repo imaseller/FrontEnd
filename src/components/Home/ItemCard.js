@@ -25,9 +25,12 @@ const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
-  width: 150px;
-  margin: 10px;
+  width: 100%;
   cursor: pointer;
+  margin: 6px;
+  &:first-child {
+    margin-left: 0;
+  }
 `;
 
 const Image = styled.img`
