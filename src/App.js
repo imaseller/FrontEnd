@@ -34,7 +34,7 @@ const Signup = lazy(() => import('./pages/Signup'));
 import Analysis from './pages/Analysis';
 import Settlement from './pages/Settlement';
 import Delivery from './pages/Delivery';
-import ItemDetail from './pages/ItemDetail';
+import HomeDetail from './pages/HomeDetail';
 
 function App() {
   const renderWithLayout = (Component) => (
@@ -105,8 +105,8 @@ function App() {
               element={renderWithLayout(ProductDetail)}
             />
 
-            {/* New Route for ItemDetail */}
-            <Route path='/item/:id' element={<ItemDetail />} />
+            {/* New Route for HomeDetail */}
+            <Route path='/item/:id' element={<HomeDetail />} />
           </Routes>
         </Suspense>
       </Router>
