@@ -24,7 +24,6 @@ const HeaderContainer = styled.div`
   justify-content: space-around;
   background-color: #ffffff;
   padding: 20px 10px;
-  border-bottom: 1px solid #ddd;
 `;
 
 const IconContainer = styled.div`
