@@ -12,7 +12,8 @@ import PriceTrendChart from '../components/Home/HomeDetail/PriceTrendChart.js';
 import ProductOptions from '../components/Home/HomeDetail/ProductOptions.js';
 import PaymentMethod from '../components/Home/HomeDetail/PaymentMethod.js';
 import SizeInfo from '../components/Home/HomeDetail/SizeInfo.js';
-import MaterialInfo from '../components/Home/HomeDetail/MaterialInfo.js'; // Import the MaterialInfo component
+import MaterialInfo from '../components/Home/HomeDetail/MaterialInfo.js';
+import ProductDetails from '../components/Home/HomeDetail/ProductDetails.js'; // Import the ProductDetails component
 
 const HomeDetail = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -94,6 +95,7 @@ const HomeDetail = () => {
       <PriceTrendChart data={priceHistory} />
       <SizeInfo />
       <MaterialInfo /> {/* Use the MaterialInfo component */}
+      <ProductDetails /> {/* Use the ProductDetails component */}
       <OrderButton>제품 주문하기</OrderButton>
     </DetailContainer>
   );

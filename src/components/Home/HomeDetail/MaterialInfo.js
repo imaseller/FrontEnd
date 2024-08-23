@@ -75,7 +75,6 @@ const MaterialInfoContainer = styled.div`
 const Title = styled.h3`
   font-size: 14px;
   font-weight: bold;
-  margin-bottom: 20px;
 `;
 
 const InfoRow = styled.div`
