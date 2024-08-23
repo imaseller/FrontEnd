@@ -68,7 +68,7 @@ const Container = styled.div`
 
 const MaterialInfoContainer = styled.div`
   margin: 10px 0;
-  padding: 40px 40px 10px 10px;
+  padding: 40px 40px 0px 0px;
   border: 1px solid #cccccc;
 `;
 
@@ -78,7 +78,7 @@ const Title = styled.h3`
 `;
 
 const InfoRow = styled.div`
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -86,11 +86,12 @@ const InfoRow = styled.div`
 `;
 
 const Label = styled.div`
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
-  width: 50px;
+  width: 100%;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  max-width: 100px;
 `;
 
 const BarContainer = styled.div`
@@ -130,7 +131,7 @@ const Options = styled.div`
 `;
 
 const Option = styled.div`
-  font-size: 14px;
+  font-size: 12px;
   color: ${(props) => (props.isSelected ? '#FFA500' : '#999')};
   font-weight: ${(props) => (props.isSelected ? 'bold' : 'normal')};
   transition: color 0.3s ease;

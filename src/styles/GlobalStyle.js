@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     box-sizing: border-box;
     ${({ theme }) => theme.fonts.default};
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'NanumSquare Neo OTF', sans-serif;
     &:visited {
       text-decoration: none;
       color: black;
