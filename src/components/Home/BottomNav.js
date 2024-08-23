@@ -213,7 +213,8 @@ const Icon = styled.img`
 `;
 
 const NavLabel = styled.span`
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ isActive, theme }) =>
+    isActive ? theme.colors.white : theme.colors.gray};
   font-size: 12px;
   font-weight: 600;
   margin-top: 5px;
