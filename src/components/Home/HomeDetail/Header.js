@@ -1,41 +1,54 @@
 import React from 'react';
 import styled from 'styled-components';
-import Theme from '../../../styles/Theme';
-
+import Basket from '../../../img/Home/Basket.svg';
+import Mycloset from '../../../img/Home/Mycloset.svg';
+import BackButtonIcon from '../../../img/Home/HomeDetail/BackButton.svg';
 const Header = () => {
+  const handleBackClick = () => {
+    window.history.back();
+  };
+
   return (
     <HeaderContainer>
-      <BackButton>&lt;</BackButton>
-      <CartButton>
-        <CartIcon src='/path/to/cart-icon.svg' alt='Cart' />
-      </CartButton>
+      <IconButton onClick={handleBackClick}>
+        <Icon src={BackButtonIcon} alt='뒤로 가기' />{' '}
+      </IconButton>
+      <Icons>
+        <Icon src={Basket} alt='장바구니' />
+        <Icon src={Mycloset} alt='내 옷장' />
+      </Icons>
     </HeaderContainer>
   );
 };
 
 export default Header;
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  padding: 16px;
+  align-items: center;
+  padding: 20px 10px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+  margin-top: 20px;
 `;
 
-const BackButton = styled.button`
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-`;
-
-const CartButton = styled.button`
+const IconButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 `;
 
-const CartIcon = styled.img`
+const Icons = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
+
+const Icon = styled.img`
   width: 24px;
   height: 24px;
+  cursor: pointer;
 `;

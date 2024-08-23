@@ -10,7 +10,7 @@ const Header = ({ location, nickname = 'Mr J', isLoggedIn }) => {
   return (
     <HeaderContainer>
       <Profile>
-        <ProfileImage src='https://via.placeholder.com/50' alt='User profile' />
+        <ProfileImage src='https://via.placeholder.com/44' alt='User profile' />
         <Greeting>
           <GreetingText>
             <span>{nickname}</span> 님 안녕하세요!
@@ -45,9 +45,10 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 20px 10px;
   background-color: #fff;
   border-bottom: 1px solid #ddd;
+  margin-top: 20px;
 `;
 
 const Profile = styled.div`
@@ -56,8 +57,8 @@ const Profile = styled.div`
 `;
 
 const ProfileImage = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   margin-right: 10px;
 `;

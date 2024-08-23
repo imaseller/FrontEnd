@@ -53,10 +53,10 @@ export default Home;
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
-
   max-width: 600px;
   margin: 0 auto;
+  width: 100%;
+  overflow-x: hidden;
 `;
 
 const ContentWrapper = styled.div`

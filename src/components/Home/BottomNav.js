@@ -207,8 +207,8 @@ const NavItem = styled.div`
 `;
 
 const Icon = styled.img`
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   filter: ${({ isActive }) => (isActive ? 'brightness(0) invert(1)' : 'none')};
 `;
 
