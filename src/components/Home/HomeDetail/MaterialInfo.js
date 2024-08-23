@@ -1,168 +1,143 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Theme from '../../../styles/Theme';
-const MaterialInfo = () => {
-  const [thickness, setThickness] = useState(2);
-  const [elasticity, setElasticity] = useState(2);
-  const [lining, setLining] = useState(1);
-  const [texture, setTexture] = useState(2);
-  const [transparency, setTransparency] = useState(3);
 
-  const handleOptionClick = (setState, index) => {
-    setState(index);
+const sampleMaterialData = {
+  두께감: '매우 두꺼움',
+  신축성: '없음',
+  안감: '부분안감',
+  촉감: '적당',
+  비침: '없음',
+};
+
+const MaterialInfo = ({ materialData = sampleMaterialData }) => {
+  const calculatePosition = (index, totalOptions) => {
+    return `${(index / (totalOptions - 1)) * 100}%`;
+  };
+
+  const materialOptions = {
+    두께감: ['매우 두꺼움', '두꺼움', '적당', '얇음'],
+    신축성: ['좋음', '약간있음', '없음', '허리밴딩'],
+    안감: ['전체안감', '부분안감', '기모안감', '없음'],
+    촉감: ['뻣뻣함', '까슬함', '적당', '부드러움'],
+    비침: ['비침있음', '약간있음', '부분있음', '없음'],
   };
 
   return (
-    <MaterialInfoContainer>
+    <Container>
       <Title>제품소재 정보</Title>
-      <InfoRow>
-        <Label>두께감</Label>
-        <Bar>
-          <Mark style={{ left: `${thickness * 25}%` }} />
-        </Bar>
-        <Options>
-          {['매우 두꺼움', '두꺼움', '적당', '얇음'].map((option, index) => (
-            <Option
-              key={option}
-              onClick={() => handleOptionClick(setThickness, index)}
-              isSelected={thickness === index}
-            >
-              {option}
-            </Option>
-          ))}
-        </Options>
-      </InfoRow>
-      <InfoRow>
-        <Label>신축성</Label>
-        <Bar>
-          <Mark style={{ left: `${elasticity * 25}%` }} />
-        </Bar>
-        <Options>
-          {['좋음', '약간있음', '없음', '허리밴딩'].map((option, index) => (
-            <Option
-              key={option}
-              onClick={() => handleOptionClick(setElasticity, index)}
-              isSelected={elasticity === index}
-            >
-              {option}
-            </Option>
-          ))}
-        </Options>
-      </InfoRow>
-      <InfoRow>
-        <Label>안감</Label>
-        <Bar>
-          <Mark style={{ left: `${lining * 33.3}%` }} />
-        </Bar>
-        <Options>
-          {['전체안감', '부분안감', '기모안감', '없음'].map((option, index) => (
-            <Option
-              key={option}
-              onClick={() => handleOptionClick(setLining, index)}
-              isSelected={lining === index}
-            >
-              {option}
-            </Option>
-          ))}
-        </Options>
-      </InfoRow>
-      <InfoRow>
-        <Label>촉감</Label>
-        <Bar>
-          <Mark style={{ left: `${texture * 25}%` }} />
-        </Bar>
-        <Options>
-          {['뻣뻣함', '까슬함', '적당', '부드러움'].map((option, index) => (
-            <Option
-              key={option}
-              onClick={() => handleOptionClick(setTexture, index)}
-              isSelected={texture === index}
-            >
-              {option}
-            </Option>
-          ))}
-        </Options>
-      </InfoRow>
-      <InfoRow>
-        <Label>비침</Label>
-        <Bar>
-          <Mark style={{ left: `${transparency * 25}%` }} />
-        </Bar>
-        <Options>
-          {['비침있음', '약간있음', '부분있음', '없음'].map((option, index) => (
-            <Option
-              key={option}
-              onClick={() => handleOptionClick(setTransparency, index)}
-              isSelected={transparency === index}
-            >
-              {option}
-            </Option>
-          ))}
-        </Options>
-      </InfoRow>
-    </MaterialInfoContainer>
+      <MaterialInfoContainer>
+        {Object.entries(materialOptions).map(([key, options]) => (
+          <InfoRow key={key}>
+            <Label>{key}</Label>
+            <BarContainer>
+              <Bar>
+                <Mark
+                  style={{
+                    left: calculatePosition(
+                      options.indexOf(materialData[key]),
+                      options.length
+                    ),
+                  }}
+                />
+              </Bar>
+              <Options>
+                {options.map((option) => (
+                  <Option
+                    key={option}
+                    isSelected={materialData[key] === option}
+                  >
+                    {option}
+                  </Option>
+                ))}
+              </Options>
+            </BarContainer>
+          </InfoRow>
+        ))}
+      </MaterialInfoContainer>
+    </Container>
   );
 };
 
 export default MaterialInfo;
 
-const MaterialInfoContainer = styled.div`
-  margin: 20px 0;
+const Container = styled.div`
+  margin-top: 40px;
   padding: 10px;
+`;
+
+const MaterialInfoContainer = styled.div`
+  margin: 10px 0;
+  padding: 40px 40px 10px 10px;
+  border: 1px solid #cccccc;
 `;
 
 const Title = styled.h3`
   font-size: 14px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `;
 
 const InfoRow = styled.div`
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
 `;
 
 const Label = styled.div`
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
-  width: 100px;
-  margin-right: 10px;
+  width: 50px;
+  text-align: center;
+  margin-bottom: 10px;
+`;
+
+const BarContainer = styled.div`
+  display: flex;
+
+  flex-direction: column;
+  width: calc(100% - 100px);
+  align-items: center;
 `;
 
 const Bar = styled.div`
   position: relative;
   height: 4px;
-  background-color: #ddd;
+  background-color: rgba(255, 255, 255, 0.96);
+  border: 1px solid #cccccc;
   border-radius: 2px;
-  flex-grow: 1;
-  margin: 0 10px;
+  width: 100%;
+  margin-bottom: 10px;
 `;
 
 const Mark = styled.div`
   position: absolute;
-  top: -6px;
-  width: 12px;
-  height: 12px;
+  top: -8px;
+  width: 16px;
+  height: 16px;
   background-color: ${(props) => props.theme.colors.white};
   border: 3px solid ${Theme.colors.yellow};
   border-radius: 50%;
   transition: left 0.3s ease;
+  transform: translateX(-50%);
 `;
 
 const Options = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 300px;
+  width: 130%;
 `;
 
 const Option = styled.div`
-  font-size: 12px;
-  color: ${(props) => (props.isSelected ? '#000' : '#999')};
-  cursor: pointer;
+  font-size: 14px;
+  color: ${(props) => (props.isSelected ? '#FFA500' : '#999')};
+  font-weight: ${(props) => (props.isSelected ? 'bold' : 'normal')};
   transition: color 0.3s ease;
-
+  text-align: center;
+  width: 25%;
+  min-width: 70px;
   &:hover {
     color: #000;
   }
