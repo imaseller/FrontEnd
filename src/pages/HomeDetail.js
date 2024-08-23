@@ -13,7 +13,8 @@ import ProductOptions from '../components/Home/HomeDetail/ProductOptions.js';
 import PaymentMethod from '../components/Home/HomeDetail/PaymentMethod.js';
 import SizeInfo from '../components/Home/HomeDetail/SizeInfo.js';
 import MaterialInfo from '../components/Home/HomeDetail/MaterialInfo.js';
-import ProductDetails from '../components/Home/HomeDetail/ProductDetails.js'; // Import the ProductDetails component
+import ProductDetails from '../components/Home/HomeDetail/ProductDetails.js';
+import BottomBar from '../components/Home/HomeDetail/BottomBar.js';
 
 const HomeDetail = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -94,9 +95,9 @@ const HomeDetail = () => {
       />
       <PriceTrendChart data={priceHistory} />
       <SizeInfo />
-      <MaterialInfo /> {/* Use the MaterialInfo component */}
-      <ProductDetails /> {/* Use the ProductDetails component */}
-      <OrderButton>제품 주문하기</OrderButton>
+      <MaterialInfo />
+      <ProductDetails />
+      <BottomBar />
     </DetailContainer>
   );
 };
@@ -110,16 +111,5 @@ const DetailContainer = styled.div`
   height: 100vh;
   max-width: 600px;
   margin: 0 auto;
-`;
-
-const OrderButton = styled.button`
-  width: 100%;
-  padding: 16px;
-  background-color: ${Theme.colors.yellow};
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 16px;
+  padding-bottom: 80px;
 `;
