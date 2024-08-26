@@ -22,8 +22,7 @@ export default DetailHeader;
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-around;
-  background-color: #ffffff;
-  padding: 20px 10px;
+  padding: 30px 10px 0;
 `;
 
 const IconContainer = styled.div`

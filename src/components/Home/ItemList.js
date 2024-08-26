@@ -35,18 +35,10 @@ const truncateText = (text, limit) => {
   return text.length > limit ? text.slice(0, limit) + '...' : text;
 };
 
-const ItemList = () => {
+const ItemList = ({ HeaderContainer }) => {
   return (
     <ListContainer>
-      <HeaderContainer>
-        <div>
-          <Title>
-            매칭된 <Highlight>New</Highlight> 아이템
-          </Title>
-          <Subtitle>8월 1주차 / 2주차 아이템</Subtitle>
-        </div>
-        <MoreButton>더보기</MoreButton>
-      </HeaderContainer>
+      <HeaderContainer />
       <ItemsWrapper>
         {items.map((item) => (
           <ItemCard
@@ -66,29 +58,7 @@ const ListContainer = styled.div`
   background-color: ${Theme.colors.white};
   border-radius: 8px;
   overflow: hidden;
-  padding: 20px;
-`;
-
-const HeaderContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 10px;
-`;
-
-const Title = styled.h2`
-  ${Theme.fonts.default1}
-  margin-bottom: 5px;
-`;
-
-const Highlight = styled.span`
-  color: ${Theme.colors.yellow};
-  font-weight: bold;
-`;
-
-const Subtitle = styled.p`
-  ${Theme.fonts.default2}
-  color: ${Theme.colors.gray1};
+  margin-bottom: 40px;
 `;
 
 const ItemsWrapper = styled.div`
@@ -101,15 +71,4 @@ const ItemsWrapper = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`;
-
-const MoreButton = styled.button`
-  ${Theme.fonts.default0}
-  padding: 10px 13px;
-  background-color: ${Theme.colors.white};
-  color: ${Theme.colors.Black1};
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  cursor: pointer;
-  align-self: flex-start;
 `;

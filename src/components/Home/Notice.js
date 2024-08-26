@@ -24,24 +24,27 @@ const NoticeContainer = styled.div`
   background-color: #fff;
   border: 0.5px solid #ccc;
   border-radius: 6px;
-  padding: 20px 20px;
-  margin: 0 20px 20px 20px;
+  padding: 25px 20px;
 `;
 
 const NoticeTag = styled.div`
   background-color: #000;
   color: #fff;
-  padding: 5px 10px;
+  padding: 5px 8px;
   border-radius: 4px;
-  font-size: 10px;
+  font-style: normal;
   font-weight: 800;
+  font-size: 10px;
+  line-height: 11px;
 `;
 
 const NoticeText = styled.div`
   flex: 1;
-  margin-left: 20px;
+  margin-left: 12px;
+  font-style: normal;
+  font-weight: 400;
   font-size: 14px;
-  color: #000;
+  line-height: 15px;
 `;
 
 const Icons = styled.div`

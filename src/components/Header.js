@@ -46,8 +46,6 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 20px 10px;
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
   margin-top: 20px;
 `;
 
