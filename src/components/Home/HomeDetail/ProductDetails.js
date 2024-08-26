@@ -66,7 +66,7 @@ const ProductDetails = () => {
         </MaterialInfo>
       </Section>
 
-      <Section>
+      <DetailSection>
         <Title>제품상세 제공고시</Title>
         <DetailInfo>
           {productDetails.map((item, index) => (
@@ -86,18 +86,20 @@ const ProductDetails = () => {
             </InfoRow>
           ))}
         </DetailInfo>
-      </Section>
+      </DetailSection>
     </Container>
   );
 };
 
 const Container = styled.div`
   position: relative;
-  padding: 20px;
 `;
 
 const Section = styled.div`
   margin-bottom: 40px;
+`;
+const DetailSection = styled.div`
+  margin-bottom: 140px;
 `;
 
 const Title = styled.div`
@@ -114,6 +116,7 @@ const MaterialRow = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+
   border: 1px solid #dddddd;
   padding: 10px;
 `;
@@ -125,12 +128,13 @@ const MaterialLabel = styled.div`
   font-size: 12px;
   color: #000000;
   text-align: center;
-  margin-right: 10px;
+  margin-right: 20px;
 `;
 
 const MaterialValues = styled.div`
   display: flex;
   gap: 10px;
+  width: 100%;
 `;
 
 const MaterialValue = styled.div`
@@ -145,6 +149,7 @@ const MaterialValue = styled.div`
 
 const DetailInfo = styled.div`
   background: #ffffff;
+  margin-bottom: 40px;
 `;
 
 const InfoRow = styled.div`
@@ -162,7 +167,7 @@ const Label = styled.div`
   font-size: 12px;
   color: #000000;
   text-align: center;
-  margin-right: 10px;
+  margin-right: 20px;
 `;
 
 const Value = styled.div`

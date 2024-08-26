@@ -41,7 +41,6 @@ export default PaymentMethod;
 
 const PaymentMethodContainer = styled.div`
   margin-bottom: 24px;
-  padding: 10px;
 `;
 
 const PaymentMethodText = styled.div`

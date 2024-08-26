@@ -60,7 +60,7 @@ const HomeDetail = () => {
 
   const item = {
     image: images[currentImageIndex],
-    brand: 'SANDRO',
+    brand: '산드로(SANDRO)',
     description: '언발 플레어 미니 원피스',
     originalPrice: 760000,
     discountPrice: 608000,
@@ -78,25 +78,27 @@ const HomeDetail = () => {
   return (
     <DetailContainer>
       <Header />
-      <ImageSlider
-        images={images}
-        currentImageIndex={currentImageIndex}
-        handleSwipeLeft={handleSwipeLeft}
-        handleSwipeRight={handleSwipeRight}
-        handleMouseDown={handleMouseDown}
-      />
-      <ProductInfo item={item} />
-      <PaymentMethod />
-      <ProductOptions
-        selectedSize={selectedSize}
-        setSelectedSize={setSelectedSize}
-        selectedColor={selectedColor}
-        setSelectedColor={setSelectedColor}
-      />
-      <PriceTrendChart data={priceHistory} />
-      <SizeInfo />
-      <MaterialInfo />
-      <ProductDetails />
+      <ContentContainer>
+        <ImageSlider
+          images={images}
+          currentImageIndex={currentImageIndex}
+          handleSwipeLeft={handleSwipeLeft}
+          handleSwipeRight={handleSwipeRight}
+          handleMouseDown={handleMouseDown}
+        />
+        <ProductInfo item={item} />
+        <PaymentMethod />
+        <ProductOptions
+          selectedSize={selectedSize}
+          setSelectedSize={setSelectedSize}
+          selectedColor={selectedColor}
+          setSelectedColor={setSelectedColor}
+        />
+        <PriceTrendChart data={priceHistory} />
+        <SizeInfo />
+        <MaterialInfo />
+        <ProductDetails />
+      </ContentContainer>
       <BottomBar />
     </DetailContainer>
   );
@@ -112,4 +114,8 @@ const DetailContainer = styled.div`
   max-width: 600px;
   margin: 0 auto;
   padding-bottom: 80px;
+`;
+
+const ContentContainer = styled.div`
+  padding: 0 27px;
 `;

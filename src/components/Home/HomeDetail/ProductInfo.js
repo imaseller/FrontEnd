@@ -1,20 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
 import Theme from '../../../styles/Theme';
+import AddTekImage from '../../../img/Home/HomeDetail/AddTek.svg';
 
 const ProductInfo = ({ item }) => {
   return (
     <InfoContainer>
-      <CategoryText>패션 &gt; 브랜드 &gt; {item.brand}</CategoryText>
-      <BrandText>{item.brand}</BrandText>
-      <DescriptionText>{item.description}</DescriptionText>
-      <PriceContainer>
-        <OriginalPrice>{item.originalPrice.toLocaleString()}원</OriginalPrice>
-        <Discount>
-          <DiscountPercent>{item.discountPercent}%</DiscountPercent>
-          <DiscountPrice>{item.discountPrice.toLocaleString()}원</DiscountPrice>
-        </Discount>
-      </PriceContainer>
+      <CategoryText>
+        패션 &gt; 브랜드 &gt; <BrandText>{item.brand}</BrandText>
+      </CategoryText>
+
+      <ContentContainer>
+        <TextGroup>
+          <DescriptionText>{item.description}</DescriptionText>
+          <PriceContainer>
+            <OriginalPrice>
+              {item.originalPrice.toLocaleString()}원
+            </OriginalPrice>
+            <DiscountRow>
+              <DiscountPercent>{item.discountPercent}%</DiscountPercent>
+              <DiscountPrice>
+                {item.discountPrice.toLocaleString()}원
+              </DiscountPrice>
+            </DiscountRow>
+          </PriceContainer>
+        </TextGroup>
+        <TekImageContainer>
+          <TekImage src={AddTekImage} alt='Tek 추가 이미지' />
+        </TekImageContainer>
+      </ContentContainer>
     </InfoContainer>
   );
 };
@@ -22,52 +36,94 @@ const ProductInfo = ({ item }) => {
 export default ProductInfo;
 
 const InfoContainer = styled.div`
-  padding: 0 16px;
   width: 100%;
 `;
 
 const CategoryText = styled.p`
-  font-size: 12px;
   color: ${Theme.colors.gray2};
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 11px;
+  margin-top: 20px;
 `;
 
-const BrandText = styled.h2`
-  font-size: 18px;
-  margin: 8px 0;
+const BrandText = styled.span`
+  color: ${Theme.colors.black};
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 11px;
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+`;
+
+const TextGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+const TekImageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const TekImage = styled.img`
+  width: 80px;
+  height: 80px;
 `;
 
 const DescriptionText = styled.p`
-  font-size: 16px;
+  margin: 8px 0;
   color: ${Theme.colors.black};
-  margin-bottom: 16px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
 `;
 
 const PriceContainer = styled.div`
   display: flex;
-  align-items: baseline;
+  flex-direction: column;
   margin-bottom: 16px;
+  margin-top: 20px;
 `;
 
 const OriginalPrice = styled.span`
-  font-size: 14px;
-  color: ${Theme.colors.gray1};
+  color: ${Theme.colors.gray2};
   text-decoration: line-through;
   margin-right: 8px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 13px;
 `;
 
-const Discount = styled.div`
+const DiscountRow = styled.div`
   display: flex;
   align-items: baseline;
+  margin-top: 10px;
 `;
 
 const DiscountPercent = styled.span`
-  font-size: 14px;
   color: ${Theme.colors.yellow};
-  font-weight: bold;
-  margin-right: 8px;
+  margin-right: 10px;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 18px;
 `;
 
 const DiscountPrice = styled.span`
-  font-size: 20px;
-  font-weight: bold;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 20px;
 `;

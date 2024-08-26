@@ -43,7 +43,6 @@ const PriceTrendChart = ({ data }) => {
     <div
       style={{
         marginBottom: '8px',
-        padding: '10px',
       }}
     >
       <div

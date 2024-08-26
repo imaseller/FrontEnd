@@ -40,14 +40,15 @@ export default ProductOptions;
 const OptionsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
-  padding: 10px;
+  margin-bottom: 30px;
 
   label {
-    font-size: 14px;
-    font-weight: bold;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 11px;
     color: ${Theme.colors.black};
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 `;
 

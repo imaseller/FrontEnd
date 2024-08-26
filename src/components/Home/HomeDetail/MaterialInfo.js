@@ -63,18 +63,19 @@ export default MaterialInfo;
 
 const Container = styled.div`
   margin-top: 40px;
-  padding: 10px;
 `;
 
 const MaterialInfoContainer = styled.div`
-  margin: 10px 0;
-  padding: 40px 40px 0px 0px;
   border: 1px solid #cccccc;
+  padding: 10px 10px 0 0;
 `;
 
 const Title = styled.h3`
-  font-size: 14px;
-  font-weight: bold;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 11px;
+  margin-bottom: 10px;
 `;
 
 const InfoRow = styled.div`
@@ -108,7 +109,7 @@ const Bar = styled.div`
   background-color: rgba(255, 255, 255, 0.96);
   border: 1px solid #cccccc;
   border-radius: 2px;
-  width: 100%;
+  width: 75%;
   margin-bottom: 10px;
 `;
 
@@ -126,18 +127,21 @@ const Mark = styled.div`
 
 const Options = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 130%;
+  text-align: center;
+  width: 100%;
 `;
 
 const Option = styled.div`
-  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 11px;
   color: ${(props) => (props.isSelected ? '#FFA500' : '#999')};
   font-weight: ${(props) => (props.isSelected ? 'bold' : 'normal')};
   transition: color 0.3s ease;
-  text-align: center;
-  width: 25%;
-  min-width: 70px;
+  width: 100%;
+  min-width: 50px;
+
   &:hover {
     color: #000;
   }
