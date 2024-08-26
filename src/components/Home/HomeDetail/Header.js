@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Basket from '../../../img/Home/Basket.svg';
 import Mycloset from '../../../img/Home/Mycloset.svg';
-import BackButtonIcon from '../../../img/Home/HomeDetail/BackButton.svg';
+import BackButton from '../../../components/BackButton.js';
+
 const Header = () => {
   const handleBackClick = () => {
     window.history.back();
@@ -10,9 +11,7 @@ const Header = () => {
 
   return (
     <HeaderContainer>
-      <IconButton onClick={handleBackClick}>
-        <Icon src={BackButtonIcon} alt='뒤로 가기' />{' '}
-      </IconButton>
+      <BackButton onClick={handleBackClick} />
       <Icons>
         <Icon src={Basket} alt='장바구니' />
         <Icon src={Mycloset} alt='내 옷장' />
@@ -30,14 +29,6 @@ const HeaderContainer = styled.header`
   padding: 20px 10px;
   margin-top: 20px;
   max-width: 600px;
-`;
-
-const IconButton = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
 `;
 
 const Icons = styled.div`

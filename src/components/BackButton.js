@@ -1,33 +1,27 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import BackButtonIcon from '../img/Home/HomeDetail/BackButton.svg';
 
-const BackButton = () => {
-  const navigate = useNavigate();
-
-  return <Button onClick={() => navigate(-1)}>뒤로가기</Button>;
+const BackButton = ({ onClick }) => {
+  return (
+    <IconButton onClick={onClick}>
+      <Icon src={BackButtonIcon} alt='뒤로 가기' />
+    </IconButton>
+  );
 };
 
 export default BackButton;
 
-const Button = styled.button`
-  padding: 15px;
-  font-size: 15px;
-  margin-top: 10px;
-  color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.DarkBrown4};
+const IconButton = styled.button`
+  background: none;
   border: none;
-  border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+`;
 
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.DarkBrown5};
-    transform: translateY(-2px);
-  }
-
-  &:active {
-    background-color: ${({ theme }) => theme.colors.DarkBrown3};
-    transform: translateY(0);
-  }
+const Icon = styled.img`
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 `;

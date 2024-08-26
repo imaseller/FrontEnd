@@ -58,7 +58,9 @@ const AgreementSection = () => {
             checked={individualChecks.agree1}
             onChange={handleIndividualCheck}
           />
-          <Label htmlFor='agree1'>이용약관 동의 (필수)</Label>
+          <Label htmlFor='agree1'>
+            이용약관 동의 <RequiredText>(필수)</RequiredText>
+          </Label>
         </CheckboxWrapper>
         <InputWrapper>
           <DescriptionWrapper>
@@ -76,7 +78,9 @@ const AgreementSection = () => {
             checked={individualChecks.agree2}
             onChange={handleIndividualCheck}
           />
-          <Label htmlFor='agree2'>개인정보수집 동의 (필수)</Label>
+          <Label htmlFor='agree2'>
+            개인정보수집 동의 <RequiredText>(필수)</RequiredText>
+          </Label>
         </CheckboxWrapper>
         <InputWrapper>
           <DescriptionWrapper>
@@ -123,7 +127,7 @@ const CheckboxWrapper = styled.div`
 
 const ContentContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.lightgray};
-  border: 1px solid ${({ theme }) => theme.colors.gray};
+  border: 1px solid ${({ theme }) => theme.colors.gray0};
   padding: 20px;
   width: 100%;
 `;
@@ -135,7 +139,7 @@ const InputWrapper = styled.div`
   align-items: center;
   margin-bottom: 20px;
   background-color: ${({ theme }) => theme.colors.white};
-  border: 1px solid ${({ theme }) => theme.colors.gray};
+  border: 1px solid ${({ theme }) => theme.colors.gray3};
   padding: 10px;
   position: relative;
 `;
@@ -153,6 +157,10 @@ const Label = styled.label`
   color: ${({ theme }) => theme.colors.black};
 `;
 
+const RequiredText = styled.span`
+  color: ${({ theme }) => theme.colors.gray2};
+`;
+
 const ViewDetailsButton = styled.button`
   width: 69px;
   height: 34px;
@@ -161,7 +169,12 @@ const ViewDetailsButton = styled.button`
   border: none;
   cursor: pointer;
   font-size: 12px;
-  border-radius: 10px;
+  border-radius: 5px;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 13px;
+  text-align: center;
 `;
 
 const DescriptionWrapper = styled.div`
@@ -173,8 +186,11 @@ const DescriptionWrapper = styled.div`
 
 const Description = styled.p`
   color: ${({ theme }) => theme.colors.gray};
-  ${({ theme }) => theme.fonts.helperText};
   margin: 0;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 13px;
 `;
 
 const Modal = styled.div`

@@ -4,7 +4,12 @@ import styled from 'styled-components';
 const InputField = React.forwardRef(
   ({ label, id, type, error, ...rest }, ref) => (
     <InputContainer>
-      <Label htmlFor={id}>{label}</Label>
+      <Label htmlFor={id}>
+        {label.split('(')[0]}
+        {label.includes('(') && (
+          <GrayText>{`(${label.split('(')[1]}`}</GrayText>
+        )}
+      </Label>
       <Input type={type} id={id} ref={ref} {...rest} />
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
     </InputContainer>
@@ -20,33 +25,31 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-width: 300px;
 `;
 
 const Label = styled.label`
   margin-bottom: 10px;
-  font-weight: bold;
-  font-size: 16px;
-  color: ${({ theme }) => theme.colors.DarkBrown3};
+  color: ${({ theme }) => theme.colors.black};
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 11px;
+`;
+
+const GrayText = styled.span`
+  color: ${({ theme }) => theme.colors.gray1};
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 11px;
 `;
 
 const Input = styled.input`
-  padding: 15px;
   font-size: 16px;
-  width: 91%;
-  border: 1px solid ${({ theme }) => theme.colors.gray};
+  border: 1px solid ${({ theme }) => theme.colors.gray1};
   border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  &:focus {
-    border-color: ${({ theme }) => theme.colors.pink4};
-    box-shadow: 0 0 5px ${({ theme }) => theme.colors.pink4};
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: 14px;
-    padding: 10px;
-  }
+  padding: 0 11px;
+  height: 57px;
 `;
 
 const ErrorMessage = styled.span`

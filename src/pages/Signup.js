@@ -1,38 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import BackButton from '../components/BackButton';
 import Button from '../components/Button01';
 import InputField from '../components/InputField.js';
 import AgreementSection from '../components/Signup/AgreementSection.js';
-import BirthdateSection from '../components/Signup/BirthdateSection';
 import FavoriteBrandsSection from '../components/Signup/FavoriteBrandsSection';
 import FavoriteColorSection from '../components/Signup/FavoriteColorSection';
 import SizeSelectionSection from '../components/Signup/SizeSelectionSection';
 import Theme from '../styles/Theme';
+
 const Signup = () => {
+  const [domain, setDomain] = useState('naver.com');
+  const [birthYear, setBirthYear] = useState('2000');
+
+  const handleBackClick = () => {
+    window.history.back();
+  };
+
+  const handleDomainChange = (e) => {
+    setDomain(e.target.value);
+  };
+
+  const handleBirthYearChange = (e) => {
+    setBirthYear(e.target.value);
+  };
+
   return (
     <ThemeProvider theme={Theme}>
-      <Container>
-        <BackButton />
+      <Header>
+        <BackButtonWrapper>
+          <BackButton onClick={handleBackClick} />
+        </BackButtonWrapper>
         <Title>회원가입</Title>
+        <Placeholder />
+      </Header>
+      <Container>
         <Form>
           <AgreementSection />
+          <EmailRow>
+            <InputField
+              label='계정 (이메일)'
+              id='email'
+              type='text'
+              placeholder='이메일을 입력하세요'
+              required
+            />
+            <AtSymbol>@</AtSymbol>
+            <InputField
+              label='도메인 선택'
+              id='domain'
+              as='select'
+              value={domain}
+              onChange={handleDomainChange}
+              required
+            >
+              <option value='naver.com'>naver.com</option>
+              <option value='google.com'>google.com</option>
+              <option value='kakao.com'>kakao.com</option>
+            </InputField>
+          </EmailRow>
           <InputField
-            label='계정(이메일)'
-            id='email'
-            type='email'
-            placeholder='이메일을 입력하세요'
-            required
-          />
-          <InputField
-            label='닉네임'
-            id='nickname'
-            type='text'
-            placeholder='닉네임을 입력하세요'
-            required
-          />
-          <InputField
-            label='비밀번호'
+            label='비밀번호(숫자, 문자를 조합하여 8자리 이상 입력하세요)'
             id='password'
             type='password'
             placeholder='비밀번호를 입력하세요'
@@ -45,7 +73,43 @@ const Signup = () => {
             placeholder='비밀번호를 한번 더 입력하세요'
             required
           />
-          <BirthdateSection />
+          <InputField
+            label='닉네임(8글자 이내)'
+            id='nickname'
+            type='text'
+            placeholder='닉네임을 입력하세요'
+            required
+          />
+          <InputField
+            label='인스타'
+            id='instar'
+            type='text'
+            placeholder='인스타그램 아이디를 입력하세요'
+            required
+          />
+          <NameAndBirthYearRow>
+            <InputField
+              label='이름'
+              id='name'
+              type='text'
+              placeholder='이름을 입력하세요'
+              required
+            />
+            <InputField
+              label='태어난 해'
+              id='birthYear'
+              as='select'
+              value={birthYear}
+              onChange={handleBirthYearChange}
+              required
+            >
+              {Array.from({ length: 100 }, (_, i) => 2023 - i).map((year) => (
+                <option key={year} value={year}>
+                  {year}년
+                </option>
+              ))}
+            </InputField>
+          </NameAndBirthYearRow>
           <FavoriteColorSection />
           <FavoriteBrandsSection />
           <SizeSelectionSection />
@@ -59,32 +123,60 @@ const Signup = () => {
 export default Signup;
 
 const Container = styled.div`
-  width: 100vw;
+  width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  padding: 20px;
-  border: 1px solid ${({ theme }) => theme.colors.gray};
+  padding: 0 27px;
+`;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    padding: 10px;
-  }
+const Header = styled.header`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 105px;
+`;
+
+const BackButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0 27px;
+`;
+
+const Placeholder = styled.div`
+  width: 24px;
+  padding: 0 37px;
 `;
 
 const Title = styled.h1`
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: 24px;
-  }
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 22px;
+  flex: 1;
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+  gap: 15px;
+`;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    gap: 15px;
-  }
+const EmailRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+const AtSymbol = styled.span`
+  font-size: 16px;
+  font-weight: bold;
+`;
+
+const NameAndBirthYearRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
 `;

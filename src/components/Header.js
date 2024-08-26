@@ -48,7 +48,6 @@ const HeaderContainer = styled.header`
   padding: 20px 10px;
   margin-top: 20px;
 `;
-
 const Profile = styled.div`
   display: flex;
   align-items: center;
