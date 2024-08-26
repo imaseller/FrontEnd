@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import Theme from '../../../styles/Theme';
 const ProductDetails = () => {
   const materialInfo = [
     {
@@ -65,7 +65,7 @@ const ProductDetails = () => {
           ))}
         </MaterialInfo>
       </Section>
-
+      <LinContainer></LinContainer>
       <DetailSection>
         <Title>제품상세 제공고시</Title>
         <DetailInfo>
@@ -103,10 +103,10 @@ const DetailSection = styled.div`
 `;
 
 const Title = styled.div`
-  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
   font-weight: 700;
-  font-size: 14px;
-  color: #000000;
+  font-size: 10px;
+  line-height: 11px;
   margin-bottom: 10px;
 `;
 
@@ -123,7 +123,6 @@ const MaterialRow = styled.div`
 
 const MaterialLabel = styled.div`
   width: 50px;
-  font-family: 'NanumSquare Neo OTF';
   font-weight: 800;
   font-size: 12px;
   color: #000000;
@@ -140,10 +139,10 @@ const MaterialValues = styled.div`
 const MaterialValue = styled.div`
   background: ${(props) => props.bgColor || '#AAAAAA'};
   border-radius: 2px;
-  padding: 5px 10px;
-  font-family: 'NanumSquare Neo OTF';
+  padding: 4px 4px;
   font-weight: 700;
   font-size: 10px;
+  line-height: 11px;
   color: #ffffff;
 `;
 
@@ -185,11 +184,16 @@ const SeasonValues = styled.div`
 const SeasonValue = styled.div`
   background: ${(props) => props.bgColor || '#AAAAAA'};
   border-radius: 2px;
-  padding: 5px 10px;
-  font-family: 'NanumSquare Neo OTF';
+  padding: 4px 4px;
+  font-style: normal;
   font-weight: 700;
   font-size: 10px;
+  line-height: 11px;
   color: #ffffff;
+`;
+const LinContainer = styled.div`
+  border: 1px solid ${Theme.colors.gray0};
+  margin: 30px 0;
 `;
 
 export default ProductDetails;

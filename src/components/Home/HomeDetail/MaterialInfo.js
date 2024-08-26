@@ -66,7 +66,7 @@ const Container = styled.div`
 `;
 
 const MaterialInfoContainer = styled.div`
-  border: 1px solid #cccccc;
+  border: 1px solid ${Theme.colors.gray1};
   padding: 10px 10px 0 0;
 `;
 
@@ -79,35 +79,33 @@ const Title = styled.h3`
 `;
 
 const InfoRow = styled.div`
-  margin-bottom: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin: 10px 0;
 `;
 
 const Label = styled.div`
-  font-size: 14px;
-  font-weight: bold;
-  width: 100%;
+  font-weight: 800;
+  font-size: 12px;
   text-align: center;
-  margin-bottom: 20px;
+  width: 100%;
   max-width: 100px;
 `;
 
 const BarContainer = styled.div`
   display: flex;
-
   flex-direction: column;
   width: calc(100% - 100px);
   align-items: center;
+  margin-top: 3px;
 `;
 
 const Bar = styled.div`
   position: relative;
   height: 4px;
-  background-color: rgba(255, 255, 255, 0.96);
-  border: 1px solid #cccccc;
+  border: 1px solid ${Theme.colors.gray1};
   border-radius: 2px;
   width: 75%;
   margin-bottom: 10px;
@@ -136,7 +134,7 @@ const Option = styled.div`
   font-weight: 700;
   font-size: 10px;
   line-height: 11px;
-  color: ${(props) => (props.isSelected ? '#FFA500' : '#999')};
+  color: ${(props) => (props.isSelected ? '#FFA500' : '#black')};
   font-weight: ${(props) => (props.isSelected ? 'bold' : 'normal')};
   transition: color 0.3s ease;
   width: 100%;

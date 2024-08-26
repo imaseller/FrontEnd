@@ -50,10 +50,14 @@ const SizeInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
-  border: 1px solid #dddddd;
-  background-color: rgba(255, 255, 255, 0.96);
   width: 100%;
+  label {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 11px;
+    color: ${Theme.colors.black};
+  }
 `;
 
 const TableRow = styled.div`
@@ -61,13 +65,11 @@ const TableRow = styled.div`
   justify-content: space-between;
   width: 100%;
   padding: 8px 0;
-  border: 1px solid #dddddd;
 `;
 
 const TableHeader = styled.div`
   font-weight: 900;
   font-size: 12px;
-  color: #000000;
   background-color: ${Theme.colors.gray1};
   flex: 1;
   text-align: center;
@@ -77,7 +79,7 @@ const TableHeader = styled.div`
 const TableCell = styled.div`
   font-weight: 700;
   font-size: 12px;
-  color: #000000;
+  border: 1px solid ${Theme.colors.gray1};
   flex: 1;
   text-align: center;
   padding: 8px 0;

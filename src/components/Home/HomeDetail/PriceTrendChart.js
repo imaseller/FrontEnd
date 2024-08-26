@@ -52,8 +52,9 @@ const PriceTrendChart = ({ data }) => {
       >
         <label
           style={{
-            fontSize: '14px',
-            fontWeight: 'bold',
+            fontSize: '10px',
+            fontWeight: '700',
+            marginBottom: '10px',
             display: 'block',
           }}
         >
@@ -62,9 +63,8 @@ const PriceTrendChart = ({ data }) => {
       </div>
       <div
         style={{
-          border: '2px solid #cccccc',
+          border: '1px solid #dddddd',
           padding: '20px',
-          borderRadius: '5px',
         }}
       >
         <ResponsiveContainer width='100%' height={180}>
@@ -91,8 +91,8 @@ const PriceTrendChart = ({ data }) => {
               type='monotone'
               dataKey='price'
               stroke='#f5a623'
-              strokeWidth={3}
-              dot={{ stroke: '#f5a623', strokeWidth: 3, r: 6 }}
+              strokeWidth={2}
+              dot={{ stroke: '#f5a623', strokeWidth: 2, r: 6 }}
               activeDot={{ r: 10 }}
             >
               <LabelList dataKey='price' content={renderCustomLabel} />

@@ -27,8 +27,7 @@ const BottomBarContainer = styled.div`
   align-items: center;
   padding: 10px;
   background-color: #eeeeee;
-  border-top: 1px solid #dddddd;
-  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
 `;
 
 const CartButton = styled.button`

@@ -78,26 +78,32 @@ const HomeDetail = () => {
   return (
     <DetailContainer>
       <Header />
+      <ImageSlider
+        images={images}
+        currentImageIndex={currentImageIndex}
+        handleSwipeLeft={handleSwipeLeft}
+        handleSwipeRight={handleSwipeRight}
+        handleMouseDown={handleMouseDown}
+      />
       <ContentContainer>
-        <ImageSlider
-          images={images}
-          currentImageIndex={currentImageIndex}
-          handleSwipeLeft={handleSwipeLeft}
-          handleSwipeRight={handleSwipeRight}
-          handleMouseDown={handleMouseDown}
-        />
         <ProductInfo item={item} />
         <PaymentMethod />
+        <LinContainer></LinContainer>
         <ProductOptions
           selectedSize={selectedSize}
           setSelectedSize={setSelectedSize}
           selectedColor={selectedColor}
           setSelectedColor={setSelectedColor}
         />
+        <LinContainer></LinContainer>
         <PriceTrendChart data={priceHistory} />
+        <LinContainer></LinContainer>
         <SizeInfo />
+        <LinContainer></LinContainer>
         <MaterialInfo />
+        <LinContainer></LinContainer>
         <ProductDetails />
+        <LinContainer></LinContainer>
       </ContentContainer>
       <BottomBar />
     </DetailContainer>
@@ -118,4 +124,8 @@ const DetailContainer = styled.div`
 
 const ContentContainer = styled.div`
   padding: 0 27px;
+`;
+const LinContainer = styled.div`
+  border: 1px solid ${Theme.colors.gray0};
+  margin: 30px 0;
 `;

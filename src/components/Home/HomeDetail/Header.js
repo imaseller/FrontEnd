@@ -28,9 +28,8 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 20px 10px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #ddd;
   margin-top: 20px;
+  max-width: 600px;
 `;
 
 const IconButton = styled.button`

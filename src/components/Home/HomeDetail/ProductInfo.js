@@ -40,18 +40,25 @@ const InfoContainer = styled.div`
 `;
 
 const CategoryText = styled.p`
-  color: ${Theme.colors.gray2};
+  color: ${Theme.colors.black};
   font-style: normal;
   font-weight: 400;
   font-size: 10px;
   line-height: 11px;
   margin-top: 20px;
+
+  span {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 11px;
+  }
 `;
 
 const BrandText = styled.span`
   color: ${Theme.colors.black};
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 10px;
   line-height: 11px;
 `;
