@@ -20,6 +20,7 @@ const StyledButton = styled.button`
   font-size: 12px;
   line-height: 13px;
   text-align: center;
+  margin-right: 11px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 

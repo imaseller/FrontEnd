@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import Button02 from '../components/Button02';
 
 const InputField = React.forwardRef(
-  ({ label, id, type, error, ...rest }, ref) => (
+  ({ label, id, type, error, buttonLabel, onButtonClick, ...rest }, ref) => (
     <InputContainer>
       <Label htmlFor={id}>
         {label.split('(')[0]}
@@ -10,7 +11,12 @@ const InputField = React.forwardRef(
           <GrayText>{`(${label.split('(')[1]}`}</GrayText>
         )}
       </Label>
-      <Input type={type} id={id} ref={ref} {...rest} />
+      <InputWrapper>
+        <Input type={type} id={id} ref={ref} {...rest} />
+        {buttonLabel && (
+          <StyledButton onClick={onButtonClick}>{buttonLabel}</StyledButton>
+        )}
+      </InputWrapper>
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
     </InputContainer>
   )
@@ -44,12 +50,25 @@ const GrayText = styled.span`
   line-height: 14px;
 `;
 
-const Input = styled.input`
-  font-size: 16px;
+const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
   border: 1px solid ${({ theme }) => theme.colors.gray1};
   border-radius: 4px;
-  padding: 0 11px;
   height: 57px;
+  overflow: hidden;
+`;
+
+const Input = styled.input`
+  font-size: 16px;
+  padding: 0 11px;
+  border: none;
+  flex: 1;
+  height: 100%;
+`;
+
+const StyledButton = styled(Button02)`
+  border-left: 1px solid ${({ theme }) => theme.colors.gray1};
 `;
 
 const ErrorMessage = styled.span`

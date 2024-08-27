@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import BackButton from '../components/BackButton';
 import Button from '../components/Button01';
-import Button02 from '../components/Button02';
 import InputField from '../components/InputField.js';
 import AgreementSection from '../components/Signup/AgreementSection.js';
 import FavoriteBrandsSection from '../components/Signup/FavoriteBrandsSection';
@@ -14,7 +13,7 @@ const Signup = () => {
   const [domain, setDomain] = useState('naver.com');
   const [birthYear, setBirthYear] = useState('2000');
   const [gender, setGender] = useState('여성');
-  const [selectedGenderButton, setSelectedGenderButton] = useState(null);
+  const [selectedGenderButton, setSelectedGenderButton] = useState('여성');
 
   const handleBackClick = () => {
     window.history.back();
@@ -38,6 +37,18 @@ const Signup = () => {
       .replace(/[^0-9]/g, '')
       .replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
     e.target.value = value;
+  };
+
+  const handleNicknameCheck = () => {
+    console.log('닉네임 중복 확인 클릭');
+  };
+
+  const handleInstagramCheck = () => {
+    console.log('인스타그램 아이디 확인 클릭');
+  };
+
+  const handleVerification = () => {
+    console.log('본인 인증 클릭');
   };
 
   return (
@@ -94,6 +105,8 @@ const Signup = () => {
             type='text'
             placeholder='닉네임을 입력하세요'
             required
+            buttonLabel='중복확인'
+            onButtonClick={handleNicknameCheck}
           />
           <InputField
             label='인스타'
@@ -101,6 +114,8 @@ const Signup = () => {
             type='text'
             placeholder='인스타그램 아이디를 입력하세요'
             required
+            buttonLabel='아이디 확인'
+            onButtonClick={handleInstagramCheck}
           />
           <NameAndBirthYearRow>
             <InputField
@@ -157,10 +172,9 @@ const Signup = () => {
                 placeholder='전화번호를 입력하세요'
                 required
                 onChange={handlePhoneNumberChange}
+                buttonLabel='인증발송'
+                onButtonClick={handleVerification}
               />
-              <InlineButton>
-                <Button02>인증발송</Button02>
-              </InlineButton>
             </PhoneInputWrapper>
           </PhoneRow>
 
@@ -259,10 +273,10 @@ const GenderRow = styled.div`
 
 const GenderButton = styled.button`
   flex: 1;
-  border: ${(props) => (props.isSelected ? '2px solid #f6ae24' : 'none')};
+  border: ${({ isSelected }) => (isSelected ? '2px solid #f6ae24' : 'none')};
   border-radius: 10px;
-  background-color: ${(props) => (props.selected ? '#FFFFFF' : '#EEEEEE')};
-  color: ${(props) => (props.selected ? '#000000' : '#999999')};
+  background-color: ${({ selected }) => (selected ? '#FFFFFF' : '#EEEEEE')};
+  color: ${({ selected }) => (selected ? '#000000' : '#999999')};
   cursor: pointer;
   transition: background-color 0.3s ease, border 0.3s ease, color 0.3s ease;
 
@@ -288,17 +302,5 @@ const PhoneRow = styled.div`
 const PhoneInputWrapper = styled.div`
   display: flex;
   align-items: center;
-  position: relative;
   width: 100%;
-`;
-
-const InlineButton = styled.div`
-  position: absolute;
-  right: 11px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
 `;
