@@ -54,7 +54,7 @@ const Label = styled.label`
 `;
 
 const GrayText = styled.span`
-  padding-left: 3px;
+  padding-left: 10px;
   color: ${({ theme }) => theme.colors.gray2};
   font-style: normal;
   font-weight: 400;
