@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import Button02 from '../components/Button02';
 
 const InputField = React.forwardRef(
-  ({ label, id, type, error, buttonLabel, onButtonClick, ...rest }, ref) => (
+  (
+    { label, id, type, error, buttonLabel, onButtonClick, prefix, ...rest },
+    ref
+  ) => (
     <InputContainer>
       <Label htmlFor={id}>
         {label.split('(')[0]}
@@ -12,7 +15,15 @@ const InputField = React.forwardRef(
         )}
       </Label>
       <InputWrapper>
-        <Input type={type} id={id} ref={ref} {...rest} />
+        {prefix && <Prefix>{prefix}</Prefix>}
+        <Input
+          type={type}
+          id={id}
+          ref={ref}
+          hasPrefix={!!prefix}
+          padding={id === 'melpickAddress' ? '0' : '0 11px'} // Conditional padding
+          {...rest}
+        />
         {buttonLabel && (
           <StyledButton onClick={onButtonClick}>{buttonLabel}</StyledButton>
         )}
@@ -59,16 +70,27 @@ const InputWrapper = styled.div`
   overflow: hidden;
 `;
 
+const Prefix = styled.span`
+  font-size: 16px;
+  color: blue;
+  padding-left: 11px;
+  background-color: ${({ theme }) => theme.colors.white};
+  display: flex;
+  align-items: center;
+`;
+
 const Input = styled.input`
   font-size: 16px;
-  padding: 0 11px;
+  padding: ${({ padding }) => padding};
   border: none;
   flex: 1;
   height: 100%;
+  box-sizing: border-box;
 `;
 
 const StyledButton = styled(Button02)`
   border-left: 1px solid ${({ theme }) => theme.colors.gray1};
+  height: 100%;
 `;
 
 const ErrorMessage = styled.span`

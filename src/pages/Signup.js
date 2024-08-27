@@ -4,9 +4,6 @@ import BackButton from '../components/BackButton';
 import Button from '../components/Button01';
 import InputField from '../components/InputField.js';
 import AgreementSection from '../components/Signup/AgreementSection.js';
-// import FavoriteBrandsSection from '../components/Signup/FavoriteBrandsSection';
-// import FavoriteColorSection from '../components/Signup/FavoriteColorSection';
-// import SizeSelectionSection from '../components/Signup/SizeSelectionSection';
 import Theme from '../styles/Theme';
 
 const Signup = () => {
@@ -14,6 +11,10 @@ const Signup = () => {
   const [birthYear, setBirthYear] = useState('2000');
   const [gender, setGender] = useState('여성');
   const [selectedGenderButton, setSelectedGenderButton] = useState('여성');
+
+  const [region, setRegion] = useState('서울특별시');
+  const [district, setDistrict] = useState('금천구');
+  const [melpickAddress, setMelpickAddress] = useState('');
 
   const handleBackClick = () => {
     window.history.back();
@@ -51,6 +52,22 @@ const Signup = () => {
     console.log('본인 인증 클릭');
   };
 
+  const handleRegionChange = (e) => {
+    setRegion(e.target.value);
+  };
+
+  const handleDistrictChange = (e) => {
+    setDistrict(e.target.value);
+  };
+
+  const handleMelpickAddressChange = (e) => {
+    setMelpickAddress(e.target.value);
+  };
+
+  const handleCheckClick = () => {
+    console.log('멜픽 주소 확인:', melpickAddress);
+  };
+
   return (
     <ThemeProvider theme={Theme}>
       <Header>
@@ -63,6 +80,7 @@ const Signup = () => {
       <Container>
         <Form>
           <AgreementSection />
+
           <EmailRow>
             <InputField
               label='계정 (이메일)'
@@ -85,6 +103,7 @@ const Signup = () => {
               <option value='kakao.com'>kakao.com</option>
             </InputField>
           </EmailRow>
+
           <InputField
             label='비밀번호(숫자, 문자를 조합하여 8자리 이상 입력하세요)'
             id='password'
@@ -92,6 +111,7 @@ const Signup = () => {
             placeholder='비밀번호를 입력하세요'
             required
           />
+
           <InputField
             label='비밀번호 확인'
             id='passwordConfirm'
@@ -99,6 +119,7 @@ const Signup = () => {
             placeholder='비밀번호를 한번 더 입력하세요'
             required
           />
+
           <InputField
             label='닉네임(8글자 이내)'
             id='nickname'
@@ -108,6 +129,7 @@ const Signup = () => {
             buttonLabel='중복확인'
             onButtonClick={handleNicknameCheck}
           />
+
           <InputField
             label='인스타'
             id='instar'
@@ -117,7 +139,8 @@ const Signup = () => {
             buttonLabel='아이디 확인'
             onButtonClick={handleInstagramCheck}
           />
-          <NameAndBirthYearRow>
+
+          <RowLabel>
             <InputField
               label='이름'
               id='name'
@@ -139,7 +162,7 @@ const Signup = () => {
                 </option>
               ))}
             </InputField>
-          </NameAndBirthYearRow>
+          </RowLabel>
 
           <GenderField>
             <InputFieldLabel>성별</InputFieldLabel>
@@ -177,10 +200,41 @@ const Signup = () => {
               />
             </PhoneInputWrapper>
           </PhoneRow>
-          {/* 
-          <FavoriteColorSection />
-          <FavoriteBrandsSection />
-          <SizeSelectionSection /> */}
+          <RowLabel>
+            <InputField
+              label='서비스 지역설정 *'
+              id='region'
+              as='select'
+              value={region}
+              onChange={handleRegionChange}
+              required
+            >
+              <option value='서울특별시'>서울특별시</option>
+            </InputField>
+
+            <InputField
+              label='서비스 지역구 선택 *'
+              id='district'
+              as='select'
+              value={district}
+              onChange={handleDistrictChange}
+              required
+            >
+              <option value='금천구'>금천구</option>
+            </InputField>
+          </RowLabel>
+          <InputField
+            label='멜픽 주소설정 *'
+            id='melpickAddress'
+            type='text'
+            placeholder='주소를 입력하세요'
+            value={melpickAddress}
+            onChange={handleMelpickAddressChange}
+            buttonLabel='체크'
+            onButtonClick={handleCheckClick}
+            prefix='melpick.com/'
+          />
+
           <Button type='submit'>회원가입</Button>
         </Form>
       </Container>
@@ -242,7 +296,7 @@ const AtSymbol = styled.span`
   font-weight: bold;
 `;
 
-const NameAndBirthYearRow = styled.div`
+const RowLabel = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
@@ -269,6 +323,7 @@ const InputFieldLabel = styled.label`
 const GenderRow = styled.div`
   display: flex;
   height: 100%;
+  justify-content: space-between;
 `;
 
 const GenderButton = styled.button`
@@ -295,12 +350,9 @@ const GenderButton = styled.button`
 
 const PhoneRow = styled.div`
   display: flex;
-  align-items: center;
   gap: 10px;
 `;
 
 const PhoneInputWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
+  flex-grow: 1;
 `;
