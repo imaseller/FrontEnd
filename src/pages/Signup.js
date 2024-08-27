@@ -230,12 +230,12 @@ const Signup = () => {
             </GenderRow>
           </GenderField>
 
-              />
           <InputField
             label='전화번호'
             id='phoneNumber'
             type='text'
             placeholder='전화번호를 입력하세요'
+            error={errors.phoneNumber}
             {...register('phoneNumber')}
             required
             maxLength={12}
