@@ -4,9 +4,9 @@ import BackButton from '../components/BackButton';
 import Button from '../components/Button01';
 import InputField from '../components/InputField.js';
 import AgreementSection from '../components/Signup/AgreementSection.js';
-import FavoriteBrandsSection from '../components/Signup/FavoriteBrandsSection';
-import FavoriteColorSection from '../components/Signup/FavoriteColorSection';
-import SizeSelectionSection from '../components/Signup/SizeSelectionSection';
+// import FavoriteBrandsSection from '../components/Signup/FavoriteBrandsSection';
+// import FavoriteColorSection from '../components/Signup/FavoriteColorSection';
+// import SizeSelectionSection from '../components/Signup/SizeSelectionSection';
 import Theme from '../styles/Theme';
 
 const Signup = () => {
@@ -177,10 +177,10 @@ const Signup = () => {
               />
             </PhoneInputWrapper>
           </PhoneRow>
-
+          {/* 
           <FavoriteColorSection />
           <FavoriteBrandsSection />
-          <SizeSelectionSection />
+          <SizeSelectionSection /> */}
           <Button type='submit'>회원가입</Button>
         </Form>
       </Container>
