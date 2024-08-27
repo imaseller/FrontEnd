@@ -71,14 +71,14 @@ const Signup = () => {
 
   return (
     <ThemeProvider theme={Theme}>
-      <Header>
-        <BackButtonWrapper>
-          <BackButton onClick={handleBackClick} />
-        </BackButtonWrapper>
-        <Title>회원가입</Title>
-        <Placeholder />
-      </Header>
       <Container>
+        <Header>
+          <BackButtonWrapper>
+            <BackButton onClick={handleBackClick} />
+          </BackButtonWrapper>
+          <Title>회원가입</Title>
+          <Placeholder />
+        </Header>
         <Form>
           <AgreementSection />
 
@@ -236,6 +236,7 @@ const Signup = () => {
             prefix='melpick.com/'
           />
         </Form>
+        <BlackContainer></BlackContainer>
         <BottomBar />
       </Container>
     </ThemeProvider>
@@ -247,7 +248,6 @@ export default Signup;
 const Container = styled.div`
   width: 100%;
   max-width: 600px;
-  min-height: 1600px;
   margin: 0 auto;
   padding: 0 27px;
 `;
@@ -262,8 +262,6 @@ const Header = styled.header`
 
 const BackButtonWrapper = styled.div`
   display: flex;
-  align-items: center;
-  padding: 0 27px;
 `;
 
 const Placeholder = styled.div`
@@ -356,4 +354,8 @@ const PhoneRow = styled.div`
 
 const PhoneInputWrapper = styled.div`
   flex-grow: 1;
+`;
+
+const BlackContainer = styled.div`
+  margin-bottom: 100px;
 `;
