@@ -235,8 +235,6 @@ const Signup = () => {
             onButtonClick={handleCheckClick}
             prefix='melpick.com/'
           />
-
-          <Button type='submit'>회원가입</Button>
         </Form>
         <BottomBar />
       </Container>
@@ -249,6 +247,7 @@ export default Signup;
 const Container = styled.div`
   width: 100%;
   max-width: 600px;
+  min-height: 1600px;
   margin: 0 auto;
   padding: 0 27px;
 `;
