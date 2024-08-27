@@ -5,6 +5,7 @@ import Button from '../components/Button01';
 import InputField from '../components/InputField.js';
 import AgreementSection from '../components/Signup/AgreementSection.js';
 import Theme from '../styles/Theme';
+import BottomBar from '../components/Signup/BottomBar.js';
 
 const Signup = () => {
   const [domain, setDomain] = useState('naver.com');
@@ -237,6 +238,7 @@ const Signup = () => {
 
           <Button type='submit'>회원가입</Button>
         </Form>
+        <BottomBar />
       </Container>
     </ThemeProvider>
   );
