@@ -224,7 +224,7 @@ const Signup = () => {
             </InputField>
           </RowLabel>
           <InputField
-            label='멜픽 주소설정 *'
+            label='멜픽 주소설정(영문, 숫자 12글자 이내)'
             id='melpickAddress'
             type='text'
             placeholder='주소를 입력하세요'

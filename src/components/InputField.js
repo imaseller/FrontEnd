@@ -21,7 +21,7 @@ const InputField = React.forwardRef(
           id={id}
           ref={ref}
           hasPrefix={!!prefix}
-          padding={id === 'melpickAddress' ? '0' : '0 11px'} // Conditional padding
+          padding={id === 'melpickAddress' ? '0' : '0 11px'}
           {...rest}
         />
         {buttonLabel && (
@@ -54,10 +54,11 @@ const Label = styled.label`
 `;
 
 const GrayText = styled.span`
-  color: ${({ theme }) => theme.colors.gray1};
+  padding-left: 3px;
+  color: ${({ theme }) => theme.colors.gray2};
   font-style: normal;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 10px;
   line-height: 14px;
 `;
 

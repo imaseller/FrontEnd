@@ -143,13 +143,31 @@ const InputWrapper = styled.div`
   padding: 10px;
   position: relative;
 `;
-
 const Checkbox = styled.input`
   margin-bottom: 5px;
   width: 20px;
   height: 20px;
   margin-right: 10px;
-  accent-color: ${({ theme }) => theme.colors.pink5};
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => theme.colors.gray2};
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:checked {
+    background-color: ${({ theme }) => theme.colors.white};
+    border-color: ${({ theme }) => theme.colors.gray1};
+  }
+
+  &:checked::before {
+    content: '✔';
+    color: ${({ theme }) => theme.colors.yellow};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const Label = styled.label`
@@ -217,7 +235,7 @@ const ModalContent = styled.div`
 const CloseButton = styled.button`
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: ${({ theme }) => theme.colors.pink5};
+  background-color: ${({ theme }) => theme.colors.yellow};
   border: none;
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
