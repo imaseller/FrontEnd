@@ -5,7 +5,11 @@ export const schemaSignup = yup.object().shape({
     .string()
     .required('사용하실 이메일을 입력해주세요.')
     .email('이메일 형식에 맞지 않습니다.')
-    .max(20, '이메일은 최대 20자리로 입력해주세요.'),
+    .max(20, '이메일은 최대 20자리로 입력해주세요.')
+    .matches(
+      /^[a-zA-Z0-9@._-]+$/,
+      '이메일은 영문자와 숫자만 사용할 수 있습니다.'
+    ),
   pw: yup
     .string()
     .required('문자와 숫자를 조합하여 8~20자 사이로 입력해주세요.')
@@ -27,7 +31,7 @@ export const schemaSignup = yup.object().shape({
   instar: yup
     .string()
     .required('인스타그램 아이디를 입력해주세요.')
-    .max(30, '인스타그램 아이디는 최대 30자리로 입력해주세요.'),
+    .max(20, '인스타그램 아이디는 최대 20자리로 입력해주세요.'),
   name: yup
     .string()
     .required('이름을 입력해주세요.')

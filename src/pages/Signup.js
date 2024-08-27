@@ -166,7 +166,7 @@ const Signup = () => {
             error={errors.instar}
             {...register('instar')}
             required
-            maxLength={30}
+            maxLength={20}
             buttonLabel='아이디 확인'
             onButtonClick={handleInstagramCheck}
           />
@@ -218,14 +218,6 @@ const Signup = () => {
                 isSelected={selectedGenderButton === '남성'}
               >
                 남성
-              </GenderButton>
-              <GenderButton
-                type='button'
-                selected={gender === '선택안함'}
-                onClick={() => handleGenderChange('선택안함')}
-                isSelected={selectedGenderButton === '선택안함'}
-              >
-                선택안함
               </GenderButton>
             </GenderRow>
           </GenderField>
