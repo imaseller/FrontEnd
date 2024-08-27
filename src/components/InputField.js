@@ -39,9 +39,9 @@ const Label = styled.label`
 const GrayText = styled.span`
   color: ${({ theme }) => theme.colors.gray1};
   font-style: normal;
-  font-weight: 700;
-  font-size: 10px;
-  line-height: 11px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 14px;
 `;
 
 const Input = styled.input`

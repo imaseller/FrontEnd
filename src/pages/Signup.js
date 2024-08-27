@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import BackButton from '../components/BackButton';
 import Button from '../components/Button01';
+import Button02 from '../components/Button02';
 import InputField from '../components/InputField.js';
 import AgreementSection from '../components/Signup/AgreementSection.js';
 import FavoriteBrandsSection from '../components/Signup/FavoriteBrandsSection';
@@ -12,6 +13,8 @@ import Theme from '../styles/Theme';
 const Signup = () => {
   const [domain, setDomain] = useState('naver.com');
   const [birthYear, setBirthYear] = useState('2000');
+  const [gender, setGender] = useState('여성');
+  const [selectedGenderButton, setSelectedGenderButton] = useState(null);
 
   const handleBackClick = () => {
     window.history.back();
@@ -23,6 +26,18 @@ const Signup = () => {
 
   const handleBirthYearChange = (e) => {
     setBirthYear(e.target.value);
+  };
+
+  const handleGenderChange = (selectedGender) => {
+    setGender(selectedGender);
+    setSelectedGenderButton(selectedGender);
+  };
+
+  const handlePhoneNumberChange = (e) => {
+    const value = e.target.value
+      .replace(/[^0-9]/g, '')
+      .replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+    e.target.value = value;
   };
 
   return (
@@ -110,6 +125,45 @@ const Signup = () => {
               ))}
             </InputField>
           </NameAndBirthYearRow>
+
+          <GenderField>
+            <InputFieldLabel>성별</InputFieldLabel>
+            <GenderRow>
+              <GenderButton
+                type='button'
+                selected={gender === '여성'}
+                onClick={() => handleGenderChange('여성')}
+                isSelected={selectedGenderButton === '여성'}
+              >
+                여성
+              </GenderButton>
+              <GenderButton
+                type='button'
+                selected={gender === '남성'}
+                onClick={() => handleGenderChange('남성')}
+                isSelected={selectedGenderButton === '남성'}
+              >
+                남성
+              </GenderButton>
+            </GenderRow>
+          </GenderField>
+
+          <PhoneRow>
+            <PhoneInputWrapper>
+              <InputField
+                label='본인인증(연락처)'
+                id='PhoneNumber'
+                type='text'
+                placeholder='전화번호를 입력하세요'
+                required
+                onChange={handlePhoneNumberChange}
+              />
+              <InlineButton>
+                <Button02>인증발송</Button02>
+              </InlineButton>
+            </PhoneInputWrapper>
+          </PhoneRow>
+
           <FavoriteColorSection />
           <FavoriteBrandsSection />
           <SizeSelectionSection />
@@ -179,4 +233,72 @@ const NameAndBirthYearRow = styled.div`
   align-items: center;
   gap: 20px;
   width: 100%;
+`;
+
+const GenderField = styled.div`
+  width: 100%;
+  height: 57px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+`;
+
+const InputFieldLabel = styled.label`
+  margin-bottom: 10px;
+  color: ${({ theme }) => theme.colors.black};
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 11px;
+`;
+
+const GenderRow = styled.div`
+  display: flex;
+  height: 100%;
+`;
+
+const GenderButton = styled.button`
+  flex: 1;
+  border: ${(props) => (props.isSelected ? '2px solid #f6ae24' : 'none')};
+  border-radius: 10px;
+  background-color: ${(props) => (props.selected ? '#FFFFFF' : '#EEEEEE')};
+  color: ${(props) => (props.selected ? '#000000' : '#999999')};
+  cursor: pointer;
+  transition: background-color 0.3s ease, border 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    border: 2px solid #f6ae24;
+  }
+
+  &:first-child {
+    border-radius: 10px 0 0 10px;
+  }
+
+  &:last-child {
+    border-radius: 0 10px 10px 0;
+  }
+`;
+
+const PhoneRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+const PhoneInputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+`;
+
+const InlineButton = styled.div`
+  position: absolute;
+  right: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 `;
