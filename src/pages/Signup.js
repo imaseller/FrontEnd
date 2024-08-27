@@ -16,6 +16,7 @@ const Signup = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schemaSignup),
+    mode: 'all',
   });
 
   const [domain, setDomain] = useState('naver.com');
@@ -223,14 +224,14 @@ const Signup = () => {
           </GenderField>
 
           <InputField
-            label='전화번호'
+            label='전화번호(11자를 입력하세요)'
             id='phoneNumber'
             type='text'
             placeholder='전화번호를 입력하세요'
             error={errors.phoneNumber}
             {...register('phoneNumber')}
             required
-            maxLength={12}
+            maxLength={11}
             onInput={handlePhoneNumberChange}
             buttonLabel='본인 인증'
             onButtonClick={handleVerification}
@@ -394,37 +395,6 @@ const GenderButton = styled.button`
   }
 `;
 
-const PhoneRow = styled.div`
-  display: flex;
-  gap: 10px;
-`;
-
-const PhoneInputWrapper = styled.div`
-  flex-grow: 1;
-`;
-
 const BlackContainer = styled.div`
   margin-bottom: 100px;
-`;
-
-const ErrorMessage = styled.span`
-  color: blue;
-  font-size: 12px;
-  margin-top: 5px;
-`;
-
-const SubmitButton = styled.button`
-  width: 100%;
-  height: 50px;
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.primaryDark};
-  }
 `;
