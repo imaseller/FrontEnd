@@ -1,18 +1,27 @@
 import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { schemaSignup } from '../hooks/ValidationYup';
 import BackButton from '../components/BackButton';
-import Button from '../components/Button01';
-import InputField from '../components/InputField.js';
-import AgreementSection from '../components/Signup/AgreementSection.js';
+import InputField from '../components/InputField';
+import AgreementSection from '../components/Signup/AgreementSection';
 import Theme from '../styles/Theme';
-import BottomBar from '../components/Signup/BottomBar.js';
+import BottomBar from '../components/Signup/BottomBar';
 
 const Signup = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schemaSignup),
+  });
+
   const [domain, setDomain] = useState('naver.com');
   const [birthYear, setBirthYear] = useState('2000');
   const [gender, setGender] = useState('여성');
   const [selectedGenderButton, setSelectedGenderButton] = useState('여성');
-
   const [region, setRegion] = useState('서울특별시');
   const [district, setDistrict] = useState('금천구');
   const [melpickAddress, setMelpickAddress] = useState('');
@@ -69,6 +78,10 @@ const Signup = () => {
     console.log('멜픽 주소 확인:', melpickAddress);
   };
 
+  const onSubmit = (data) => {
+    console.log('Form Data: ', data);
+  };
+
   return (
     <ThemeProvider theme={Theme}>
       <Container>
@@ -79,7 +92,7 @@ const Signup = () => {
           <Title>회원가입</Title>
           <Placeholder />
         </Header>
-        <Form>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <AgreementSection />
 
           <EmailRow>
@@ -88,7 +101,10 @@ const Signup = () => {
               id='email'
               type='text'
               placeholder='이메일을 입력하세요'
+              error={errors.email}
+              {...register('email')}
               required
+              maxLength={20}
             />
             <AtSymbol>@</AtSymbol>
             <InputField
@@ -97,7 +113,9 @@ const Signup = () => {
               as='select'
               value={domain}
               onChange={handleDomainChange}
+              error={errors.domain}
               required
+              {...register('domain')}
             >
               <option value='naver.com'>naver.com</option>
               <option value='google.com'>google.com</option>
@@ -110,7 +128,10 @@ const Signup = () => {
             id='password'
             type='password'
             placeholder='비밀번호를 입력하세요'
+            error={errors.password}
+            {...register('password')}
             required
+            maxLength={20}
           />
 
           <InputField
@@ -118,7 +139,10 @@ const Signup = () => {
             id='passwordConfirm'
             type='password'
             placeholder='비밀번호를 한번 더 입력하세요'
+            error={errors.passwordConfirm}
+            {...register('passwordConfirm')}
             required
+            maxLength={20}
           />
 
           <InputField
@@ -126,7 +150,10 @@ const Signup = () => {
             id='nickname'
             type='text'
             placeholder='닉네임을 입력하세요'
+            error={errors.nickname}
+            {...register('nickname')}
             required
+            maxLength={8}
             buttonLabel='중복확인'
             onButtonClick={handleNicknameCheck}
           />
@@ -136,7 +163,10 @@ const Signup = () => {
             id='instar'
             type='text'
             placeholder='인스타그램 아이디를 입력하세요'
+            error={errors.instar}
+            {...register('instar')}
             required
+            maxLength={30}
             buttonLabel='아이디 확인'
             onButtonClick={handleInstagramCheck}
           />
@@ -147,7 +177,10 @@ const Signup = () => {
               id='name'
               type='text'
               placeholder='이름을 입력하세요'
+              error={errors.name}
+              {...register('name')}
               required
+              maxLength={5}
             />
             <InputField
               label='태어난 해'
@@ -155,6 +188,8 @@ const Signup = () => {
               as='select'
               value={birthYear}
               onChange={handleBirthYearChange}
+              error={errors.birthYear}
+              {...register('birthYear')}
               required
             >
               {Array.from({ length: 100 }, (_, i) => 2023 - i).map((year) => (
@@ -184,60 +219,80 @@ const Signup = () => {
               >
                 남성
               </GenderButton>
+              <GenderButton
+                type='button'
+                selected={gender === '선택안함'}
+                onClick={() => handleGenderChange('선택안함')}
+                isSelected={selectedGenderButton === '선택안함'}
+              >
+                선택안함
+              </GenderButton>
             </GenderRow>
           </GenderField>
 
-          <PhoneRow>
-            <PhoneInputWrapper>
-              <InputField
-                label='본인인증(연락처)'
-                id='PhoneNumber'
-                type='text'
-                placeholder='전화번호를 입력하세요'
-                required
-                onChange={handlePhoneNumberChange}
-                buttonLabel='인증발송'
-                onButtonClick={handleVerification}
               />
-            </PhoneInputWrapper>
-          </PhoneRow>
+          <InputField
+            label='전화번호'
+            id='phoneNumber'
+            type='text'
+            placeholder='전화번호를 입력하세요'
+            {...register('phoneNumber')}
+            required
+            maxLength={12}
+            onInput={handlePhoneNumberChange}
+            buttonLabel='본인 인증'
+            onButtonClick={handleVerification}
+          />
+
           <RowLabel>
             <InputField
-              label='서비스 지역설정 *'
+              label='지역'
               id='region'
               as='select'
               value={region}
               onChange={handleRegionChange}
+              error={errors.region}
+              {...register('region')}
               required
             >
               <option value='서울특별시'>서울특별시</option>
+              <option value='경기도'>경기도</option>
             </InputField>
 
             <InputField
-              label='서비스 지역구 선택 *'
+              label='구'
               id='district'
               as='select'
               value={district}
               onChange={handleDistrictChange}
+              error={errors.district}
+              {...register('district')}
               required
             >
+              <option value='강남구'>강남구</option>
+              <option value='서초구'>서초구</option>
               <option value='금천구'>금천구</option>
             </InputField>
           </RowLabel>
+
           <InputField
             label='멜픽 주소설정(영문, 숫자 12글자 이내)'
             id='melpickAddress'
             type='text'
             placeholder='주소를 입력하세요'
+            error={errors.melpickAddress}
+            {...register('melpickAddress')}
             value={melpickAddress}
             onChange={handleMelpickAddressChange}
             buttonLabel='체크'
+            required
+            maxLength={12}
             onButtonClick={handleCheckClick}
             prefix='melpick.com/'
           />
+          <BlackContainer />
+          <BottomBar />
         </Form>
-        <BlackContainer></BlackContainer>
-        <BottomBar />
       </Container>
     </ThemeProvider>
   );
@@ -358,4 +413,26 @@ const PhoneInputWrapper = styled.div`
 
 const BlackContainer = styled.div`
   margin-bottom: 100px;
+`;
+
+const ErrorMessage = styled.span`
+  color: blue;
+  font-size: 12px;
+  margin-top: 5px;
+`;
+
+const SubmitButton = styled.button`
+  width: 100%;
+  height: 50px;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primaryDark};
+  }
 `;

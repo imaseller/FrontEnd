@@ -95,8 +95,7 @@ const StyledButton = styled(Button02)`
 `;
 
 const ErrorMessage = styled.span`
-  padding-left: 5px;
-  color: ${({ theme }) => theme.colors.blue};
-  font-size: 14px;
+  color: blue;
+  font-size: 12px;
   margin-top: 5px;
 `;
