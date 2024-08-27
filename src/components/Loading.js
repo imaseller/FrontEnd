@@ -16,7 +16,7 @@ const spin = keyframes`
 const Spinner = styled.div`
   margin: 0 auto;
   border: 16px solid #f3f3f3; // 회색 외부 테두리
-  border-top: 16px solid ${Theme.colors.pink5}; // Theme의 pink5 색상 적용
+  border-top: 16px solid ${Theme.colors.yellow}; // Theme의 pink5 색상 적용
   border-radius: 50%;
   width: 120px;
   height: 120px;

@@ -1,46 +1,52 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './styles/GlobalStyle';
 import Theme from './styles/Theme';
-import List from './pages/List';
-import Loading from './components/Loading.js';
-import DetailLayout from './components/DetailLayout';
-import Monitoring from './pages/Monitoring';
-import PaymentDetail from './pages/PaymentDetail';
-import Store from './pages/Store';
+import lazyLoad from './pages/lazyLode.js';
+import Loading from './components/Loading';
 
-const ManagerList = lazy(() => import('./components/Admin/ManagerList'));
-const BlockManagerList = lazy(() =>
+const List = lazyLoad(() => import('./pages/List'));
+const DetailLayout = lazyLoad(() => import('./components/DetailLayout'));
+const Monitoring = lazyLoad(() => import('./pages/Monitoring'));
+const PaymentDetail = lazyLoad(() => import('./pages/PaymentDetail'));
+const Store = lazyLoad(() => import('./pages/Store'));
+const ManagerList = lazyLoad(() => import('./components/Admin/ManagerList'));
+const BlockManagerList = lazyLoad(() =>
   import('./components/Admin/BlockManagerList')
 );
-const ManagerDetail = lazy(() => import('./components/Admin/ManagerDetail'));
-const MemberList = lazy(() => import('./components/Member/MemberList'));
-const BlockMemberList = lazy(() =>
+const ManagerDetail = lazyLoad(() =>
+  import('./components/Admin/ManagerDetail')
+);
+const MemberList = lazyLoad(() => import('./components/Member/MemberList'));
+const BlockMemberList = lazyLoad(() =>
   import('./components/Member/BlockMemberList')
 );
-const ReviewList = lazy(() => import('./components/Member/ReviewList'));
-const ReviewDetail = lazy(() => import('./components/Member/ReviewDetail'));
-const MemberDetail = lazy(() => import('./components/Member/MemberDetail'));
-const ProductList = lazy(() => import('./components/Service/ProductList'));
-const ProductDetail = lazy(() => import('./components/Service/ProductDetail'));
-const AdminLogin = lazy(() => import('./pages/AdminLogin'));
-const Home = lazy(() => import('./pages/Home'));
-const FindId = lazy(() => import('./pages/FindId'));
-const FindPassword = lazy(() => import('./pages/FindPassword'));
-const Login = lazy(() => import('./pages/Login'));
-const Signup = lazy(() => import('./pages/Signup'));
-
-import Analysis from './pages/Analysis';
-import Settlement from './pages/Settlement';
-import Delivery from './pages/Delivery';
-import HomeDetail from './pages/HomeDetail';
+const ReviewList = lazyLoad(() => import('./components/Member/ReviewList'));
+const ReviewDetail = lazyLoad(() => import('./components/Member/ReviewDetail'));
+const MemberDetail = lazyLoad(() => import('./components/Member/MemberDetail'));
+const ProductList = lazyLoad(() => import('./components/Service/ProductList'));
+const ProductDetail = lazyLoad(() =>
+  import('./components/Service/ProductDetail')
+);
+const AdminLogin = lazyLoad(() => import('./pages/AdminLogin'));
+const Home = lazyLoad(() => import('./pages/Home'));
+const FindId = lazyLoad(() => import('./pages/FindId'));
+const FindPassword = lazyLoad(() => import('./pages/FindPassword'));
+const Login = lazyLoad(() => import('./pages/Login'));
+const Signup = lazyLoad(() => import('./pages/Signup'));
+const Analysis = lazyLoad(() => import('./pages/Analysis'));
+const Settlement = lazyLoad(() => import('./pages/Settlement'));
+const Delivery = lazyLoad(() => import('./pages/Delivery'));
+const HomeDetail = lazyLoad(() => import('./pages/HomeDetail'));
 
 function App() {
   const renderWithLayout = (Component) => (
-    <List>
-      <Component />
-    </List>
+    <Suspense fallback={<Loading />}>
+      <List>
+        <Component />
+      </List>
+    </Suspense>
   );
 
   return (

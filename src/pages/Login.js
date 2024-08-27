@@ -7,7 +7,7 @@ import * as yup from 'yup';
 import LoginButton from '../components/Button01';
 import Button00 from '../components/Button00';
 import InputField from '../components/InputField';
-import backgroundImage from '../img/background02.jpg';
+// import backgroundImage from '../img/background02.jpg';
 import Theme from '../styles/Theme';
 import { LoginPost } from '../api/auth/LoginPost';
 
@@ -71,7 +71,7 @@ const Login = () => {
         </Button00Wrapper>
         <LoginContainer>
           <LoginForm onSubmit={handleSubmit(handleLoginClick)}>
-            <Title>IM A SELLER</Title>
+            <Title>Melpick</Title>
             <Controller
               control={control}
               name='email'
@@ -130,10 +130,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: url(${backgroundImage});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-color: ${({ theme }) => theme.colors.gray0};
   position: relative;
   max-width: 600px;
   margin: 0 auto;
@@ -147,7 +144,7 @@ const Button00Wrapper = styled.div`
 `;
 
 const LoginContainer = styled.div`
-  background-color: ${({ theme }) => theme.colors.PinkBrown3};
+  background-color: ${({ theme }) => theme.colors.yellow4};
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);

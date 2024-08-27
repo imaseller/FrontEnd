@@ -5,7 +5,7 @@ import { useForm, Controller } from 'react-hook-form';
 import LoginButton from '../components/Button01';
 import Button00 from '../components/Button00';
 import InputField from '../components/InputField';
-import backgroundImage from '../img/background02.jpg';
+// import backgroundImage from '../img/background02.jpg';
 import Theme from '../styles/Theme';
 import { AdminLoginPost } from '../api/auth/AdminLoginPost.js';
 
@@ -107,7 +107,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: url(${backgroundImage});
+  background-color: ${({ theme }) => theme.colors.gray0};
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -124,7 +124,7 @@ const Button00Wrapper = styled.div`
 `;
 
 const LoginContainer = styled.div`
-  background-color: ${({ theme }) => theme.colors.PinkBrown3};
+  background-color: ${({ theme }) => theme.colors.yellow4};
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);

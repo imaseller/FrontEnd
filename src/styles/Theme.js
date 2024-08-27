@@ -94,6 +94,12 @@ const Theme = {
     white: '#FFFFFF',
     blue: '#004DFF',
     yellow: '#F6AE24',
+    yellow0: '#fcbb51',
+    yellow1: '#FFc875',
+    yellow2: '#ffd697',
+    yellow3: '#ffe3ba',
+    yellow4: '#fff1dc',
+
     WhiteBrown1: '#f7e9e3',
     WhiteBrown2: '#eed4c8',
     WhiteBrown3: '#e5bfae',
