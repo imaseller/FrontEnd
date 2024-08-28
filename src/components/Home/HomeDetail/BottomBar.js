@@ -28,6 +28,7 @@ const BottomBarContainer = styled.div`
   padding: 10px;
   background-color: #eeeeee;
   margin-top: 10px;
+  z-index: 9999;
 `;
 
 const CartButton = styled.button`

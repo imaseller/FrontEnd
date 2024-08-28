@@ -4,7 +4,6 @@ import Header from '../components/Header.js';
 import DetailHeader from '../components/DetailHeader.js';
 import Items from '../components/Store/Items.js';
 
-// Import icons for the store page
 import AllIcon from '../img/Store/All.svg';
 import BlouseIcon from '../img/Store/Blouse.svg';
 import JumpsuitIcon from '../img/Store/Jumpsuit.svg';
