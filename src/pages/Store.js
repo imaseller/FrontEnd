@@ -84,6 +84,7 @@ const MainContainer = styled.div`
   width: 100%;
   overflow-x: hidden;
   padding: 0 27px;
+  border: 1px solid ${Theme.colors.gray1};
 `;
 
 const ContentWrapper = styled.div`

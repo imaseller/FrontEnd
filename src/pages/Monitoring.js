@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header.js';
 import Content from '../components/Monitoring/Content.js';
-
+import Theme from '../styles/Theme';
 const Monitoring = () => {
   return (
     <MonitoringContainer>
@@ -25,6 +25,7 @@ const MonitoringContainer = styled.div`
   background-color: #f5f5f5;
   max-width: 600px;
   margin: 0 auto;
+  border: 1px solid ${Theme.colors.gray1};
 `;
 
 const ContentWrapper = styled.div`

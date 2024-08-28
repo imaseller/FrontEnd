@@ -12,13 +12,18 @@ import SettlementIcon from '../img/Header/HeaderCalculateDetail.svg';
 import DeliveryIcon from '../img/Header/HeaderShippingDetail.svg';
 
 const Home = () => {
+  // const homeIcons = [
+  //   { src: TypeAnalysisIcon, alt: '유형 분석', route: '/analysis' },
+  //   { src: MonitoringIcon, alt: '인벤토리', route: '/monitoring' },
+  //   { src: SettlementIcon, alt: '정산 내역', route: '/settlement' },
+  //   { src: DeliveryIcon, alt: '배송 내역', route: '/delivery' },
+  // ];
   const homeIcons = [
-    { src: TypeAnalysisIcon, alt: '유형 분석', route: '/analysis' },
-    { src: MonitoringIcon, alt: '인벤토리', route: '/monitoring' },
-    { src: SettlementIcon, alt: '정산 내역', route: '/settlement' },
-    { src: DeliveryIcon, alt: '배송 내역', route: '/delivery' },
+    { src: TypeAnalysisIcon, alt: '유형 분석' },
+    { src: MonitoringIcon, alt: '인벤토리' },
+    { src: SettlementIcon, alt: '정산 내역' },
+    { src: DeliveryIcon, alt: '배송 내역' },
   ];
-
   const ItemContainer1 = () => (
     <CustomHeader>
       <div>
@@ -83,6 +88,7 @@ const MainContainer = styled.div`
   width: 100%;
   overflow-x: hidden;
   padding: 0 27px;
+  border: 1px solid ${Theme.colors.gray1};
 `;
 
 const ContentWrapper = styled.div`
@@ -104,7 +110,8 @@ const Footer = styled.div`
 
 const LinContainer = styled.div`
   border: 1px solid ${Theme.colors.gray0};
-  margin: 30px 0;
+  margin: 15px 0;
+  margin-bottom: 30px;
 `;
 
 const FooterText = styled.div`

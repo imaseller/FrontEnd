@@ -68,7 +68,7 @@ const Underline = styled.div`
   position: absolute;
   bottom: -15px;
   left: ${({ left }) => `${left}px`};
-  width: 36px;
+  width: 45px;
   height: 3px;
   background-color: ${({ theme }) => theme.colors.black};
   transition: left 0.3s ease;

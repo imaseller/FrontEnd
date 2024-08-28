@@ -120,6 +120,7 @@ const DetailContainer = styled.div`
   max-width: 600px;
   margin: 0 auto;
   padding-bottom: 80px;
+  border: 1px solid ${Theme.colors.gray1};
 `;
 
 const ContentContainer = styled.div`

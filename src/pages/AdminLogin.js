@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { useForm, Controller } from 'react-hook-form';
 import LoginButton from '../components/Button01';
-import Button00 from '../components/Button00';
+import BackButton from '../components/BackButton';
 import InputField from '../components/InputField';
 // import backgroundImage from '../img/background02.jpg';
 import Theme from '../styles/Theme';
@@ -59,9 +59,9 @@ const AdminLogin = () => {
   return (
     <ThemeProvider theme={Theme}>
       <Container>
-        <Button00Wrapper>
-          <Button00 onClick={handleBackClick}>뒤로가기</Button00>
-        </Button00Wrapper>
+        <BackButtonWrapper>
+          <BackButton />
+        </BackButtonWrapper>
         <LoginContainer>
           <LoginForm onSubmit={handleSubmit(onSubmit)}>
             <Title>Admin</Title>
@@ -107,16 +107,16 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: ${({ theme }) => theme.colors.gray0};
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
   max-width: 600px;
   margin: 0 auto;
+  border: 1px solid ${Theme.colors.gray1};
 `;
 
-const Button00Wrapper = styled.div`
+const BackButtonWrapper = styled.div`
   position: absolute;
   top: 10px;
   left: 10px;

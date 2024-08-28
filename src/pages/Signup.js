@@ -296,6 +296,7 @@ const Container = styled.div`
   max-width: 600px;
   margin: 0 auto;
   padding: 0 27px;
+  border: 1px solid ${Theme.colors.gray1};
 `;
 
 const Placeholder = styled.div`

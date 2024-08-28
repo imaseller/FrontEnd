@@ -79,9 +79,9 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: ${({ theme }) => theme.colors.gray0};
   max-width: 600px;
   margin: 0 auto;
+  border: 1px solid ${Theme.colors.gray1};
 `;
 
 const BackButtonWrapper = styled.div`
