@@ -14,7 +14,7 @@ import DeliveryIcon from '../img/Header/HeaderShippingDetail.svg';
 const Home = () => {
   const homeIcons = [
     { src: TypeAnalysisIcon, alt: '유형 분석', route: '/analysis' },
-    { src: MonitoringIcon, alt: '모니터링', route: '/monitoring' },
+    { src: MonitoringIcon, alt: '인벤토리', route: '/monitoring' },
     { src: SettlementIcon, alt: '정산 내역', route: '/settlement' },
     { src: DeliveryIcon, alt: '배송 내역', route: '/delivery' },
   ];

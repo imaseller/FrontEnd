@@ -1,18 +1,37 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 const DetailHeader = ({ icons }) => {
+  const [selectedIconIndex, setSelectedIconIndex] = useState(0);
+  const [underlineLeft, setUnderlineLeft] = useState(0);
+  const iconRefs = useRef([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (iconRefs.current[selectedIconIndex]) {
+      setUnderlineLeft(iconRefs.current[selectedIconIndex].offsetLeft);
+    }
+  }, [selectedIconIndex]);
+
+  const handleIconClick = (index, route) => {
+    setSelectedIconIndex(index);
+    navigate(route);
+  };
 
   return (
     <HeaderContainer>
-      {icons.map((icon) => (
-        <IconContainer key={icon.alt} onClick={() => navigate(icon.route)}>
+      {icons.map((icon, index) => (
+        <IconContainer
+          key={icon.alt}
+          onClick={() => handleIconClick(index, icon.route)}
+          ref={(el) => (iconRefs.current[index] = el)}
+        >
           <Icon src={icon.src} alt={icon.alt} />
           <IconText>{icon.alt}</IconText>
         </IconContainer>
       ))}
+      <Underline left={underlineLeft} />
     </HeaderContainer>
   );
 };
@@ -22,6 +41,7 @@ export default DetailHeader;
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-around;
+  position: relative;
   padding: 30px 10px 0;
 `;
 
@@ -30,6 +50,7 @@ const IconContainer = styled.div`
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  position: relative;
 `;
 
 const Icon = styled.img`
@@ -41,4 +62,14 @@ const Icon = styled.img`
 const IconText = styled.span`
   font-size: 12px;
   color: #333;
+`;
+
+const Underline = styled.div`
+  position: absolute;
+  bottom: -15px;
+  left: ${({ left }) => `${left}px`};
+  width: 36px;
+  height: 3px;
+  background-color: ${({ theme }) => theme.colors.black};
+  transition: left 0.3s ease;
 `;
