@@ -363,7 +363,7 @@ const InputFieldLabel = styled.label`
   color: ${({ theme }) => theme.colors.black};
   font-style: normal;
   font-weight: 700;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 11px;
 `;
 

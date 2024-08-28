@@ -49,12 +49,12 @@ const Label = styled.label`
   color: ${({ theme }) => theme.colors.black};
   font-style: normal;
   font-weight: 700;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 11px;
 `;
 
 const GrayText = styled.span`
-  padding-left: 10px;
+  padding-left: 3px;
   color: ${({ theme }) => theme.colors.gray2};
   font-style: normal;
   font-weight: 400;
