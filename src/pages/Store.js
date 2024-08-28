@@ -97,7 +97,7 @@ const Footer = styled.div`
 
 const LinContainer = styled.div`
   border: 1px solid ${Theme.colors.gray0};
-  margin-top: 31px;
+  margin-top: 15px;
   margin-bottom: 20px;
 `;
 

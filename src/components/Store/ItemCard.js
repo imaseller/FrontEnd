@@ -33,7 +33,7 @@ export default ItemCard;
 const PriceInfo = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 5px;
+  margin-top: 12px;
 `;
 
 const Price = styled.span`
@@ -95,14 +95,19 @@ const AddButton = styled.img`
 `;
 
 const Brand = styled.h3`
-  margin-top: 10px;
-  font-size: 14px;
-  font-weight: bold;
+  margin-top: 18px;
+
+  margin-bottom: 5px;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 10px;
+  line-height: 11px;
 `;
 
 const Description = styled.p`
-  margin-top: 5px;
+  font-style: normal;
+  font-weight: 400;
   font-size: 12px;
-  ${Theme.fonts.default3}
+  line-height: 13px;
   color: ${Theme.colors.gray2};
 `;
