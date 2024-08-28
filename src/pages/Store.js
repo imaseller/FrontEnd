@@ -97,7 +97,8 @@ const Footer = styled.div`
 
 const LinContainer = styled.div`
   border: 1px solid ${Theme.colors.gray0};
-  margin: 15px 0;
+  margin-top: 31px;
+  margin-bottom: 20px;
 `;
 
 const FooterText = styled.div`
@@ -140,8 +141,7 @@ const FilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 const ToggleSwitch = styled.div`
@@ -183,11 +183,12 @@ const ToggleSwitch = styled.div`
 
 const SwitchLabel = styled.label`
   font-family: 'NanumSquare Neo OTF';
-  font-size: 12px;
+  font-style: normal;
   font-weight: 700;
+  font-size: 12px;
+  line-height: 13px;
   margin-left: 10px;
   cursor: pointer;
-  color: #000000;
 `;
 
 const IconRow = styled.div`

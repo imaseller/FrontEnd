@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Theme from '../../styles/Theme.js';
 import ImgAdd from '../../img/Store/ImgAdd.svg';
 
-const ItemCard = ({ id, image, brand, description }) => {
+const ItemCard = ({ id, image, brand, description, price, discount }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -19,11 +19,49 @@ const ItemCard = ({ id, image, brand, description }) => {
       </ImageWrapper>
       <Brand>{brand}</Brand>
       <Description>{description}</Description>
+      <PriceInfo>
+        <Price>{price.toLocaleString()}원</Price>
+        <Dis>NOW</Dis>
+        <Discount> {discount}%</Discount>
+      </PriceInfo>
     </CardContainer>
   );
 };
 
 export default ItemCard;
+
+const PriceInfo = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+`;
+
+const Price = styled.span`
+  font-style: normal;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 15px;
+  color: ${({ theme }) => theme.colors.black};
+  margin-right: 4px;
+`;
+
+const Dis = styled.span`
+  font-size: 12px;
+  color: ${({ theme }) => theme.colors.black};
+  font-style: normal;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 9px;
+  margin-right: 4px;
+`;
+
+const Discount = styled.span`
+  font-style: normal;
+  font-weight: 800;
+  font-size: 10px;
+  line-height: 11px;
+  color: ${({ theme }) => theme.colors.yellow};
+`;
 
 const CardContainer = styled.div`
   display: flex;
