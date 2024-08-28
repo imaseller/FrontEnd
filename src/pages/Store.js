@@ -97,7 +97,7 @@ const Footer = styled.div`
 
 const LinContainer = styled.div`
   border: 1px solid ${Theme.colors.gray0};
-  margin: 30px 0;
+  margin: 15px 0;
 `;
 
 const FooterText = styled.div`
@@ -134,35 +134,6 @@ const CustomHeader = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 10px;
-`;
-
-const CustomTitle = styled.h2`
-  ${Theme.fonts.default1}
-  margin-bottom: 5px;
-`;
-
-const CustomHighlight = styled.span`
-  color: ${Theme.colors.yellow};
-  font-style: normal;
-  font-weight: 800;
-  font-size: 16px;
-  line-height: 18px;
-`;
-
-const CustomSubtitle = styled.p`
-  ${Theme.fonts.default2}
-  color: ${Theme.colors.gray1};
-`;
-
-const CustomMoreButton = styled.button`
-  ${Theme.fonts.default0}
-  padding: 10px 13px;
-  background-color: ${Theme.colors.white};
-  color: ${Theme.colors.Black1};
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  cursor: pointer;
-  align-self: flex-start;
 `;
 
 const FilterContainer = styled.div`
