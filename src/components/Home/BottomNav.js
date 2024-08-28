@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled, { css, ThemeProvider } from 'styled-components';
 import HomeIcon from '../../img/Home/Home.svg';
-import MonitoringIcon from '../../img/Home/Monitoring.svg';
+import inventoryIcon from '../../img/Home/inventory.svg';
 import PaymentDetailIcon from '../../img/Home/PaymentDetail.svg';
 import StoreIcon from '../../img/Home/Store.svg';
 import MenuIcon from '../../img/Home/Menu.svg';
@@ -32,8 +32,8 @@ const BottomNav = () => {
       case '/home':
         updateTab('home');
         break;
-      case '/monitoring':
-        updateTab('monitoring');
+      case '/inventory':
+        updateTab('inventory');
         break;
       case '/payment':
         updateTab('payment');
@@ -63,17 +63,17 @@ const BottomNav = () => {
     <ThemeProvider theme={Theme}>
       <BottomNavContainer ref={navRef}>
         <NavItem
-          data-tab='monitoring'
-          isActive={activeTab === 'monitoring'}
-          onClick={() => handleClick('monitoring', '/monitoring')}
+          data-tab='inventory'
+          isActive={activeTab === 'inventory'}
+          onClick={() => handleClick('inventory', '/inventory')}
         >
           <Icon
-            src={MonitoringIcon}
+            src={inventoryIcon}
             alt='인벤토리'
-            isActive={activeTab === 'monitoring'}
+            isActive={activeTab === 'inventory'}
           />
-          <NavLabel isActive={activeTab === 'monitoring'}>인벤토리</NavLabel>
-          {activeTab === 'monitoring' && (
+          <NavLabel isActive={activeTab === 'inventory'}>인벤토리</NavLabel>
+          {activeTab === 'inventory' && (
             <IndicatorContainer>
               <Light isActive={showYellowGlow} />
             </IndicatorContainer>

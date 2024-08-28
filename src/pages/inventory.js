@@ -1,22 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header.js';
-import PaymentHistory from '../components/PamentDetail/PamentHistory.js';
-import Theme from '../styles/Theme';
-const PaymentDetail = () => {
+import Content from '../components/inventory/Content.js';
+import Theme from '../styles/Theme.js';
+const inventory = () => {
   return (
-    <PaymentDetailContainer>
+    <InventoryContainer>
       <ContentWrapper>
         <Header />
-        <PaymentHistory />
+        <Content />
       </ContentWrapper>
-    </PaymentDetailContainer>
+    </InventoryContainer>
   );
 };
 
-export default PaymentDetail;
+export default inventory;
 
-const PaymentDetailContainer = styled.div`
+const InventoryContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

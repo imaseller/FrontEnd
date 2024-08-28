@@ -8,8 +8,9 @@ import Loading from './components/Loading';
 
 const List = lazyLoad(() => import('./pages/List'));
 const DetailLayout = lazyLoad(() => import('./components/DetailLayout'));
-const Monitoring = lazyLoad(() => import('./pages/Monitoring'));
+const Inventory = lazyLoad(() => import('./pages/inventory.js'));
 const PaymentDetail = lazyLoad(() => import('./pages/PaymentDetail'));
+const Menu = lazyLoad(() => import('./pages/menu.js'));
 const Store = lazyLoad(() => import('./pages/Store'));
 const ManagerList = lazyLoad(() => import('./components/Admin/ManagerList'));
 const BlockManagerList = lazyLoad(() =>
@@ -64,9 +65,10 @@ function App() {
             {/* Pages wrapped with DetailLayout */}
             <Route element={<DetailLayout />}>
               <Route path='/home' element={<Home />} />
-              <Route path='/monitoring' element={<Monitoring />} />
+              <Route path='/inventory' element={<Inventory />} />
               <Route path='/payment' element={<PaymentDetail />} />
               <Route path='/store' element={<Store />} />
+              <Route path='/menu' element={<Menu />} />
 
               {/* New Routes for Analysis, Settlement, and Delivery */}
               <Route path='/analysis' element={<Analysis />} />

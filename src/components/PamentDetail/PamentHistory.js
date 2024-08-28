@@ -13,6 +13,5 @@ export default PaymentHistory;
 
 const HistoryContainer = styled.div`
   padding: 20px;
-  background-color: #f5f5f5;
   flex: 1;
 `;
