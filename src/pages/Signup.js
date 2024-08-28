@@ -87,9 +87,7 @@ const Signup = () => {
     <ThemeProvider theme={Theme}>
       <Container>
         <Header>
-          <BackButtonWrapper>
-            <BackButton onClick={handleBackClick} />
-          </BackButtonWrapper>
+          <BackButton onClick={handleBackClick} />
           <Title>회원가입</Title>
           <Placeholder />
         </Header>
@@ -300,30 +298,27 @@ const Container = styled.div`
   padding: 0 27px;
 `;
 
-const Header = styled.header`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 105px;
-`;
-
-const BackButtonWrapper = styled.div`
-  display: flex;
-`;
-
 const Placeholder = styled.div`
   width: 24px;
   padding: 0 37px;
 `;
 
+const Header = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 105px;
+  position: relative;
+`;
+
 const Title = styled.h1`
-  text-align: center;
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
   line-height: 22px;
-  flex: 1;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const Form = styled.form`
