@@ -56,7 +56,6 @@ export default ItemList;
 
 const ListContainer = styled.div`
   background-color: ${Theme.colors.white};
-  border-radius: 8px;
   overflow: hidden;
   margin-bottom: 40px;
 `;

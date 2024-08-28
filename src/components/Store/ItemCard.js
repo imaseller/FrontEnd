@@ -31,7 +31,7 @@ const CardContainer = styled.div`
   align-items: left;
   width: 100%;
   cursor: pointer;
-  margin: 10px 0;
+  margin-bottom: 40px;
 `;
 
 const ImageWrapper = styled.div`
@@ -44,7 +44,6 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 4px;
 `;
 
 const AddButton = styled.img`

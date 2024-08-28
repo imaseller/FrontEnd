@@ -36,7 +36,6 @@ const CardContainer = styled.div`
 const Image = styled.img`
   width: 140px;
   height: 210px;
-  border-radius: 4px;
 `;
 
 const Brand = styled.h3`
