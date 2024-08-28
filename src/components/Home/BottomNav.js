@@ -63,29 +63,16 @@ const BottomNav = () => {
     <ThemeProvider theme={Theme}>
       <BottomNavContainer ref={navRef}>
         <NavItem
-          data-tab='home'
-          isActive={activeTab === 'home'}
-          onClick={() => handleClick('home', '/home')}
-        >
-          <Icon src={HomeIcon} alt='홈' isActive={activeTab === 'home'} />
-          <NavLabel isActive={activeTab === 'home'}>홈</NavLabel>
-          {activeTab === 'home' && (
-            <IndicatorContainer>
-              <Light isActive={showYellowGlow} />
-            </IndicatorContainer>
-          )}
-        </NavItem>
-        <NavItem
           data-tab='monitoring'
           isActive={activeTab === 'monitoring'}
           onClick={() => handleClick('monitoring', '/monitoring')}
         >
           <Icon
             src={MonitoringIcon}
-            alt='모니터링'
+            alt='인벤토리'
             isActive={activeTab === 'monitoring'}
           />
-          <NavLabel isActive={activeTab === 'monitoring'}>모니터링</NavLabel>
+          <NavLabel isActive={activeTab === 'monitoring'}>인벤토리</NavLabel>
           {activeTab === 'monitoring' && (
             <IndicatorContainer>
               <Light isActive={showYellowGlow} />
@@ -104,6 +91,19 @@ const BottomNav = () => {
           />
           <NavLabel isActive={activeTab === 'payment'}>결제내역</NavLabel>
           {activeTab === 'payment' && (
+            <IndicatorContainer>
+              <Light isActive={showYellowGlow} />
+            </IndicatorContainer>
+          )}
+        </NavItem>
+        <NavItem
+          data-tab='home'
+          isActive={activeTab === 'home'}
+          onClick={() => handleClick('home', '/home')}
+        >
+          <Icon src={HomeIcon} alt='홈' isActive={activeTab === 'home'} />
+          <NavLabel isActive={activeTab === 'home'}>홈</NavLabel>
+          {activeTab === 'home' && (
             <IndicatorContainer>
               <Light isActive={showYellowGlow} />
             </IndicatorContainer>

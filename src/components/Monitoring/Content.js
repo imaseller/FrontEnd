@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const MonitoringContent = () => {
   return (
     <ContentContainer>
-      <h2>모니터링 정보</h2>
-      {/* 모니터링과 관련된 데이터를 추가하세요 */}
+      <h2>인벤토리 정보</h2>
+      {/* 인벤토리과 관련된 데이터를 추가하세요 */}
     </ContentContainer>
   );
 };
