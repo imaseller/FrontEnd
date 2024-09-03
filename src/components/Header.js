@@ -8,46 +8,63 @@ import Mypage from '../img/Home/Mypage.svg';
 
 const Header = ({ location, nickname = 'Mr J', isLoggedIn }) => {
   return (
-    <HeaderContainer>
-      <Profile>
-        <ProfileImage src='https://via.placeholder.com/44' alt='User profile' />
-        <Greeting>
-          <GreetingText>
-            <span>{nickname}</span> 님 안녕하세요!
-          </GreetingText>
-        </Greeting>
-      </Profile>
-      <Icons>
-        {location === '/store' ? (
-          <>
-            <Icon src={Basket} alt='장바구니' />
-            <Icon src={Mycloset} alt='내 옷장' />
-          </>
-        ) : isLoggedIn ? (
-          <>
-            <Icon src={Schedule} alt='스케줄' />
-            <Icon src={Alarm} alt='알림' />
-          </>
-        ) : (
-          <>
-            <Icon src={Mypage} alt='마이페이지' />
-            <Icon src={Alarm} alt='알림' />
-          </>
-        )}
-      </Icons>
-    </HeaderContainer>
+    <HeaderWrapper>
+      <HeaderContainer>
+        <Profile>
+          <ProfileImage
+            src='https://via.placeholder.com/44'
+            alt='User profile'
+          />
+          <Greeting>
+            <GreetingText>
+              <span>{nickname}</span> 님 안녕하세요!
+            </GreetingText>
+          </Greeting>
+        </Profile>
+        <Icons>
+          {location === '/store' ? (
+            <>
+              <Icon src={Basket} alt='장바구니' />
+              <Icon src={Mycloset} alt='내 옷장' />
+            </>
+          ) : isLoggedIn ? (
+            <>
+              <Icon src={Schedule} alt='스케줄' />
+              <Icon src={Alarm} alt='알림' />
+            </>
+          ) : (
+            <>
+              <Icon src={Mypage} alt='마이페이지' />
+              <Icon src={Alarm} alt='알림' />
+            </>
+          )}
+        </Icons>
+      </HeaderContainer>
+    </HeaderWrapper>
   );
 };
 
 export default Header;
+
+const HeaderWrapper = styled.div`
+  width: 100%;
+  height: 84px; /* Header height */
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+`;
 
 const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 10px;
-  margin-top: 20px;
+  height: 100%;
 `;
+
 const Profile = styled.div`
   display: flex;
   align-items: center;
