@@ -8,7 +8,7 @@ import Loading from './components/Loading';
 
 const List = lazyLoad(() => import('./pages/List'));
 const DetailLayout = lazyLoad(() => import('./components/DetailLayout'));
-const Inventory = lazyLoad(() => import('./pages/inventory.js'));
+const Inventory = lazyLoad(() => import('./pages/Inventory'));
 const PaymentDetail = lazyLoad(() => import('./pages/PaymentDetail'));
 const Menu = lazyLoad(() => import('./pages/menu.js'));
 const Store = lazyLoad(() => import('./pages/Store'));

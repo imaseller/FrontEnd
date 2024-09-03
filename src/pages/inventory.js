@@ -1,36 +1,136 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../components/Header.js';
+import Header from '../components/Header';
 import Content from '../components/inventory/Content.js';
-import Theme from '../styles/Theme.js';
-const inventory = () => {
+
+const Inventory = () => {
+  const data = [
+    {
+      image: 'path/to/image1.jpg',
+      title: '컨템포러리 설정',
+      dressSize: 'M (55)',
+      topSize: 'M (55)',
+      bottomSize: 'M (55)',
+      brand: 'MICHA, MAJE, SANDRO',
+      exposure: 6,
+      period: '2',
+    },
+    {
+      image: 'path/to/image2.jpg',
+      title: '골프웨어 설정',
+      dressSize: 'M (55)',
+      topSize: 'M (55)',
+      bottomSize: 'M (55)',
+      brand: 'MICHA, MAJE, SANDRO',
+      exposure: 6,
+      period: '2',
+    },
+  ];
+
   return (
     <InventoryContainer>
       <ContentWrapper>
         <Header />
-        <Content />
+        <FixedContent>
+          <Title>@ Styleweex</Title>
+          <FollowerInfo>
+            팔로워 <Highlight>504</Highlight> / 멜픽 서비스{' '}
+            <Highlight>1</Highlight>
+          </FollowerInfo>
+          <Divider />
+        </FixedContent>
+        <ScrollableContent>
+          {data.map((item, index) => (
+            <Content key={index} item={item} />
+          ))}
+        </ScrollableContent>
       </ContentWrapper>
     </InventoryContainer>
   );
 };
 
-export default inventory;
+export default Inventory;
 
 const InventoryContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   max-width: 600px;
   margin: 0 auto;
-  padding: 0 27px;
-  border: 1px solid ${Theme.colors.gray1};
+  width: 100%;
+  overflow-x: hidden;
+  padding: 125px 27px 0 27px;
 `;
 
 const ContentWrapper = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: column;
   width: 100%;
+  overflow-x: hidden;
+  position: relative;
+`;
+
+const FixedContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 376px;
+
+  gap: 10px;
+`;
+
+const Title = styled.h1`
+  font-family: 'NanumSquare Neo OTF';
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 18px;
+  color: #000000;
+  margin: 0;
+`;
+
+const FollowerInfo = styled.p`
+  font-family: 'NanumSquare Neo OTF';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 13px;
+  color: #000000;
+  margin: 0;
+`;
+
+const Highlight = styled.span`
+  color: #f6ae24;
+`;
+
+const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  background: #dddddd;
+  margin: 20px 0px;
+`;
+
+const ScrollableContent = styled.div`
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-top: 20px;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const data = styled.div`
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-top: 20px;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
