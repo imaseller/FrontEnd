@@ -26,15 +26,15 @@ const BottomBarContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #eeeeee;
+  background-color: ${({ theme }) => theme.colors.gray4};
   margin-top: 10px;
 `;
 
 const CartButton = styled.button`
   width: 75px;
   height: 56px;
-  background-color: #eeeeee;
-  border: 1px solid #dddddd;
+  background-color: ${({ theme }) => theme.colors.gray4};
+  border: 1px solid ${({ theme }) => theme.colors.gray};
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -50,10 +50,10 @@ const CartImage = styled.img`
 const OrderButton = styled.button`
   width: 100%;
   height: 56px;
-  background-color: #f6ae24;
+  background-color: ${({ theme }) => theme.colors.yellow};
   border: none;
   border-radius: 6px;
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.white};
   font-size: 16px;
   font-weight: 800;
   cursor: pointer;
