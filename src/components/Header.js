@@ -49,7 +49,10 @@ export default Header;
 const HeaderWrapper = styled.div`
   width: 100%;
   height: 84px; /* Header height */
+  max-width: 598px;
+  margin: 0 auto;
   background-color: white;
+  padding: 0 27px 27px;
   position: fixed;
   top: 0;
   left: 0;

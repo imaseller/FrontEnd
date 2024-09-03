@@ -12,18 +12,13 @@ import SettlementIcon from '../img/Header/HeaderCalculateDetail.svg';
 import DeliveryIcon from '../img/Header/HeaderShippingDetail.svg';
 
 const Home = () => {
-  // const homeIcons = [
-  //   { src: TypeAnalysisIcon, alt: '유형 분석', route: '/analysis' },
-  //   { src: inventoryIcon, alt: '인벤토리', route: '/inventory' },
-  //   { src: SettlementIcon, alt: '정산 내역', route: '/settlement' },
-  //   { src: DeliveryIcon, alt: '배송 내역', route: '/delivery' },
-  // ];
   const homeIcons = [
     { src: TypeAnalysisIcon, alt: '유형 분석' },
     { src: inventoryIcon, alt: '인벤토리' },
     { src: SettlementIcon, alt: '정산 내역' },
     { src: DeliveryIcon, alt: '배송 내역' },
   ];
+
   const ItemContainer1 = () => (
     <CustomHeader>
       <div>
@@ -53,8 +48,8 @@ const Home = () => {
   return (
     <ThemeProvider theme={Theme}>
       <MainContainer>
+        <Header />
         <ContentWrapper>
-          <Header />
           <Notice />
           <DetailHeader icons={homeIcons} />
           <LinContainer />
@@ -87,7 +82,7 @@ const MainContainer = styled.div`
   margin: 0 auto;
   width: 100%;
   overflow-x: hidden;
-  padding: 0 27px;
+  padding: 105px 27px 0 27px;
   border: 1px solid ${Theme.colors.gray1};
 `;
 
@@ -157,7 +152,6 @@ const CustomTitle = styled.h2`
 
 const CustomHighlight = styled.span`
   color: ${Theme.colors.yellow};
-
   font-style: normal;
   font-weight: 800;
   font-size: 16px;
