@@ -15,36 +15,36 @@ const Content = ({ item }) => {
         <DescriptionBox>
           <Title>{item.title}</Title>
           <Details>
-            <Row>
+            <Container>
               <DescriptionLine>
-                <Label>원피스:</Label>
+                <Label>원피스</Label>
                 <Data>{item.dressSize}</Data>
               </DescriptionLine>
               <DescriptionLine>
-                <Label>상의:</Label>
+                <Label>상의</Label>
                 <Data>{item.topSize}</Data>
               </DescriptionLine>
               <DescriptionLine>
-                <Label>하의:</Label>
+                <Label>하의</Label>
                 <Data>{item.bottomSize}</Data>
               </DescriptionLine>
-            </Row>
-
-            <Row>
+            </Container>
+            <Container>
               <DescriptionLine>
-                <Label>상품 노출수:</Label>
+                <Label>브랜드</Label>
+                <Data>{item.brand}</Data>
+              </DescriptionLine>
+            </Container>
+            <Container>
+              <DescriptionLine>
+                <Label>상품 노출수</Label>
                 <Data>{item.exposure}회</Data>
               </DescriptionLine>
               <DescriptionLine>
-                <Label>노출기간:</Label>
+                <Label>노출기간</Label>
                 <Data>월 {item.period}회</Data>
               </DescriptionLine>
-            </Row>
-
-            <DescriptionLine>
-              <Label>브랜드:</Label>
-              <Data>{item.brand}</Data>
-            </DescriptionLine>
+            </Container>
           </Details>
         </DescriptionBox>
       </ImageWrapper>
@@ -119,15 +119,13 @@ const Details = styled.div`
   line-height: 13px;
 `;
 
-const Row = styled.div`
+const Container = styled.div`
   display: flex;
+  border: 1px solid ${Theme.colors.gray1};
 `;
 
 const DescriptionLine = styled.div`
-  display: flex;
   padding: 13px;
-  width: 100%;
-  border: 1px solid ${Theme.colors.gray1};
 `;
 
 const Label = styled.span`
@@ -138,4 +136,5 @@ const Label = styled.span`
 const Data = styled.span`
   font-weight: 900;
   color: #000;
+  margin-left: 5px;
 `;
