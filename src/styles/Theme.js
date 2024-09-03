@@ -88,6 +88,7 @@ const Theme = {
     gray1: '#cccccc',
     gray2: '#999999',
     gray3: '#DDDDDD',
+    gray4: '#eeeeee',
 
     lightgray: '#F4F4F4',
     black: '#000000',

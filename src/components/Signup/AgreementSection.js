@@ -66,7 +66,13 @@ const AgreementSection = () => {
           <DescriptionWrapper>
             <Description>이용 전 필수사항 및 주의사항 안내.</Description>
           </DescriptionWrapper>
-          <ViewDetailsButton onClick={() => handleViewDetails('이용약관 내용')}>
+          <ViewDetailsButton
+            onClick={() =>
+              handleViewDetails(`
+                본 약관은 주식회사 멜픽(이하 "회사"라 합니다.)가 제공하는 의류 및 잡화(이하 "제품"이라 합니다.) 판매 및 전자상거래에 관한 온/오프라인상의 제반 서비스(이하 "서비스"라 합니다.)를 이용함에 있어서 회사와 회원의 권리와 의무에 대한 책임사항을 규정함을 목적으로 합니다.
+              `)
+            }
+          >
             전체보기
           </ViewDetailsButton>
         </InputWrapper>
@@ -97,8 +103,19 @@ const AgreementSection = () => {
       {modalVisible && (
         <Modal>
           <ModalContent>
-            <p>{modalContent}</p>
-            <CloseButton onClick={closeModal}>닫기</CloseButton>
+            <ContentWrapper>
+              <ModalHeader>
+                <ModalTitle>이용약관</ModalTitle>
+                <GrayLine />
+                <SectionTitle>제1장 총칙</SectionTitle>
+                <SubTitle>제1조 (목적)</SubTitle>
+              </ModalHeader>
+              <Text>{modalContent}</Text>
+              <GrayLine />
+              <CloseButtonWrapper>
+                <CloseButton onClick={closeModal}>확인</CloseButton>
+              </CloseButtonWrapper>
+            </ContentWrapper>
           </ModalContent>
         </Modal>
       )}
@@ -143,6 +160,7 @@ const InputWrapper = styled.div`
   padding: 10px;
   position: relative;
 `;
+
 const Checkbox = styled.input`
   margin-bottom: 5px;
   width: 20px;
@@ -190,8 +208,6 @@ const ViewDetailsButton = styled.button`
   border-radius: 5px;
   font-style: normal;
   font-weight: 800;
-  font-size: 12px;
-  line-height: 13px;
   text-align: center;
 `;
 
@@ -221,22 +237,84 @@ const Modal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 27px;
 `;
 
 const ModalContent = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   padding: 20px;
-  border-radius: 10px;
   max-width: 500px;
   width: 100%;
-  text-align: center;
+  height: 670px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const ContentWrapper = styled.div`
+  flex-grow: 1;
+  height: 486px;
+`;
+
+const ModalHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const ModalTitle = styled.p`
+  font-family: 'NanumSquare Neo OTF', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 16px;
+  margin-top: 20px;
+`;
+
+const SectionTitle = styled.p`
+  font-family: 'NanumSquare Neo OTF', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 13.26px;
+  margin-bottom: 20px;
+`;
+
+const SubTitle = styled.p`
+  font-family: 'NanumSquare Neo OTF', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 13.26px;
+  margin-bottom: 20px;
+`;
+
+const Text = styled.p`
+  height: 386px;
+  font-family: 'NanumSquare Neo OTF', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 13.26px;
+  margin-bottom: 20px;
+  color: ${({ theme }) => theme.colors.gray2};
+`;
+
+const GrayLine = styled.hr`
+  border: none;
+  width: 100%;
+  border: 1px solid ${({ theme }) => theme.colors.gray0};
+  margin: 20px 0;
+`;
+
+const CloseButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 const CloseButton = styled.button`
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: ${({ theme }) => theme.colors.yellow};
+  width: 100%;
+  height: 56px;
+  background-color: #000000;
+  color: #ffffff;
   border: none;
-  color: ${({ theme }) => theme.colors.white};
+  border-radius: 6px;
   cursor: pointer;
+  font-size: 16px;
 `;
