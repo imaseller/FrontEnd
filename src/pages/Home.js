@@ -82,7 +82,7 @@ const MainContainer = styled.div`
   margin: 0 auto;
   width: 100%;
   overflow-x: hidden;
-  padding: 105px 27px 0 27px;
+  padding: 125px 27px 0 27px;
   border: 1px solid ${Theme.colors.gray1};
 `;
 
