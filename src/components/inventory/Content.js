@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SettingIcon from '../../img/inventory/Setting.svg';
-import Image1 from '../../img/Home/ExIMG1.svg';
+
 import Theme from '../../styles/Theme.js';
 
 const Content = ({ item }) => {
@@ -9,7 +9,7 @@ const Content = ({ item }) => {
     <ContentContainer>
       <ImageWrapper>
         <ImageContainer>
-          <Image src={Image1} alt='Item' />
+          <Image src={item.image} alt='Item' />
           <SettingsIcon src={SettingIcon} alt='Settings' />
         </ImageContainer>
         <DescriptionBox>

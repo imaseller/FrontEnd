@@ -2,11 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Content from '../components/inventory/Content.js';
+import Inventory1 from '../img/inventory/Inventory1.svg';
+import Inventory2 from '../img/inventory/Inventory2.svg';
 
 const Inventory = () => {
   const data = [
     {
-      image: 'path/to/image1.jpg',
+      image: Inventory1,
       title: '컨템포러리 설정',
       dressSize: 'M (55)',
       topSize: 'M (55)',
@@ -16,7 +18,7 @@ const Inventory = () => {
       period: '2',
     },
     {
-      image: 'path/to/image2.jpg',
+      image: Inventory2,
       title: '골프웨어 설정',
       dressSize: 'M (55)',
       topSize: 'M (55)',
@@ -110,19 +112,6 @@ const Divider = styled.div`
 `;
 
 const ScrollableContent = styled.div`
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  padding-top: 20px;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-const data = styled.div`
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
