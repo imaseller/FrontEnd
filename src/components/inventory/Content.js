@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import SettingIcon from '../../img/inventory/Setting.svg';
-
 import Theme from '../../styles/Theme.js';
 
 const Content = ({ item }) => {
@@ -10,10 +9,13 @@ const Content = ({ item }) => {
       <ImageWrapper>
         <ImageContainer>
           <Image src={item.image} alt='Item' />
+          <TextOverlay>
+            <SmallText>Fashion Brand</SmallText>
+            <LargeText>{item.title}</LargeText>
+          </TextOverlay>
           <SettingsIcon src={SettingIcon} alt='Settings' />
         </ImageContainer>
         <DescriptionBox>
-          <Title>{item.title}</Title>
           <Details>
             <Container>
               <DescriptionLine>
@@ -86,6 +88,30 @@ const Image = styled.img`
   object-fit: cover;
 `;
 
+const TextOverlay = styled.div`
+  position: absolute;
+  bottom: 150px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+const SmallText = styled.div`
+  font-family: 'NanumSquare Neo OTF';
+  font-weight: 900;
+  font-size: 10px;
+  color: #000000;
+`;
+
+const LargeText = styled.div`
+  font-family: 'NanumSquare Neo OTF';
+  font-weight: 350;
+  font-size: 30px;
+  color: #ffffff;
+  margin-top: 5px;
+`;
+
 const SettingsIcon = styled.img`
   position: absolute;
   bottom: 10px;
@@ -101,14 +127,6 @@ const DescriptionBox = styled.div`
   margin-top: 20px;
   width: 100%;
   box-sizing: border-box;
-`;
-
-const Title = styled.h2`
-  font-family: 'NanumSquare Neo OTF';
-  font-weight: 900;
-  font-size: 14px;
-  line-height: 15px;
-  margin: 0 0 8px 0;
 `;
 
 const Details = styled.div`

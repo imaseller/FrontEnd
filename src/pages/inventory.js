@@ -9,7 +9,7 @@ const Inventory = () => {
   const data = [
     {
       image: Inventory1,
-      title: '컨템포러리 설정',
+      title: '컨템포러리',
       dressSize: 'M (55)',
       topSize: 'M (55)',
       bottomSize: 'M (55)',
@@ -19,7 +19,7 @@ const Inventory = () => {
     },
     {
       image: Inventory2,
-      title: '골프웨어 설정',
+      title: '골프웨어',
       dressSize: 'M (55)',
       topSize: 'M (55)',
       bottomSize: 'M (55)',
@@ -78,7 +78,6 @@ const FixedContent = styled.div`
   align-items: flex-start;
   width: 100%;
   max-width: 376px;
-
   gap: 10px;
 `;
 
