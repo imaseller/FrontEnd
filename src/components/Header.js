@@ -1,14 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import Alarm from '../img/Home/Alarm.svg';
-import Schedule from '../img/Home/Schedule.svg';
+import ScheduleIcon from '../img/Home/Schedule.svg';
 import Basket from '../img/Home/Basket.svg';
 import Mycloset from '../img/Home/Mycloset.svg';
 import Mypage from '../img/Home/Mypage.svg';
 
 const Header = ({ nickname = 'Mr J', isLoggedIn }) => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <HeaderWrapper>
@@ -32,12 +34,16 @@ const Header = ({ nickname = 'Mr J', isLoggedIn }) => {
             </>
           ) : isLoggedIn ? (
             <>
-              <Icon src={Schedule} alt='스케줄' />
+              <Icon
+                src={ScheduleIcon}
+                alt='스케줄'
+                onClick={() => navigate('/schedule')}
+              />
               <Icon src={Alarm} alt='알림' />
             </>
           ) : (
             <>
-              <Icon src={Schedule} alt='스케줄' />
+              <Icon src={ScheduleIcon} alt='스케줄' />
               <Icon src={Mypage} alt='마이페이지' />
               <Icon src={Alarm} alt='알림' />
             </>
@@ -49,6 +55,7 @@ const Header = ({ nickname = 'Mr J', isLoggedIn }) => {
 };
 
 export default Header;
+
 const HeaderWrapper = styled.div`
   width: 100%;
   height: 125px;
@@ -109,4 +116,5 @@ const Icons = styled.div`
 const Icon = styled.img`
   width: auto;
   height: auto;
+  cursor: pointer;
 `;

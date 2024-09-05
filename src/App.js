@@ -7,6 +7,8 @@ import lazyLoad from './pages/lazyLode.js';
 import Loading from './components/Loading';
 import ContemporarySettings from './components/inventory/ContemporarySettings.js';
 
+import Schedule from './pages/Schedule';
+
 const List = lazyLoad(() => import('./pages/List'));
 const DetailLayout = lazyLoad(() => import('./components/DetailLayout'));
 const Inventory = lazyLoad(() => import('./pages/Inventory'));
@@ -65,6 +67,7 @@ function App() {
 
             {/* Pages wrapped with DetailLayout */}
             <Route element={<DetailLayout />}>
+              <Route path='/schedule' element={<Schedule />} />
               <Route path='/home' element={<Home />} />
               <Route path='/inventory' element={<Inventory />} />
               <Route path='/payment' element={<PaymentDetail />} />
