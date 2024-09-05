@@ -120,8 +120,8 @@ const Modal = ({ isOpen, onClose, onSelect }) => {
             <WarningMessage>설정을 취소하시겠습니까?</WarningMessage>
             <GrayLine />
             <ButtonRow>
-              <CancelButton onClick={declineCancel}>취소</CancelButton>
-              <CompleteButton onClick={confirmCancel}>선택완료</CompleteButton>
+              <CancelButton onClick={declineCancel}>아니요</CancelButton>
+              <CompleteButton onClick={confirmCancel}>네</CompleteButton>
             </ButtonRow>
           </WarningModalContent>
         </WarningModal>
