@@ -295,7 +295,6 @@ const ModalContent = styled.div`
 
 const ContentWrapper = styled.div`
   flex-grow: 1;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -325,20 +324,26 @@ const ModalBody = styled.div`
 `;
 
 const BrandSelectionGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
-  width: 100%;
 `;
 
 const BrandOption = styled.div`
   padding: 10px;
   background-color: ${(props) =>
     props.selected ? Theme.colors.yellow : Theme.colors.white};
+  color: ${(props) =>
+    props.selected ? Theme.colors.white : Theme.colors.black};
   border: 1px solid ${Theme.colors.gray1};
   text-align: center;
   cursor: pointer;
   font-weight: bold;
+
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const GrayLine = styled.hr`
@@ -420,15 +425,4 @@ const WarningMessage = styled.p`
   text-align: center;
   justify-content: center;
   margin: 0;
-`;
-
-const CloseButton = styled.button`
-  width: 100%;
-  height: 56px;
-  background-color: ${Theme.colors.gray2};
-  color: ${Theme.colors.white};
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
 `;

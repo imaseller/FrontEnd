@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaSignup } from '../../hooks/ValidationYup';
 import BackButton from '../../components/BackButton';
 import InputField from '../../components/InputField';
-import AgreementSection from '../../components/inventory/AgreementSection';
+import AgreementSection from './AgreementSection';
 import Theme from '../../styles/Theme';
 import BottomBar from '../../components/Signup/BottomBar';
 
