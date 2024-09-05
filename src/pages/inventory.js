@@ -4,12 +4,14 @@ import Header from '../components/Header';
 import Content from '../components/inventory/Content.js';
 import Inventory1 from '../img/inventory/Inventory1.svg';
 import Inventory2 from '../img/inventory/Inventory2.svg';
+import Theme from '../styles/Theme.js';
 
 const Inventory = () => {
   const data = [
     {
       image: Inventory1,
-      title: '컨템포러리',
+      imgtitle: '컨템포러리',
+      title: '컨템포러리 설정',
       dressSize: 'M (55)',
       topSize: 'M (55)',
       bottomSize: 'M (55)',
@@ -19,7 +21,8 @@ const Inventory = () => {
     },
     {
       image: Inventory2,
-      title: '골프웨어',
+      imgtitle: '골프웨어',
+      title: '골프웨어 설정',
       dressSize: 'M (55)',
       topSize: 'M (55)',
       bottomSize: 'M (55)',
@@ -39,7 +42,7 @@ const Inventory = () => {
             팔로워 <Highlight>504</Highlight> / 멜픽 서비스{' '}
             <Highlight>1</Highlight>
           </FollowerInfo>
-          <Divider />
+          <GrayLine />
         </FixedContent>
         <ScrollableContent>
           {data.map((item, index) => (
@@ -69,6 +72,7 @@ const ContentWrapper = styled.div`
   width: 100%;
   overflow-x: hidden;
   position: relative;
+  margin-top: 30px;
 `;
 
 const FixedContent = styled.div`
@@ -86,24 +90,25 @@ const Title = styled.h1`
   font-weight: 800;
   font-size: 16px;
   line-height: 18px;
-  color: #000000;
+  color: ${Theme.colors.black};
   margin: 0;
 `;
 
 const FollowerInfo = styled.p`
   font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 13px;
-  color: #000000;
-  margin: 0;
+
+  color: ${Theme.colors.black};
 `;
 
 const Highlight = styled.span`
-  color: #f6ae24;
+  color: ${Theme.colors.yellow};
 `;
 
-const Divider = styled.div`
+const GrayLine = styled.div`
   width: 100%;
   height: 1px;
   background: #dddddd;
@@ -115,7 +120,7 @@ const ScrollableContent = styled.div`
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  padding-top: 20px;
+  padding-top: 10px;
   scrollbar-width: none;
 
   &::-webkit-scrollbar {

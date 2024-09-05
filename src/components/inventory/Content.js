@@ -11,21 +11,24 @@ const Content = ({ item }) => {
           <Image src={item.image} alt='Item' />
           <TextOverlay>
             <SmallText>Fashion Brand</SmallText>
-            <LargeText>{item.title}</LargeText>
+            <LargeText>{item.imgtitle}</LargeText>
           </TextOverlay>
           <SettingsIcon src={SettingIcon} alt='Settings' />
         </ImageContainer>
         <DescriptionBox>
+          <Title>{item.title}</Title>
           <Details>
             <Container>
               <DescriptionLine>
                 <Label>원피스</Label>
                 <Data>{item.dressSize}</Data>
               </DescriptionLine>
+              <Separator>|</Separator>
               <DescriptionLine>
                 <Label>상의</Label>
                 <Data>{item.topSize}</Data>
               </DescriptionLine>
+              <Separator>|</Separator>
               <DescriptionLine>
                 <Label>하의</Label>
                 <Data>{item.bottomSize}</Data>
@@ -42,6 +45,7 @@ const Content = ({ item }) => {
                 <Label>상품 노출수</Label>
                 <Data>{item.exposure}회</Data>
               </DescriptionLine>
+              <Separator>|</Separator>
               <DescriptionLine>
                 <Label>노출기간</Label>
                 <Data>월 {item.period}회</Data>
@@ -99,17 +103,22 @@ const TextOverlay = styled.div`
 
 const SmallText = styled.div`
   font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
   font-weight: 900;
   font-size: 10px;
+  line-height: 11px;
+
   color: #000000;
 `;
 
 const LargeText = styled.div`
   font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
   font-weight: 350;
   font-size: 30px;
+  line-height: 33px;
+
   color: #ffffff;
-  margin-top: 5px;
 `;
 
 const SettingsIcon = styled.img`
@@ -135,15 +144,21 @@ const Details = styled.div`
   font-family: 'NanumSquare Neo OTF';
   font-size: 12px;
   line-height: 13px;
+  border-left: 1px solid ${Theme.colors.gray1};
+  border-right: 1px solid ${Theme.colors.gray1};
+  border-top: 1px solid ${Theme.colors.gray1};
 `;
 
 const Container = styled.div`
   display: flex;
-  border: 1px solid ${Theme.colors.gray1};
+  align-items: center;
+  padding: 13px;
+  border-bottom: 1px solid ${Theme.colors.gray1};
 `;
 
 const DescriptionLine = styled.div`
-  padding: 13px;
+  display: flex;
+  align-items: center;
 `;
 
 const Label = styled.span`
@@ -155,4 +170,18 @@ const Data = styled.span`
   font-weight: 900;
   color: #000;
   margin-left: 5px;
+`;
+
+const Separator = styled.span`
+  margin: 0 10px;
+  color: ${Theme.colors.gray1};
+`;
+
+const Title = styled.h2`
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 15px;
+  margin-bottom: 10px;
 `;
