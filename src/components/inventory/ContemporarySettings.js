@@ -71,7 +71,7 @@ const ContemporarySettings = () => {
               <option value='L'>L</option>
             </InputField>
           </Row>
-
+          <GrayLine />
           {/* 착용스펙 Section */}
           <Row>
             <InputField
@@ -112,7 +112,7 @@ const ContemporarySettings = () => {
               <option value='1'>1</option>
             </InputField>
           </Row>
-
+          <GrayLine />
           {/* 선호 브랜드 선택 */}
           <Row>
             <InputField
@@ -128,7 +128,7 @@ const ContemporarySettings = () => {
               onInvalid={(e) => e.preventDefault()}
             />
           </Row>
-
+          <GrayLine />
           {/* 상품 노출수 설정 Section */}
           <Row>
             <InputField
@@ -175,6 +175,7 @@ export default ContemporarySettings;
 
 const Container = styled.div`
   width: 100%;
+
   max-width: 600px;
   margin: 0 auto;
   padding: 0 27px;
@@ -214,9 +215,15 @@ const Row = styled.div`
   justify-content: space-between;
   flex-wrap: nowrap;
   gap: 20px;
-  margin-bottom: 20px;
 `;
 
 const BlackContainer = styled.div`
-  margin-bottom: 100px;
+  margin-bottom: 200px;
+`;
+
+const GrayLine = styled.hr`
+  border: none;
+  width: 100%;
+  border: 1px solid ${Theme.colors.gray0};
+  margin: 10px 0;
 `;

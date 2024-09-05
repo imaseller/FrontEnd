@@ -290,7 +290,7 @@ const ModalContent = styled.div`
   height: 670px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; // Ensures content is at the bottom
+  justify-content: flex-end;
 `;
 
 const ContentWrapper = styled.div`
@@ -298,7 +298,7 @@ const ContentWrapper = styled.div`
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; // Separates content and button row
+  justify-content: space-between;
 `;
 
 const ModalHeader = styled.div`
@@ -352,7 +352,7 @@ const ButtonRow = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  margin-top: auto; // Ensures button row stays at the bottom
+  margin-top: auto;
 `;
 
 const CancelButton = styled.button`
@@ -419,7 +419,7 @@ const WarningMessage = styled.p`
   line-height: 15px;
   text-align: center;
   justify-content: center;
-  margin: 0; // Ensures proper centering
+  margin: 0;
 `;
 
 const CloseButton = styled.button`
