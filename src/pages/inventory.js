@@ -64,6 +64,9 @@ const InventoryContainer = styled.div`
   width: 100%;
   overflow-x: hidden;
   padding: 125px 27px 0 27px;
+
+  border: 1px solid ${Theme.colors.gray1};
+  height: 100vh;
 `;
 
 const ContentWrapper = styled.div`
@@ -109,7 +112,7 @@ const Highlight = styled.span`
 `;
 
 const GrayLine = styled.div`
-  width: 100%;
+  width: 200%;
   height: 1px;
   background: #dddddd;
   margin: 20px 0px;
