@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaSignup } from '../../hooks/ValidationYup';
 import BackButton from '../../components/BackButton';
 import InputField from '../../components/InputField';
-import AgreementSection from '../../components/Signup/AgreementSection';
+import AgreementSection from '../../components/inventory/AgreementSection';
 import Theme from '../../styles/Theme';
 import BottomBar from '../../components/Signup/BottomBar';
 
@@ -50,6 +50,7 @@ const ContemporarySettings = () => {
               error={errors.height}
               {...register('height')}
               required
+              onInvalid={(e) => e.preventDefault()}
             >
               <option value='160'>160 cm</option>
               <option value='165'>165 cm</option>
@@ -63,6 +64,7 @@ const ContemporarySettings = () => {
               error={errors.size}
               {...register('size')}
               required
+              onInvalid={(e) => e.preventDefault()}
             >
               <option value='S'>S</option>
               <option value='M'>M</option>
@@ -79,6 +81,7 @@ const ContemporarySettings = () => {
               error={errors.dress}
               {...register('dress')}
               required
+              onInvalid={(e) => e.preventDefault()}
             >
               <option value='원피스'>원피스</option>
               <option value='2'>1</option>
@@ -91,6 +94,7 @@ const ContemporarySettings = () => {
               error={errors.top}
               {...register('top')}
               required
+              onInvalid={(e) => e.preventDefault()}
             >
               <option value='상의'>상의</option>
               <option value='1'>1</option>
@@ -102,6 +106,7 @@ const ContemporarySettings = () => {
               error={errors.bottom}
               {...register('bottom')}
               required
+              onInvalid={(e) => e.preventDefault()}
             >
               <option value='하의'>하의</option>
               <option value='1'>1</option>
@@ -120,6 +125,7 @@ const ContemporarySettings = () => {
               required
               maxLength={20}
               buttonLabel='선택하기'
+              onInvalid={(e) => e.preventDefault()}
             />
           </Row>
 
@@ -134,6 +140,7 @@ const ContemporarySettings = () => {
               error={errors.productCount}
               {...register('productCount')}
               required
+              onInvalid={(e) => e.preventDefault()}
             >
               <option value='상품 6개'>상품 6개</option>
               <option value='상품 12개'>상품 12개</option>
@@ -148,9 +155,11 @@ const ContemporarySettings = () => {
               error={errors.exposureFrequency}
               {...register('exposureFrequency')}
               required
+              onInvalid={(e) => e.preventDefault()}
             >
               <option value='월 1회'>월 1회</option>
               <option value='월 2회'>월 2회</option>
+              onInvalid={(e) => e.preventDefault()}
             </InputField>
           </Row>
 
@@ -169,6 +178,7 @@ const Container = styled.div`
   max-width: 600px;
   margin: 0 auto;
   padding: 0 27px;
+  border: 1px solid ${Theme.colors.gray1};
 `;
 
 const Placeholder = styled.div`
