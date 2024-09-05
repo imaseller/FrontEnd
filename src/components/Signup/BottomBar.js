@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import ShoppingBasket from '../../img/SignupLogo.svg';
 
-const BottomBar = () => {
+const BottomBar = ({ buttonText = '작성완료' }) => {
   return (
     <BottomBarContainer>
       <CartButton>
         <CartImage src={ShoppingBasket} alt='Shopping Basket' />
       </CartButton>
-      <OrderButton>작성완료</OrderButton>
+      <OrderButton>{buttonText}</OrderButton>
     </BottomBarContainer>
   );
 };

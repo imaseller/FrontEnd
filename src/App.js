@@ -5,6 +5,7 @@ import GlobalStyle from './styles/GlobalStyle';
 import Theme from './styles/Theme';
 import lazyLoad from './pages/lazyLode.js';
 import Loading from './components/Loading';
+import ContemporarySettings from './components/inventory/ContemporarySettings.js';
 
 const List = lazyLoad(() => import('./pages/List'));
 const DetailLayout = lazyLoad(() => import('./components/DetailLayout'));
@@ -115,6 +116,11 @@ function App() {
 
             {/* New Route for HomeDetail */}
             <Route path='/item/:id' element={<HomeDetail />} />
+
+            <Route
+              path='/inventory/settings'
+              element={<ContemporarySettings />}
+            />
           </Routes>
         </Suspense>
       </Router>

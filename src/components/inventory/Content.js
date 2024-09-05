@@ -2,10 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import SettingIcon from '../../img/inventory/Setting.svg';
 import Theme from '../../styles/Theme.js';
+import { useNavigate } from 'react-router-dom';
 
 const Content = ({ item }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (item.imgtitle === '컨템포러리') {
+      navigate('/inventory/settings');
+    }
+  };
+
   return (
-    <ContentContainer>
+    <ContentContainer onClick={handleClick}>
       <ImageWrapper>
         <ImageContainer>
           <Image src={item.image} alt='Item' />
