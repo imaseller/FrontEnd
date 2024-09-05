@@ -4,12 +4,12 @@ import Button02 from '../components/Button02';
 
 const InputField = React.forwardRef(
   (
-    { label, id, type, error, buttonLabel, onButtonClick, prefix, ...rest },
+    { label, id, type, error, buttonLabel, onButtonClick, prefix, as, ...rest },
     ref
   ) => (
     <InputContainer>
-      <Label htmlFor={id}>
-        {label.split('(')[0]}
+      <Label htmlFor={id} isEmpty={!label}>
+        {label.split('(')[0] || '\u200B'}
         {label.includes('(') && (
           <GrayText>{`(${label.split('(')[1]}`}</GrayText>
         )}
@@ -17,11 +17,13 @@ const InputField = React.forwardRef(
       <InputWrapper>
         {prefix && <Prefix>{prefix}</Prefix>}
         <Input
+          as={as}
           type={type}
           id={id}
           ref={ref}
           hasPrefix={!!prefix}
           padding={id === 'melpickAddress' ? '0' : '0 11px'}
+          hasSelect={as === 'select'}
           {...rest}
         />
         {buttonLabel && (
@@ -51,6 +53,7 @@ const Label = styled.label`
   font-weight: 700;
   font-size: 11px;
   line-height: 11px;
+  visibility: ${({ isEmpty }) => (isEmpty ? 'hidden' : 'visible')};
 `;
 
 const GrayText = styled.span`
@@ -82,11 +85,12 @@ const Prefix = styled.span`
 
 const Input = styled.input`
   font-size: 16px;
+  border-radius: 4px;
   padding: ${({ padding }) => padding};
-  border: none;
+  border: ${({ hasSelect, theme }) =>
+    hasSelect ? `1px solid ${theme.colors.black}` : 'none'};
   flex: 1;
   height: 100%;
-  box-sizing: border-box;
 `;
 
 const StyledButton = styled(Button02)`
