@@ -89,7 +89,6 @@ const AgreementSection = () => {
                 agree1: e.target.checked,
               })
             }
-            onInvalid={(e) => e.preventDefault()}
           />
           <Label htmlFor='agree1'>
             정보입력 동의 <RequiredText>(필수)</RequiredText>
