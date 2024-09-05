@@ -1,12 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
 import Alarm from '../img/Home/Alarm.svg';
 import Schedule from '../img/Home/Schedule.svg';
 import Basket from '../img/Home/Basket.svg';
 import Mycloset from '../img/Home/Mycloset.svg';
 import Mypage from '../img/Home/Mypage.svg';
 
-const Header = ({ location, nickname = 'Mr J', isLoggedIn }) => {
+const Header = ({ nickname = 'Mr J', isLoggedIn }) => {
+  const location = useLocation();
+
   return (
     <HeaderWrapper>
       <HeaderContainer>
@@ -22,7 +25,7 @@ const Header = ({ location, nickname = 'Mr J', isLoggedIn }) => {
           </Greeting>
         </Profile>
         <Icons>
-          {location === '/store' ? (
+          {location.pathname === '/store' ? (
             <>
               <Icon src={Basket} alt='장바구니' />
               <Icon src={Mycloset} alt='내 옷장' />
@@ -34,6 +37,7 @@ const Header = ({ location, nickname = 'Mr J', isLoggedIn }) => {
             </>
           ) : (
             <>
+              <Icon src={Schedule} alt='스케줄' />
               <Icon src={Mypage} alt='마이페이지' />
               <Icon src={Alarm} alt='알림' />
             </>
@@ -45,7 +49,6 @@ const Header = ({ location, nickname = 'Mr J', isLoggedIn }) => {
 };
 
 export default Header;
-
 const HeaderWrapper = styled.div`
   width: 100%;
   height: 125px;
