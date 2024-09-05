@@ -9,6 +9,7 @@ import AgreementSection from './AgreementSection';
 import Theme from '../../styles/Theme';
 import BottomBar from '../../components/Signup/BottomBar';
 import Modal from './Modal';
+
 const ContemporarySettings = () => {
   const {
     register,
@@ -22,7 +23,7 @@ const ContemporarySettings = () => {
   const [productCount, setProductCount] = useState('상품 6개');
   const [exposureFrequency, setExposureFrequency] = useState('월 2회');
   const [isModalOpen, setModalOpen] = useState(false);
-  const [selectedBrand, setSelectedBrand] = useState('');
+  const [selectedBrands, setSelectedBrands] = useState([]);
 
   const handleBackClick = () => {
     window.history.back();
@@ -40,8 +41,8 @@ const ContemporarySettings = () => {
     setModalOpen(false);
   };
 
-  const handleBrandSelect = (brand) => {
-    setSelectedBrand(brand);
+  const handleBrandSelect = (brands) => {
+    setSelectedBrands(brands);
   };
 
   return (
@@ -52,10 +53,10 @@ const ContemporarySettings = () => {
           <Title>컨템포러리 설정</Title>
           <Placeholder />
         </Header>
+
         <Form onSubmit={handleSubmit(onSubmit)}>
           <AgreementSection />
 
-          {/* 기본정보 Section */}
           <Row>
             <InputField
               label='기본정보'
@@ -86,7 +87,7 @@ const ContemporarySettings = () => {
             </InputField>
           </Row>
           <GrayLine />
-          {/* 착용스펙 Section */}
+
           <Row>
             <InputField
               label='착용스펙 상세입력'
@@ -98,7 +99,7 @@ const ContemporarySettings = () => {
               onInvalid={(e) => e.preventDefault()}
             >
               <option value='원피스'>원피스</option>
-              <option value='2'>1</option>
+              <option value='1'>1</option>
               <option value='2'>2</option>
             </InputField>
             <InputField
@@ -127,23 +128,26 @@ const ContemporarySettings = () => {
             </InputField>
           </Row>
           <GrayLine />
-          {/* 선호 브랜드 선택 */}
+
           <Row>
             <InputField
               label='선호 브랜드 선택(최대 3가지)'
               id='brand'
               type='text'
-              placeholder={selectedBrand || '브랜드 3가지를 선택하세요'}
+              placeholder={
+                selectedBrands.join(', ') || '브랜드 3가지를 선택하세요'
+              }
               error={errors.brand}
               {...register('brand')}
-              required
+              readOnly
+              value={selectedBrands.join(', ') || '브랜드 3가지를 선택하세요'}
               buttonLabel='선택하기'
-              onButtonClick={openModal} // 버튼 클릭 시 모달 열기
+              onButtonClick={openModal}
               onInvalid={(e) => e.preventDefault()}
             />
           </Row>
           <GrayLine />
-          {/* 상품 노출수 설정 Section */}
+
           <Row>
             <InputField
               label='상품 노출수 설정'
@@ -180,11 +184,11 @@ const ContemporarySettings = () => {
           <BottomBar buttonText='설정완료' />
         </Form>
 
-        {/* 모달 */}
         <Modal
           isOpen={isModalOpen}
           onClose={closeModal}
           onSelect={handleBrandSelect}
+          selectedBrands={selectedBrands}
         />
       </Container>
     </ThemeProvider>
@@ -192,51 +196,6 @@ const ContemporarySettings = () => {
 };
 
 export default ContemporarySettings;
-
-// 스타일 정의
-const ModalOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ModalContent = styled.div`
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-
-  h2 {
-    margin-bottom: 20px;
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-
-    li {
-      cursor: pointer;
-      padding: 10px;
-      background: #f0f0f0;
-      margin-bottom: 10px;
-      border-radius: 5px;
-    }
-
-    li:hover {
-      background: #ddd;
-    }
-  }
-
-  button {
-    margin-top: 20px;
-  }
-`;
 
 const Container = styled.div`
   width: 100%;

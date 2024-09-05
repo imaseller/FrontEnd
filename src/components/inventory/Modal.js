@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Theme from '../../styles/Theme';
 
-const Modal = ({ isOpen, onClose }) => {
+const Modal = ({ isOpen, onClose, onSelect }) => {
   const brands = [
     'CC Collect',
     'CLUB Monaco',
@@ -35,6 +35,7 @@ const Modal = ({ isOpen, onClose }) => {
     if (selectedBrands.length !== 3) {
       setWarningModalVisible(true);
     } else {
+      onSelect(selectedBrands);
       onClose();
     }
   };
@@ -131,7 +132,6 @@ const Modal = ({ isOpen, onClose }) => {
 
 export default Modal;
 
-// 스타일 정의
 const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
