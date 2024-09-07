@@ -19,7 +19,6 @@ const Signup = () => {
     mode: 'all',
   });
 
-  const [domain, setDomain] = useState('naver.com');
   const [birthYear, setBirthYear] = useState('2000');
   const [gender, setGender] = useState('여성');
   const [selectedGenderButton, setSelectedGenderButton] = useState('여성');
@@ -29,10 +28,6 @@ const Signup = () => {
 
   const handleBackClick = () => {
     window.history.back();
-  };
-
-  const handleDomainChange = (e) => {
-    setDomain(e.target.value);
   };
 
   const handleBirthYearChange = (e) => {
@@ -93,35 +88,18 @@ const Signup = () => {
         </Header>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <AgreementSection />
-
-          <EmailRow>
-            <InputField
-              label='계정 (이메일)'
-              id='email'
-              type='text'
-              placeholder='이메일을 입력하세요'
-              error={errors.email}
-              {...register('email')}
-              required
-              maxLength={20}
-            />
-            <AtSymbol>@</AtSymbol>
-            <InputField
-              label='도메인 선택'
-              id='domain'
-              as='select'
-              value={domain}
-              onChange={handleDomainChange}
-              error={errors.domain}
-              required
-              {...register('domain')}
-            >
-              <option value='naver.com'>naver.com</option>
-              <option value='google.com'>google.com</option>
-              <option value='kakao.com'>kakao.com</option>
-            </InputField>
-          </EmailRow>
-
+          <InputField
+            label='인스타'
+            id='instar'
+            type='text'
+            placeholder='인스타그램 아이디를 입력하세요'
+            error={errors.instar}
+            {...register('instar')}
+            required
+            maxLength={20}
+            buttonLabel='아이디 확인'
+            onButtonClick={handleInstagramCheck}
+          />
           <InputField
             label='비밀번호(숫자, 문자를 조합하여 8자리 이상 입력하세요)'
             id='password'
@@ -155,19 +133,6 @@ const Signup = () => {
             maxLength={8}
             buttonLabel='중복확인'
             onButtonClick={handleNicknameCheck}
-          />
-
-          <InputField
-            label='인스타'
-            id='instar'
-            type='text'
-            placeholder='인스타그램 아이디를 입력하세요'
-            error={errors.instar}
-            {...register('instar')}
-            required
-            maxLength={20}
-            buttonLabel='아이디 확인'
-            onButtonClick={handleInstagramCheck}
           />
 
           <RowLabel>
