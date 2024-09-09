@@ -1,10 +1,11 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import Header from '../components/Header.js';
-import Notice from '../components/Home/Notice.js';
-import DetailHeader from '../components/DetailHeader.js';
-import ItemList from '../components/Home/ItemList.js';
-import Theme from '../styles/Theme.js';
+import Header from '../components/Header';
+import Notice from '../components/Home/Notice';
+import DetailHeader from '../components/DetailHeader';
+import ItemList from '../components/Home/ItemList';
+import Theme from '../styles/Theme';
+import { useNavigate } from 'react-router-dom';
 
 import TypeAnalysisIcon from '../img/Header/HeaderTypeAnalysis.svg';
 import inventoryIcon from '../img/Header/Headerinventory.svg';
@@ -13,10 +14,10 @@ import DeliveryIcon from '../img/Header/HeaderShippingDetail.svg';
 
 const Home = () => {
   const homeIcons = [
-    { src: TypeAnalysisIcon, alt: '페이지 분석' },
-    { src: inventoryIcon, alt: '통계 분석' },
-    { src: SettlementIcon, alt: '결제 내역' },
-    { src: DeliveryIcon, alt: '배송 현황' },
+    { src: TypeAnalysisIcon, alt: '유형 분석', route: '/analysis' },
+    { src: inventoryIcon, alt: '인벤토리', route: '/monitoring' },
+    { src: SettlementIcon, alt: '정산 내역', route: '/settlement' },
+    { src: DeliveryIcon, alt: '배송 내역', route: '/delivery' },
   ];
 
   const ItemContainer1 = () => (
@@ -52,14 +53,14 @@ const Home = () => {
         <ContentWrapper>
           <Notice />
           <DetailHeader icons={homeIcons} />
-          <LinContainer />
+          <Divider />
           <Content>
             <ItemList HeaderContainer={ItemContainer1} />
             <ItemList HeaderContainer={ItemContainer2} />
           </Content>
         </ContentWrapper>
         <Footer>
-          <LinContainer />
+          <Divider />
           <FooterText>
             <span className='highlight'> (주) 팀리프트 </span> .235-87-01284 .
             2020-서울금천-0973
@@ -81,7 +82,6 @@ const MainContainer = styled.div`
   max-width: 600px;
   margin: 0 auto;
   width: 100%;
-  overflow-x: hidden;
   padding: 125px 27px 0 27px;
   border: 1px solid ${Theme.colors.gray1};
 `;
@@ -103,7 +103,7 @@ const Footer = styled.div`
   align-items: left;
 `;
 
-const LinContainer = styled.div`
+const Divider = styled.div`
   border: 1px solid ${Theme.colors.gray0};
   margin: 15px 0;
   margin-bottom: 30px;
