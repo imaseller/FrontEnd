@@ -31,7 +31,7 @@ const DetailHeader = ({ icons }) => {
           <IconText>{icon.alt}</IconText>
         </IconContainer>
       ))}
-      {/* <Underline left={underlineLeft} /> */}
+      <Underline left={underlineLeft} />
     </HeaderContainer>
   );
 };
@@ -64,12 +64,12 @@ const IconText = styled.span`
   color: #333;
 `;
 
-// const Underline = styled.div`
-//   position: absolute;
-//   bottom: -15px;
-//   left: ${({ left }) => `${left}px`};
-//   width: 45px;
-//   height: 3px;
-//   background-color: ${({ theme }) => theme.colors.black};
-//   transition: left 0.3s ease;
-// `;
+const Underline = styled.div`
+  position: absolute;
+  bottom: -15px;
+  left: ${({ left }) => `${left}px`};
+  width: 45px;
+  height: 3px;
+  background-color: ${({ theme }) => theme.colors.black};
+  transition: left 0.3s ease;
+`;
