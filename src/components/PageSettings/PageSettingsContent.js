@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import Theme from '../../styles/Theme';
 
-const AnalysisContent = () => {
+const PageSettingsContent = () => {
   return (
     <ContentContainer>
       <h1>유형 분석</h1>
@@ -10,14 +11,14 @@ const AnalysisContent = () => {
   );
 };
 
-export default AnalysisContent;
+export default PageSettingsContent;
 
 const ContentContainer = styled.div`
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
   margin: 0 auto;
+  width: 100%;
+  padding: 125px 27px 0 27px;
+  border: 1px solid ${Theme.colors.gray1};
 `;

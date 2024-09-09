@@ -5,7 +5,6 @@ import Notice from '../components/Home/Notice';
 import DetailHeader from '../components/DetailHeader';
 import ItemList from '../components/Home/ItemList';
 import Theme from '../styles/Theme';
-import { useNavigate } from 'react-router-dom';
 
 import TypeAnalysisIcon from '../img/Header/HeaderTypeAnalysis.svg';
 import inventoryIcon from '../img/Header/Headerinventory.svg';
@@ -14,10 +13,10 @@ import DeliveryIcon from '../img/Header/HeaderShippingDetail.svg';
 
 const Home = () => {
   const homeIcons = [
-    { src: TypeAnalysisIcon, alt: '유형 분석', route: '/analysis' },
-    { src: inventoryIcon, alt: '인벤토리', route: '/monitoring' },
-    { src: SettlementIcon, alt: '정산 내역', route: '/settlement' },
-    { src: DeliveryIcon, alt: '배송 내역', route: '/delivery' },
+    { src: TypeAnalysisIcon, alt: '페이지 설정', route: '/pageSettings' },
+    { src: inventoryIcon, alt: '통계분석', route: '/statisticalAnalysis' },
+    { src: SettlementIcon, alt: '결제내역', route: '/payment' },
+    { src: DeliveryIcon, alt: '배송현황', route: '/delivery' },
   ];
 
   const ItemContainer1 = () => (
