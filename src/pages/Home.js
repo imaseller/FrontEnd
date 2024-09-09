@@ -13,10 +13,10 @@ import DeliveryIcon from '../img/Header/HeaderShippingDetail.svg';
 
 const Home = () => {
   const homeIcons = [
-    { src: TypeAnalysisIcon, alt: '유형 분석' },
-    { src: inventoryIcon, alt: '인벤토리' },
-    { src: SettlementIcon, alt: '정산 내역' },
-    { src: DeliveryIcon, alt: '배송 내역' },
+    { src: TypeAnalysisIcon, alt: '페이지 분석' },
+    { src: inventoryIcon, alt: '통계 분석' },
+    { src: SettlementIcon, alt: '결제 내역' },
+    { src: DeliveryIcon, alt: '배송 현황' },
   ];
 
   const ItemContainer1 = () => (
