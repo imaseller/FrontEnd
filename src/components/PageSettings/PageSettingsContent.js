@@ -49,7 +49,6 @@ const PageSettingsContent = ({
 
 export default PageSettingsContent;
 
-// Styled Components
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -64,18 +63,19 @@ const ContentContainer = styled.div`
 const Header = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 20px 0;
+  margin-top: 30px;
 `;
 
 const ProfileSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 41px;
 `;
 
 const ProfileImage = styled.div`
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   background-color: ${Theme.colors.gray3};
   border-radius: 50%;
   margin-bottom: 10px;
@@ -88,13 +88,21 @@ const ProfileInfo = styled.div`
 `;
 
 const ProfileName = styled.h1`
-  font-size: 18px;
-  font-weight: bold;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+
+  color: ${Theme.colors.black};
   margin: 0;
 `;
 
 const EventSection = styled.div`
-  margin-top: 20px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const EventBox = styled.div`
@@ -106,12 +114,12 @@ const EventBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start; /* 왼쪽 상단에 정렬 */
+  align-items: flex-start;
 `;
 
 const EventRow = styled.div`
   display: flex;
-  align-items: flex-start; /* 왼쪽 상단 정렬 */
+  align-items: flex-start;
   width: 100%;
 `;
 
@@ -138,12 +146,22 @@ const EventText = styled.div`
 const EventPeriod = styled.span`
   font-size: 14px;
   color: ${Theme.colors.gray2};
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
 `;
 
 const EventDescription = styled.span`
-  font-size: 14px;
   color: ${Theme.colors.black};
   margin-top: 5px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
 `;
 
 const Description = styled.p`
@@ -170,6 +188,7 @@ const Item = styled.div`
   border: 0.5px solid #cccccc;
   border-radius: 35px;
   margin: 0 auto;
+  margin-bottom: 15px;
 `;
 
 const ItemImage = styled.img`
@@ -187,6 +206,6 @@ const ItemText = styled.span`
 `;
 
 const ArrowIcon = styled(FaChevronRight)`
-  color: ${Theme.colors.gray2};
-  font-size: 19px;
+  color: ${Theme.colors.gray1};
+  font-size: 20px;
 `;
