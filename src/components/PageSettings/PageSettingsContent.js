@@ -56,8 +56,6 @@ const ContentContainer = styled.div`
   margin: 0 auto;
   width: 100%;
   padding: 20px;
-  border: 1px solid ${Theme.colors.gray1};
-  background-color: ${Theme.colors.white};
 `;
 
 const Header = styled.div`

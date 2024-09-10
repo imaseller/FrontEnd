@@ -50,10 +50,10 @@ const AnalysisContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f5f5f5;
+  border: 1px solid ${Theme.colors.gray1};
+
   max-width: 600px;
   margin: 0 auto;
-  border: 1px solid ${Theme.colors.gray1};
 `;
 
 const ContentWrapper = styled.div`
