@@ -6,7 +6,6 @@ const AnalysisContent = () => {
     <ContentContainer>
       <h1>유형 분석</h1>
       <p>여기에서 사용자의 유형을 분석할 수 있습니다.</p>
-      {/* 추가적인 분석 데이터를 여기에 표시할 수 있습니다 */}
     </ContentContainer>
   );
 };

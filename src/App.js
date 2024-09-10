@@ -13,6 +13,7 @@ const List = lazyLoad(() => import('./pages/List'));
 const DetailLayout = lazyLoad(() => import('./components/DetailLayout'));
 const Inventory = lazyLoad(() => import('./pages/Inventory'));
 const PaymentDetail = lazyLoad(() => import('./pages/PaymentDetail'));
+const PageSettings = lazyLoad(() => import('./pages/PageSettings'));
 const Menu = lazyLoad(() => import('./pages/menu.js'));
 const Store = lazyLoad(() => import('./pages/Store'));
 const ManagerList = lazyLoad(() => import('./components/Admin/ManagerList'));
@@ -69,6 +70,7 @@ function App() {
             <Route element={<DetailLayout />}>
               <Route path='/schedule' element={<Schedule />} />
               <Route path='/home' element={<Home />} />
+              <Route path='/pageSettings' element={<PageSettings />} />
               <Route path='/inventory' element={<Inventory />} />
               <Route path='/payment' element={<PaymentDetail />} />
               <Route path='/store' element={<Store />} />

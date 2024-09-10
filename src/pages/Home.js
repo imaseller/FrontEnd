@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react'; // 이 부분 추가
 import styled, { ThemeProvider } from 'styled-components';
 import Header from '../components/Header';
 import Notice from '../components/Home/Notice';
-import DetailHeader from '../components/DetailHeader';
+// import DetailHeader from '../components/DetailHeader';
 import ItemList from '../components/Home/ItemList';
 import Theme from '../styles/Theme';
 import { useNavigate } from 'react-router-dom';
-
 import TypeAnalysisIcon from '../img/Header/HeaderTypeAnalysis.svg';
 import inventoryIcon from '../img/Header/Headerinventory.svg';
 import SettlementIcon from '../img/Header/HeaderCalculateDetail.svg';
@@ -14,11 +13,20 @@ import DeliveryIcon from '../img/Header/HeaderShippingDetail.svg';
 
 const Home = () => {
   const homeIcons = [
-    { src: TypeAnalysisIcon, alt: '유형 분석', route: '/analysis' },
-    { src: inventoryIcon, alt: '인벤토리', route: '/monitoring' },
-    { src: SettlementIcon, alt: '정산 내역', route: '/settlement' },
-    { src: DeliveryIcon, alt: '배송 내역', route: '/delivery' },
+    { src: TypeAnalysisIcon, alt: '페이지 설정', route: '/pageSettings' },
+    { src: inventoryIcon, alt: '통계분석', route: '/statisticalAnalysis' },
+    { src: SettlementIcon, alt: '결제내역', route: '/payment' },
+    { src: DeliveryIcon, alt: '배송현황', route: '/delivery' },
   ];
+  const [selectedIconIndex, setSelectedIconIndex] = useState(0);
+
+  const iconRefs = useRef([]);
+  const navigate = useNavigate();
+
+  const handleIconClick = (index, route) => {
+    setSelectedIconIndex(index);
+    navigate(route);
+  };
 
   const ItemContainer1 = () => (
     <CustomHeader>
@@ -52,7 +60,18 @@ const Home = () => {
         <Header />
         <ContentWrapper>
           <Notice />
-          <DetailHeader icons={homeIcons} />
+          <HeaderContainer>
+            {homeIcons.map((icon, index) => (
+              <IconContainer
+                key={icon.alt}
+                onClick={() => handleIconClick(index, icon.route)}
+                ref={(el) => (iconRefs.current[index] = el)}
+              >
+                <Icon src={icon.src} alt={icon.alt} />
+                <IconText>{icon.alt}</IconText>
+              </IconContainer>
+            ))}
+          </HeaderContainer>
           <Divider />
           <Content>
             <ItemList HeaderContainer={ItemContainer1} />
@@ -173,3 +192,39 @@ const CustomMoreButton = styled.button`
   cursor: pointer;
   align-self: flex-start;
 `;
+
+const HeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  padding: 30px 10px 0;
+`;
+
+const IconContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+`;
+
+const Icon = styled.img`
+  width: 40px;
+  height: 40px;
+  margin-bottom: 5px;
+`;
+
+const IconText = styled.span`
+  font-size: 12px;
+  color: #333;
+`;
+
+// const Underline = styled.div`
+//   position: absolute;
+//   bottom: -15px;
+//   left: ${({ left }) => `${left}px`};
+//   width: 45px;
+//   height: 3px;
+//   background-color: ${({ theme }) => theme.colors.black};
+//   transition: left 0.3s ease;
+// `;
