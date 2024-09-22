@@ -91,46 +91,13 @@ const ScheduleReservation3 = () => {
       </Header>
 
       <Stepper>
-        <Step completed>1</Step>
+        <Step>1</Step>
         <StepLine />
         <Step>2</Step>
         <StepLine />
-        <Step>3</Step>
+        <Step completed>3</Step>
       </Stepper>
 
-      <DateSelection>
-        <Label>예약일자 (선택)</Label>
-        <DateRow>
-          <DateInput as='select' value={year} onChange={handleYearChange}>
-            <option value={2024}>2024년</option>
-            <option value={2025}>2025년</option>
-          </DateInput>
-          <DateDropdown as='select' value={month} onChange={handleMonthChange}>
-            <option value={1}>1월</option>
-            <option value={2}>2월</option>
-            <option value={3}>3월</option>
-            <option value={4}>4월</option>
-            <option value={5}>5월</option>
-            <option value={6}>6월</option>
-            <option value={7}>7월</option>
-            <option value={8}>8월</option>
-            <option value={9}>9월</option>
-            <option value={10}>10월</option>
-            <option value={11}>11월</option>
-            <option value={12}>12월</option>
-          </DateDropdown>
-        </DateRow>
-      </DateSelection>
-
-      <CalendarContainer>
-        {['일', '월', '화', '수', '목', '금', '토'].map((name, index) => (
-          <DayName key={index} isWeekend={index === 0 || index === 6}>
-            {name}
-          </DayName>
-        ))}
-        {renderCalendar()}
-      </CalendarContainer>
-      <ConnectorLine1 />
       <Summary>
         <ScheduleInfo>
           <Label>선택된 스케줄</Label>
