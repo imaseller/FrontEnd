@@ -144,7 +144,8 @@ const ScheduleReservation2 = () => {
   const navigate = useNavigate();
 
   const handleBottomClick = () => {
-    navigate('/schedule/reservation2');
+    console.log('버튼 클릭됨');
+    navigate('/schedule/reservation3');
   };
 
   const ItemContainer = () => (
@@ -193,7 +194,11 @@ const ScheduleReservation2 = () => {
       </Content>
 
       <BottomBarContainer>
-        <BottomBar buttonText='다음' imageSrc={backIcons} />
+        <BottomBar
+          onClick={handleBottomClick}
+          buttonText='다음'
+          imageSrc={backIcons}
+        />
       </BottomBarContainer>
 
       {isModalOpen && (

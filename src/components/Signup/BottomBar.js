@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const BottomBar = ({ buttonText = '작성완료', imageSrc }) => {
+const BottomBar = ({ buttonText = '작성완료', imageSrc, onClick }) => {
   return (
     <BottomBarContainer>
       <CartButton>
         <CartImage src={imageSrc} alt='icon' />
       </CartButton>
-      <OrderButton>{buttonText}</OrderButton>
+      <OrderButton onClick={onClick}>{buttonText}</OrderButton>
     </BottomBarContainer>
   );
 };
