@@ -17,7 +17,7 @@ const Schedule = () => {
     navigate('/schedule/confirmation');
   };
   const handleBottomClick = () => {
-    navigate('/schedule/reservation');
+    navigate('/schedule/reservation1');
   };
 
   return (

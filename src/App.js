@@ -9,7 +9,9 @@ import ContemporarySettings from './components/inventory/ContemporarySettings.js
 
 import Schedule from './pages/Schedule';
 import ScheduleConfirmation from './pages/ScheduleConfirmation.js';
-import ScheduleReservation from './pages/ScheduleReservation.js';
+import ScheduleReservation1 from './pages/ScheduleReservation1.js';
+import ScheduleReservation2 from './pages/ScheduleReservation2.js';
+import ScheduleReservation3 from './pages/ScheduleReservation3.js';
 
 const List = lazyLoad(() => import('./pages/List'));
 const DetailLayout = lazyLoad(() => import('./components/DetailLayout'));
@@ -76,8 +78,16 @@ function App() {
                 element={<ScheduleConfirmation />}
               />
               <Route
-                path='/schedule/reservation'
-                element={<ScheduleReservation />}
+                path='/schedule/reservation1'
+                element={<ScheduleReservation1 />}
+              />
+              <Route
+                path='/schedule/reservation2'
+                element={<ScheduleReservation2 />}
+              />
+              <Route
+                path='/schedule/reservation3'
+                element={<ScheduleReservation3 />}
               />
 
               <Route path='/home' element={<Home />} />

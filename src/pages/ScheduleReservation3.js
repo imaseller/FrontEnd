@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import BackButton from '../components/BackButton';
 import Theme from '../styles/Theme';
-
+import { useNavigate } from 'react-router-dom';
 const getDaysInMonth = (year, month) => {
   return new Date(year, month, 0).getDate();
 };
@@ -76,6 +76,11 @@ const ScheduleReservation = () => {
     setMonth(Number(e.target.value));
   };
 
+  const navigate = useNavigate();
+
+  const handleBottomClick = () => {
+    navigate('/schedule/reservation2');
+  };
   return (
     <Container>
       <Header>
@@ -150,6 +155,9 @@ const ScheduleReservation = () => {
           </InfoText>
         </ScheduleInfo>
       </Summary>
+      <BottomBarContainer>
+        <OrderButton onClick={handleBottomClick}>다음</OrderButton>
+      </BottomBarContainer>
       <BeenContainer />
     </Container>
   );
@@ -348,6 +356,34 @@ const GrayText = styled.span`
 const ConnectorLine1 = styled.div`
   border: 1px solid ${Theme.colors.gray4};
   margin: 30px 0;
+`;
+
+const BottomBarContainer = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 10px 34px;
+  background-color: #eeeeee;
+  z-index: 9999;
+`;
+
+const OrderButton = styled.button`
+  width: 100%;
+  height: 56px;
+  background-color: black;
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  margin: 0 21px;
 `;
 
 const BeenContainer = styled.div`
