@@ -133,7 +133,6 @@ const Schedule = () => {
                       <DateText>6가지</DateText>
                     </InfoColumn>
                   </InfoRow>
-                  <ActionButton>스케줄 예약하기</ActionButton>
                 </Details>
               </ScheduleItem>
             </Container>
@@ -324,16 +323,6 @@ const MiniTitle = styled.div`
   font-size: 10px;
   line-height: 11px;
   padding: 9px 10px;
-`;
-
-const ActionButton = styled.button`
-  background-color: black;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  margin-top: 10px;
 `;
 
 const BottomBarContainer = styled.div`

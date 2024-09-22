@@ -224,18 +224,7 @@ const BottomBarContainer = styled.div`
   background-color: #eeeeee;
   z-index: 9999;
 `;
-const OrderButton = styled.button`
-  width: 100%;
-  height: 56px;
-  background-color: black;
-  border: none;
-  border-radius: 6px;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 800;
-  cursor: pointer;
-  margin: 0 21px;
-`;
+
 const BeenContainer = styled.div`
   height: 200px;
 `;
