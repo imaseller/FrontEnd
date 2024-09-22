@@ -16,6 +16,9 @@ const Schedule = () => {
   const handleIconClick = () => {
     navigate('/schedule/confirmation');
   };
+  const handleBottomClick = () => {
+    navigate('/schedule/reservation');
+  };
 
   return (
     <ScheduleContainer>
@@ -140,7 +143,7 @@ const Schedule = () => {
         </ScheduleList>
       </ScheduleContent>
       <BottomBarContainer>
-        <OrderButton>스케줄 예약하기</OrderButton>
+        <OrderButton onClick={handleBottomClick}>스케줄 예약하기</OrderButton>
       </BottomBarContainer>
       <BeenContainer />
     </ScheduleContainer>

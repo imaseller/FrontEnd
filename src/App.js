@@ -9,6 +9,7 @@ import ContemporarySettings from './components/inventory/ContemporarySettings.js
 
 import Schedule from './pages/Schedule';
 import ScheduleConfirmation from './pages/ScheduleConfirmation.js';
+import ScheduleReservation from './pages/ScheduleReservation.js';
 
 const List = lazyLoad(() => import('./pages/List'));
 const DetailLayout = lazyLoad(() => import('./components/DetailLayout'));
@@ -74,13 +75,17 @@ function App() {
                 path='/schedule/confirmation'
                 element={<ScheduleConfirmation />}
               />
+              <Route
+                path='/schedule/reservation'
+                element={<ScheduleReservation />}
+              />
+
               <Route path='/home' element={<Home />} />
               <Route path='/pageSettings' element={<PageSettings />} />
               <Route path='/inventory' element={<Inventory />} />
               <Route path='/payment' element={<PaymentDetail />} />
               <Route path='/store' element={<Store />} />
               <Route path='/menu' element={<Menu />} />
-
               {/* New Routes for Analysis, Settlement, and Delivery */}
               <Route path='/analysis' element={<Analysis />} />
               <Route path='/settlement' element={<Settlement />} />
