@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Theme from '../../styles/Theme.js';
-
+import ImgAdd from '../../img/Store/ImgAdd.svg';
 const ItemCard = ({ id, image, brand, description }) => {
   const navigate = useNavigate();
 
@@ -12,7 +12,10 @@ const ItemCard = ({ id, image, brand, description }) => {
 
   return (
     <CardContainer onClick={handleClick}>
-      <Image src={image} alt={brand} />
+      <ImageWrapper>
+        <Image src={image} alt={brand} />
+        <AddButton src={ImgAdd} alt='Add' />
+      </ImageWrapper>
       <Brand>{brand}</Brand>
       <Description>{description}</Description>
     </CardContainer>
@@ -33,11 +36,6 @@ const CardContainer = styled.div`
   }
 `;
 
-const Image = styled.img`
-  width: 140px;
-  height: 210px;
-`;
-
 const Brand = styled.h3`
   margin-top: 10px;
   font-size: 14px;
@@ -49,4 +47,25 @@ const Description = styled.p`
   font-size: 12px;
   ${Theme.fonts.default3}
   color: ${Theme.colors.gray2};
+`;
+
+const ImageWrapper = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
+const Image = styled.img`
+  object-fit: cover;
+  width: 140px;
+  height: 210px;
+`;
+
+const AddButton = styled.img`
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 36px;
+  height: 46px;
+  cursor: pointer;
+  z-index: 999;
 `;
