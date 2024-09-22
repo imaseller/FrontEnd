@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import BackButton from '../components/BackButton';
 import Theme from '../styles/Theme';
+import ScheduleIcon from '../img/Schedule/schedule.svg';
+import BletIcon from '../img/Schedule/blet.svg';
 
 const handleBackClick = () => {
   window.history.back();
@@ -20,18 +22,35 @@ const Schedule = () => {
         <ScheduleList>
           <ScheduleItemContainer>
             <IconContainer>
-              <Icon className='reserved' />
+              <IconWrapper>
+                <Icon src={ScheduleIcon} alt='Reserved Icon' />
+              </IconWrapper>
               <ConnectorLine />
             </IconContainer>
             <Container>
               <MiniTitle>예약된 스케줄</MiniTitle>
               <ScheduleItem>
                 <Details>
-                  <Season>2024 가을 시즌 2nd.</Season>
-                  <Date>스케줄 일정: 9월 16일 (월) ~ 9월 27일 (금)</Date>
+                  <SeasonWrapper>
+                    <Season>2024 가을 시즌 2nd.</Season>
+                    <IconRightWrapper>
+                      <IconRight src={BletIcon} alt='Blet Icon' />
+                    </IconRightWrapper>
+                  </SeasonWrapper>
+                  <DateWrapper>
+                    <DateTitle>스케줄 일정</DateTitle>
+                    <DateText>9월 16일 (월) ~ 9월 27일 (금)</DateText>
+                  </DateWrapper>
+                  <ConnectorLine1 />
                   <InfoRow>
-                    <Info>스케줄 노출일자: 9월 18일 (수)</Info>
-                    <Info>선택한 작품: 6가지</Info>
+                    <InfoColumn>
+                      <DateTitle>스케줄 노출일자</DateTitle>
+                      <DateText>9월 18일 (수)</DateText>
+                    </InfoColumn>
+                    <InfoColumn>
+                      <DateTitle>선택한 작품</DateTitle>
+                      <DateText>6가지</DateText>
+                    </InfoColumn>
                   </InfoRow>
                 </Details>
               </ScheduleItem>
@@ -40,18 +59,35 @@ const Schedule = () => {
 
           <ScheduleItemContainer>
             <IconContainer>
-              <Icon className='in-progress' />
+              <IconWrapper>
+                <Icon src={ScheduleIcon} alt='In Progress Icon' />
+              </IconWrapper>
               <ConnectorLine />
             </IconContainer>
             <Container>
               <MiniTitle>진행된 스케줄</MiniTitle>
               <ScheduleItem>
                 <Details>
-                  <Season>2024 가을 시즌 1st.</Season>
-                  <Date>스케줄 일정: 9월 2일 (월) ~ 9월 13일 (금)</Date>
+                  <SeasonWrapper>
+                    <Season>2024 가을 시즌 1st.</Season>
+                    <IconRightWrapper>
+                      <IconRight src={BletIcon} alt='Blet Icon' />
+                    </IconRightWrapper>
+                  </SeasonWrapper>
+                  <DateWrapper>
+                    <DateTitle>스케줄 일정</DateTitle>
+                    <DateText>9월 2일 (월) ~ 9월 13일 (금)</DateText>
+                  </DateWrapper>
+                  <ConnectorLine1 />
                   <InfoRow>
-                    <Info>스케줄 노출일자: 9월 4일 (수)</Info>
-                    <Info>선택한 작품: 6가지</Info>
+                    <InfoColumn>
+                      <DateTitle>스케줄 노출일자</DateTitle>
+                      <DateText>9월 4일 (수)</DateText>
+                    </InfoColumn>
+                    <InfoColumn>
+                      <DateTitle>선택한 작품</DateTitle>
+                      <DateText>6가지</DateText>
+                    </InfoColumn>
                   </InfoRow>
                 </Details>
               </ScheduleItem>
@@ -60,18 +96,35 @@ const Schedule = () => {
 
           <ScheduleItemContainer>
             <IconContainer>
-              <Icon className='future' />
+              <IconWrapper>
+                <Icon src={ScheduleIcon} alt='Future Schedule Icon' />
+              </IconWrapper>
               <ConnectorLine />
             </IconContainer>
             <Container>
               <MiniTitle>미진행 스케줄</MiniTitle>
               <ScheduleItem>
                 <Details>
-                  <Season>2024 여름 시즌 6th.</Season>
-                  <Date>스케줄 일정: 9월 2일 (월) ~ 9월 13일 (금)</Date>
+                  <SeasonWrapper>
+                    <Season>2024 여름 시즌 6th.</Season>
+                    <IconRightWrapper>
+                      <IconRight src={BletIcon} alt='Blet Icon' />
+                    </IconRightWrapper>
+                  </SeasonWrapper>
+                  <DateWrapper>
+                    <DateTitle>스케줄 일정</DateTitle>
+                    <DateText>9월 2일 (월) ~ 9월 13일 (금)</DateText>
+                  </DateWrapper>
+                  <ConnectorLine1 />
                   <InfoRow>
-                    <Info>스케줄 노출일자: 9월 4일 (수)</Info>
-                    <Info>선택한 작품: 6가지</Info>
+                    <InfoColumn>
+                      <DateTitle>스케줄 노출일자</DateTitle>
+                      <DateText>9월 4일 (수)</DateText>
+                    </InfoColumn>
+                    <InfoColumn>
+                      <DateTitle>선택한 작품</DateTitle>
+                      <DateText>6가지</DateText>
+                    </InfoColumn>
                   </InfoRow>
                   <ActionButton>스케줄 예약하기</ActionButton>
                 </Details>
@@ -95,6 +148,11 @@ const ScheduleContainer = styled.div`
   height: 100vh;
 `;
 
+const Container = styled.div`
+  width: 308px;
+  height: 220px;
+`;
+
 const Header = styled.header`
   display: flex;
   align-items: center;
@@ -115,15 +173,9 @@ const Title = styled.h1`
   text-align: center;
 `;
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-`;
-
 const ScheduleContent = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 15px;
 `;
 
@@ -142,38 +194,36 @@ const IconContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 20px;
   position: relative;
+  z-index: 2;
+  margin: 30px 20px 0 0;
 `;
 
-const Icon = styled.div`
-  width: 40px;
-  height: 40px;
+const IconWrapper = styled.div`
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background-color: ${Theme.colors.gray1};
-  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
-  &.reserved {
-    background-color: gray;
-  }
+const Icon = styled.img`
+  width: 24px;
+  height: 24px;
+`;
 
-  &.in-progress {
-    background-color: orange;
-  }
+const ConnectorLine1 = styled.div`
+  border: 1px solid ${Theme.colors.gray4};
 
-  &.future {
-    background-color: blue;
-  }
-
-  &.past {
-    background-color: lightgray;
-  }
+  margin: 4px 0;
 `;
 
 const ConnectorLine = styled.div`
-  border: 1px solid ${Theme.colors.gray1};
-  height: 90px;
-  margin: 0 auto;
+  border: 2px solid ${Theme.colors.gray4};
+  height: 212px;
+  margin-top: 10px;
 `;
 
 const ScheduleItem = styled.div`
@@ -190,24 +240,79 @@ const Details = styled.div`
   gap: 10px;
 `;
 
+const SeasonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 const Season = styled.span`
-  font-weight: bold;
-  font-size: 18px;
-`;
-
-const Date = styled.span`
-  color: #333;
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 900;
   font-size: 16px;
+  line-height: 18px;
 `;
 
-const Info = styled.span`
-  color: #666;
+const IconRightWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid ${Theme.colors.gray1};
+  margin-left: 10px;
+  border-radius: 4px;
+`;
+
+const IconRight = styled.img`
+  width: 20px;
+  height: 22px;
+`;
+
+const DateWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const DateTitle = styled.span`
+  color: ${Theme.colors.gray2};
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 13px;
+
+  margin-bottom: 10px;
+`;
+
+const DateText = styled.span`
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 800;
   font-size: 14px;
+  line-height: 15px;
 `;
 
 const InfoRow = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+const InfoColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const MiniTitle = styled.div`
+  display: flex;
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 11px;
+  padding: 9px 10px;
 `;
 
 const ActionButton = styled.button`
@@ -218,7 +323,4 @@ const ActionButton = styled.button`
   border: none;
   cursor: pointer;
   margin-top: 10px;
-`;
-const MiniTitle = styled.div`
-  display: flex;
 `;
