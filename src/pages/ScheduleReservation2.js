@@ -11,7 +11,7 @@ const getFirstDayOfMonth = (year, month) => {
   return new Date(year, month - 1, 1).getDay();
 };
 
-const ScheduleReservation = () => {
+const ScheduleReservation2 = () => {
   const [selectedDates, setSelectedDates] = useState([]);
   const [reservedDates, setReservedDates] = useState([22, 23, 24]);
   const [year, setYear] = useState(2024);
@@ -163,7 +163,7 @@ const ScheduleReservation = () => {
   );
 };
 
-export default ScheduleReservation;
+export default ScheduleReservation2;
 
 const Container = styled.div`
   width: 100%;

@@ -11,7 +11,7 @@ const getFirstDayOfMonth = (year, month) => {
   return new Date(year, month - 1, 1).getDay();
 };
 
-const ScheduleReservation = () => {
+const ScheduleReservation3 = () => {
   const [selectedDates, setSelectedDates] = useState([]);
   const [reservedDates, setReservedDates] = useState([22, 23, 24]);
   const [year, setYear] = useState(2024);
@@ -163,7 +163,7 @@ const ScheduleReservation = () => {
   );
 };
 
-export default ScheduleReservation;
+export default ScheduleReservation3;
 
 const Container = styled.div`
   width: 100%;
@@ -201,8 +201,8 @@ const Stepper = styled.div`
 `;
 
 const Step = styled.div`
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background-color: ${(props) =>
     props.completed ? Theme.colors.yellow : Theme.colors.gray2};
