@@ -27,9 +27,9 @@ const Schedule = () => {
       </Header>
       <ScheduleContent>
         <ScheduleList>
-          <ScheduleItemContainer>
+          <ScheduleItemContainer scheduleStatus='reserved'>
             <IconContainer>
-              <IconWrapper>
+              <IconWrapper scheduleStatus='reserved'>
                 <Icon src={ScheduleIcon} alt='Reserved Icon' />
               </IconWrapper>
               <ConnectorLine />
@@ -64,9 +64,9 @@ const Schedule = () => {
             </Container>
           </ScheduleItemContainer>
 
-          <ScheduleItemContainer>
+          <ScheduleItemContainer scheduleStatus='inProgress'>
             <IconContainer>
-              <IconWrapper>
+              <IconWrapper scheduleStatus='inProgress'>
                 <Icon src={ScheduleIcon} alt='In Progress Icon' />
               </IconWrapper>
               <ConnectorLine />
@@ -77,7 +77,7 @@ const Schedule = () => {
                 <Details>
                   <SeasonWrapper>
                     <Season>2024 가을 시즌 1st.</Season>
-                    <IconRightWrapper>
+                    <IconRightWrapper onClick={handleIconClick}>
                       <IconRight src={BletIcon} alt='Blet Icon' />
                     </IconRightWrapper>
                   </SeasonWrapper>
@@ -101,9 +101,9 @@ const Schedule = () => {
             </Container>
           </ScheduleItemContainer>
 
-          <ScheduleItemContainer>
+          <ScheduleItemContainer scheduleStatus='notStarted'>
             <IconContainer>
-              <IconWrapper>
+              <IconWrapper scheduleStatus='notStarted'>
                 <Icon src={ScheduleIcon} alt='Future Schedule Icon' />
               </IconWrapper>
               <ConnectorLine />
@@ -114,7 +114,7 @@ const Schedule = () => {
                 <Details>
                   <SeasonWrapper>
                     <Season>2024 여름 시즌 6th.</Season>
-                    <IconRightWrapper>
+                    <IconRightWrapper onClick={handleIconClick}>
                       <IconRight src={BletIcon} alt='Blet Icon' />
                     </IconRightWrapper>
                   </SeasonWrapper>
@@ -216,7 +216,12 @@ const IconWrapper = styled.div`
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background-color: ${Theme.colors.gray1};
+  background-color: ${({ scheduleStatus }) =>
+    scheduleStatus === 'reserved'
+      ? Theme.colors.gray
+      : scheduleStatus === 'inProgress'
+      ? Theme.colors.yellow
+      : Theme.colors.gray4};
   display: flex;
   align-items: center;
   justify-content: center;
