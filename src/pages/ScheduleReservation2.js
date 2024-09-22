@@ -1,11 +1,96 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import BackButton from '../components/BackButton';
-import Theme from '../styles/Theme';
 import { useNavigate } from 'react-router-dom';
-import ItemList from '../components/Home/ItemList';
+import Theme from '../styles/Theme';
+import BackButton from '../components/BackButton';
 import BottomBar from '../components/Signup/BottomBar';
 import backIcons from '../img/Schedule/BackButton.svg';
+import ExIMG1 from '../img/Home/ExIMG1.svg';
+import ImgAdd from '../img/Store/ImgAdd.svg';
+import checkIcon from '../img/Schedule/checkIcon.svg';
+
+const ItemCard = ({ id, image, brand, description }) => {
+  const [isSelected, setIsSelected] = useState(false);
+
+  const handleSelect = () => {
+    setIsSelected(!isSelected);
+  };
+
+  return (
+    <CardContainer>
+      <ImageWrapper onClick={handleSelect}>
+        <Image src={image} alt={brand} />
+        <AddButton src={ImgAdd} alt='Add' />
+        {isSelected && (
+          <SelectionOverlay>
+            <CircularSelection>
+              <CheckIcon src={checkIcon} alt='Check Icon' />
+            </CircularSelection>
+            <SelectText>제품선택</SelectText>
+          </SelectionOverlay>
+        )}
+      </ImageWrapper>
+      <Brand>{brand}</Brand>
+      <Description>{description}</Description>
+    </CardContainer>
+  );
+};
+const items = [
+  {
+    id: 1,
+    image: ExIMG1,
+    brand: 'SANDRO',
+    description: '언발 플레어 미니원피스',
+    price: 150000,
+    discount: 10,
+  },
+  {
+    id: 2,
+    image: ExIMG1,
+    brand: 'ZOOC',
+    description: '볼륨소매 랩 카라 블라우스',
+    price: 150000,
+    discount: 10,
+  },
+  {
+    id: 3,
+    image: ExIMG1,
+    brand: 'MICHA',
+    description: '테일러드 카라 머메이드 원피스',
+    price: 150000,
+    discount: 10,
+  },
+  {
+    id: 4,
+    image: ExIMG1,
+    brand: 'MICHA',
+    description: '테일러드 카라 머메이드 원피스',
+    price: 150000,
+    discount: 10,
+  },
+];
+
+const truncateText = (text, limit) => {
+  return text.length > limit ? text.slice(0, limit) + '...' : text;
+};
+
+const ItemList = ({ HeaderContainer }) => {
+  return (
+    <ListContainer>
+      <HeaderContainer />
+      <ItemsWrapper>
+        {items.map((item) => (
+          <ItemCard
+            key={item.id}
+            {...item}
+            description={truncateText(item.description, 12)}
+          />
+        ))}
+      </ItemsWrapper>
+    </ListContainer>
+  );
+};
+
 const ScheduleReservation2 = () => {
   const handleBackClick = () => {
     window.history.back();
@@ -16,6 +101,7 @@ const ScheduleReservation2 = () => {
   const handleBottomClick = () => {
     navigate('/schedule/reservation2');
   };
+
   const ItemContainer1 = () => (
     <CustomHeader>
       <div>
@@ -25,6 +111,7 @@ const ScheduleReservation2 = () => {
       </div>
     </CustomHeader>
   );
+
   const ItemContainer2 = () => <CustomHeader></CustomHeader>;
 
   return (
@@ -52,13 +139,16 @@ const ScheduleReservation2 = () => {
           </InfoText>
         </ScheduleInfo>
       </Summary>
+
       <Content>
         <ItemList HeaderContainer={ItemContainer1} />
         <ItemList HeaderContainer={ItemContainer2} />
       </Content>
+
       <BottomBarContainer>
-        <BottomBar buttonText='수정하기' imageSrc={backIcons} />
+        <BottomBar buttonText='다음' imageSrc={backIcons} />
       </BottomBarContainer>
+
       <BeenContainer />
     </Container>
   );
@@ -66,6 +156,7 @@ const ScheduleReservation2 = () => {
 
 export default ScheduleReservation2;
 
+// Styled Components
 const Container = styled.div`
   width: 100%;
   max-width: 600px;
@@ -149,9 +240,7 @@ const InfoText = styled.div`
   border: 1px solid ${Theme.colors.gray4};
   border-radius: 5px;
   display: flex;
-
   align-items: center;
-
   font-family: 'NanumSquare Neo OTF';
   font-style: normal;
   font-weight: 700;
@@ -174,19 +263,6 @@ const BottomBarContainer = styled.div`
   z-index: 9999;
 `;
 
-const OrderButton = styled.button`
-  width: 100%;
-  height: 56px;
-  background-color: black;
-  border: none;
-  border-radius: 6px;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 800;
-  cursor: pointer;
-  margin: 0 21px;
-`;
-
 const BeenContainer = styled.div`
   height: 300px;
 `;
@@ -205,7 +281,6 @@ const CustomHeader = styled.div`
 const GrayText = styled.span`
   margin-left: 10px;
   color: ${Theme.colors.gray3};
-
   font-family: 'NanumSquare Neo OTF';
   font-style: normal;
   font-weight: 700;
@@ -216,10 +291,112 @@ const GrayText = styled.span`
 const GrayText2 = styled.span`
   margin-left: 5px;
   color: ${Theme.colors.gray3};
-
   font-family: 'NanumSquare Neo OTF';
   font-style: normal;
   font-weight: 700;
   font-size: 10px;
   line-height: 11px;
+`;
+
+const ListContainer = styled.div`
+  background-color: ${Theme.colors.white};
+  overflow: hidden;
+  margin-bottom: 40px;
+`;
+
+const ItemsWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const Brand = styled.h3`
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+`;
+
+const Description = styled.p`
+  margin-top: 5px;
+  font-size: 12px;
+  ${Theme.fonts.default3}
+  color: ${Theme.colors.gray2};
+`;
+
+const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 100%;
+  cursor: pointer;
+  margin: 6px;
+  position: relative;
+`;
+
+const ImageWrapper = styled.div`
+  position: relative;
+  width: 140px;
+  height: 210px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Image = styled.img`
+  object-fit: cover;
+  width: 140px;
+  height: 210px;
+`;
+
+const AddButton = styled.img`
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 36px;
+  height: 46px;
+  cursor: pointer;
+  z-index: 1;
+`;
+
+const CheckIcon = styled.img`
+  width: 30px;
+  height: 22px;
+`;
+
+const SelectionOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: 210px;
+  background: rgba(246, 174, 36, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+`;
+
+const CircularSelection = styled.div`
+  width: 58px;
+  height: 58px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const SelectText = styled.div`
+  margin-top: 10px;
+  font-family: 'NanumSquare Neo OTF';
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 13px;
+  color: white;
 `;
