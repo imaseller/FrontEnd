@@ -133,6 +133,10 @@ const Schedule = () => {
           </ScheduleItemContainer>
         </ScheduleList>
       </ScheduleContent>
+      <BottomBarContainer>
+        <OrderButton>스케줄 예약하기</OrderButton>
+      </BottomBarContainer>
+      <BeenContainer />
     </ScheduleContainer>
   );
 };
@@ -145,12 +149,17 @@ const ScheduleContainer = styled.div`
   margin: 0 auto;
   padding: 0 27px;
   border: 1px solid ${Theme.colors.gray1};
-  height: 100vh;
+  height: 100%;
+  position: relative;
 `;
 
 const Container = styled.div`
   width: 308px;
   height: 220px;
+`;
+
+const BeenContainer = styled.div`
+  height: 100px;
 `;
 
 const Header = styled.header`
@@ -216,21 +225,17 @@ const Icon = styled.img`
 
 const ConnectorLine1 = styled.div`
   border: 1px solid ${Theme.colors.gray4};
-
   margin: 4px 0;
 `;
 
 const ConnectorLine = styled.div`
   border: 2px solid ${Theme.colors.gray4};
   height: 212px;
-  margin-top: 10px;
 `;
 
 const ScheduleItem = styled.div`
   background-color: white;
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 10px;
+  border: 1px solid ${Theme.colors.gray4};
   flex-grow: 1;
 `;
 
@@ -238,6 +243,7 @@ const Details = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding: 31px 21px 34px 21px;
 `;
 
 const SeasonWrapper = styled.div`
@@ -283,7 +289,6 @@ const DateTitle = styled.span`
   font-weight: 400;
   font-size: 12px;
   line-height: 13px;
-
   margin-bottom: 10px;
 `;
 
@@ -303,6 +308,7 @@ const InfoRow = styled.div`
 const InfoColumn = styled.div`
   display: flex;
   flex-direction: column;
+  margin-right: 50px;
 `;
 
 const MiniTitle = styled.div`
@@ -323,4 +329,32 @@ const ActionButton = styled.button`
   border: none;
   cursor: pointer;
   margin-top: 10px;
+`;
+
+const BottomBarContainer = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 10px 34px;
+  background-color: #eeeeee;
+  z-index: 9999;
+`;
+
+const OrderButton = styled.button`
+  width: 100%;
+  height: 56px;
+  background-color: black;
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  margin: 0 21px;
 `;
