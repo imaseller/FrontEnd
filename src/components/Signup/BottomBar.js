@@ -23,11 +23,11 @@ const BottomBarContainer = styled.div`
   width: 100%;
   max-width: 600px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 10px 10px 34px;
+  z-index: 9999;
   background-color: ${({ theme }) => theme.colors.gray4};
-  margin-top: 10px;
 `;
 
 const CartButton = styled.button`

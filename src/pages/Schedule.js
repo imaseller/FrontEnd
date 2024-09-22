@@ -4,12 +4,19 @@ import BackButton from '../components/BackButton';
 import Theme from '../styles/Theme';
 import ScheduleIcon from '../img/Schedule/schedule.svg';
 import BletIcon from '../img/Schedule/blet.svg';
+import { useNavigate } from 'react-router-dom';
 
 const handleBackClick = () => {
   window.history.back();
 };
 
 const Schedule = () => {
+  const navigate = useNavigate();
+
+  const handleIconClick = () => {
+    navigate('/schedule/confirmation');
+  };
+
   return (
     <ScheduleContainer>
       <Header>
@@ -33,7 +40,7 @@ const Schedule = () => {
                 <Details>
                   <SeasonWrapper>
                     <Season>2024 가을 시즌 2nd.</Season>
-                    <IconRightWrapper>
+                    <IconRightWrapper onClick={handleIconClick}>
                       <IconRight src={BletIcon} alt='Blet Icon' />
                     </IconRightWrapper>
                   </SeasonWrapper>
@@ -158,17 +165,12 @@ const Container = styled.div`
   height: 220px;
 `;
 
-const BeenContainer = styled.div`
-  height: 100px;
-`;
-
 const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   height: 105px;
-  margin-bottom: 20px;
 `;
 
 const BackButtonWrapper = styled.div`
@@ -177,8 +179,11 @@ const BackButtonWrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 24px;
-  font-weight: bold;
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 22px;
   text-align: center;
 `;
 
@@ -357,4 +362,8 @@ const OrderButton = styled.button`
   font-weight: 800;
   cursor: pointer;
   margin: 0 21px;
+`;
+
+const BeenContainer = styled.div`
+  height: 100px;
 `;
