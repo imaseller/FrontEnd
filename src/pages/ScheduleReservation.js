@@ -44,6 +44,14 @@ const ScheduleReservation = () => {
       <EmptyDay key={i} />
     ));
 
+    const [startDate, endDate] = selectedDates;
+    const isWithinRange = (day) => {
+      if (startDate && endDate) {
+        return day > startDate && day < endDate;
+      }
+      return false;
+    };
+
     return [
       ...emptyDays,
       ...days.map((day) => (
@@ -51,6 +59,7 @@ const ScheduleReservation = () => {
           key={day}
           selected={selectedDates.includes(day)}
           reserved={reservedDates.includes(day)}
+          inRange={isWithinRange(day)}
           onClick={() => handleDateClick(day)}
         >
           {day}
@@ -77,7 +86,6 @@ const ScheduleReservation = () => {
       </Header>
 
       <Stepper>
-        <StepLine />
         <Step completed>1</Step>
         <StepLine />
         <Step>2</Step>
@@ -110,16 +118,14 @@ const ScheduleReservation = () => {
       </DateSelection>
 
       <CalendarContainer>
-        <DayName>일</DayName>
-        <DayName>월</DayName>
-        <DayName>화</DayName>
-        <DayName>수</DayName>
-        <DayName>목</DayName>
-        <DayName>금</DayName>
-        <DayName>토</DayName>
+        {['일', '월', '화', '수', '목', '금', '토'].map((name, index) => (
+          <DayName key={index} isWeekend={index === 0 || index === 6}>
+            {name}
+          </DayName>
+        ))}
         {renderCalendar()}
       </CalendarContainer>
-
+      <ConnectorLine1 />
       <Summary>
         <ScheduleInfo>
           <Label>선택된 스케줄</Label>
@@ -132,29 +138,41 @@ const ScheduleReservation = () => {
         <ScheduleInfo>
           <Label>시즌 진행 회차</Label>
           <InfoText>
-            {seasonProgress.completed} / {seasonProgress.total} 회
-            <PendingText> 미진행 {seasonProgress.pending}회</PendingText>
+            <ProgressText>
+              {seasonProgress.completed} /{' '}
+              <GrayText>{seasonProgress.total}</GrayText> 회
+            </ProgressText>
+            <PendingText>
+              {' '}
+              <GrayText>미진행 </GrayText>
+              {seasonProgress.pending}회
+            </PendingText>
           </InfoText>
         </ScheduleInfo>
       </Summary>
+      <BeenContainer />
     </Container>
   );
 };
 
 export default ScheduleReservation;
 
-// Styled Components
 const Container = styled.div`
-  padding: 20px;
+  width: 100%;
   max-width: 600px;
   margin: 0 auto;
+  padding: 0 27px;
+  border: 1px solid ${Theme.colors.gray1};
+  height: 100%;
+  position: relative;
 `;
 
 const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  position: relative;
+  height: 105px;
 `;
 
 const BackButtonWrapper = styled.div`
@@ -189,9 +207,9 @@ const Step = styled.div`
 `;
 
 const StepLine = styled.div`
+  width: 30px;
   height: 2px;
-  background-color: ${Theme.colors.gray2};
-  flex-grow: 1;
+  background-color: ${Theme.colors.gray3};
   align-self: center;
 `;
 
@@ -200,8 +218,11 @@ const DateSelection = styled.div`
 `;
 
 const Label = styled.label`
-  font-size: 14px;
-  color: #555;
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 11px;
 `;
 
 const DateRow = styled.div`
@@ -215,7 +236,6 @@ const DateInput = styled.select`
   border: 1px solid ${Theme.colors.gray4};
   border-radius: 5px;
   flex: 1;
-  text-align: center;
 `;
 
 const DateDropdown = styled.select`
@@ -223,46 +243,60 @@ const DateDropdown = styled.select`
   border: 1px solid ${Theme.colors.gray4};
   border-radius: 5px;
   flex: 1;
-  text-align: center;
+
   margin-left: 10px;
+  width: 178px;
+  height: 57px;
 `;
 
 const CalendarContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(7, 0fr);
+  align-items: center;
+  justify-content: center;
   margin-bottom: 20px;
+  margin-top: 39px;
 `;
 
 const DayName = styled.div`
   text-align: center;
   font-weight: bold;
+  color: ${(props) => (props.isWeekend ? Theme.colors.gray1 : 'black')};
 `;
 
 const EmptyDay = styled.div``;
 
 const DayBox = styled.div`
-  border: 1px solid ${Theme.colors.gray4};
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: 1px solid
+    ${(props) => (props.inRange ? Theme.colors.yellow : Theme.colors.gray4)};
   background-color: ${(props) =>
     props.reserved
       ? Theme.colors.gray3
       : props.selected
       ? Theme.colors.yellow
       : '#fff'};
-  color: ${(props) => (props.reserved ? '#fff' : '#000')};
-  border-radius: 5px;
+  color: ${(props) =>
+    props.selected ? '#fff' : props.reserved ? '#fff' : '#000'};
+  width: 100%;
+  min-width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: ${(props) => (props.reserved ? 'default' : 'pointer')};
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 13px;
+  text-align: center;
 `;
 
 const Summary = styled.div`
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
+  gap: 10px;
 `;
 
 const ScheduleInfo = styled.div`
@@ -270,9 +304,52 @@ const ScheduleInfo = styled.div`
 `;
 
 const InfoText = styled.div`
+  height: 57px;
   padding: 10px;
+  margin-top: 10px;
+  border: 1px solid ${Theme.colors.gray4};
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 14px;
+`;
+const ProgressText = styled.div`
+  padding: 10px;
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 14px;
 `;
 
 const PendingText = styled.div`
   padding: 10px;
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 11px;
+`;
+const GrayText = styled.span`
+  color: ${Theme.colors.gray3};
+
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 11px;
+`;
+
+const ConnectorLine1 = styled.div`
+  border: 1px solid ${Theme.colors.gray4};
+  margin: 30px 0;
+`;
+
+const BeenContainer = styled.div`
+  height: 300px;
 `;
