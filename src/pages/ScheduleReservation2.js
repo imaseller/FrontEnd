@@ -4,6 +4,8 @@ import BackButton from '../components/BackButton';
 import Theme from '../styles/Theme';
 import { useNavigate } from 'react-router-dom';
 import ItemList from '../components/Home/ItemList';
+import BottomBar from '../components/Signup/BottomBar';
+import backIcons from '../img/Schedule/BackButton.svg';
 const ScheduleReservation2 = () => {
   const handleBackClick = () => {
     window.history.back();
@@ -18,7 +20,7 @@ const ScheduleReservation2 = () => {
     <CustomHeader>
       <div>
         <Label>
-          스케줄에 추가할 제품 목록<GrayText>(선택)</GrayText>
+          스케줄에 추가할 제품 목록<GrayText2>(선택)</GrayText2>
         </Label>
       </div>
     </CustomHeader>
@@ -45,7 +47,9 @@ const ScheduleReservation2 = () => {
       <Summary>
         <ScheduleInfo>
           <Label>예약할 제품 목록</Label>
-          <InfoText>선택 가능한 갯수 6개 / 선택한 제품 수 1 개</InfoText>
+          <InfoText>
+            선택한 제품 수 1 개<GrayText> / 선택 가능한 갯수 6개</GrayText>
+          </InfoText>
         </ScheduleInfo>
       </Summary>
       <Content>
@@ -53,7 +57,7 @@ const ScheduleReservation2 = () => {
         <ItemList HeaderContainer={ItemContainer2} />
       </Content>
       <BottomBarContainer>
-        <OrderButton onClick={handleBottomClick}>다음</OrderButton>
+        <BottomBar buttonText='수정하기' imageSrc={backIcons} />
       </BottomBarContainer>
       <BeenContainer />
     </Container>
@@ -131,6 +135,7 @@ const Summary = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 10px;
+  margin-bottom: 30px;
 `;
 
 const ScheduleInfo = styled.div`
@@ -144,11 +149,12 @@ const InfoText = styled.div`
   border: 1px solid ${Theme.colors.gray4};
   border-radius: 5px;
   display: flex;
-  justify-content: space-between;
+
   align-items: center;
+
   font-family: 'NanumSquare Neo OTF';
   font-style: normal;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 13px;
   line-height: 14px;
 `;
@@ -196,41 +202,24 @@ const CustomHeader = styled.div`
   margin-bottom: 10px;
 `;
 
-const CustomTitle = styled.h2`
-  ${Theme.fonts.default1}
-  margin-bottom: 5px;
-`;
-
-const CustomHighlight = styled.span`
-  color: ${Theme.colors.yellow};
-  font-style: normal;
-  font-weight: 800;
-  font-size: 16px;
-  line-height: 18px;
-`;
-
-const CustomSubtitle = styled.p`
-  ${Theme.fonts.default2}
-  color: ${Theme.colors.gray1};
-`;
-
-const CustomMoreButton = styled.button`
-  ${Theme.fonts.default0}
-  padding: 10px 13px;
-  background-color: ${Theme.colors.white};
-  color: ${Theme.colors.Black1};
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  cursor: pointer;
-  align-self: flex-start;
-`;
-
 const GrayText = styled.span`
+  margin-left: 10px;
   color: ${Theme.colors.gray3};
 
   font-family: 'NanumSquare Neo OTF';
   font-style: normal;
   font-weight: 700;
   font-size: 13px;
+  line-height: 11px;
+`;
+
+const GrayText2 = styled.span`
+  margin-left: 5px;
+  color: ${Theme.colors.gray3};
+
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
   line-height: 11px;
 `;

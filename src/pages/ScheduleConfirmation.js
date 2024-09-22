@@ -4,7 +4,7 @@ import BackButton from '../components/BackButton';
 import Theme from '../styles/Theme';
 import ExIMG1 from '../img/Home/ExIMG1.svg';
 import BottomBar from '../components/Signup/BottomBar';
-
+import reservation from '../img/Schedule/reservation.svg';
 const items = [
   {
     id: 1,
@@ -85,7 +85,7 @@ const ScheduleConfirmation = () => {
         </ProductList>
       </Content>
       <BottomBarContainer>
-        <BottomBar buttonText='수정하기' />
+        <BottomBar buttonText='수정하기' imageSrc={reservation} />
       </BottomBarContainer>
       <BeenContainer />
     </Container>
