@@ -7,7 +7,6 @@ import BottomBar from '../components/Signup/BottomBar';
 import backIcons from '../img/Schedule/BackButton.svg';
 import ExIMG1 from '../img/Home/ExIMG1.svg';
 import ImgAdd from '../img/Store/ImgAdd.svg';
-import checkIcon from '../img/Schedule/checkIcon.svg';
 
 const MAX_SELECTION = 6;
 
@@ -28,6 +27,7 @@ const ItemCard = ({ id, image, brand, description, onSelect, isSelected }) => {
     </CardContainer>
   );
 };
+
 const items = [
   {
     id: 1,
@@ -113,6 +113,8 @@ const ItemList = ({ HeaderContainer, selectedItems, onSelect }) => {
 const ScheduleReservation3 = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState('');
+  const [selectedTime, setSelectedTime] = useState('');
 
   const handleSelect = (id) => {
     if (selectedItems.includes(id)) {
@@ -126,6 +128,14 @@ const ScheduleReservation3 = () => {
     }
   };
 
+  const handleDateChange = (event) => {
+    setSelectedDate(event.target.value);
+  };
+
+  const handleTimeChange = (event) => {
+    setSelectedTime(event.target.value);
+  };
+
   const handleBackClick = () => {
     window.history.back();
   };
@@ -134,6 +144,8 @@ const ScheduleReservation3 = () => {
 
   const handleBottomClick = () => {
     console.log('버튼 클릭됨');
+    console.log(`Selected Date: ${selectedDate}`);
+    console.log(`Selected Time: ${selectedTime}`);
     navigate('/schedule/reservation3');
   };
 
@@ -183,6 +195,22 @@ const ScheduleReservation3 = () => {
         />
       </Content>
 
+      {/* Date and Time Selection */}
+      <SelectWrapper>
+        <Select value={selectedDate} onChange={handleDateChange}>
+          <option value=''>날짜 선택</option>
+          <option value='2024-09-24'>2024년 9월 24일</option>
+          <option value='2024-09-25'>2024년 9월 25일</option>
+          <option value='2024-09-26'>2024년 9월 26일</option>
+        </Select>
+        <Select value={selectedTime} onChange={handleTimeChange}>
+          <option value=''>시간 선택</option>
+          <option value='09:00'>09:00</option>
+          <option value='12:00'>12:00</option>
+          <option value='15:00'>15:00</option>
+        </Select>
+      </SelectWrapper>
+
       <BottomBarContainer>
         <BottomBar
           onClick={handleBottomClick}
@@ -197,6 +225,7 @@ const ScheduleReservation3 = () => {
 };
 
 export default ScheduleReservation3;
+
 const Container = styled.div`
   width: 100%;
   max-width: 600px;
@@ -288,6 +317,19 @@ const InfoText = styled.div`
   line-height: 14px;
 `;
 
+const SelectWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+`;
+
+const Select = styled.select`
+  flex: 1;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid ${Theme.colors.gray1};
+`;
+
 const BottomBarContainer = styled.div`
   position: fixed;
   bottom: 0;
@@ -357,18 +399,6 @@ const Description = styled.p`
   font-size: 12px;
   ${Theme.fonts.default3}
   color: ${Theme.colors.gray2};
-`;
-
-const Modal = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.5);
 `;
 
 const CardContainer = styled.div`
