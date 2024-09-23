@@ -21,14 +21,7 @@ const ItemCard = ({ id, image, brand, description, onSelect, isSelected }) => {
       <ImageWrapper onClick={handleSelect}>
         <Image src={image} alt={brand} />
         <AddButton src={ImgAdd} alt='Add' />
-        {isSelected && (
-          <SelectionOverlay>
-            <CircularSelection>
-              <CheckIcon src={checkIcon} alt='Check Icon' />
-            </CircularSelection>
-            <SelectText>제품선택</SelectText>
-          </SelectionOverlay>
-        )}
+        {isSelected && <SelectionOverlay></SelectionOverlay>}
       </ImageWrapper>
       <Brand>{brand}</Brand>
       <Description>{description}</Description>
@@ -133,10 +126,6 @@ const ScheduleReservation3 = () => {
     }
   };
 
-  const closeWarningModal = () => {
-    setIsModalOpen(false);
-  };
-
   const handleBackClick = () => {
     window.history.back();
   };
@@ -201,22 +190,6 @@ const ScheduleReservation3 = () => {
           imageSrc={backIcons}
         />
       </BottomBarContainer>
-
-      {isModalOpen && (
-        <WarningModal>
-          <WarningModalContent>
-            <ModalHeader>
-              <ModalTitle>알림</ModalTitle>
-              <GrayLine />
-            </ModalHeader>
-            <WarningMessage>최대 6개의 제품만 선택 가능합니다.</WarningMessage>
-            <GrayLine />
-            <ButtonRow>
-              <CancelButton onClick={closeWarningModal}>닫기</CancelButton>
-            </ButtonRow>
-          </WarningModalContent>
-        </WarningModal>
-      )}
 
       <BeenContainer />
     </Container>
@@ -428,154 +401,4 @@ const AddButton = styled.img`
   cursor: pointer;
 `;
 
-const SelectionOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 140px;
-  height: 210px;
-  background: rgba(246, 174, 36, 0.95);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const CircularSelection = styled.div`
-  width: 58px;
-  height: 58px;
-  background-color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const CheckIcon = styled.img`
-  width: 30px;
-  height: 22px;
-`;
-
-const SelectText = styled.div`
-  margin-top: 10px;
-  font-family: 'NanumSquare Neo OTF';
-  font-weight: 700;
-  font-size: 12px;
-  color: white;
-`;
-
-const ModalOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 27px;
-`;
-
-const ModalContent = styled.div`
-  background-color: ${Theme.colors.white};
-  padding: 20px;
-  max-width: 500px;
-  width: 100%;
-  height: 670px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const ModalHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const ModalTitle = styled.p`
-  font-family: 'NanumSquare Neo OTF', sans-serif;
-  font-weight: 800;
-  font-size: 16px;
-`;
-
-const GrayText = styled.span`
-  color: ${Theme.colors.gray1};
-`;
-
-const GrayLine = styled.hr`
-  border: none;
-  width: 100%;
-  border: 1px solid ${Theme.colors.gray0};
-  margin: 20px 0;
-`;
-
-const ModalBody = styled.div`
-  flex-grow: 1;
-`;
-
-const BrandSelectionGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-`;
-
-const BrandOption = styled.div`
-  padding: 10px;
-  background-color: ${(props) =>
-    props.selected ? Theme.colors.yellow : Theme.colors.white};
-  color: ${(props) =>
-    props.selected ? Theme.colors.white : Theme.colors.black};
-  border: 1px solid ${Theme.colors.gray1};
-  text-align: center;
-  cursor: pointer;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ButtonRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  margin-top: auto;
-`;
-
-const CancelButton = styled.button`
-  width: 100%;
-  height: 56px;
-  background-color: ${Theme.colors.gray1};
-  color: ${Theme.colors.white};
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-
-  font-family: 'NanumSquare Neo OTF';
-  font-weight: 800;
-  font-size: 16px;
-`;
-
-const CompleteButton = styled(CancelButton)`
-  background-color: ${Theme.colors.black};
-`;
-
-const WarningModal = styled(ModalOverlay)`
-  background-color: rgba(0, 0, 0, 0.7);
-`;
-
-const WarningModalContent = styled(ModalContent)`
-  max-width: 376px;
-  height: 329px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
-const WarningMessage = styled.p`
-  color: ${Theme.colors.black};
-  font-family: 'NanumSquare Neo OTF';
-  font-weight: 400;
-  font-size: 14px;
-  text-align: center;
-  margin: 0;
-`;
+const SelectionOverlay = styled.div``;
