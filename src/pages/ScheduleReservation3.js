@@ -188,55 +188,12 @@ const StepLine = styled.div`
   align-self: center;
 `;
 
-const DateSelection = styled.div`
-  margin-bottom: 20px;
-`;
-
 const Label = styled.label`
   font-family: 'NanumSquare Neo OTF';
   font-style: normal;
   font-weight: 700;
   font-size: 10px;
   line-height: 11px;
-`;
-
-const DateRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-`;
-
-const DateInput = styled.select`
-  padding: 10px;
-  border: 1px solid ${Theme.colors.gray4};
-  border-radius: 5px;
-  flex: 1;
-`;
-
-const DateDropdown = styled.select`
-  padding: 10px;
-  border: 1px solid ${Theme.colors.gray4};
-  border-radius: 5px;
-  flex: 1;
-
-  margin-left: 10px;
-  width: 178px;
-  height: 57px;
-`;
-
-const CalendarContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(7, 0fr);
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  margin-top: 39px;
-`;
-
-const DayName = styled.div`
-  text-align: center;
-  font-weight: bold;
-  color: ${(props) => (props.isWeekend ? Theme.colors.gray1 : 'black')};
 `;
 
 const EmptyDay = styled.div``;
