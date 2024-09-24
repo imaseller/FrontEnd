@@ -15,7 +15,7 @@ import ScheduleReservation3 from './pages/ScheduleReservation3.js';
 
 const List = lazyLoad(() => import('./pages/List'));
 const DetailLayout = lazyLoad(() => import('./components/DetailLayout'));
-const Inventory = lazyLoad(() => import('./pages/Inventory.js'));
+const Inventory = lazyLoad(() => import('./pages/inventory.js'));
 const PaymentDetail = lazyLoad(() => import('./pages/PaymentDetail'));
 const PageSettings = lazyLoad(() => import('./pages/PageSettings'));
 const Menu = lazyLoad(() => import('./pages/menu.js'));

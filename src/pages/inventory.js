@@ -6,7 +6,7 @@ import Inventory1 from '../img/inventory/Inventory1.svg';
 import Inventory2 from '../img/inventory/Inventory2.svg';
 import Theme from '../styles/Theme.js';
 
-const Inventory = () => {
+const inventory = () => {
   const data = [
     {
       image: Inventory1,
@@ -54,7 +54,7 @@ const Inventory = () => {
   );
 };
 
-export default Inventory;
+export default inventory;
 
 const InventoryContainer = styled.div`
   display: flex;
