@@ -20,7 +20,7 @@ const ItemCard = ({ id, image, brand, description, onSelect, isSelected }) => {
       <ImageWrapper onClick={handleSelect}>
         <Image src={image} alt={brand} />
         <AddButton src={ImgAdd} alt='Add' />
-        {isSelected && <SelectionOverlay></SelectionOverlay>}
+        {isSelected && <SelectionOverlay />}
       </ImageWrapper>
       <Brand>{brand}</Brand>
       <Description>{description}</Description>
@@ -87,28 +87,25 @@ const items = [
   },
 ];
 
-const truncateText = (text, limit) => {
-  return text.length > limit ? text.slice(0, limit) + '...' : text;
-};
+const truncateText = (text, limit) =>
+  text.length > limit ? text.slice(0, limit) + '...' : text;
 
-const ItemList = ({ HeaderContainer, selectedItems, onSelect }) => {
-  return (
-    <ListContainer>
-      <HeaderContainer />
-      <ItemsWrapper>
-        {items.map((item) => (
-          <ItemCard
-            key={item.id}
-            {...item}
-            description={truncateText(item.description, 12)}
-            isSelected={selectedItems.includes(item.id)}
-            onSelect={onSelect}
-          />
-        ))}
-      </ItemsWrapper>
-    </ListContainer>
-  );
-};
+const ItemList = ({ HeaderContainer, selectedItems, onSelect }) => (
+  <ListContainer>
+    <HeaderContainer />
+    <ItemsWrapper>
+      {items.map((item) => (
+        <ItemCard
+          key={item.id}
+          {...item}
+          description={truncateText(item.description, 12)}
+          isSelected={selectedItems.includes(item.id)}
+          onSelect={onSelect}
+        />
+      ))}
+    </ItemsWrapper>
+  </ListContainer>
+);
 
 const ScheduleReservation3 = () => {
   const [selectedItems, setSelectedItems] = useState([]);
@@ -117,28 +114,18 @@ const ScheduleReservation3 = () => {
   const [selectedTime, setSelectedTime] = useState('');
 
   const handleSelect = (id) => {
-    if (selectedItems.includes(id)) {
-      setSelectedItems(selectedItems.filter((itemId) => itemId !== id));
-    } else {
-      if (selectedItems.length < MAX_SELECTION) {
-        setSelectedItems([...selectedItems, id]);
-      } else {
-        setIsModalOpen(true);
-      }
-    }
+    setSelectedItems((prev) =>
+      prev.includes(id)
+        ? prev.filter((itemId) => itemId !== id)
+        : prev.length < MAX_SELECTION
+        ? [...prev, id]
+        : prev
+    );
+    if (selectedItems.length >= MAX_SELECTION) setIsModalOpen(true);
   };
 
-  const handleDateChange = (event) => {
-    setSelectedDate(event.target.value);
-  };
-
-  const handleTimeChange = (event) => {
-    setSelectedTime(event.target.value);
-  };
-
-  const handleBackClick = () => {
-    window.history.back();
-  };
+  const handleDateChange = (event) => setSelectedDate(event.target.value);
+  const handleTimeChange = (event) => setSelectedTime(event.target.value);
 
   const navigate = useNavigate();
 
@@ -151,11 +138,9 @@ const ScheduleReservation3 = () => {
 
   const ItemContainer = () => (
     <CustomHeader>
-      <div>
-        <Label>
-          예약된 제품목록<GrayText2>(선택)</GrayText2>
-        </Label>
-      </div>
+      <Label>
+        예약된 제품목록<GrayText2>(선택)</GrayText2>
+      </Label>
     </CustomHeader>
   );
 
@@ -163,7 +148,7 @@ const ScheduleReservation3 = () => {
     <Container>
       <Header>
         <BackButtonWrapper>
-          <BackButton onClick={handleBackClick} />
+          <BackButton onClick={() => window.history.back()} />
         </BackButtonWrapper>
         <Title>스케줄 예약하기</Title>
       </Header>
@@ -195,21 +180,25 @@ const ScheduleReservation3 = () => {
         />
       </Content>
 
-      {/* Date and Time Selection */}
+      <GrayLine />
+
+      <Label>스케줄 노출일자(선택)</Label>
       <SelectWrapper>
-        <Select value={selectedDate} onChange={handleDateChange}>
+        <StyledSelect value={selectedDate} onChange={handleDateChange}>
           <option value=''>날짜 선택</option>
           <option value='2024-09-24'>2024년 9월 24일</option>
-          <option value='2024-09-25'>2024년 9월 25일</option>
-          <option value='2024-09-26'>2024년 9월 26일</option>
-        </Select>
-        <Select value={selectedTime} onChange={handleTimeChange}>
+        </StyledSelect>
+        <StyledSelect value={selectedTime} onChange={handleTimeChange}>
           <option value=''>시간 선택</option>
           <option value='09:00'>09:00</option>
-          <option value='12:00'>12:00</option>
-          <option value='15:00'>15:00</option>
-        </Select>
+        </StyledSelect>
       </SelectWrapper>
+
+      <InfoMessage>
+        <GrayText> ※ 노출일정은</GrayText>
+        <BlackText> 스케줄 시작일 기준 3일 이내 까지 가능</BlackText>
+        <GrayText>합니다.</GrayText>
+      </InfoMessage>
 
       <BottomBarContainer>
         <BottomBar
@@ -225,6 +214,8 @@ const ScheduleReservation3 = () => {
 };
 
 export default ScheduleReservation3;
+
+// Styled Components
 
 const Container = styled.div`
   width: 100%;
@@ -282,16 +273,8 @@ const StepLine = styled.div`
   align-self: center;
 `;
 
-const Label = styled.label`
-  font-family: 'NanumSquare Neo OTF';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 10px;
-  line-height: 11px;
-`;
-
 const Summary = styled.div`
-  margin-top: 20px;
+  margin-top: 30px;
   display: flex;
   justify-content: space-between;
   gap: 10px;
@@ -311,7 +294,6 @@ const InfoText = styled.div`
   display: flex;
   align-items: center;
   font-family: 'NanumSquare Neo OTF';
-  font-style: normal;
   font-weight: 700;
   font-size: 13px;
   line-height: 14px;
@@ -321,13 +303,19 @@ const SelectWrapper = styled.div`
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
+  margin-top: 10px;
 `;
 
-const Select = styled.select`
+const StyledSelect = styled.select`
   flex: 1;
-  height: 38px;
-  border-radius: 10px;
+  height: 57px;
+  padding: 10px;
+  border-radius: 5px;
   border: 1px solid ${Theme.colors.gray1};
+  font-family: 'NanumSquare Neo OTF';
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 14px;
 `;
 
 const BottomBarContainer = styled.div`
@@ -353,6 +341,51 @@ const Content = styled.div`
   flex: 1;
 `;
 
+const InfoMessage = styled.p`
+  font-size: 12px;
+  color: ${Theme.colors.gray2};
+  margin-bottom: 20px;
+`;
+
+const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 100%;
+  margin: 6px;
+  position: relative;
+`;
+
+const ImageWrapper = styled.div`
+  position: relative;
+  width: 140px;
+  height: 210px;
+`;
+
+const Image = styled.img`
+  object-fit: cover;
+  width: 140px;
+  height: 210px;
+`;
+
+const AddButton = styled.img`
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 36px;
+  height: 46px;
+  cursor: pointer;
+`;
+
+const SelectionOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+`;
+
 const CustomHeader = styled.div`
   display: flex;
   justify-content: space-between;
@@ -364,7 +397,6 @@ const GrayText2 = styled.span`
   margin-left: 5px;
   color: ${Theme.colors.gray3};
   font-family: 'NanumSquare Neo OTF';
-  font-style: normal;
   font-weight: 700;
   font-size: 10px;
   line-height: 11px;
@@ -401,34 +433,35 @@ const Description = styled.p`
   color: ${Theme.colors.gray2};
 `;
 
-const CardContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: left;
+const Label = styled.label`
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 11px;
+`;
+
+const GrayText = styled.span`
+  color: ${Theme.colors.gray1};
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 13px;
+`;
+
+const BlackText = styled.span`
+  color: ${Theme.colors.Black};
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 13px;
+`;
+
+const GrayLine = styled.hr`
+  border: none;
   width: 100%;
-  margin: 6px;
-  position: relative;
+  border: 1px solid ${Theme.colors.gray0};
+  margin: 30px 0;
 `;
-
-const ImageWrapper = styled.div`
-  position: relative;
-  width: 140px;
-  height: 210px;
-`;
-
-const Image = styled.img`
-  object-fit: cover;
-  width: 140px;
-  height: 210px;
-`;
-
-const AddButton = styled.img`
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  width: 36px;
-  height: 46px;
-  cursor: pointer;
-`;
-
-const SelectionOverlay = styled.div``;

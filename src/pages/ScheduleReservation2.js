@@ -144,8 +144,9 @@ const ScheduleReservation2 = () => {
   const navigate = useNavigate();
 
   const handleBottomClick = () => {
-    console.log('버튼 클릭됨');
-    navigate('/schedule/reservation3');
+    navigate('/schedule/reservation3', {
+      state: { selectedItemCount: selectedItems.length },
+    });
   };
 
   const ItemContainer = () => (
@@ -223,6 +224,7 @@ const ScheduleReservation2 = () => {
 };
 
 export default ScheduleReservation2;
+
 const Container = styled.div`
   width: 100%;
   max-width: 600px;

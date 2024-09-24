@@ -79,8 +79,11 @@ const ScheduleReservation1 = () => {
   const navigate = useNavigate();
 
   const handleBottomClick = () => {
-    navigate('/schedule/reservation2');
+    navigate('/schedule/reservation2', {
+      state: { selectedDates },
+    });
   };
+
   return (
     <Container>
       <Header>
