@@ -1,14 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import ShoppingBasket from '../../img/SignupLogo.svg';
 
-const BottomBar = ({ buttonText = '작성완료' }) => {
+const BottomBar = ({ buttonText = '작성완료', imageSrc, onClick }) => {
   return (
     <BottomBarContainer>
       <CartButton>
-        <CartImage src={ShoppingBasket} alt='Shopping Basket' />
+        <CartImage src={imageSrc} alt='icon' />
       </CartButton>
-      <OrderButton>{buttonText}</OrderButton>
+      <OrderButton onClick={onClick}>{buttonText}</OrderButton>
     </BottomBarContainer>
   );
 };
@@ -23,11 +22,11 @@ const BottomBarContainer = styled.div`
   width: 100%;
   max-width: 600px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 10px 10px 34px;
+  z-index: 9999;
   background-color: ${({ theme }) => theme.colors.gray4};
-  margin-top: 10px;
 `;
 
 const CartButton = styled.button`
@@ -40,12 +39,10 @@ const CartButton = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  margin: 0 21px;
 `;
 
-const CartImage = styled.img`
-  width: 41px;
-  height: 34px;
-`;
+const CartImage = styled.img``;
 
 const OrderButton = styled.button`
   width: 100%;
@@ -57,5 +54,5 @@ const OrderButton = styled.button`
   font-size: 16px;
   font-weight: 800;
   cursor: pointer;
-  margin: 0 21px;
+  margin-right: 11px;
 `;

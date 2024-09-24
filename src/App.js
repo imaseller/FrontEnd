@@ -8,6 +8,10 @@ import Loading from './components/Loading';
 import ContemporarySettings from './components/inventory/ContemporarySettings.js';
 
 import Schedule from './pages/Schedule';
+import ScheduleConfirmation from './pages/ScheduleConfirmation.js';
+import ScheduleReservation1 from './pages/ScheduleReservation1.js';
+import ScheduleReservation2 from './pages/ScheduleReservation2.js';
+import ScheduleReservation3 from './pages/ScheduleReservation3.js';
 
 const List = lazyLoad(() => import('./pages/List'));
 const DetailLayout = lazyLoad(() => import('./components/DetailLayout'));
@@ -69,13 +73,29 @@ function App() {
             {/* Pages wrapped with DetailLayout */}
             <Route element={<DetailLayout />}>
               <Route path='/schedule' element={<Schedule />} />
+              <Route
+                path='/schedule/confirmation'
+                element={<ScheduleConfirmation />}
+              />
+              <Route
+                path='/schedule/reservation1'
+                element={<ScheduleReservation1 />}
+              />
+              <Route
+                path='/schedule/reservation2'
+                element={<ScheduleReservation2 />}
+              />
+              <Route
+                path='/schedule/reservation3'
+                element={<ScheduleReservation3 />}
+              />
+
               <Route path='/home' element={<Home />} />
               <Route path='/pageSettings' element={<PageSettings />} />
               <Route path='/inventory' element={<Inventory />} />
               <Route path='/payment' element={<PaymentDetail />} />
               <Route path='/store' element={<Store />} />
               <Route path='/menu' element={<Menu />} />
-
               {/* New Routes for Analysis, Settlement, and Delivery */}
               <Route path='/analysis' element={<Analysis />} />
               <Route path='/settlement' element={<Settlement />} />

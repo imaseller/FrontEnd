@@ -12,6 +12,8 @@ const Header = ({ nickname = 'Mr J', isLoggedIn }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  console.log('isLoggedIn:', isLoggedIn);
+
   return (
     <HeaderWrapper>
       <HeaderContainer>
@@ -37,13 +39,23 @@ const Header = ({ nickname = 'Mr J', isLoggedIn }) => {
               <Icon
                 src={ScheduleIcon}
                 alt='스케줄'
-                onClick={() => navigate('/schedule')}
+                onClick={() => {
+                  console.log('Navigating to /schedule');
+                  navigate('/schedule');
+                }}
               />
               <Icon src={Alarm} alt='알림' />
             </>
           ) : (
             <>
-              <Icon src={ScheduleIcon} alt='스케줄' />
+              <Icon
+                src={ScheduleIcon}
+                alt='스케줄'
+                onClick={() => {
+                  console.log('Navigating to /schedule');
+                  navigate('/schedule');
+                }}
+              />
               <Icon src={Mypage} alt='마이페이지' />
               <Icon src={Alarm} alt='알림' />
             </>
