@@ -112,7 +112,7 @@ const ScheduleReservation3 = () => {
     if (!selectedItems.includes(id)) {
       setSelectedItems([...selectedItems, id]);
     }
-    navigate(`/item/${id}`); // 해당 아이템의 상세 페이지로 이동
+    navigate(`/item/${id}`);
   };
 
   const [selectedItems, setSelectedItems] = useState([]);
@@ -366,7 +366,7 @@ const Image = styled.img`
 
 const AddButton = styled.img`
   position: absolute;
-  bottom: 0px;
+  bottom: -5px;
   right: 0px;
   width: 36px;
   height: 46px;

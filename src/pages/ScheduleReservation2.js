@@ -387,18 +387,6 @@ const Description = styled.p`
   color: ${Theme.colors.gray2};
 `;
 
-const Modal = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.5);
-`;
-
 const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -422,7 +410,7 @@ const Image = styled.img`
 
 const AddButton = styled.img`
   position: absolute;
-  bottom: 0px;
+  bottom: -5px;
   right: 0px;
   width: 36px;
   height: 46px;
@@ -510,31 +498,6 @@ const GrayLine = styled.hr`
   margin: 20px 0;
 `;
 
-const ModalBody = styled.div`
-  flex-grow: 1;
-`;
-
-const BrandSelectionGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-`;
-
-const BrandOption = styled.div`
-  padding: 10px;
-  background-color: ${(props) =>
-    props.selected ? Theme.colors.yellow : Theme.colors.white};
-  color: ${(props) =>
-    props.selected ? Theme.colors.white : Theme.colors.black};
-  border: 1px solid ${Theme.colors.gray1};
-  text-align: center;
-  cursor: pointer;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 const ButtonRow = styled.div`
   display: flex;
   justify-content: space-between;
@@ -554,10 +517,6 @@ const CancelButton = styled.button`
   font-family: 'NanumSquare Neo OTF';
   font-weight: 800;
   font-size: 16px;
-`;
-
-const CompleteButton = styled(CancelButton)`
-  background-color: ${Theme.colors.black};
 `;
 
 const WarningModal = styled(ModalOverlay)`
