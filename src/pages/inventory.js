@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../components/Header';
+import Header from '../components/Header.js';
 import Content from '../components/inventory/Content.js';
 import Inventory1 from '../img/inventory/Inventory1.svg';
 import Inventory2 from '../img/inventory/Inventory2.svg';
