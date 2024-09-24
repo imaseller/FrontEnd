@@ -8,7 +8,7 @@ import backIcons from '../img/Schedule/BackButton.svg';
 import ExIMG1 from '../img/Home/ExIMG1.svg';
 import ImgAdd from '../img/Store/ImgAdd.svg';
 
-const ItemCard = ({ id, image, brand, description, onSelect, isSelected }) => {
+const ItemCard = ({ id, image, brand, description, onSelect }) => {
   const navigate = useNavigate();
 
   const handleSelect = () => {
