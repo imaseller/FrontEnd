@@ -35,7 +35,7 @@ const Schedule = () => {
               <IconWrapper scheduleStatus='reserved'>
                 <Icon src={ScheduleIcon} alt='Reserved Icon' />
               </IconWrapper>
-              <ConnectorLine />
+              <ConnectorLine show={true} />
             </IconContainer>
             <Container>
               <MiniTitle>예약된 스케줄</MiniTitle>
@@ -72,7 +72,7 @@ const Schedule = () => {
               <IconWrapper scheduleStatus='inProgress'>
                 <Icon src={ScheduleIcon} alt='In Progress Icon' />
               </IconWrapper>
-              <ConnectorLine />
+              <ConnectorLine show={true} />
             </IconContainer>
             <Container>
               <MiniTitle>진행된 스케줄</MiniTitle>
@@ -109,7 +109,7 @@ const Schedule = () => {
               <IconWrapper scheduleStatus='notStarted'>
                 <Icon src={ScheduleIcon} alt='Future Schedule Icon' />
               </IconWrapper>
-              <ConnectorLine />
+              <ConnectorLine show={false} />
             </IconContainer>
             <Container>
               <MiniTitle>미진행 스케줄</MiniTitle>
@@ -204,12 +204,15 @@ const ScheduleList = styled.div`
 const ScheduleItemContainer = styled.div`
   display: flex;
   align-items: flex-start;
+  height: 240px;
+  margin-bottom: 40px;
 `;
 
 const IconContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   position: relative;
   z-index: 2;
   margin: 30px 20px 0 0;
@@ -235,14 +238,15 @@ const Icon = styled.img`
   height: 24px;
 `;
 
+const ConnectorLine = styled.div`
+  border: 2px solid ${Theme.colors.gray4};
+  height: 240px;
+  display: ${({ show }) => (show ? 'block' : 'none')};
+`;
+
 const ConnectorLine1 = styled.div`
   border: 1px solid ${Theme.colors.gray4};
   margin: 4px 0;
-`;
-
-const ConnectorLine = styled.div`
-  border: 2px solid ${Theme.colors.gray4};
-  height: 212px;
 `;
 
 const ScheduleItem = styled.div`
