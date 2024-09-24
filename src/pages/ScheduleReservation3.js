@@ -8,11 +8,12 @@ import backIcons from '../img/Schedule/BackButton.svg';
 import ExIMG1 from '../img/Home/ExIMG1.svg';
 import ImgAdd from '../img/Store/ImgAdd.svg';
 
-const MAX_SELECTION = 6;
-
 const ItemCard = ({ id, image, brand, description, onSelect, isSelected }) => {
+  const navigate = useNavigate();
+
   const handleSelect = () => {
     onSelect(id);
+    navigate(`/item/${id}`);
   };
 
   return (
@@ -20,7 +21,6 @@ const ItemCard = ({ id, image, brand, description, onSelect, isSelected }) => {
       <ImageWrapper onClick={handleSelect}>
         <Image src={image} alt={brand} />
         <AddButton src={ImgAdd} alt='Add' />
-        {isSelected && <SelectionOverlay />}
       </ImageWrapper>
       <Brand>{brand}</Brand>
       <Description>{description}</Description>
@@ -108,21 +108,17 @@ const ItemList = ({ HeaderContainer, selectedItems, onSelect }) => (
 );
 
 const ScheduleReservation3 = () => {
+  const handleSelect = (id) => {
+    if (!selectedItems.includes(id)) {
+      setSelectedItems([...selectedItems, id]);
+    }
+    navigate(`/item/${id}`); // 해당 아이템의 상세 페이지로 이동
+  };
+
   const [selectedItems, setSelectedItems] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
-
-  const handleSelect = (id) => {
-    setSelectedItems((prev) =>
-      prev.includes(id)
-        ? prev.filter((itemId) => itemId !== id)
-        : prev.length < MAX_SELECTION
-        ? [...prev, id]
-        : prev
-    );
-    if (selectedItems.length >= MAX_SELECTION) setIsModalOpen(true);
-  };
 
   const handleDateChange = (event) => setSelectedDate(event.target.value);
   const handleTimeChange = (event) => setSelectedTime(event.target.value);
@@ -375,15 +371,6 @@ const AddButton = styled.img`
   width: 36px;
   height: 46px;
   cursor: pointer;
-`;
-
-const SelectionOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
 `;
 
 const CustomHeader = styled.div`
