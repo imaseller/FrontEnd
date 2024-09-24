@@ -6,7 +6,7 @@ import Theme from './styles/Theme';
 import lazyLoad from './pages/lazyLode.js';
 import Loading from './components/Loading';
 import ContemporarySettings from './components/inventory/ContemporarySettings.js';
-
+import Landing from './pages/Landing';
 import Schedule from './pages/Schedule';
 import ScheduleConfirmation from './pages/ScheduleConfirmation.js';
 import ScheduleReservation1 from './pages/ScheduleReservation1.js';
@@ -64,6 +64,8 @@ function App() {
       <Router>
         <Suspense fallback={<Loading />}>
           <Routes>
+            <Route path='/landing' element={<Landing />} />
+
             <Route path='/' element={<Login />} />
             <Route path='/admin/auth/login' element={<AdminLogin />} />
             <Route path='/signup' element={<Signup />} />
