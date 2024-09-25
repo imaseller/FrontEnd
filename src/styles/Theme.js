@@ -100,6 +100,7 @@ const Theme = {
     yellow2: '#ffd697',
     yellow3: '#ffe3ba',
     yellow4: '#fff1dc',
+    yellow5: '#FAF8F1',
 
     WhiteBrown1: '#f7e9e3',
     WhiteBrown2: '#eed4c8',

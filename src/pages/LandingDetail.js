@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import Theme from '../styles/Theme';
+import HangerIcon from '../img/Landing/hangerIcon.svg';
 import ZOOCImage from '../img/Home/ExIMG1.svg';
 import SANDROImage from '../img/Home/ExIMG1.svg';
 import ITMICHAImage from '../img/Home/ExIMG1.svg';
@@ -9,11 +10,15 @@ const LandingDetail = () => {
   return (
     <ThemeProvider theme={Theme}>
       <Container>
-        <ScrollIndicator>↓ scroll</ScrollIndicator>
+        <ScrollIndicator>
+          <Arrow>↓</Arrow>
+          <span>scroll</span>
+        </ScrollIndicator>
+        <Hanger src={HangerIcon} alt='hanger icon' />
         <Title>
           당신의 취향에 꼭 맞는 <br />
-          컨템포러리 브랜드들이 <br />
-          멜픽과 함께합니다!
+          <BrandHighlight>컨템포러리 브랜드들이</BrandHighlight> <br />
+          <MelpicHighlight>멜픽과 함께합니다!</MelpicHighlight>
         </Title>
         <BrandList>
           <Brand>
@@ -41,58 +46,117 @@ const LandingDetail = () => {
 
 export default LandingDetail;
 
+// Styled Components
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  height: 100vh;
+  border: 1px solid ${Theme.colors.gray1};
+  background-color: ${({ theme }) => theme.colors.yellow5};
+`;
+
+const ScrollIndicator = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  height: 100vh;
-  background-color: ${({ theme }) => theme.colors.background};
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.gray2};
+  height: 50px;
+  margin-bottom: 130px;
 `;
 
-const ScrollIndicator = styled.div`
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.textSecondary};
-  margin-bottom: 20px;
+const Arrow = styled.div`
+  font-size: 18px;
+`;
+
+const Hanger = styled.img`
+  width: 40px;
+  height: 40px;
+
+  margin-bottom: 41px;
 `;
 
 const Title = styled.h1`
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 40px;
   text-align: center;
-  font-size: 22px;
-  color: ${({ theme }) => theme.colors.text};
-  margin-bottom: 20px;
+
+  margin-bottom: 50px;
+`;
+
+const BrandHighlight = styled.span`
+  font-size: 25px;
+  font-weight: 600;
+`;
+
+const MelpicHighlight = styled.span`
+  font-size: 23px;
+  color: ${({ theme }) => theme.colors.yellow};
+  font-weight: 500;
 `;
 
 const BrandList = styled.div`
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
   width: 100%;
+  margin-bottom: 20px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;
 
 const Brand = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-right: 20px;
+  position: relative;
 `;
 
 const BrandImage = styled.img`
-  width: 150px;
-  height: 200px;
+  width: 200px;
+  height: 250px;
   object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 10px;
+  border-radius: 20px;
 `;
 
 const BrandName = styled.span`
-  font-size: 16px;
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.text};
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 22px;
+  text-align: center;
 `;
 
 const Footer = styled.div`
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
   text-align: center;
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.textSecondary};
-  margin-top: 20px;
+
+  margin-top: 90px;
 `;
