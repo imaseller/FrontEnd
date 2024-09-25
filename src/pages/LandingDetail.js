@@ -15,11 +15,11 @@ const LandingDetail = () => {
           <span>scroll</span>
         </ScrollIndicator>
         <Hanger src={HangerIcon} alt='hanger icon' />
-        <Title>
+        <LandingTitle1>
           당신의 취향에 꼭 맞는 <br />
           <BrandHighlight>컨템포러리 브랜드들이</BrandHighlight> <br />
           <MelpicHighlight>멜픽과 함께합니다!</MelpicHighlight>
-        </Title>
+        </LandingTitle1>
         <BrandList>
           <Brand>
             <BrandImage src={ZOOCImage} alt='ZOOC' />
@@ -39,6 +39,34 @@ const LandingDetail = () => {
           당신도 몰랐던, 당신만의 스타일을 <br />
           매칭해드립니다.
         </Footer>
+      </Container>
+
+      <Container style={{ backgroundColor: 'white' }}>
+        <LandingTitle2>
+          오직 나만의, 나를 위한 상품
+          <br />
+          <LandingSubtitle2>
+            이제 일일이 찾지 마세요
+            <br />
+            브랜드는 <YellowText>멜픽 pick 해줄게요</YellowText>
+          </LandingSubtitle2>
+        </LandingTitle2>
+
+        {/* Images arranged in a column */}
+        <ColumnBrandList>
+          <Brand>
+            <BrandImage src={ZOOCImage} alt='ZOOC' />
+            <BrandName>ZOOC</BrandName>
+          </Brand>
+          <Brand>
+            <BrandImage src={SANDROImage} alt='SANDRO' />
+            <BrandName>SANDRO</BrandName>
+          </Brand>
+          <Brand>
+            <BrandImage src={ITMICHAImage} alt='it MICHA' />
+            <BrandName>it MICHA</BrandName>
+          </Brand>
+        </ColumnBrandList>
       </Container>
     </ThemeProvider>
   );
@@ -83,7 +111,7 @@ const Hanger = styled.img`
   margin-bottom: 41px;
 `;
 
-const Title = styled.h1`
+const LandingTitle1 = styled.h1`
   font-family: 'NanumSquare Neo OTF';
   font-style: normal;
   font-weight: 400;
@@ -159,4 +187,43 @@ const Footer = styled.div`
   text-align: center;
 
   margin-top: 90px;
+`;
+
+const LandingTitle2 = styled.h1`
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+  margin-top: 95px;
+
+  margin-bottom: 50px;
+`;
+
+const LandingSubtitle2 = styled.h1`
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 25px;
+  text-align: center;
+
+  margin-top: 11px;
+`;
+
+const YellowText = styled.span`
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 25px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.yellow};
+`;
+
+const ColumnBrandList = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
