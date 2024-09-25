@@ -8,7 +8,7 @@ const Landing = () => {
   const navigate = useNavigate();
 
   const handleStartClick = () => {
-    navigate('/');
+    navigate('/LandingDetail');
   };
 
   return (
@@ -22,7 +22,7 @@ const Landing = () => {
         </Header>
         <MainContent>
           <Title>
-            나만의 스타일 <br /> 나를 축하하는 스타일
+            오직 나만의! 나를 위한! <br /> 패션 브랜드 대여 플랫폼
           </Title>
           <StartButton onClick={handleStartClick}>지금 시작하기</StartButton>
           <Subtitle>아직도 체험단, 기자단하시나요?</Subtitle>
@@ -38,7 +38,6 @@ const Landing = () => {
 
 export default Landing;
 
-// 스타일링
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -55,7 +54,6 @@ const Header = styled.header`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  top: 20px;
   padding: 0 20px;
 `;
 
