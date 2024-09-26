@@ -69,9 +69,11 @@ const LandingDetail = () => {
             </Brand>
           ))}
         </BrandList>
-        <Footer>
-          똑똑한 AI가 당신도 몰랐던, 당신만의 스타일을 매칭해드립니다.
-        </Footer>
+        <Comment>
+          똑똑한 AI가 <br />
+          당신도 몰랐던, 당신만의 스타일을 <br />
+          매칭해드립니다.
+        </Comment>
       </Container>
       <Container bgColor='white'>
         <LandingTitle2>
@@ -79,7 +81,7 @@ const LandingDetail = () => {
           <LandingSubtitle2>
             이제 일일이 찾지 마세요
             <br />
-            브랜드는 <YellowText>멜픽이 pick 해줄게요!</YellowText>
+            브랜드는 <YellowText>멜픽이 PICK 해줄게요!</YellowText>
           </LandingSubtitle2>
         </LandingTitle2>
 
@@ -160,7 +162,7 @@ const LandingDetail = () => {
           </Line1>
           <FooterItem>
             <FooterLabel>소재지</FooterLabel>
-            <FooterSpan>서울</FooterSpan>
+            <FooterSpan>서울 ~</FooterSpan>
           </FooterItem>
           <FooterItem>
             <FooterLabel>이메일</FooterLabel>
@@ -194,24 +196,31 @@ const ScrollIndicator = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.gray2};
-  height: 50px;
-  margin-bottom: 130px;
+  font-size: 15px;
+  height: 35px;
+  margin-bottom: 117px;
   &::before {
     content: '↓';
-    font-size: 18px;
+    font-size: 14px;
+    color: #767676;
   }
   &::after {
     content: 'scroll';
-    margin-top: 8px;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    text-align: center;
+
+    color: #767676;
   }
 `;
 
 const Hanger = styled.img`
   width: 40px;
   height: 40px;
-  margin-bottom: 41px;
+  margin-bottom: 56px;
 `;
 
 const LandingTitle1 = styled.h1`
@@ -224,20 +233,23 @@ const LandingTitle1 = styled.h1`
 `;
 
 const BrandHighlight = styled.span`
-  font-size: 25px;
-  font-weight: 600;
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 40px;
+  /* or 200% */
+  text-align: center;
 `;
 
 const MelpicHighlight = styled.span`
   color: ${({ theme }) => theme.colors.yellow};
-  font-weight: 500;
-
   font-family: 'NanumSquare Neo OTF';
   font-style: normal;
   font-weight: 700;
-  font-size: 25px;
+  font-size: 20px;
   line-height: 40px;
-  /* or 160% */
+  /* or 200% */
   text-align: center;
 `;
 
@@ -246,7 +258,6 @@ const BrandList = styled.div`
   flex-direction: row;
   overflow-x: scroll;
   width: 100%;
-  margin-bottom: 20px;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -288,15 +299,24 @@ const LandingTitle2 = styled.h1`
 
 const LandingSubtitle2 = styled.h1`
   font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
   font-weight: 400;
   font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
   text-align: center;
+
   margin-top: 21px;
 `;
 
 const YellowText = styled.span`
-  font-weight: 700;
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 800;
   font-size: 17px;
+  line-height: 30px;
+  /* or 176% */
+  text-align: center;
   color: ${({ theme }) => theme.colors.yellow};
 `;
 
@@ -398,8 +418,8 @@ const PaginationDots = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
-  gap: 10px;
+  margin-top: 20px;
+  gap: 5px;
 `;
 
 const Dot = styled.div`
@@ -410,13 +430,19 @@ const Dot = styled.div`
 `;
 
 const StartButton = styled.button`
+  width: 300px;
+  height: 45px;
   background-color: ${({ theme }) => theme.colors.yellow};
   color: white;
   border: none;
   border-radius: 30px;
-  padding: 15px 30px;
-  font-size: 16px;
-  font-weight: bold;
+
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 15px;
+  line-height: 17px;
+  text-align: center;
   cursor: pointer;
 `;
 
@@ -504,4 +530,15 @@ const Line1 = styled.div`
 
 const BoldText = styled.span`
   font-weight: 800;
+`;
+
+const Comment = styled.div`
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+
+  margin-top: 90px;
 `;
