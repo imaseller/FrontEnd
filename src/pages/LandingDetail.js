@@ -11,8 +11,11 @@ import ServiceImg3 from '../img/Landing/ServiceImg3.svg';
 import ScreenImg1 from '../img/Landing/ScreenImg1.svg';
 import ScreenImg2 from '../img/Landing/ScreenImg2.svg';
 import ScreenImg3 from '../img/Landing/ScreenImg3.svg';
+
 import LeftArrowIcon from '../img/Landing/left-arrow.svg';
 import RightArrowIcon from '../img/Landing/right-arrow.svg';
+import LastImg from '../img/Landing/LastImg.svg';
+import { useNavigate } from 'react-router-dom';
 
 const LandingDetail = () => {
   const [currentScreenIndex, setCurrentScreenIndex] = useState(0);
@@ -33,6 +36,11 @@ const LandingDetail = () => {
       subtitle: '다양한 브랜드 상품과 나만의 스타일 완성하기',
     },
   ];
+  const navigate = useNavigate();
+
+  const handleStartClick = () => {
+    navigate('/LandingDetail');
+  };
 
   const handlePrevClick = () =>
     setCurrentScreenIndex((prevIndex) =>
@@ -65,7 +73,6 @@ const LandingDetail = () => {
           똑똑한 AI가 당신도 몰랐던, 당신만의 스타일을 매칭해드립니다.
         </Footer>
       </Container>
-
       <Container bgColor='white'>
         <LandingTitle2>
           오직 나만의, 나를 위한 상품
@@ -109,6 +116,57 @@ const LandingDetail = () => {
             <Dot key={idx} isActive={currentScreenIndex === idx} />
           ))}
         </PaginationDots>
+      </Container>
+
+      <Container style={{ backgroundColor: '#ffffff', position: 'relative' }}>
+        <LastScreenImage
+          src={LastImg}
+          alt='Landing Last Image'
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+          }}
+        />
+        <LandingTitle4 style={{ position: 'relative', zIndex: 1 }}>
+          현재 <Yellow>N명</Yellow>의 인플루언서들이 <br /> melpik을 신청했어요!
+          <ButtonWrapper>
+            <StartButton onClick={handleStartClick}>
+              melpik 시작하기
+            </StartButton>
+          </ButtonWrapper>
+          <LandingSubtitle4>
+            사전예약 마감까지 <BoldText>N일 00:00</BoldText>시간 남았어요!
+          </LandingSubtitle4>
+        </LandingTitle4>
+
+        <Footer>
+          <Line1>
+            <FooterItem>
+              <FooterLabel>상호</FooterLabel>
+              <FooterSpan>멜픽 melpik</FooterSpan>
+            </FooterItem>
+            <FooterItem>
+              <FooterLabel>대표</FooterLabel>
+              <FooterSpan>황유민</FooterSpan>
+            </FooterItem>
+            <FooterItem>
+              <FooterLabel>개인정보책임자</FooterLabel>
+              <FooterSpan>황유민</FooterSpan>
+            </FooterItem>
+          </Line1>
+          <FooterItem>
+            <FooterLabel>소재지</FooterLabel>
+            <FooterSpan>서울</FooterSpan>
+          </FooterItem>
+          <FooterItem>
+            <FooterLabel>이메일</FooterLabel>
+            <FooterSpan>대표메일</FooterSpan>
+          </FooterItem>
+        </Footer>
       </Container>
     </ThemeProvider>
   );
@@ -217,15 +275,6 @@ const BrandName = styled.span`
   font-weight: 900;
   font-size: 20px;
   text-align: center;
-`;
-
-const Footer = styled.div`
-  font-family: 'NanumSquare Neo OTF';
-  font-weight: 400;
-  font-size: 17px;
-  line-height: 30px;
-  text-align: center;
-  margin-top: 90px;
 `;
 
 const LandingTitle2 = styled.h1`
@@ -358,4 +407,101 @@ const Dot = styled.div`
   height: 10px;
   background-color: ${(props) => (props.isActive ? '#F5AB35' : '#D9D9D9')};
   border-radius: 100px;
+`;
+
+const StartButton = styled.button`
+  background-color: ${({ theme }) => theme.colors.yellow};
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+`;
+
+const LastScreenImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+`;
+
+const LandingTitle4 = styled.h1`
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  text-align: center;
+
+  margin-top: 82px;
+`;
+
+const Yellow = styled.span`
+  color: ${({ theme }) => theme.colors.yellow};
+  font-family: 'NanumSquare Neo OTF';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 17px;
+  line-height: 30px;
+  text-align: center;
+`;
+
+const LandingSubtitle4 = styled.h2`
+  font-family: 'NanumSquare Neo OTF';
+  font-size: 16px;
+  text-align: center;
+`;
+
+const ButtonWrapper = styled.div`
+  margin-top: 33px;
+  margin-bottom: 9px;
+`;
+
+const Footer = styled.footer`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #ffffff;
+  text-align: left;
+  padding: 28px 0;
+  font-family: 'NanumSquare Neo OTF';
+  font-size: 14px;
+  border-top: 1px solid ${({ theme }) => theme.colors.gray4};
+`;
+
+const FooterItem = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 12px;
+  margin: 0 28px;
+`;
+
+const FooterLabel = styled.label`
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 18px;
+
+  margin-right: 5px;
+`;
+
+const FooterSpan = styled.span`
+  font-weight: 400;
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-size: 10px;
+  line-height: 18px;
+`;
+
+const Line1 = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const BoldText = styled.span`
+  font-weight: 800;
 `;
