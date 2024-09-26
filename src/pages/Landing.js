@@ -47,6 +47,8 @@ const Container = styled.div`
   max-width: 600px;
   margin: 0 auto;
   width: 100%;
+  height: 100%;
+  min-height: 1000px;
   padding: 125px 27px 0 27px;
   border: 1px solid ${Theme.colors.gray1};
 

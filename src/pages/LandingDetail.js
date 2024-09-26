@@ -192,7 +192,8 @@ const Container = styled.div`
   align-items: center;
   justify-content: flex-start;
   padding: 20px;
-  height: 100vh;
+  height: 100%;
+  min-height: 1000px;
   border: 1px solid ${({ theme }) => theme.colors.gray1};
   background-color: ${({ bgColor, theme }) => bgColor || theme.colors.yellow5};
 `;
