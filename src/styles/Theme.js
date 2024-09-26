@@ -89,6 +89,7 @@ const Theme = {
     gray2: '#999999',
     gray3: '#DDDDDD',
     gray4: '#eeeeee',
+    gray5: '#F5F5F5',
 
     lightgray: '#F4F4F4',
     black: '#000000',
@@ -100,6 +101,7 @@ const Theme = {
     yellow2: '#ffd697',
     yellow3: '#ffe3ba',
     yellow4: '#fff1dc',
+    yellow5: '#FAF8F1',
 
     WhiteBrown1: '#f7e9e3',
     WhiteBrown2: '#eed4c8',
