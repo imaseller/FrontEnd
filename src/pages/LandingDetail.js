@@ -33,7 +33,12 @@ const LandingDetail = () => {
     { img: ScreenImg2, subtitle: '노출 & 포스팅할 제품 선택하기' },
     {
       img: ScreenImg3,
-      subtitle: '다양한 브랜드 상품과 나만의 스타일 완성하기',
+      subtitle: (
+        <>
+          콘텐츠 제작, 팔로워들과 소통하며 <br />
+          판매 수익 창출
+        </>
+      ),
     },
   ];
   const navigate = useNavigate();
