@@ -94,7 +94,7 @@ const Landing = () => {
           </Description>
         </MainContent>
       </Container>
-      <Container style={{ backgroundColor: '#FFFDF4' }}>
+      <Container style={{ backgroundColor: '#FFFDF4', marginTop: '-100px' }}>
         <ScrollIndicator />
         <Hanger src={HangerIcon} alt='hanger icon' />
         <LandingTitle1>
