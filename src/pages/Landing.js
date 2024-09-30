@@ -472,6 +472,8 @@ const ColumnServiceList = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
+
+  margin-bottom: 79px;
 `;
 
 const ServiceImg = styled.img`
@@ -500,8 +502,6 @@ const ScreenContainer = styled.div`
 const ScreenImageContainer = styled.div`
   width: 220px;
   height: 466px;
-  left: calc(50% - 220px / 2 - 480px);
-  top: 315px;
 
   background: url(image.png);
   filter: drop-shadow(3px 5px 15px rgba(18, 18, 18, 0.15));
@@ -546,6 +546,7 @@ const LandingSubtitle3 = styled.h1`
   line-height: 30px;
   /* or 176% */
   text-align: center;
+  height: 60px;
 
   margin-top: 50px;
 `;
@@ -557,7 +558,7 @@ const LandingTitle3 = styled.h1`
   line-height: 25px;
   text-align: center;
 
-  margin-top: 95px;
+  margin-top: 50px;
   margin-bottom: 34px;
 `;
 
@@ -565,8 +566,10 @@ const PaginationDots = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
   gap: 5px;
+
+  margin-top: 20px;
+  margin-bottom: 75px;
 `;
 
 const Dot = styled.div`
