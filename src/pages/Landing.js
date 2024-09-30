@@ -161,19 +161,7 @@ const Landing = () => {
         </PaginationDots>
       </Container>
 
-      <Container style={{ backgroundColor: '#ffffff', position: 'relative' }}>
-        <LastScreenImage
-          src={LastImg}
-          alt='Landing Last Image'
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-          }}
-        />
+      <Container style={{ backgroundColor: '#FFFDF4', position: 'relative' }}>
         <LandingTitle4 style={{ position: 'relative', zIndex: 1 }}>
           현재 <Yellow>N명</Yellow>의 인플루언서들이 <br /> melpik을 신청했어요!
           <ButtonWrapper>
@@ -185,12 +173,13 @@ const Landing = () => {
             사전예약 마감까지 <BoldText>N일 00:00</BoldText>시간 남았어요!
           </LandingSubtitle4>
         </LandingTitle4>
+        <LastScreenImage src={LastImg}></LastScreenImage>
 
         <Footer>
           <Line1>
             <FooterItem>
               <FooterLabel>상호</FooterLabel>
-              <FooterSpan>멜픽 melpik</FooterSpan>
+              <FooterSpan>멜픽(melpik)</FooterSpan>
             </FooterItem>
             <FooterItem>
               <FooterLabel>대표</FooterLabel>
@@ -198,7 +187,7 @@ const Landing = () => {
             </FooterItem>
             <FooterItem>
               <FooterLabel>개인정보책임자</FooterLabel>
-              <FooterSpan>황유민</FooterSpan>
+              <FooterSpan>장용호</FooterSpan>
             </FooterItem>
           </Line1>
           <FooterItem>
@@ -225,12 +214,12 @@ const Container = styled.div`
   margin: 0 auto;
   width: 100%;
   height: 100%;
+  min-height: 900px;
   padding: 125px 27px 0 27px;
   /* border: 1px solid ${Theme.colors.gray1}; */
   align-items: center;
   justify-content: center;
   padding: 20px;
-  height: 100%;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -601,9 +590,12 @@ const LastScreenImage = styled.img`
   height: 100%;
   object-fit: contain;
   border-radius: 10px;
+
+  margin-top: -100px;
 `;
 
 const LandingTitle4 = styled.h1`
+  height: 60px;
   font-family: 'NanumSquare Neo OTF';
   font-style: normal;
   font-weight: 400;
