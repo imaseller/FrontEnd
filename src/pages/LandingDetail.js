@@ -189,11 +189,12 @@ const Container = styled.div`
   min-width: 400px;
   margin: 0 auto;
   width: 100%;
+
   align-items: center;
   justify-content: flex-start;
   padding: 20px;
   height: 100%;
-  min-height: 1000px;
+  /* min-height: 1000px; */
   border: 1px solid ${({ theme }) => theme.colors.gray1};
   background-color: ${({ bgColor, theme }) => bgColor || theme.colors.yellow5};
 `;
@@ -265,6 +266,7 @@ const BrandList = styled.div`
   flex-direction: row;
   overflow-x: scroll;
   width: 100%;
+
   &::-webkit-scrollbar {
     display: none;
   }

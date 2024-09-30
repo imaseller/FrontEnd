@@ -94,7 +94,7 @@ const Landing = () => {
           </Description>
         </MainContent>
       </Container>
-      <Container>
+      <Container style={{ backgroundColor: '#FFFDF4' }}>
         <ScrollIndicator />
         <Hanger src={HangerIcon} alt='hanger icon' />
         <LandingTitle1>
@@ -225,13 +225,12 @@ const Container = styled.div`
   margin: 0 auto;
   width: 100%;
   height: 100%;
-  min-height: 1000px;
   padding: 125px 27px 0 27px;
-  border: 1px solid ${Theme.colors.gray1};
+  /* border: 1px solid ${Theme.colors.gray1}; */
   align-items: center;
   justify-content: center;
   padding: 20px;
-  height: 100vh;
+  height: 100%;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -272,7 +271,7 @@ const MainContent = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  min-height: 800px;
   text-align: center;
 `;
 
@@ -330,6 +329,7 @@ const Description = styled.p`
   font-size: 17px;
   line-height: 30px;
   text-align: center;
+
   margin-top: 20px;
 `;
 
@@ -339,7 +339,10 @@ const ScrollIndicator = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 15px;
-  height: 35px;
+  width: 35px;
+  height: 31px;
+
+  margin-top: 35px;
   margin-bottom: 117px;
   &::before {
     content: '↓';
@@ -400,6 +403,8 @@ const BrandList = styled.div`
   flex-direction: row;
   overflow-x: scroll;
   width: 100%;
+  height: 250px;
+  margin-bottom: 90px;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -682,5 +687,5 @@ const Comment = styled.div`
   line-height: 30px;
   text-align: center;
 
-  margin-top: 90px;
+  margin-bottom: 161px;
 `;
