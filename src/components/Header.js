@@ -14,6 +14,11 @@ const Header = ({ nickname = 'Mr J', isLoggedIn }) => {
 
   console.log('isLoggedIn:', isLoggedIn);
 
+  const handleMypageClick = () => {
+    // Redirect to the specified URL
+    window.location.href = 'https://api.stylewh.com/oauth/instagram';
+  };
+
   return (
     <HeaderWrapper>
       <HeaderContainer>
@@ -56,7 +61,11 @@ const Header = ({ nickname = 'Mr J', isLoggedIn }) => {
                   navigate('/schedule');
                 }}
               />
-              <Icon src={Mypage} alt='마이페이지' />
+              <Icon
+                src={Mypage}
+                alt='마이페이지'
+                onClick={handleMypageClick} // Handle the click event to navigate to the external URL
+              />
               <Icon src={Alarm} alt='알림' />
             </>
           )}
