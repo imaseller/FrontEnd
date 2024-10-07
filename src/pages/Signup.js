@@ -97,7 +97,6 @@ const Signup = () => {
             {...register('instar')}
             required
             maxLength={20}
-            buttonLabel='아이디 확인'
             onButtonClick={handleInstagramCheck}
           />
           <InputField
