@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import ServiceImg1 from '../../img/Landing/ServiceImg1.svg';
 import ServiceImg2 from '../../img/Landing/ServiceImg2.svg';
 import ServiceImg3 from '../../img/Landing/ServiceImg3.svg';
+import Theme from '../../styles/Theme';
 
 const LandingPage3 = () => {
   return (
@@ -40,6 +41,10 @@ const Container = styled.div`
   padding: 40px 20px;
   background-color: #ffffff;
   min-height: 900px;
+  max-width: 600px;
+  margin: 0 auto;
+  border-left: 1px solid ${Theme.colors.gray1};
+  border-right: 1px solid ${Theme.colors.gray1};
 `;
 
 const LandingTitle2 = styled.h1`

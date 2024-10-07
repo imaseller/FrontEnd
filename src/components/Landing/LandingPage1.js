@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import MelpikLogo from '../../img/MelpikLogo.svg';
+import MelpikLogo from '../../img/Landing/MelpikLogo.svg';
 import LandingBackground from '../../img/Landing/LandingBackground.svg';
 import BoxBackgroundImg from '../../img/Landing/BoxBackgroundImg.svg';
 import SelectIcon from '../../img/Landing/SelectIcon.svg';
 import HeartIcon from '../../img/Landing/HeartIcon.svg';
+import Theme from '../../styles/Theme';
 
 const LandingPage1 = () => {
   const navigate = useNavigate();
@@ -48,7 +49,6 @@ const LandingPage1 = () => {
 
 export default LandingPage1;
 
-// 스타일 컴포넌트 정의
 const Container = styled.div`
   position: relative;
   display: flex;
@@ -58,6 +58,10 @@ const Container = styled.div`
   padding: 2rem;
   background-color: transparent;
   min-height: 900px;
+  max-width: 600px;
+  margin: 0 auto;
+  border-left: 1px solid ${Theme.colors.gray1};
+  border-right: 1px solid ${Theme.colors.gray1};
 `;
 
 const Box = styled.div`
@@ -136,6 +140,7 @@ const Title = styled.h1`
   line-height: 50px;
   text-align: center;
   color: ${({ theme }) => theme.colors.black};
+  margin-top: 28px;
 `;
 
 const HighlightText = styled.span`

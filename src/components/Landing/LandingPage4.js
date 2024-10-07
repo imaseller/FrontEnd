@@ -7,6 +7,7 @@ import RightArrowIcon from '../../img/Landing/right-arrow.svg';
 import ScreenImg1 from '../../img/Landing/ScreenImg1.svg';
 import ScreenImg2 from '../../img/Landing/ScreenImg2.svg';
 import ScreenImg3 from '../../img/Landing/ScreenImg3.svg';
+import Theme from '../../styles/Theme';
 
 const LandingPage4 = () => {
   const [currentScreenIndex, setCurrentScreenIndex] = useState(0);
@@ -85,6 +86,10 @@ const Container = styled.div`
   padding: 60px 20px;
   background-color: ${(props) => props.bgColor || 'transparent'};
   min-height: 900px;
+  max-width: 600px;
+  margin: 0 auto;
+  border-left: 1px solid ${Theme.colors.gray1};
+  border-right: 1px solid ${Theme.colors.gray1};
 `;
 
 const LandingTitle3 = styled.h1`

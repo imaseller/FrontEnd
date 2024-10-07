@@ -5,6 +5,7 @@ import HangerIcon from '../../img/Landing/hangerIcon.svg';
 import ZOOCImage from '../../img/Landing/ZoocImg.svg';
 import SANDROImage from '../../img/Landing/Sandro.svg';
 import ITMICHAImage from '../../img/Landing/ItMichaa.svg';
+import Theme from '../../styles/Theme';
 
 const LandingPage2 = () => {
   return (
@@ -45,6 +46,10 @@ const Container = styled.div`
   padding: 40px 20px;
   background-color: ${(props) => props.bgColor || 'transparent'};
   min-height: 900px;
+  max-width: 600px;
+  margin: 0 auto;
+  border-left: 1px solid ${Theme.colors.gray1};
+  border-right: 1px solid ${Theme.colors.gray1};
 `;
 
 const ScrollIndicator = styled.div`

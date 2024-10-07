@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import LastImg from '../../img/Landing/LastpageBackground.svg';
+import Theme from '../../styles/Theme';
 
 const LandingPage5 = () => {
   const navigate = useNavigate();
@@ -69,7 +70,11 @@ const Container = styled.div`
   background-image: url(${(props) => props.backgroundImage});
   background-size: cover;
   background-position: center;
-  min-height: 900px;
+  min-height: 1000px;
+  max-width: 600px;
+  margin: 0 auto;
+  border-left: 1px solid ${Theme.colors.gray1};
+  border-right: 1px solid ${Theme.colors.gray1};
 `;
 
 const LandingTitle4 = styled.h1`
