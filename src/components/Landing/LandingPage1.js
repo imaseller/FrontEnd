@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import styled, { keyframes } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import MelpikLogo from '../../img/Landing/MelpikLogo.svg';
 import LandingBackground from '../../img/Landing/LandingBackground.svg';
@@ -10,6 +10,18 @@ import Theme from '../../styles/Theme';
 
 const LandingPage1 = () => {
   const navigate = useNavigate();
+  const [hearts, setHearts] = useState([]);
+
+  const handleHeartClick = () => {
+    const newHearts = Array.from({ length: 5 }).map(() => ({
+      id: Math.random(),
+      left: Math.random() * 100, // 랜덤한 수평 위치
+      size: Math.random() * 20 + 20, // 랜덤한 크기 (20px~40px)
+      delay: Math.random() * 500, // 랜덤한 지연 시간 (0ms ~ 500ms)
+    }));
+    setHearts(newHearts);
+    setTimeout(() => setHearts([]), 1500); // 1.5초 후 애니메이션 종료
+  };
 
   return (
     <Container>
@@ -33,7 +45,19 @@ const LandingPage1 = () => {
             </StartButton>
             <IconContainer>
               <Icon src={SelectIcon} alt='Select Icon' />
-              <Icon src={HeartIcon} alt='Heart Icon' />
+              <HeartIconContainer onClick={handleHeartClick}>
+                <Icon src={HeartIcon} alt='Heart Icon' />
+                {hearts.map((heart) => (
+                  <HeartAnimation
+                    key={heart.id}
+                    left={heart.left}
+                    size={heart.size}
+                    delay={heart.delay} // 각 하트의 지연 시간
+                  >
+                    ❤️
+                  </HeartAnimation>
+                ))}
+              </HeartIconContainer>
             </IconContainer>
           </ButtonContainer>
         </Box>
@@ -48,6 +72,33 @@ const LandingPage1 = () => {
 };
 
 export default LandingPage1;
+
+const heartFloat = keyframes`
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-300px) scale(1.5);
+    opacity: 0;
+  }
+`;
+
+const HeartAnimation = styled.div`
+  position: absolute;
+  font-size: ${(props) => props.size}px;
+  animation: ${heartFloat} 1s ease-in-out forwards;
+  top: 0;
+  left: ${(props) => props.left}%;
+  animation-delay: ${(props) => props.delay}ms; /* 지연 시간 적용 */
+  pointer-events: none;
+`;
+
+const HeartIconContainer = styled.div`
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+`;
 
 const Header = styled.header`
   position: fixed;
